@@ -40,6 +40,10 @@ body {
   line-height: 1.5;
 }
 
+.section {
+  padding-block: var(--space-5);
+}
+
 .visually-hidden {
   position: absolute;
   clip: rect(0, 0, 0, 0);
@@ -47,6 +51,48 @@ body {
   height: 1px;
   margin: -1px;
   overflow: hidden;
+}
+
+.stack > * + * {
+  margin-top: var(--space-3);
+}
+
+.stack-tight > * + * {
+  margin-top: var(--space-2);
+}
+
+.stack-loose > * + * {
+  margin-top: var(--space-4);
+}
+
+.center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.link-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: inherit;
+  transition: gap 260ms ease, opacity 160ms ease;
+}
+
+.link-cue:hover {
+  gap: calc(var(--space-1) * 1.5);
+  opacity: 0.7;
 }
 
 /* Component class hooks from Liquid sections */
@@ -69,4 +115,57 @@ body {
 .related-products {
   padding-inline: var(--space-5);
   padding-block: var(--space-5);
+}
+
+.footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.footer__grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.footer__heading {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.footer__link {
+  font-size: 13px;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: opacity 160ms ease;
+}
+
+.footer__link:hover {
+  opacity: 0.7;
+}
+
+.footer__text {
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.footer__credits {
+  font-size: 11px;
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(212, 206, 192, 0.8);
 }
