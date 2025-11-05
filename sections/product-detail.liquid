@@ -172,8 +172,9 @@
         {% endfor %}
   </aside>
 
+  {% assign media_count = product.media.size %}
   <div class="product-images">
-    {% if product.media.size > 0 %}
+    {% if media_count > 0 %}
       {% for media in product.media %}
         <div>
           <div class="product-image">
@@ -184,10 +185,20 @@
           {% endif %}
         </div>
       {% endfor %}
-    {% else %}
-      <div class="product-image">
-        {{ 'product-1' | placeholder_svg_tag }}
-      </div>
+    {% endif %}
+
+    {% assign minimum_views = 4 %}
+    {% if media_count < minimum_views %}
+      {% assign placeholders_needed = minimum_views | minus: media_count %}
+      {% assign placeholder_styles = "linear-gradient(180deg, #E8DCC8 0%, #D4C8B8 100%)|linear-gradient(180deg, #A4B08C 0%, #7A8450 100%)|linear-gradient(135deg, #8B6B47 0%, #4A3426 100%)|linear-gradient(180deg, #C4932C 0%, #A0584F 100%)" | split: "|" %}
+      {% for i in (1..placeholders_needed) %}
+        {% assign style_index = forloop.index0 | modulo: placeholder_styles.size %}
+        {% assign fallback_style = placeholder_styles[style_index] | strip %}
+        <div>
+          <div class="product-image" style="background: {{ fallback_style }};"></div>
+          <p class="image-caption">Fig. {{ media_count | plus: forloop.index }} — {{ product.title | escape }}</p>
+        </div>
+      {% endfor %}
     {% endif %}
   </div>
 </section>
