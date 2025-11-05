@@ -1185,7 +1185,7 @@ body {
 }
 .header-nav a {
   font-family: var(--font-secondary);
-  font-weight: 400;
+  font-weight: 300;
   color: var(--warm-white);
   text-decoration: none;
   font-size: 11px;
