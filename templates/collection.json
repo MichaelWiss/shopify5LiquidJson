@@ -6,7 +6,48 @@
     },
     "product-grid": {
       "type": "collection-grid",
-      "settings": {}
+      "settings": {
+        "demo_content": true,
+        "demo_heading": "Products",
+        "demo_count": "13 items"
+      },
+      "blocks": {
+        "demo-1": {
+          "type": "demo_card",
+          "settings": {
+            "eyebrow": "Lighting",
+            "title": "Pendants",
+            "link_label": "Shop pendants",
+            "gradient_start": "#8B6B47",
+            "gradient_end": "#4A3426"
+          }
+        },
+        "demo-2": {
+          "type": "demo_card",
+          "settings": {
+            "eyebrow": "Seating",
+            "title": "Chairs",
+            "link_label": "Explore seating",
+            "gradient_start": "#A0584F",
+            "gradient_end": "#8B3A2F"
+          }
+        },
+        "demo-3": {
+          "type": "demo_card",
+          "settings": {
+            "eyebrow": "Tables",
+            "title": "Dining",
+            "link_label": "View tables",
+            "gradient_start": "#B89968",
+            "gradient_end": "#8B7E6A"
+          }
+        }
+      },
+      "block_order": [
+        "demo-1",
+        "demo-2",
+        "demo-3"
+      ]
     }
   },
   "order": ["banner", "product-grid"]

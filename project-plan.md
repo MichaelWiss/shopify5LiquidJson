@@ -31,8 +31,6 @@
 - Recompiled `assets/theme.css` after each port to keep Shopify bundle current.
 
 **Open Items**
-- Validate header nav weight against demo asset (investigate font rendering).
-- Finish port for remaining sections (breadcrumbs, newsletter variants, collection templates).
 - Document demo-to-theme mapping for future references.
 
 ### Demo CSS Audit (Step 1)
@@ -50,6 +48,14 @@
 - Layout helpers: `.reverse` (image-with-text), `.hero-split` grid, `.hero-content`, `.hero-image`, `.hero-text`.
 - Typography helpers: `.intro-eyebrow`, `.intro-heading`, `.intro-text`, `.image-text-eyebrow`, `.image-text-heading`, `.image-text-body`, `.editorial-caption`.
 - Cards/grids: `.collections-grid`, `.collection-card`, `.collection-image(-inner)`, `.product-card(-image|-image-inner|-title|-designer)`, `.editorial-grid`, `.editorial-item.large`.
+
+**Elegance guardrails from reference**
+- Typography: serif headlines set at light weight (300–400), sans body at 13px with tight tracking; navigation sits at 11px, 0.03em letter-spacing, weight 300. Eyebrow labels use uppercase/small caps at 0.08em letter-spacing.
+- Palette: warm white canvas, cream surfaces, burgundy header/footer, ochre/terracotta accents; gradients acceptable but must stay within token palette.
+- Rhythm: modules alternate single-column and asymmetrical grids with wide gutters (min 24px) and vertical spacing of ≥3 space units.
+- Ornamentation: hairline borders (`var(--border)`), figure captions prefixed with “Fig.”, inline arrow SVGs for CTAs, subtle hover states (opacity or gentle scale).
+- Media hierarchy: hero imagery full-bleed, subsequent imagery balanced between portrait 4:5 and square ratios; editorial grid uses span toggles (half/full) to echo demo cadence.
+- Whitespace: section paddings of 12 space units on larger viewports, capped inner width of 1400px, and max copy width ~720px for supporting text blocks.
 
 **Homepage component selectors**
 - Header (`header.liquid`): `.site-header`, `.header-container`, `.site-logo`, `.header-nav`, `.header-icons`, `.header-icon`.

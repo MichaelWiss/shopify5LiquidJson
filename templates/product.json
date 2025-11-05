@@ -7,16 +7,94 @@
     "main": {
       "type": "product-detail",
       "settings": {},
-      "blocks": {},
-      "block_order": []
+      "blocks": {
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "summary-size": {
+          "type": "summary_row",
+          "settings": { "label": "Size", "value": "Medium" }
+        },
+        "summary-orientation": {
+          "type": "summary_row",
+          "settings": { "label": "Orientation", "value": "Vertical" }
+        },
+        "summary-mounting": {
+          "type": "summary_row",
+          "settings": { "label": "Mounting", "value": "Surface" }
+        },
+        "variant": {
+          "type": "variant_picker"
+        },
+        "description": {
+          "type": "description"
+        },
+        "meta": {
+          "type": "meta"
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "summary-size",
+        "summary-orientation",
+        "summary-mounting",
+        "variant",
+        "description",
+        "meta"
+      ]
     },
     "finish-swatches": {
       "type": "finish-swatches",
-      "settings": {}
+      "settings": {
+        "heading": "Available finishes"
+      },
+      "blocks": {
+        "swatch-1": {
+          "type": "swatch",
+          "settings": {
+            "label": "Burgundy",
+            "swatch_color": "#5C1F1F"
+          }
+        },
+        "swatch-2": {
+          "type": "swatch",
+          "settings": {
+            "label": "Ochre",
+            "swatch_color": "#C4932C"
+          }
+        },
+        "swatch-3": {
+          "type": "swatch",
+          "settings": {
+            "label": "Terracotta",
+            "swatch_color": "#A0584F"
+          }
+        },
+        "swatch-4": {
+          "type": "swatch",
+          "settings": {
+            "label": "Moss",
+            "swatch_color": "#7A8450"
+          }
+        }
+      },
+      "block_order": [
+        "swatch-1",
+        "swatch-2",
+        "swatch-3",
+        "swatch-4"
+      ]
     },
     "related-products": {
       "type": "related-products",
-      "settings": {}
+      "settings": {
+        "heading": "Related fixtures",
+        "products_to_show": 4
+      }
     }
   },
   "order": [

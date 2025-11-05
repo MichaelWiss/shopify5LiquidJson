@@ -18,8 +18,29 @@
     {% endif %}
   </div>
 
-  <aside class="product-sidebar">
+  {% capture summary_rows %}
     {% for block in section.blocks %}
+      {% if block.type == 'summary_row' %}
+        <div class="option-row" {{ block.shopify_attributes }}>
+          <span class="option-row-label">{{ block.settings.label }}</span>
+          <span class="option-row-value">{{ block.settings.value }}</span>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endcapture %}
+
+  <aside class="product-sidebar">
+    {% if summary_rows != blank %}
+      <div class="product-summary">
+        {{ summary_rows }}
+      </div>
+    {% endif %}
+
+    {% for block in section.blocks %}
+      {% if block.type == 'summary_row' %}
+        {% continue %}
+      {% endif %}
+
       {% case block.type %}
         {% when 'title' %}
           <h1 class="product-title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
@@ -159,6 +180,24 @@
       "limit": 1
     },
     {
+      "type": "summary_row",
+      "name": "Detail row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Size"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "Medium"
+        }
+      ]
+    },
+    {
       "type": "meta",
       "name": "Meta",
       "settings": [
@@ -183,6 +222,18 @@
       "blocks": [
         { "type": "title" },
         { "type": "price" },
+        {
+          "type": "summary_row",
+          "settings": { "label": "Size", "value": "Medium" }
+        },
+        {
+          "type": "summary_row",
+          "settings": { "label": "Orientation", "value": "Vertical" }
+        },
+        {
+          "type": "summary_row",
+          "settings": { "label": "Mounting", "value": "Surface" }
+        },
         { "type": "variant_picker" },
         { "type": "description" },
         { "type": "meta" }

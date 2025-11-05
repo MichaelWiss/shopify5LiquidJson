@@ -1,10 +1,13 @@
 <section class="collection-banner">
   <div class="collection-banner__inner">
-    <p class="collection-banner__eyebrow">{{ section.settings.eyebrow | default: 'Collection' }}</p>
-    <h1 class="collection-banner__heading">{{ collection.title }}</h1>
+    {% if section.settings.eyebrow != blank %}
+      <p class="collection-banner__eyebrow intro-eyebrow">{{ section.settings.eyebrow }}</p>
+    {% endif %}
+
+    <h1 class="collection-banner__heading intro-heading">{{ collection.title }}</h1>
 
     {% if section.settings.show_description and collection.description != blank %}
-      <div class="collection-banner__description">{{ collection.description }}</div>
+      <div class="collection-banner__description intro-text">{{ collection.description }}</div>
     {% endif %}
   </div>
 </section>

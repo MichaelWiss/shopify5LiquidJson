@@ -1,47 +1,99 @@
-{% paginate collection.products by section.settings.products_per_page %}
-  <section class="collection-grid">
-    <header class="collection-grid__header">
-      <h1 class="collection-grid__title">{{ collection.title }}</h1>
-      <p class="collection-grid__count">
-        {{ collection.products_count }} {{ collection.products_count | pluralize: 'item', 'items' }}
-      </p>
-    </header>
+{% if section.settings.demo_content and section.blocks.size > 0 %}
+  <section class="collection-section">
+    <div class="collection-section__inner">
+      <header class="collection-section__header">
+        <h1 class="collection-section__title">{{ section.settings.demo_heading | default: collection.title }}</h1>
+        {% if section.settings.demo_count != blank %}
+          <p class="collection-section__count">{{ section.settings.demo_count }}</p>
+        {% endif %}
+      </header>
 
-    <div class="collection-grid__controls">
-      {% if section.settings.enable_sorting %}
-        <form class="collection-grid__sort" method="get">
-          <label class="visually-hidden" for="SortBy-{{ section.id }}">{{ 'collections.sorting.title' | t }}</label>
-          <select id="SortBy-{{ section.id }}" name="sort_by" onchange="this.form.submit()">
-            {% for option in collection.sort_options %}
-              <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>
-                {{ option.name }}
-              </option>
-            {% endfor %}
-          </select>
-        </form>
-      {% endif %}
+      <div class="collection-section__grid collection-section__grid--demo">
+        {% for block in section.blocks %}
+          <article class="collection-demo-card" style="background: linear-gradient(135deg, {{ block.settings.gradient_start }} 0%, {{ block.settings.gradient_end }} 100%);" {{ block.shopify_attributes }}>
+            <div class="collection-demo-card__meta">
+              {% if block.settings.eyebrow != blank %}
+                <p class="collection-demo-card__eyebrow">{{ block.settings.eyebrow }}</p>
+              {% endif %}
+              {% if block.settings.title != blank %}
+                <h3 class="collection-demo-card__title">{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.link_label != blank %}
+                <a class="collection-demo-card__link" href="{{ block.settings.link | default: '#' }}">
+                  {{ block.settings.link_label }}
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
     </div>
-
-    <div class="collection-grid__items">
-      {% for product in collection.products %}
-        <article class="collection-grid__item">
-          {% render 'product-card', product: product %}
-        </article>
-      {% endfor %}
-    </div>
-
-    {% if paginate.pages > 1 %}
-      <nav class="collection-grid__pagination" aria-label="{{ 'general.pagination.label' | t }}">
-        {{ paginate | default_pagination }}
-      </nav>
-    {% endif %}
   </section>
-{% endpaginate %}
+{% else %}
+  {% paginate collection.products by section.settings.products_per_page %}
+    <section class="collection-section">
+      <div class="collection-section__inner">
+        <header class="collection-section__header">
+          <h1 class="collection-section__title">{{ collection.title }}</h1>
+          <p class="collection-section__count">
+            {{ collection.products_count }} {{ collection.products_count | pluralize: 'item', 'items' }}
+          </p>
+        </header>
+
+        {% if section.settings.enable_sorting %}
+          <form class="collection-section__sort" method="get">
+            <label class="visually-hidden" for="SortBy-{{ section.id }}">{{ 'collections.sorting.title' | t }}</label>
+            <select id="SortBy-{{ section.id }}" name="sort_by" class="form-select" onchange="this.form.submit()">
+              {% for option in collection.sort_options %}
+                <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>
+                  {{ option.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </form>
+        {% endif %}
+
+        <div class="collection-section__grid">
+          {% for product in collection.products %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <nav class="collection-section__pagination" aria-label="{{ 'general.pagination.label' | t }}">
+            {{ paginate | default_pagination }}
+          </nav>
+        {% endif %}
+      </div>
+    </section>
+  {% endpaginate %}
+{% endif %}
 
 {% schema %}
 {
   "name": "Collection grid",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "demo_content",
+      "label": "Use demo content",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "demo_heading",
+      "label": "Demo heading",
+      "default": "Products"
+    },
+    {
+      "type": "text",
+      "id": "demo_count",
+      "label": "Demo count",
+      "default": "13 items"
+    },
     {
       "type": "range",
       "id": "products_per_page",
@@ -58,9 +110,84 @@
       "default": true
     }
   ],
+  "blocks": [
+    {
+      "type": "demo_card",
+      "name": "Demo card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Lighting"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "Explore"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "gradient_start",
+          "label": "Gradient start",
+          "default": "#8B6B47"
+        },
+        {
+          "type": "color",
+          "id": "gradient_end",
+          "label": "Gradient end",
+          "default": "#4A3426"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Collection grid"
+      "name": "Collection grid",
+      "blocks": [
+        {
+          "type": "demo_card",
+          "settings": {
+            "eyebrow": "Lighting",
+            "title": "Pendants",
+            "link_label": "Shop pendants",
+            "gradient_start": "#8B6B47",
+            "gradient_end": "#4A3426"
+          }
+        },
+        {
+          "type": "demo_card",
+          "settings": {
+            "eyebrow": "Seating",
+            "title": "Chairs",
+            "link_label": "Explore seating",
+            "gradient_start": "#A0584F",
+            "gradient_end": "#8B3A2F"
+          }
+        },
+        {
+          "type": "demo_card",
+          "settings": {
+            "eyebrow": "Tables",
+            "title": "Dining",
+            "link_label": "View tables",
+            "gradient_start": "#B89968",
+            "gradient_end": "#8B7E6A"
+          }
+        }
+      ]
     }
   ]
 }
