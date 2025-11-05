@@ -218,15 +218,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: var(--space-3);
+  padding-block: var(--space-2);
 }
 
 .site-header__logo {
   font-family: var(--font-serif);
-  font-size: 0.75rem;
+  font-size: 0.92rem;
   text-decoration: none;
   letter-spacing: 0.05em;
   color: var(--color-bg);
+  font-weight: 500;
 }
 
 .site-header__nav {
@@ -240,7 +241,7 @@ body {
 }
 .site-header__menu {
   display: flex;
-  gap: var(--space-3);
+  gap: calc(var(--space-2) * 3);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -249,8 +250,8 @@ body {
 .site-header__link {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.6875rem;
-  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   transition: opacity 160ms ease;
 }
@@ -653,7 +654,8 @@ body {
 
 .breadcrumbs {
   background: var(--color-burgundy);
-  padding: var(--space-1) var(--space-4) var(--space-3);
+  padding: 0 var(--space-4) var(--space-3);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .breadcrumbs__list {
@@ -663,14 +665,24 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
-  color: rgba(255, 255, 255, 0.7);
   font-size: 0.6875rem;
+}
+
+.breadcrumbs__item,
+.breadcrumbs__separator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
 }
 
 .breadcrumbs__item a {
   color: inherit;
   text-decoration: none;
   transition: color 200ms ease;
+}
+
+.breadcrumbs__item--current {
+  color: var(--color-bg);
 }
 
 .breadcrumbs__item a:hover {
