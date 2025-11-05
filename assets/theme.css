@@ -231,10 +231,10 @@ body {
 .site-header {
   background: var(--color-burgundy);
   color: var(--color-bg);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 300;
 }
 
 .site-header__inner {
@@ -346,6 +346,8 @@ body {
 .header-nav {
   display: none;
   gap: 24px;
+  flex: 1;
+  justify-content: center;
 }
 
 @media (min-width: 768px) {
@@ -1353,9 +1355,10 @@ body {
   background-color: var(--burgundy);
   color: var(--warm-white);
   padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 4);
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 300;
 }
 
 .header-container,
@@ -1379,6 +1382,8 @@ body {
 .header-nav {
   display: none;
   gap: calc(var(--space-unit) * 3);
+  flex: 1;
+  justify-content: center;
 }
 
 @media (min-width: 768px) {
