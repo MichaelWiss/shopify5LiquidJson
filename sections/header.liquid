@@ -3,11 +3,11 @@
     <a class="site-header__logo" href="/">{{ section.settings.logo_text | default: shop.name }}</a>
 
     <nav class="site-header__nav" aria-label="{{ 'general.navigation' | t }}">
-      {% if linklists[section.settings.menu] %}
+      {% if section.blocks.size > 0 %}
         <ul class="site-header__menu">
-          {% for link in linklists[section.settings.menu].links %}
-            <li class="site-header__item">
-              <a class="site-header__link" href="{{ link.url }}">{{ link.title }}</a>
+          {% for block in section.blocks %}
+            <li class="site-header__item" {{ block.shopify_attributes }}>
+              <a class="site-header__link" href="{{ block.settings.url | default: '#' }}">{{ block.settings.label }}</a>
             </li>
           {% endfor %}
         </ul>
@@ -33,12 +33,37 @@
       "id": "logo_text",
       "label": "Logo text",
       "default": "In Common With"
-    },
+    }
+  ],
+  "blocks": [
     {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Primary menu",
-      "default": "main-menu"
+      "type": "nav_link",
+      "name": "Navigation link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Shop"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Header",
+      "blocks": [
+        { "type": "nav_link", "settings": { "label": "Shop" } },
+        { "type": "nav_link", "settings": { "label": "Collections" } },
+        { "type": "nav_link", "settings": { "label": "Showrooms" } },
+        { "type": "nav_link", "settings": { "label": "Trade" } }
+      ]
     }
   ]
 }
