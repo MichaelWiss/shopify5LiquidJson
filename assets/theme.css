@@ -234,7 +234,8 @@ body {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 300;
+  z-index: 400;
+  width: 100%;
 }
 
 .site-header__inner {
