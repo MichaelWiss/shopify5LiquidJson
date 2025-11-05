@@ -243,7 +243,7 @@ body {
 }
 .site-header__menu {
   display: flex;
-  gap: 24px;
+  gap: calc(var(--space-1) * 3);
   list-style: none;
   margin: 0;
   padding: 0;
