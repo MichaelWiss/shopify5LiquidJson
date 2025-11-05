@@ -4,21 +4,56 @@
       <h2 class="intro-heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
-    <div class="finish-grid">
-      {% for block in section.blocks %}
+    {% assign current_group = '' %}
+    {% assign group_open = false %}
+
+    {% for block in section.blocks %}
+      {% if block.type == 'swatch' %}
+        {% assign block_group = block.settings.group_title | default: 'Finishes' %}
+
+        {% if block_group != current_group %}
+          {% if group_open %}
+              </div>
+            </div>
+          {% endif %}
+          <div class="finish-group">
+            <div class="finish-header">
+              <h3 class="finish-title">{{ block_group }}</h3>
+              {% if block.settings.group_price != blank %}
+                <span class="finish-price">{{ block.settings.group_price }}</span>
+              {% endif %}
+            </div>
+            <div class="finish-grid">
+          {% assign current_group = block_group %}
+          {% assign group_open = true %}
+        {% endif %}
+
         <div class="finish-swatch" {{ block.shopify_attributes }}>
-          <span class="finish-box" style="{% if block.settings.swatch_color != blank %}background-color: {{ block.settings.swatch_color }};{% endif %}">
+          <div class="finish-box">
             {% if block.settings.image != blank %}
-              {{ block.settings.image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'finish-sample' }}
+              {{ block.settings.image | image_url: width: 280 | image_tag: loading: 'lazy', class: 'finish-sample', sizes: '(min-width: 1024px) 140px, 33vw' }}
+            {% elsif block.settings.swatch_background != blank %}
+              <div class="finish-sample" style="background: {{ block.settings.swatch_background }};"></div>
+            {% elsif block.settings.swatch_color != blank %}
+              <div class="finish-sample" style="background-color: {{ block.settings.swatch_color }};"></div>
+            {% else %}
+              <div class="finish-sample">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
             {% endif %}
-          </span>
+          </div>
 
           {% if block.settings.label != blank %}
-            <p class="finish-label">{{ block.settings.label }}</p>
+            <div class="finish-label">{{ block.settings.label }}</div>
           {% endif %}
         </div>
-      {% endfor %}
-    </div>
+      {% endif %}
+    {% endfor %}
+
+    {% if group_open %}
+        </div>
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -30,7 +65,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Available finishes"
+      "default": ""
     }
   ],
   "blocks": [
@@ -40,9 +75,27 @@
       "settings": [
         {
           "type": "text",
+          "id": "group_title",
+          "label": "Group title",
+          "default": "Stone finishes"
+        },
+        {
+          "type": "text",
+          "id": "group_price",
+          "label": "Group price note",
+          "info": "Shown alongside the group heading (optional)."
+        },
+        {
+          "type": "text",
           "id": "label",
-          "label": "Label",
-          "default": "Brushed brass"
+          "label": "Swatch label",
+          "default": "Terracotta"
+        },
+        {
+          "type": "text",
+          "id": "swatch_background",
+          "label": "Custom background",
+          "info": "Optional CSS background (e.g. gradients). Overrides color fallback."
         },
         {
           "type": "color",
@@ -52,7 +105,7 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
+          "label": "Swatch image"
         }
       ]
     }

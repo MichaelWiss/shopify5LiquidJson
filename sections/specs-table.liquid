@@ -1,0 +1,66 @@
+<section class="specs-section">
+  <div class="specs-container">
+    {% if section.settings.heading != blank %}
+      <h2 class="specs-title">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="specs-table">
+        {% for block in section.blocks %}
+          <div class="spec-row" {{ block.shopify_attributes }}>
+            {% if block.settings.label != blank %}
+              <div class="spec-label">{{ block.settings.label }}</div>
+            {% endif %}
+            {% if block.settings.value != blank %}
+              <div class="spec-value">{{ block.settings.value | newline_to_br }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Specifications table",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tech Specs"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Specification",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Dimensions"
+        },
+        {
+          "type": "textarea",
+          "id": "value",
+          "label": "Value",
+          "default": "Width: 10 in.\nHeight: 12 in."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Specifications table",
+      "blocks": [
+        { "type": "spec" },
+        { "type": "spec" },
+        { "type": "spec" }
+      ]
+    }
+  ]
+}
+{% endschema %}

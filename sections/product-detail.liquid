@@ -1,23 +1,4 @@
 <section class="product-detail">
-  <div class="product-images">
-    {% if product.media.size > 0 %}
-      {% for media in product.media %}
-        <div>
-          <div class="product-image">
-            {{ media | media_tag }}
-          </div>
-          {% if media.alt != blank %}
-            <p class="image-caption">{{ media.alt }}</p>
-          {% endif %}
-        </div>
-      {% endfor %}
-    {% else %}
-      <div class="product-image">
-        {{ 'product-1' | placeholder_svg_tag }}
-      </div>
-    {% endif %}
-  </div>
-
   {% capture summary_rows %}
     {% for block in section.blocks %}
       {% if block.type == 'summary_row' %}
@@ -57,22 +38,75 @@
               {% if product.has_only_default_variant %}
                 <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
               {% else %}
+                {% assign swatch_options_raw = block.settings.swatch_options | default: '' %}
+                {% assign swatch_options = swatch_options_raw | split: ',' %}
+                {% assign swatch_entries = block.settings.swatch_value_colors | default: '' | newline_to_br | split: '<br />' %}
+
                 {% for option in product.options_with_values %}
+                  {% assign option_name_normalized = option.name | strip | downcase %}
+                  {% assign is_swatch_option = false %}
+                  {% for swatch_option in swatch_options %}
+                    {% assign swatch_option_normalized = swatch_option | strip | downcase %}
+                    {% if swatch_option_normalized != '' and swatch_option_normalized == option_name_normalized %}
+                      {% assign is_swatch_option = true %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+
                   <div class="product-option">
-                    <label class="option-label" for="Option-{{ forloop.index0 }}-{{ section.id }}">
-                      {{ option.name }}
-                    </label>
-                    <select
-                      id="Option-{{ forloop.index0 }}-{{ section.id }}"
-                      class="form-select"
-                      name="options[{{ option.name }}]"
-                    >
-                      {% for value in option.values %}
-                        <option {% if option.selected_value == value %}selected{% endif %}>
-                          {{ value }}
-                        </option>
-                      {% endfor %}
-                    </select>
+                    {% if is_swatch_option %}
+                      <div class="option-label">{{ option.name }}</div>
+                      <div class="color-dots" role="radiogroup" aria-label="{{ option.name }}">
+                        {% for value in option.values %}
+                          {% assign value_normalized = value | strip | downcase %}
+                          {% assign swatch_background = '' %}
+                          {% for entry in swatch_entries %}
+                            {% assign trimmed_entry = entry | strip %}
+                            {% if trimmed_entry != '' %}
+                              {% assign pair = trimmed_entry | split: ':' %}
+                              {% if pair.size > 1 %}
+                                {% assign entry_key = pair[0] | strip | downcase %}
+                                {% if entry_key == value_normalized %}
+                                  {% assign swatch_background = pair[1] | strip %}
+                                  {% break %}
+                                {% endif %}
+                              {% endif %}
+                            {% endif %}
+                          {% endfor %}
+                          {% assign input_id = 'Option-' | append: section.id | append: '-' | append: option.position | append: '-' | append: forloop.index0 %}
+                          <input
+                            class="visually-hidden"
+                            type="radio"
+                            id="{{ input_id }}"
+                            name="options[{{ option.name }}]"
+                            value="{{ value }}"
+                            {% if option.selected_value == value %}checked{% endif %}
+                          >
+                          {% assign swatch_style = '' %}
+                          {% if swatch_background != '' %}
+                            {% assign swatch_style = 'background: ' | append: swatch_background | append: ';' %}
+                          {% endif %}
+                          <label class="color-dot{% if option.selected_value == value %} selected{% endif %}" for="{{ input_id }}"{% if swatch_style != '' %} style="{{ swatch_style }}"{% endif %} title="{{ value }}">
+                            <span class="visually-hidden">{{ value }}</span>
+                          </label>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      <label class="option-label" for="Option-{{ forloop.index0 }}-{{ section.id }}">
+                        {{ option.name }}
+                      </label>
+                      <select
+                        id="Option-{{ forloop.index0 }}-{{ section.id }}"
+                        class="form-select"
+                        name="options[{{ option.name }}]"
+                      >
+                        {% for value in option.values %}
+                          <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>
+                            {{ value }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    {% endif %}
                   </div>
                 {% endfor %}
                 <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
@@ -82,14 +116,16 @@
                 <label class="option-label" for="Quantity-{{ section.id }}">
                   {{ 'products.product.quantity' | t }}
                 </label>
-                <input
+                <select
                   id="Quantity-{{ section.id }}"
                   class="form-select"
                   name="quantity"
-                  type="number"
-                  min="1"
-                  value="1"
                 >
+                  {% assign quantity_limit = block.settings.quantity_limit | default: 10 %}
+                  {% for i in (1..quantity_limit) %}
+                    <option value="{{ i }}" {% if i == 1 %}selected{% endif %}>{{ i }}</option>
+                  {% endfor %}
+                </select>
               </div>
 
               <button class="btn" type="submit">
@@ -132,9 +168,28 @@
               </div>
             {% endif %}
           </dl>
-      {% endcase %}
-    {% endfor %}
+          {% endcase %}
+        {% endfor %}
   </aside>
+
+  <div class="product-images">
+    {% if product.media.size > 0 %}
+      {% for media in product.media %}
+        <div>
+          <div class="product-image">
+            {{ media | media_tag }}
+          </div>
+          {% if media.alt != blank %}
+            <p class="image-caption">{{ media.alt }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="product-image">
+        {{ 'product-1' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+  </div>
 </section>
 
 {% schema %}
@@ -161,6 +216,28 @@
           "id": "button_label",
           "label": "Button label",
           "default": "Add to cart"
+        },
+        {
+          "type": "text",
+          "id": "swatch_options",
+          "label": "Swatch option names",
+          "default": "Stone Color",
+          "info": "Comma-separated option names to present as color dots."
+        },
+        {
+          "type": "textarea",
+          "id": "swatch_value_colors",
+          "label": "Swatch value backgrounds",
+          "info": "One per line using the format “Value:background”. Background accepts hex codes or CSS gradients."
+        },
+        {
+          "type": "range",
+          "id": "quantity_limit",
+          "label": "Maximum quantity in dropdown",
+          "min": 1,
+          "max": 15,
+          "step": 1,
+          "default": 10
         },
         {
           "type": "text",
