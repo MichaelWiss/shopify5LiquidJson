@@ -44,7 +44,7 @@ body {
   padding-block: var(--space-5);
 }
 
-.page-rails {
+.page-rails, .site-header__inner {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
@@ -52,7 +52,7 @@ body {
 }
 
 @media (min-width: 1280px) {
-  .page-rails {
+  .page-rails, .site-header__inner {
     padding-inline: var(--space-6);
   }
 }
@@ -196,6 +196,79 @@ body {
 .site-header {
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-3);
+}
+
+.site-header__logo {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-header__nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .site-header__nav {
+    display: block;
+  }
+}
+.site-header__menu {
+  display: flex;
+  gap: var(--space-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header__link {
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: opacity 160ms ease;
+}
+
+.site-header__link:hover {
+  opacity: 0.6;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.site-header__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-header__cart-count {
+  margin-left: 4px;
+  font-size: 0.75rem;
+}
+
+.site-header__inner svg {
+  width: 18px;
+  height: 18px;
 }
 
 .hero-split {
@@ -295,7 +368,7 @@ body {
   text-align: left;
 }
 
-.featured-collections .page-rails {
+.featured-collections .page-rails, .featured-collections .site-header__inner {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -445,7 +518,7 @@ body {
   background: var(--color-surface);
 }
 
-.newsletter .page-rails {
+.newsletter .page-rails, .newsletter .site-header__inner {
   max-width: 640px;
   text-align: center;
 }
