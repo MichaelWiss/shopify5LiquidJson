@@ -2,11 +2,26 @@
   <div class="header-container">
     <a href="/" class="site-logo">{{ section.settings.logo_text | default: shop.name }}</a>
 
+    {% liquid
+      assign has_menu = false
+      if section.settings.menu != blank and linklists[section.settings.menu]
+        assign has_menu = true
+      endif
+    %}
+
     <nav class="header-nav" aria-label="{{ 'general.navigation' | t }}">
-      <a href="#">Shop</a>
-      <a href="#">Collections</a>
-      <a href="#">Showrooms</a>
-      <a href="#">Trade</a>
+      {% if has_menu %}
+        {% for link in linklists[section.settings.menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      {% else %}
+        {% assign fallback_links = section.settings.fallback_links | default: "Shop|/collections/all,Collections|/collections,Showrooms|/pages/showrooms,Trade|/pages/trade" %}
+        {% assign fallback_items = fallback_links | split: "," %}
+        {% for item in fallback_items %}
+          {% assign parts = item | split: "|" %}
+          <a href="{{ parts[1] | default: '#' }}">{{ parts[0] | default: 'Link' }}</a>
+        {% endfor %}
+      {% endif %}
     </nav>
 
     <div class="header-icons">
@@ -27,6 +42,18 @@
       "id": "logo_text",
       "label": "Logo text",
       "default": "In Common With"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu"
+    },
+    {
+      "type": "text",
+      "id": "fallback_links",
+      "label": "Fallback links",
+      "default": "Shop|/collections/all,Collections|/collections,Showrooms|/pages/showrooms,Trade|/pages/trade",
+      "info": "Comma separated pairs in the format Label|URL, used when no menu is assigned."
     }
   ],
   "presets": [

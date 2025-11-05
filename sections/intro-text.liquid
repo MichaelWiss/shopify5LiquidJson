@@ -1,15 +1,17 @@
-<section class="intro-text intro-text--{{ section.settings.alignment }}">
-  <div class="intro-text__inner">
+<section class="intro-section{% if section.settings.alignment == 'left' %} intro-section--left{% endif %}">
+  <div class="intro-container">
     {% if section.settings.eyebrow != blank %}
-      <p class="intro-text__eyebrow">{{ section.settings.eyebrow }}</p>
+      <p class="intro-eyebrow">{{ section.settings.eyebrow }}</p>
     {% endif %}
 
     {% if section.settings.heading != blank %}
-      <h2 class="intro-text__heading">{{ section.settings.heading }}</h2>
+      <h2 class="intro-heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
     {% if section.settings.text != blank %}
-      <div class="intro-text__body">{{ section.settings.text }}</div>
+      <div class="intro-text">
+        {{ section.settings.text }}
+      </div>
     {% endif %}
   </div>
 </section>

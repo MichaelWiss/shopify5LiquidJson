@@ -1,36 +1,36 @@
-<section class="newsletter">
-  <div class="newsletter__inner">
+<section class="newsletter-section">
+  <div class="newsletter-container">
     {% if section.settings.heading != blank %}
-      <h2 class="newsletter__heading">{{ section.settings.heading }}</h2>
+      <h2 class="newsletter-heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
     {% if section.settings.text != blank %}
-      <p class="newsletter__text">{{ section.settings.text }}</p>
+      <p class="newsletter-text">{{ section.settings.text }}</p>
     {% endif %}
 
-    {% form 'customer', class: 'newsletter__form' %}
+    {% form 'customer', class: 'newsletter-form' %}
       {% if form.posted_successfully? %}
-        <p class="newsletter__feedback newsletter__feedback--success">{{ section.settings.success_message }}</p>
+        <p class="newsletter-feedback newsletter-feedback--success">{{ section.settings.success_message }}</p>
       {% else %}
         {% if form.errors %}
-          <p class="newsletter__feedback newsletter__feedback--error">{{ form.errors | default_errors }}</p>
+          <p class="newsletter-feedback newsletter-feedback--error">{{ form.errors | default_errors }}</p>
         {% endif %}
 
         <input type="hidden" name="contact[tags]" value="newsletter">
 
-        <label class="newsletter__label" for="newsletter-email-{{ section.id }}">
+        <label class="newsletter-label" for="newsletter-email-{{ section.id }}">
           <span class="visually-hidden">{{ 'newsletter.label' | t }}</span>
         </label>
         <input
           id="newsletter-email-{{ section.id }}"
-          class="newsletter__input"
+          class="newsletter-input"
           type="email"
           name="contact[email]"
           value="{{ form.email }}"
           placeholder="{{ section.settings.placeholder }}"
           required
         >
-        <button class="newsletter__submit" type="submit">
+        <button class="newsletter-submit" type="submit">
           {{ section.settings.button_label }}
         </button>
       {% endif %}

@@ -1,36 +1,30 @@
-<section class="featured-collections">
-  <div class="featured-collections__inner">
+<section class="collections-section">
+  <div class="collections-container">
     {% if section.settings.heading != blank %}
-      <div class="featured-collections__header">
-        <h2 class="featured-collections__heading">{{ section.settings.heading }}</h2>
-        {% if section.settings.subheading != blank %}
-          <p class="featured-collections__subheading">{{ section.settings.subheading }}</p>
-        {% endif %}
-      </div>
+      <h2 class="intro-heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
-    <div class="featured-collections__grid">
+    {% if section.settings.subheading != blank %}
+      <p class="intro-text">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    <div class="collections-grid">
       {% for block in section.blocks %}
         {% assign collection = collections[block.settings.collection] %}
-        <article class="featured-collections__card" {{ block.shopify_attributes }}>
-          <a class="featured-collections__link" href="{{ collection.url | default: '#' }}">
-            <div class="featured-collections__media">
+        <article class="collection-card" {{ block.shopify_attributes }}>
+          <a href="{{ collection.url | default: '#' }}">
+            <div class="collection-image">
               {% if block.settings.image != blank %}
-                {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'featured-collections__image' }}
+                {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'collection-image-inner' }}
               {% elsif collection.featured_image %}
-                {{ collection.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'featured-collections__image' }}
+                {{ collection.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'collection-image-inner' }}
               {% else %}
-                {{ 'collection-1' | placeholder_svg_tag: 'featured-collections__placeholder' }}
+                {{ 'collection-1' | placeholder_svg_tag: 'collection-image-inner' }}
               {% endif %}
             </div>
-            <div class="featured-collections__meta">
-              <h3 class="featured-collections__title">
-                {{ block.settings.title | default: collection.title | default: 'Collection' }}
-              </h3>
-              {% if block.settings.description != blank %}
-                <p class="featured-collections__description">{{ block.settings.description }}</p>
-              {% endif %}
-            </div>
+            <h3 class="collection-title">
+              {{ block.settings.title | default: collection.title | default: 'Collection' }}
+            </h3>
           </a>
         </article>
       {% endfor %}

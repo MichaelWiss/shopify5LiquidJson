@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omilia Sconce - In Common With</title>
+  <style>
+    :root {
+      --cream: #F5F1E8;
+      --cream-dark: #E8E3D8;
+      --warm-white: #FEFDFB;
+      --taupe: #8B7E6A;
+      --brown-light: #B89968;
+      --brown-medium: #8B6B47;
+      --brown-dark: #4A3426;
+      --burgundy: #5C1F1F;
+      --rust-red: #8B3A2F;
+      --terracotta: #A0584F;
+      --rust: #8B4513;
+      --ochre: #C4932C;
+      --olive: #7A7247;
+      --green-moss: #7A8450;
+      --sage-green: #A4B08C;
+      --text-primary: #2D2820;
+      --text-secondary: #5A534A;
+      --border: #D4CEC0;
+      
+      --font-primary: 'Times New Roman', Georgia, serif;
+      --font-secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      
+      --space-unit: 8px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: var(--font-secondary);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background-color: var(--warm-white);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Header - header.liquid */
+    .site-header {
+      background-color: var(--burgundy);
+      color: var(--warm-white);
+      padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .site-logo {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--warm-white);
+      text-decoration: none;
+    }
+    
+    .header-nav {
+      display: none;
+      gap: calc(var(--space-unit) * 3);
+    }
+    
+    .header-nav a {
+      color: var(--warm-white);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.03em;
+      transition: opacity 200ms ease;
+    }
+    
+    .header-nav a:hover {
+      opacity: 0.7;
+    }
+    
+    .header-icons {
+      display: flex;
+      gap: calc(var(--space-unit) * 2);
+      align-items: center;
+    }
+    
+    .header-icon {
+      color: var(--warm-white);
+      text-decoration: none;
+      padding: calc(var(--space-unit) * 1);
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--terracotta);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      font-size: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+    }
+    
+    @media (min-width: 768px) {
+      .header-nav {
+        display: flex;
+      }
+    }
+    
+    /* Breadcrumbs - breadcrumbs snippet */
+    .breadcrumbs {
+      background: var(--burgundy);
+      padding: 0 calc(var(--space-unit) * 4) calc(var(--space-unit) * 2);
+    }
+    
+    .breadcrumbs-list {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--space-unit) * 1);
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.7);
+      list-style: none;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .breadcrumbs-list a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    
+    .breadcrumbs-list a:hover {
+      color: var(--warm-white);
+    }
+    
+    .breadcrumbs-list .current {
+      color: var(--warm-white);
+    }
+    
+    /* Hero Split - hero-split.liquid */
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 70vh;
+    }
+    
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--space-unit) * 8) calc(var(--space-unit) * 4);
+      background-color: var(--cream);
+    }
+    
+    .hero-text {
+      max-width: 500px;
+    }
+    
+    .hero-heading {
+      font-family: var(--font-primary);
+      font-size: 48px;
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: calc(var(--space-unit) * 2);
+    }
+    
+    .hero-subtext {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    
+    .hero-image {
+      min-height: 400px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #D4C8B8 0%, #8B7E6A 100%);
+    }
+    
+    @media (min-width: 1024px) {
+      .hero-split {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .hero-heading {
+        font-size: 64px;
+      }
+    }
+    
+    /* Product Detail Layout - product-detail.liquid */
+    .product-detail {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: calc(var(--space-unit) * 6) calc(var(--space-unit) * 4);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: calc(var(--space-unit) * 6);
+    }
+    
+    .product-sidebar {
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+    }
+    
+    .product-title {
+      font-family: var(--font-primary);
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: calc(var(--space-unit) * 2);
+    }
+    
+    .product-price {
+      font-size: 16px;
+      margin-bottom: calc(var(--space-unit) * 3);
+    }
+    
+    .product-option {
+      margin-bottom: calc(var(--space-unit) * 3);
+    }
+    
+    .option-label {
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: calc(var(--space-unit) * 2);
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .option-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: calc(var(--space-unit) * 1) 0;
+      font-size: 12px;
+    }
+    
+    .option-row-label {
+      color: var(--text-secondary);
+    }
+    
+    .option-row-value {
+      color: var(--text-primary);
+    }
+    
+    .form-select {
+      width: 100%;
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      font-size: 12px;
+      font-family: var(--font-secondary);
+      background: var(--warm-white);
+      color: var(--text-primary);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%232D2820' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    
+    .form-select:focus {
+      outline: none;
+      border-color: var(--text-primary);
+    }
+    
+    .color-dots {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .color-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 150ms ease;
+      position: relative;
+    }
+    
+    .color-dot:hover {
+      transform: scale(1.15);
+    }
+    
+    .color-dot.selected::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border: 2px solid var(--text-primary);
+      border-radius: 50%;
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 12px 24px;
+      background: var(--text-primary);
+      color: var(--warm-white);
+      border: none;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background 200ms ease;
+      font-weight: 500;
+    }
+    
+    .btn:hover {
+      background: var(--burgundy);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-secondary:hover {
+      border-color: var(--text-primary);
+      background: transparent;
+    }
+    
+    .product-description {
+      margin-top: calc(var(--space-unit) * 4);
+      padding-top: calc(var(--space-unit) * 4);
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    
+    .product-images {
+      display: grid;
+      gap: calc(var(--space-unit) * 2);
+    }
+    
+    .product-image {
+      aspect-ratio: 4 / 5;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    
+    .image-caption {
+      font-size: 10px;
+      color: var(--text-secondary);
+      margin-top: calc(var(--space-unit) * 1);
+    }
+    
+    @media (min-width: 1024px) {
+      .product-detail {
+        grid-template-columns: 320px 1fr;
+      }
+      
+      .product-images {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    /* Intro Text - intro-text.liquid */
+    .intro-section {
+      padding: calc(var(--space-unit) * 10) calc(var(--space-unit) * 4);
+      text-align: center;
+    }
+    
+    .intro-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .intro-eyebrow {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-bottom: calc(var(--space-unit) * 2);
+    }
+    
+    .intro-heading {
+      font-family: var(--font-primary);
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: calc(var(--space-unit) * 3);
+    }
+    
+    .intro-text {
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    
+    /* Specifications Table */
+    .specs-section {
+      padding: calc(var(--space-unit) * 8) calc(var(--space-unit) * 4);
+      border-top: 1px solid var(--border);
+    }
+    
+    .specs-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .specs-title {
+      font-family: var(--font-primary);
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: calc(var(--space-unit) * 4);
+    }
+    
+    .specs-table {
+      display: grid;
+      gap: calc(var(--space-unit) * 2);
+    }
+    
+    .spec-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: calc(var(--space-unit) * 3);
+      padding-bottom: calc(var(--space-unit) * 2);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    
+    .spec-label {
+      color: var(--text-secondary);
+    }
+    
+    .spec-value {
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    
+    /* Finish Swatches - finish-swatches.liquid */
+    .finishes-section {
+      padding: calc(var(--space-unit) * 8) calc(var(--space-unit) * 4);
+      border-top: 1px solid var(--border);
+    }
+    
+    .finishes-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .finish-group {
+      margin-bottom: calc(var(--space-unit) * 6);
+    }
+    
+    .finish-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: calc(var(--space-unit) * 3);
+    }
+    
+    .finish-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .finish-price {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .finish-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: calc(var(--space-unit) * 2);
+    }
+    
+    .finish-swatch {
+      text-align: center;
+      cursor: pointer;
+    }
+    
+    .finish-box {
+      aspect-ratio: 1;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: calc(var(--space-unit) * 1);
+      transition: border-color 200ms ease;
+    }
+    
+    .finish-swatch:hover .finish-box {
+      border-color: var(--text-primary);
+    }
+    
+    .finish-sample {
+      width: 70%;
+      height: 70%;
+      border: 1px solid var(--border);
+    }
+    
+    .finish-label {
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+    
+    /* Related Products - related-products.liquid + product-card snippet */
+    .related-section {
+      padding: calc(var(--space-unit) * 10) calc(var(--space-unit) * 4);
+      border-top: 1px solid var(--border);
+    }
+    
+    .related-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .related-title {
+      font-family: var(--font-primary);
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: calc(var(--space-unit) * 4);
+    }
+    
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: calc(var(--space-unit) * 3);
+    }
+    
+    .product-card {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .product-card-image {
+      aspect-ratio: 1;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      margin-bottom: calc(var(--space-unit) * 2);
+      overflow: hidden;
+    }
+    
+    .product-card-image-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 400ms ease;
+    }
+    
+    .product-card:hover .product-card-image-inner {
+      transform: scale(1.05);
+    }
+    
+    .product-card-title {
+      font-size: 12px;
+      margin-bottom: calc(var(--space-unit) * 0.5);
+    }
+    
+    .product-card-designer {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+    
+    /* Footer - footer.liquid */
+    .site-footer {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      padding: calc(var(--space-unit) * 6) calc(var(--space-unit) * 4);
+    }
+    
+    .footer-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: calc(var(--space-unit) * 6);
+      margin-bottom: calc(var(--space-unit) * 6);
+    }
+    
+    .footer-column h3 {
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: calc(var(--space-unit) * 2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--space-unit) * 1);
+    }
+    
+    .footer-links a {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+    
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: calc(var(--space-unit) * 4);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+      gap: calc(var(--space-unit) * 2);
+    }
+    
+    .footer-bottom a {
+      color: inherit;
+      text-decoration: none;
+      margin-left: calc(var(--space-unit) * 2);
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER SECTION - header.liquid -->
+  <header class="site-header">
+    <div class="header-top">
+      <a href="/" class="site-logo">In Common With</a>
+      
+      <nav class="header-nav">
+        <a href="#">Shop</a>
+        <a href="#">Collections</a>
+        <a href="#">Showrooms</a>
+        <a href="#">Trade</a>
+      </nav>
+      
+      <div class="header-icons">
+        <a href="#" class="header-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+            <circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M14 14L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="#" class="header-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+            <path d="M2 2H3.5L5 13H16L18 5H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="6" cy="17" r="1" fill="currentColor"/>
+            <circle cx="15" cy="17" r="1" fill="currentColor"/>
+          </svg>
+          <span class="cart-count">2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  
+  <!-- BREADCRUMBS - breadcrumbs snippet -->
+  <nav class="breadcrumbs">
+    <ol class="breadcrumbs-list">
+      <li><a href="#">Lighting</a></li>
+      <li>
+        <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+          <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </li>
+      <li><a href="#">Surface Mounts</a></li>
+      <li>
+        <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+          <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </li>
+      <li class="current">Omilia Sconce</li>
+    </ol>
+  </nav>
+  
+  <!-- PRODUCT DETAIL LAYOUT - product-detail.liquid + product form blocks -->
+  <main class="product-detail">
+    <aside class="product-sidebar">
+      <h1 class="product-title">Omilia Sconce</h1>
+      <div class="product-price">$1,675.00</div>
+      
+      <div style="border-top: 1px solid var(--border); padding-top: 24px; margin-bottom: 24px;">
+        <div class="option-row">
+          <span class="option-row-label">Size</span>
+          <span class="option-row-value">Medium</span>
+        </div>
+        <div class="option-row">
+          <span class="option-row-label">Orientation</span>
+          <span class="option-row-value">Vertical</span>
+        </div>
+        <div class="option-row">
+          <span class="option-row-label">Mounting</span>
+          <span class="option-row-value">Surface</span>
+        </div>
+      </div>
+      
+      <div class="product-option">
+        <label class="option-label">Select Finish</label>
+        <select class="form-select">
+          <option>Walnut</option>
+          <option>Cherry</option>
+          <option>Oak</option>
+          <option>Mahogany</option>
+        </select>
+      </div>
+      
+      <div class="product-option">
+        <label class="option-label">Stone Color</label>
+        <div class="color-dots">
+          <div class="color-dot selected" style="background: #A0584F;" title="Terracotta"></div>
+          <div class="color-dot" style="background: #C4932C;" title="Ochre"></div>
+          <div class="color-dot" style="background: #7A8450;" title="Moss"></div>
+          <div class="color-dot" style="background: #8B4513;" title="Rust"></div>
+        </div>
+      </div>
+      
+      <div class="product-option">
+        <label class="option-label">Quantity</label>
+        <select class="form-select">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select>
+      </div>
+      
+      <button class="btn" style="margin-bottom: 12px;">Add to Cart — $1,675</button>
+      <button class="btn btn-secondary">Add to Trade Quote</button>
+      
+      <div class="product-description">
+        <p>A curved glass accent that merges form and lighting. Designed to highlight fine textures and patterns of the material's natural variations, the Omilia brings warmth and character into any setting.</p>
+      </div>
+    </aside>
+    
+    <div class="product-images">
+      <div>
+        <div class="product-image" style="background: linear-gradient(180deg, #E8DCC8 0%, #D4C8B8 100%);"></div>
+        <p class="image-caption">Fig. 1 — Omilia Sconce, Medium</p>
+      </div>
+      <div>
+        <div class="product-image" style="background: linear-gradient(180deg, #A4B08C 0%, #7A8450 100%);"></div>
+        <p class="image-caption">Fig. 2 — Detail View, Moss Stone</p>
+      </div>
+      <div>
+        <div class="product-image" style="background: linear-gradient(135deg, #8B6B47 0%, #4A3426 100%);"></div>
+        <p class="image-caption">Fig. 3 — Walnut Frame Detail</p>
+      </div>
+      <div>
+        <div class="product-image" style="background: linear-gradient(180deg, #C4932C 0%, #A0584F 100%);"></div>
+        <p class="image-caption">Fig. 4 — In Context</p>
+      </div>
+    </div>
+  </main>
+  
+  <!-- INTRO TEXT - intro-text.liquid -->
+  <section class="intro-section">
+    <div class="intro-container">
+      <div class="intro-eyebrow">Craftsmanship</div>
+      <h2 class="intro-heading">Designed for Compact Spaces</h2>
+      <p class="intro-text">A sculptural form bringing subtle drama to compact spaces. Richly colored, textured, and patterned stone with a solid wood frame. The Omilia helps transform smaller indoor or exterior spaces where lighting must be both functional and sculptural.</p>
+    </div>
+  </section>
+  
+  <!-- SPECIFICATIONS TABLE -->
+  <section class="specs-section">
+    <div class="specs-container">
+      <h2 class="specs-title">Tech Specs</h2>
+      <div class="specs-table">
+        <div class="spec-row">
+          <div class="spec-label">Dimensions</div>
+          <div class="spec-value">Small: 6 in. L × 4 in. W × 3.5 in. H<br>Medium: 8 in. L × 5 in. W × 4 in. H<br>Large: 10 in. L × 6 in. W × 5 in. H</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label">Weight</div>
+          <div class="spec-value">14 lbs</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label">Bulb Included</div>
+          <div class="spec-value">Integrated LED 2700K / 450lm / 2700K / CRI 90+ / 120V-240V</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label">Max Wattage</div>
+          <div class="spec-value">40W</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label">Construction</div>
+          <div class="spec-value">Solid Wood</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label">Dimming</div>
+          <div class="spec-value">ELV Dimming compatible (ELV Stone Series Mount, MLV Compatible)</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label">Installation</div>
+          <div class="spec-value">UL Listed, ETL Listed (Stone Mount, MLV Compatible)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FINISH SWATCHES - finish-swatches.liquid -->
+  <section class="finishes-section">
+    <div class="finishes-container">
+      <div class="finish-group">
+        <div class="finish-header">
+          <h3 class="finish-title">Standard Stone Finishes</h3>
+          <span class="finish-price">$1,675 each · $8,375.00 for the set</span>
+        </div>
+        <div class="finish-grid">
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #8B3A2F;"></div>
+            </div>
+            <div class="finish-label">Burgundy</div>
+          </div>
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #C4932C;"></div>
+            </div>
+            <div class="finish-label">Ochre</div>
+          </div>
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #A0584F;"></div>
+            </div>
+            <div class="finish-label">Terracotta</div>
+          </div>
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: linear-gradient(135deg, #8B4513 0%, #5C1F1F 100%);"></div>
+            </div>
+            <div class="finish-label">Mixed</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="finish-group">
+        <div class="finish-header">
+          <h3 class="finish-title">Premium Stone Finishes</h3>
+          <span class="finish-price">$1,845 each</span>
+        </div>
+        <div class="finish-grid">
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #F5F1E8;"></div>
+            </div>
+            <div class="finish-label">Alabaster</div>
+          </div>
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #C4932C;"></div>
+            </div>
+            <div class="finish-label">Amber</div>
+          </div>
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #A4B08C;"></div>
+            </div>
+            <div class="finish-label">Sage</div>
+          </div>
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #D4A5A5;"></div>
+            </div>
+            <div class="finish-label">Rose</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="finish-group">
+        <div class="finish-header">
+          <h3 class="finish-title">Wood Finishes</h3>
+          <span class="finish-price">$425 each · $2,125.00 for the set</span>
+        </div>
+        <div class="finish-grid">
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #E8DCC8;"></div>
+            </div>
+            <div class="finish-label">White Oak</div>
+          </div>
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #B89968;"></div>
+            </div>
+            <div class="finish-label">White Oak, Oiled</div>
+          </div>
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #8B7E6A;"></div>
+            </div>
+            <div class="finish-label">Smoked Oak</div>
+          </div>
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #8B6B47;"></div>
+            </div>
+            <div class="finish-label">Walnut</div>
+          </div>
+          <div class="finish-swatch">
+            <div class="finish-box">
+              <div class="finish-sample" style="background: #6B4423;"></div>
+            </div>
+            <div class="finish-label">Black Walnut</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- RELATED PRODUCTS - related-products.liquid with product-card snippets -->
+  <section class="related-section">
+    <div class="related-container">
+      <h2 class="related-title">Related Fixtures</h2>
+      <div class="related-grid">
+        <a href="#" class="product-card">
+          <div class="product-card-image">
+            <div class="product-card-image-inner" style="background: linear-gradient(135deg, #8B3A2F 0%, #5C1F1F 100%);"></div>
+          </div>
+          <h3 class="product-card-title">Musa Surface Mount, Small</h3>
+          <p class="product-card-designer">Stone Mount Series — Mixed Finishes</p>
+        </a>
+        
+        <a href="#" class="product-card">
+          <div class="product-card-image">
+            <div class="product-card-image-inner" style="background: linear-gradient(180deg, #C4932C 0%, #8B6B47 100%);"></div>
+          </div>
+          <h3 class="product-card-title">Musa Surface Mount, Large</h3>
+          <p class="product-card-designer">Stone Mount Series — Amber</p>
+        </a>
+        
+        <a href="#" class="product-card">
+          <div class="product-card-image">
+            <div class="product-card-image-inner" style="background: linear-gradient(135deg, #A4B08C 0%, #7A8450 100%);"></div>
+          </div>
+          <h3 class="product-card-title">Omilia Surface Mount, Large</h3>
+          <p class="product-card-designer">Mixed Moss + Vintage Green</p>
+        </a>
+        
+        <a href="#" class="product-card">
+          <div class="product-card-image">
+            <div class="product-card-image-inner" style="background: linear-gradient(180deg, #4A3426 0%, #2D2820 100%);"></div>
+          </div>
+          <h3 class="product-card-title">Omilia Surface Mount, Medium</h3>
+          <p class="product-card-designer">Espresso</p>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FOOTER - footer.liquid -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-column">
+        <h3>Shop</h3>
+        <nav class="footer-links">
+          <a href="#">Lighting</a>
+          <a href="#">Seating</a>
+          <a href="#">Tables</a>
+          <a href="#">Accessories</a>
+          <a href="#">New Arrivals</a>
+        </nav>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Collections</h3>
+        <nav class="footer-links">
+          <a href="#">Stone</a>
+          <a href="#">Wood</a>
+          <a href="#">Craft</a>
+          <a href="#">Archive</a>
+        </nav>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Showrooms</h3>
+        <nav class="footer-links">
+          <a href="#">New York City</a>
+          <a href="#">Los Angeles</a>
+          <a href="#">San Francisco</a>
+        </nav>
+      </div>
+      
+      <div class="footer-column">
+        <h3>About</h3>
+        <nav class="footer-links">
+          <a href="#">Our Story</a>
+          <a href="#">Trade Program</a>
+          <a href="#">Sustainability</a>
+          <a href="#">Contact</a>
+        </nav>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div>© 2025 In Common With. All rights reserved.</div>
+      <div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Demo annotation overlay -->
+  <div style="position: fixed; bottom: 20px; right: 20px; background: var(--burgundy); color: var(--warm-white); padding: 16px 20px; border-radius: 4px; font-size: 11px; max-width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 200;">
+    <div style="font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Component Map</div>
+    <div style="font-size: 10px; line-height: 1.6; opacity: 0.9;">
+      ✓ header.liquid<br>
+      ✓ breadcrumbs snippet<br>
+      ✓ product-detail.liquid<br>
+      ✓ intro-text.liquid<br>
+      ✓ specifications table<br>
+      ✓ finish-swatches.liquid<br>
+      ✓ related-products.liquid<br>
+      ✓ product-card snippet<br>
+      ✓ footer.liquid
+    </div>
+  </div>
+</body>
+</html> class="finish-box">
+              <div class="finish-sample" style="background: #E8DCC8;"></div>
+            </div>
+            <div class="finish-label">Cream</div>
+          </div>
+          <div class="finish-swatch">
+            <div

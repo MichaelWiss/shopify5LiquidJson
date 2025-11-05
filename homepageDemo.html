@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In Common With - Lighting, Furniture & Home</title>
+  <style>
+    :root {
+      --cream: #F5F1E8;
+      --cream-dark: #E8E3D8;
+      --warm-white: #FEFDFB;
+      --taupe: #8B7E6A;
+      --brown-light: #B89968;
+      --brown-medium: #8B6B47;
+      --brown-dark: #4A3426;
+      --burgundy: #5C1F1F;
+      --rust-red: #8B3A2F;
+      --terracotta: #A0584F;
+      --rust: #8B4513;
+      --ochre: #C4932C;
+      --olive: #7A7247;
+      --green-moss: #7A8450;
+      --sage-green: #A4B08C;
+      --text-primary: #2D2820;
+      --text-secondary: #5A534A;
+      --border: #D4CEC0;
+      
+      --font-primary: 'Times New Roman', Georgia, serif;
+      --font-secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      
+      --space-unit: 8px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: var(--font-secondary);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background-color: var(--warm-white);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* HEADER - header.liquid */
+    .site-header {
+      background-color: var(--burgundy);
+      color: var(--warm-white);
+      padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .site-logo {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--warm-white);
+      text-decoration: none;
+    }
+    
+    .header-nav {
+      display: none;
+      gap: calc(var(--space-unit) * 3);
+    }
+    
+    .header-nav a {
+      color: var(--warm-white);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.03em;
+      transition: opacity 200ms ease;
+    }
+    
+    .header-nav a:hover {
+      opacity: 0.7;
+    }
+    
+    .header-icons {
+      display: flex;
+      gap: calc(var(--space-unit) * 2);
+      align-items: center;
+    }
+    
+    .header-icon {
+      color: var(--warm-white);
+      text-decoration: none;
+      padding: calc(var(--space-unit) * 1);
+      display: flex;
+      align-items: center;
+    }
+    
+    @media (min-width: 768px) {
+      .header-nav {
+        display: flex;
+      }
+    }
+    
+    /* HERO SPLIT - hero-split.liquid */
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 85vh;
+    }
+    
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--space-unit) * 8) calc(var(--space-unit) * 4);
+      background-color: var(--cream);
+    }
+    
+    .hero-text {
+      max-width: 500px;
+    }
+    
+    .hero-heading {
+      font-family: var(--font-primary);
+      font-size: 48px;
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: calc(var(--space-unit) * 3);
+    }
+    
+    .hero-subtext {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: calc(var(--space-unit) * 4);
+    }
+    
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: calc(var(--space-unit) * 1);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: gap 200ms ease;
+    }
+    
+    .hero-link:hover {
+      gap: calc(var(--space-unit) * 1.5);
+    }
+    
+    .hero-image {
+      min-height: 500px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #D4C8B8 0%, #8B7E6A 100%);
+    }
+    
+    @media (min-width: 1024px) {
+      .hero-split {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .hero-heading {
+        font-size: 72px;
+      }
+    }
+    
+    /* INTRO TEXT - intro-text.liquid */
+    .intro-section {
+      padding: calc(var(--space-unit) * 12) calc(var(--space-unit) * 4);
+      text-align: center;
+    }
+    
+    .intro-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .intro-eyebrow {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-bottom: calc(var(--space-unit) * 2);
+    }
+    
+    .intro-heading {
+      font-family: var(--font-primary);
+      font-size: 36px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: calc(var(--space-unit) * 3);
+    }
+    
+    .intro-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    
+    /* FEATURED COLLECTIONS - featured-collections.liquid */
+    .collections-section {
+      padding: calc(var(--space-unit) * 12) calc(var(--space-unit) * 4);
+    }
+    
+    .collections-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .collections-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: calc(var(--space-unit) * 4);
+    }
+    
+    .collection-card {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .collection-image {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: calc(var(--space-unit) * 2);
+      background: var(--cream);
+    }
+    
+    .collection-image-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 400ms ease;
+    }
+    
+    .collection-card:hover .collection-image-inner {
+      transform: scale(1.05);
+    }
+    
+    .collection-title {
+      font-size: 16px;
+      text-align: center;
+      font-weight: 400;
+    }
+    
+    @media (min-width: 768px) {
+      .collections-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    /* IMAGE WITH TEXT - image-with-text.liquid */
+    .image-text-section {
+      padding: calc(var(--space-unit) * 12) calc(var(--space-unit) * 4);
+    }
+    
+    .image-text-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: calc(var(--space-unit) * 6);
+      align-items: center;
+    }
+    
+    .image-text-media {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    
+    .image-text-media-inner {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+    }
+    
+    .image-text-content {
+      max-width: 500px;
+    }
+    
+    .image-text-eyebrow {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-bottom: calc(var(--space-unit) * 2);
+    }
+    
+    .image-text-heading {
+      font-family: var(--font-primary);
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: calc(var(--space-unit) * 3);
+    }
+    
+    .image-text-body {
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: calc(var(--space-unit) * 4);
+    }
+    
+    .image-text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: calc(var(--space-unit) * 1);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: gap 200ms ease;
+    }
+    
+    .image-text-link:hover {
+      gap: calc(var(--space-unit) * 1.5);
+    }
+    
+    @media (min-width: 1024px) {
+      .image-text-container {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .image-text-container.reverse .image-text-media {
+        order: 2;
+      }
+      
+      .image-text-container.reverse .image-text-content {
+        order: 1;
+      }
+    }
+    
+    /* EDITORIAL GRID - editorial-grid.liquid */
+    .editorial-section {
+      padding: calc(var(--space-unit) * 12) calc(var(--space-unit) * 4);
+    }
+    
+    .editorial-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: calc(var(--space-unit) * 3);
+    }
+    
+    .editorial-item {
+      position: relative;
+    }
+    
+    .editorial-image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    
+    .editorial-caption {
+      margin-top: calc(var(--space-unit) * 1);
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+    
+    @media (min-width: 768px) {
+      .editorial-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .editorial-item.large {
+        grid-column: span 2;
+      }
+    }
+    
+    /* NEWSLETTER - newsletter.liquid */
+    .newsletter-section {
+      padding: calc(var(--space-unit) * 12) calc(var(--space-unit) * 4);
+      background-color: var(--cream);
+    }
+    
+    .newsletter-container {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .newsletter-heading {
+      font-family: var(--font-primary);
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: calc(var(--space-unit) * 3);
+    }
+    
+    .newsletter-text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: calc(var(--space-unit) * 4);
+    }
+    
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--space-unit) * 2);
+    }
+    
+    .newsletter-input {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      background-color: var(--warm-white);
+      font-size: 12px;
+      font-family: var(--font-secondary);
+    }
+    
+    .newsletter-input:focus {
+      outline: none;
+      border-color: var(--text-primary);
+    }
+    
+    .newsletter-submit {
+      padding: 12px 24px;
+      background-color: var(--text-primary);
+      color: var(--warm-white);
+      border: none;
+      font-weight: 500;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      transition: background-color 200ms ease;
+    }
+    
+    .newsletter-submit:hover {
+      background-color: var(--burgundy);
+    }
+    
+    @media (min-width: 640px) {
+      .newsletter-form {
+        flex-direction: row;
+      }
+      
+      .newsletter-input {
+        flex: 1;
+      }
+    }
+    
+    /* FOOTER - footer.liquid */
+    .site-footer {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      padding: calc(var(--space-unit) * 8) calc(var(--space-unit) * 4);
+    }
+    
+    .footer-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: calc(var(--space-unit) * 6);
+      margin-bottom: calc(var(--space-unit) * 6);
+    }
+    
+    .footer-column h3 {
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: calc(var(--space-unit) * 2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--space-unit) * 1);
+    }
+    
+    .footer-links a {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+    
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: calc(var(--space-unit) * 4);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+      gap: calc(var(--space-unit) * 2);
+    }
+    
+    .footer-bottom a {
+      color: inherit;
+      text-decoration: none;
+      margin-left: calc(var(--space-unit) * 2);
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER SECTION - header.liquid -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="/" class="site-logo">In Common With</a>
+      
+      <nav class="header-nav">
+        <a href="#">Shop</a>
+        <a href="#">Collections</a>
+        <a href="#">Showrooms</a>
+        <a href="#">Trade</a>
+      </nav>
+      
+      <div class="header-icons">
+        <a href="#" class="header-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+            <circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M14 14L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="#" class="header-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+            <path d="M2 2H3.5L5 13H16L18 5H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="6" cy="17" r="1" fill="currentColor"/>
+            <circle cx="15" cy="17" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+  
+  <!-- HERO SPLIT - hero-split.liquid (index.json) -->
+  <section class="hero-split">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-heading">In Common With</h1>
+        <p class="hero-subtext">Thoughtfully curated furniture and lighting for modern interiors. Each piece selected for enduring design and exceptional craft.</p>
+        <a href="#" class="hero-link">
+          Explore Collections
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    
+    <div class="hero-image"></div>
+  </section>
+  
+  <!-- INTRO TEXT - intro-text.liquid (index.json) -->
+  <section class="intro-section">
+    <div class="intro-container">
+      <div class="intro-eyebrow">Our Philosophy</div>
+      <h2 class="intro-heading">Design for Living</h2>
+      <p class="intro-text">We believe in creating spaces that reflect individuality while maintaining timeless appeal. Our collection brings together pieces that are both functional and beautiful, designed to last for generations.</p>
+    </div>
+  </section>
+  
+  <!-- FEATURED COLLECTIONS - featured-collections.liquid (index.json) -->
+  <section class="collections-section">
+    <div class="collections-container">
+      <div class="collections-grid">
+        <a href="#" class="collection-card">
+          <div class="collection-image">
+            <div class="collection-image-inner" style="background: linear-gradient(180deg, #8B6B47 0%, #4A3426 100%);"></div>
+          </div>
+          <h3 class="collection-title">Lighting</h3>
+        </a>
+        
+        <a href="#" class="collection-card">
+          <div class="collection-image">
+            <div class="collection-image-inner" style="background: linear-gradient(135deg, #A0584F 0%, #8B3A2F 100%);"></div>
+          </div>
+          <h3 class="collection-title">Seating</h3>
+        </a>
+        
+        <a href="#" class="collection-card">
+          <div class="collection-image">
+            <div class="collection-image-inner" style="background: linear-gradient(180deg, #B89968 0%, #8B7E6A 100%);"></div>
+          </div>
+          <h3 class="collection-title">Tables</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- IMAGE WITH TEXT - image-with-text.liquid (index.json) -->
+  <section class="image-text-section">
+    <div class="image-text-container">
+      <div class="image-text-media">
+        <div class="image-text-media-inner" style="background: linear-gradient(135deg, #7A8450 0%, #A4B08C 100%);"></div>
+      </div>
+      
+      <div class="image-text-content">
+        <div class="image-text-eyebrow">5 Min Location Street</div>
+        <h2 class="image-text-heading">A Quiet Sanctuary</h2>
+        <p class="image-text-body">This East London home features a carefully curated selection of vintage and contemporary pieces. The space showcases our commitment to timeless design with warm wood tones and subtle lighting.</p>
+        <a href="#" class="image-text-link">
+          Explore the Space
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- IMAGE WITH TEXT (REVERSED) - image-with-text.liquid (index.json) -->
+  <section class="image-text-section">
+    <div class="image-text-container reverse">
+      <div class="image-text-media">
+        <div class="image-text-media-inner" style="background: linear-gradient(180deg, #C4932C 0%, #8B6B47 100%);"></div>
+      </div>
+      
+      <div class="image-text-content">
+        <div class="image-text-eyebrow">Quarters Brooklyn</div>
+        <h2 class="image-text-heading">Visit Our Showroom</h2>
+        <p class="image-text-body">Experience our collection in person at Quarters, our Brooklyn studio. This thoughtfully designed space invites you to explore how our pieces can transform your home.</p>
+        <a href="#" class="image-text-link">
+          Plan Your Visit
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- EDITORIAL GRID - editorial-grid.liquid (index.json) -->
+  <section class="editorial-section">
+    <div class="editorial-container">
+      <div class="editorial-grid">
+        <div class="editorial-item">
+          <div class="editorial-image" style="background: linear-gradient(135deg, #E8DCC8 0%, #D4C8B8 100%);"></div>
+          <p class="editorial-caption">Fig. 1 — Handcrafted Details</p>
+        </div>
+        
+        <div class="editorial-item large">
+          <div class="editorial-image" style="background: linear-gradient(180deg, #8B7E6A 0%, #5C1F1F 100%);"></div>
+          <p class="editorial-caption">Fig. 2 — Omilia Sconce in Natural Light</p>
+        </div>
+        
+        <div class="editorial-item large">
+          <div class="editorial-image" style="background: linear-gradient(135deg, #A4B08C 0%, #7A7247 100%);"></div>
+          <p class="editorial-caption">Fig. 3 — Interior Styling</p>
+        </div>
+        
+        <div class="editorial-item">
+          <div class="editorial-image" style="background: linear-gradient(180deg, #A0584F 0%, #8B3A2F 100%);"></div>
+          <p class="editorial-caption">Fig. 4 — Material Studies</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- NEWSLETTER - newsletter.liquid (index.json) -->
+  <section class="newsletter-section">
+    <div class="newsletter-container">
+      <h2 class="newsletter-heading">Subscribe to our newsletter to stay in the know</h2>
+      <p class="newsletter-text">Get 10% off your first order and receive updates on new arrivals, special events, and exclusive collaborations.</p>
+      
+      <form class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+        <button type="submit" class="newsletter-submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+  
+  <!-- FOOTER - footer.liquid -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-column">
+        <h3>Shop</h3>
+        <nav class="footer-links">
+          <a href="#">All Products</a>
+          <a href="#">Lighting</a>
+          <a href="#">Seating</a>
+          <a href="#">Tables</a>
+          <a href="#">Accessories</a>
+          <a href="#">New Arrivals</a>
+        </nav>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Collections</h3>
+        <nav class="footer-links">
+          <a href="#">Stone Mount Series</a>
+          <a href="#">Archive Collection</a>
+          <a href="#">Craft Series</a>
+          <a href="#">Limited Editions</a>
+        </nav>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Showrooms</h3>
+        <nav class="footer-links">
+          <a href="#">Quarters — Brooklyn</a>
+          <a href="#">New York City</a>
+          <a href="#">Los Angeles</a>
+          <a href="#">Book an Appointment</a>
+        </nav>
+      </div>
+      
+      <div class="footer-column">
+        <h3>About</h3>
+        <nav class="footer-links">
+          <a href="#">Our Story</a>
+          <a href="#">Trade Program</a>
+          <a href="#">Sustainability</a>
+          <a href="#">Care & Assembly</a>
+          <a href="#">Shipping</a>
+          <a href="#">Contact</a>
+        </nav>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div>© 2025 In Common With. All rights reserved.</div>
+      <div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Demo Component Map -->
+  <div style="position: fixed; bottom: 20px; right: 20px; background: var(--burgundy); color: var(--warm-white); padding: 16px 20px; border-radius: 4px; font-size: 11px; max-width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 200;">
+    <div style="font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Homepage Components</div>
+    <div style="font-size: 10px; line-height: 1.6; opacity: 0.9;">
+      ✓ header.liquid<br>
+      ✓ hero-split.liquid<br>
+      ✓ intro-text.liquid<br>
+      ✓ featured-collections.liquid<br>
+      ✓ image-with-text.liquid (×2)<br>
+      ✓ editorial-grid.liquid<br>
+      ✓ newsletter.liquid<br>
+      ✓ footer.liquid<br>
+      <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.2);">
+        Maps to: <strong>index.json</strong>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

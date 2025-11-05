@@ -1,20 +1,20 @@
-<section class="finish-swatches">
-  <div class="finish-swatches__inner">
+<section class="finishes-section">
+  <div class="finishes-container">
     {% if section.settings.heading != blank %}
-      <h2 class="finish-swatches__heading">{{ section.settings.heading }}</h2>
+      <h2 class="intro-heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
-    <div class="finish-swatches__grid">
+    <div class="finish-grid">
       {% for block in section.blocks %}
-        <div class="finish-swatches__item" {{ block.shopify_attributes }}>
-          <span class="finish-swatches__swatch" style="{% if block.settings.swatch_color != blank %}background-color: {{ block.settings.swatch_color }};{% endif %}">
+        <div class="finish-swatch" {{ block.shopify_attributes }}>
+          <span class="finish-box" style="{% if block.settings.swatch_color != blank %}background-color: {{ block.settings.swatch_color }};{% endif %}">
             {% if block.settings.image != blank %}
-              {{ block.settings.image | image_url: width: 120 | image_tag: loading: 'lazy' }}
+              {{ block.settings.image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'finish-sample' }}
             {% endif %}
           </span>
 
           {% if block.settings.label != blank %}
-            <p class="finish-swatches__label">{{ block.settings.label }}</p>
+            <p class="finish-label">{{ block.settings.label }}</p>
           {% endif %}
         </div>
       {% endfor %}

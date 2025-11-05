@@ -1,90 +1,112 @@
 <section class="product-detail">
-  <div class="product-detail__gallery">
+  <div class="product-images">
     {% if product.media.size > 0 %}
       {% for media in product.media %}
-        <figure class="product-detail__media">
-          {{ media | media_tag }}
-        </figure>
+        <div>
+          <div class="product-image">
+            {{ media | media_tag }}
+          </div>
+          {% if media.alt != blank %}
+            <p class="image-caption">{{ media.alt }}</p>
+          {% endif %}
+        </div>
       {% endfor %}
     {% else %}
-      {{ 'product-1' | placeholder_svg_tag: 'product-detail__placeholder' }}
+      <div class="product-image">
+        {{ 'product-1' | placeholder_svg_tag }}
+      </div>
     {% endif %}
   </div>
 
-  <aside class="product-detail__sidebar">
+  <aside class="product-sidebar">
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'title' %}
-          <h1 class="product-detail__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+          <h1 class="product-title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
 
         {% when 'price' %}
-          <div class="product-detail__price" {{ block.shopify_attributes }}>
+          <div class="product-price" {{ block.shopify_attributes }}>
             {{ product.selected_or_first_available_variant.price | money }}
           </div>
 
         {% when 'variant_picker' %}
-          <div class="product-detail__form-group" {{ block.shopify_attributes }}>
-            {% form 'product', product, class: 'product-detail__form' %}
+          <div class="product-form-block" {{ block.shopify_attributes }}>
+            {% form 'product', product, class: 'product-form' %}
               {% if product.has_only_default_variant %}
                 <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
               {% else %}
                 {% for option in product.options_with_values %}
-                  <label class="product-detail__label" for="Option-{{ forloop.index0 }}-{{ section.id }}">
-                    {{ option.name }}
-                  </label>
-                  <select
-                    id="Option-{{ forloop.index0 }}-{{ section.id }}"
-                    class="product-detail__select"
-                    name="options[{{ option.name }}]"
-                  >
-                    {% for value in option.values %}
-                      <option {% if option.selected_value == value %}selected{% endif %}>
-                        {{ value }}
-                      </option>
-                    {% endfor %}
-                  </select>
+                  <div class="product-option">
+                    <label class="option-label" for="Option-{{ forloop.index0 }}-{{ section.id }}">
+                      {{ option.name }}
+                    </label>
+                    <select
+                      id="Option-{{ forloop.index0 }}-{{ section.id }}"
+                      class="form-select"
+                      name="options[{{ option.name }}]"
+                    >
+                      {% for value in option.values %}
+                        <option {% if option.selected_value == value %}selected{% endif %}>
+                          {{ value }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </div>
                 {% endfor %}
                 <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
               {% endif %}
 
-              <label class="product-detail__label" for="Quantity-{{ section.id }}">
-                {{ 'products.product.quantity' | t }}
-              </label>
+              <div class="product-option">
+                <label class="option-label" for="Quantity-{{ section.id }}">
+                  {{ 'products.product.quantity' | t }}
+                </label>
+                <input
+                  id="Quantity-{{ section.id }}"
+                  class="form-select"
+                  name="quantity"
+                  type="number"
+                  min="1"
+                  value="1"
+                >
+              </div>
 
-              <input
-                id="Quantity-{{ section.id }}"
-                class="product-detail__select"
-                name="quantity"
-                type="number"
-                min="1"
-                value="{{ cart | default: 1 }}"
-              >
-
-              <button class="product-detail__cta" type="submit">
+              <button class="btn" type="submit">
                 {{ block.settings.button_label }}
               </button>
+
+              {% if block.settings.secondary_button_label != blank %}
+                {% if block.settings.secondary_button_link != blank %}
+                  <a class="btn btn-secondary" href="{{ block.settings.secondary_button_link }}">
+                    {{ block.settings.secondary_button_label }}
+                  </a>
+                {% else %}
+                  <button class="btn btn-secondary" type="button">
+                    {{ block.settings.secondary_button_label }}
+                  </button>
+                {% endif %}
+              {% endif %}
             {% endform %}
           </div>
 
         {% when 'description' %}
           {% if product.description != blank %}
-            <div class="product-detail__description" {{ block.shopify_attributes }}>
+            <div class="product-description" {{ block.shopify_attributes }}>
               {{ product.description }}
             </div>
           {% endif %}
 
         {% when 'meta' %}
-          <dl class="product-detail__meta" {{ block.shopify_attributes }}>
+          <dl class="product-meta" {{ block.shopify_attributes }}>
             {% if block.settings.show_vendor and product.vendor != blank %}
-              <div>
-                <dt class="product-detail__meta-key">{{ 'products.product.vendor' | t }}</dt>
-                <dd class="product-detail__meta-value">{{ product.vendor }}</dd>
+              <div class="product-meta-row">
+                <dt class="product-meta-key">{{ 'products.product.vendor' | t }}</dt>
+                <dd class="product-meta-value">{{ product.vendor }}</dd>
               </div>
             {% endif %}
             {% if block.settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
-              <div>
-                <dt class="product-detail__meta-key">{{ 'products.product.sku' | t }}</dt>
-                <dd class="product-detail__meta-value">{{ product.selected_or_first_available_variant.sku }}</dd>
+              <div class="product-meta-row">
+                <dt class="product-meta-key">{{ 'products.product.sku' | t }}</dt>
+                <dd class="product-meta-value">{{ product.selected_or_first_available_variant.sku }}</dd>
               </div>
             {% endif %}
           </dl>
@@ -117,6 +139,17 @@
           "id": "button_label",
           "label": "Button label",
           "default": "Add to cart"
+        },
+        {
+          "type": "text",
+          "id": "secondary_button_label",
+          "label": "Secondary button label",
+          "default": "Add to trade quote"
+        },
+        {
+          "type": "url",
+          "id": "secondary_button_link",
+          "label": "Secondary button link"
         }
       ]
     },

@@ -1,15 +1,15 @@
 {% assign limit = section.settings.products_to_show | default: 4 %}
 
-<section class="related-products">
-  <div class="related-products__inner">
+<section class="related-section">
+  <div class="related-container">
     {% if section.settings.heading != blank %}
-      <h2 class="related-products__heading">{{ section.settings.heading }}</h2>
+      <h2 class="related-title">{{ section.settings.heading }}</h2>
     {% endif %}
 
-    <div class="related-products__grid">
+    <div class="related-grid">
       {% if product.related_products_count > 0 %}
         {% for related in product.related_products limit: limit %}
-          <article class="related-products__item">
+          <article>
             {% render 'product-card', product: related %}
           </article>
         {% endfor %}
@@ -18,7 +18,7 @@
         {% if fallback_collection %}
           {% for item in fallback_collection.products limit: limit %}
             {% unless item.id == product.id %}
-              <article class="related-products__item">
+              <article>
                 {% render 'product-card', product: item %}
               </article>
             {% endunless %}

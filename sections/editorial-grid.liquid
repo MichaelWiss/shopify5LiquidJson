@@ -1,27 +1,26 @@
-<section class="editorial-grid">
-  <div class="editorial-grid__inner">
+<section class="editorial-section">
+  <div class="editorial-container">
     {% if section.settings.heading != blank %}
-      <div class="editorial-grid__header">
-        <h2 class="editorial-grid__heading">{{ section.settings.heading }}</h2>
-        {% if section.settings.subheading != blank %}
-          <p class="editorial-grid__subheading">{{ section.settings.subheading }}</p>
-        {% endif %}
-      </div>
+      <h2 class="intro-heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
-    <div class="editorial-grid__layout">
+    {% if section.settings.subheading != blank %}
+      <p class="intro-text">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    <div class="editorial-grid">
       {% for block in section.blocks %}
-        <article class="editorial-grid__item editorial-grid__item--{{ block.settings.span | default: 'half' }}" {{ block.shopify_attributes }}>
-          <div class="editorial-grid__media">
+        <article class="editorial-item {% if block.settings.span == 'full' %}large{% endif %}" {{ block.shopify_attributes }}>
+          <div class="editorial-image">
             {% if block.settings.image != blank %}
-              {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'editorial-grid__image' }}
+              {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
             {% else %}
-              {{ 'collection-1' | placeholder_svg_tag: 'editorial-grid__placeholder' }}
+              {{ 'collection-1' | placeholder_svg_tag }}
             {% endif %}
           </div>
 
           {% if block.settings.caption != blank %}
-            <p class="editorial-grid__caption">{{ block.settings.caption }}</p>
+            <p class="editorial-caption">{{ block.settings.caption }}</p>
           {% endif %}
         </article>
       {% endfor %}

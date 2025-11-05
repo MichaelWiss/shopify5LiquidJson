@@ -1,32 +1,35 @@
-<section class="hero-split {% if section.settings.text_position == 'right' %}hero-split--reverse{% endif %}">
-  <div class="hero-split__media">
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'eager', class: 'hero-split__image' }}
-    {% else %}
-      {{ 'lifestyle-1' | placeholder_svg_tag: 'hero-split__placeholder' }}
-    {% endif %}
-  </div>
-
-  <div class="hero-split__body">
-    <div class="hero-split__content">
+<section class="hero-split{% if section.settings.text_position == 'right' %} hero-split--reverse{% endif %}">
+  <div class="hero-content">
+    <div class="hero-text">
       {% if section.settings.eyebrow != blank %}
-        <p class="hero-split__eyebrow">{{ section.settings.eyebrow }}</p>
+        <p class="hero-eyebrow">{{ section.settings.eyebrow }}</p>
       {% endif %}
 
       {% if section.settings.heading != blank %}
-        <h1 class="hero-split__heading">{{ section.settings.heading }}</h1>
+        <h1 class="hero-heading">{{ section.settings.heading }}</h1>
       {% endif %}
 
       {% if section.settings.text != blank %}
-        <div class="hero-split__text">{{ section.settings.text }}</div>
+        <p class="hero-subtext">{{ section.settings.text }}</p>
       {% endif %}
 
       {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        <a class="hero-split__cta" href="{{ section.settings.button_link }}">
+        <a class="hero-link" href="{{ section.settings.button_link }}">
           {{ section.settings.button_label }}
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       {% endif %}
     </div>
+  </div>
+
+  <div class="hero-image">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'eager' }}
+    {% else %}
+      {{ 'lifestyle-1' | placeholder_svg_tag }}
+    {% endif %}
   </div>
 </section>
 

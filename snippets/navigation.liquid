@@ -2,46 +2,46 @@
   {% when 'breadcrumbs' %}
     {% unless template == 'index' or template == 'cart' %}
       <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs.label' | t }}">
-        <ol class="breadcrumbs__list">
-          <li class="breadcrumbs__item">
+        <ol class="breadcrumbs-list">
+          <li class="breadcrumbs-item">
             <a href="/">{{ 'general.breadcrumbs.home' | t: default: 'Home' }}</a>
           </li>
 
           {% if template contains 'collection' and collection %}
-            <li class="breadcrumbs__separator" aria-hidden="true">
+            <li class="breadcrumbs-separator" aria-hidden="true">
               <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.5"/>
               </svg>
             </li>
-            <li class="breadcrumbs__item breadcrumbs__item--current">
+            <li class="breadcrumbs-item current">
               {{ collection.title }}
             </li>
           {% elsif template contains 'product' %}
             {% if collection %}
-              <li class="breadcrumbs__separator" aria-hidden="true">
+              <li class="breadcrumbs-separator" aria-hidden="true">
                 <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.5"/>
                 </svg>
               </li>
-              <li class="breadcrumbs__item">
+              <li class="breadcrumbs-item">
                 <a href="{{ collection.url }}">{{ collection.title }}</a>
               </li>
             {% endif %}
-            <li class="breadcrumbs__separator" aria-hidden="true">
+            <li class="breadcrumbs-separator" aria-hidden="true">
               <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.5"/>
               </svg>
             </li>
-            <li class="breadcrumbs__item breadcrumbs__item--current">
+            <li class="breadcrumbs-item current">
               {{ product.title }}
             </li>
           {% elsif template contains 'page' %}
-            <li class="breadcrumbs__separator" aria-hidden="true">
+            <li class="breadcrumbs-separator" aria-hidden="true">
               <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.5"/>
               </svg>
             </li>
-            <li class="breadcrumbs__item breadcrumbs__item--current">
+            <li class="breadcrumbs-item current">
               {{ page.title }}
             </li>
           {% endif %}

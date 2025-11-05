@@ -1,29 +1,36 @@
-<section class="image-with-text image-with-text--{{ section.settings.layout }}">
-  <div class="image-with-text__inner">
-    <div class="image-with-text__media">
+<section class="image-text-section">
+  <div class="image-text-container{% if section.settings.layout == 'media-right' %} reverse{% endif %}">
+    <div class="image-text-media">
       {% if section.settings.image != blank %}
-        {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'image-with-text__image' }}
+        <div class="image-text-media-inner">
+          {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy' }}
+        </div>
       {% else %}
-        {{ 'image' | placeholder_svg_tag: 'image-with-text__placeholder' }}
+        <div class="image-text-media-inner">
+          {{ 'image' | placeholder_svg_tag }}
+        </div>
       {% endif %}
     </div>
 
-    <div class="image-with-text__body">
+    <div class="image-text-content">
       {% if section.settings.eyebrow != blank %}
-        <p class="image-with-text__eyebrow">{{ section.settings.eyebrow }}</p>
+        <p class="image-text-eyebrow">{{ section.settings.eyebrow }}</p>
       {% endif %}
 
       {% if section.settings.heading != blank %}
-        <h2 class="image-with-text__heading">{{ section.settings.heading }}</h2>
+        <h2 class="image-text-heading">{{ section.settings.heading }}</h2>
       {% endif %}
 
       {% if section.settings.text != blank %}
-        <div class="image-with-text__text">{{ section.settings.text }}</div>
+        <div class="image-text-body">{{ section.settings.text }}</div>
       {% endif %}
 
       {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        <a class="image-with-text__cta" href="{{ section.settings.button_link }}">
+        <a class="image-text-link" href="{{ section.settings.button_link }}">
           {{ section.settings.button_label }}
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       {% endif %}
     </div>
