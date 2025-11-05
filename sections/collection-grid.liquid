@@ -1,0 +1,67 @@
+{% paginate collection.products by section.settings.products_per_page %}
+  <section class="collection-grid">
+    <header class="collection-grid__header">
+      <h1 class="collection-grid__title">{{ collection.title }}</h1>
+      <p class="collection-grid__count">
+        {{ collection.products_count }} {{ collection.products_count | pluralize: 'item', 'items' }}
+      </p>
+    </header>
+
+    <div class="collection-grid__controls">
+      {% if section.settings.enable_sorting %}
+        <form class="collection-grid__sort" method="get">
+          <label class="visually-hidden" for="SortBy-{{ section.id }}">{{ 'collections.sorting.title' | t }}</label>
+          <select id="SortBy-{{ section.id }}" name="sort_by" onchange="this.form.submit()">
+            {% for option in collection.sort_options %}
+              <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>
+                {{ option.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </form>
+      {% endif %}
+    </div>
+
+    <div class="collection-grid__items">
+      {% for product in collection.products %}
+        <article class="collection-grid__item">
+          {% render 'product-card', product: product %}
+        </article>
+      {% endfor %}
+    </div>
+
+    {% if paginate.pages > 1 %}
+      <nav class="collection-grid__pagination" aria-label="{{ 'general.pagination.label' | t }}">
+        {{ paginate | default_pagination }}
+      </nav>
+    {% endif %}
+  </section>
+{% endpaginate %}
+
+{% schema %}
+{
+  "name": "Collection grid",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 6,
+      "max": 48,
+      "step": 6,
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "label": "Enable sorting",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection grid"
+    }
+  ]
+}
+{% endschema %}

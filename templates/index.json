@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-split",
+      "settings": {}
+    },
+    "intro": {
+      "type": "intro-text",
+      "settings": {}
+    },
+    "featured_collections": {
+      "type": "featured-collections",
+      "settings": {},
+      "blocks": {},
+      "block_order": []
+    },
+    "image_with_text": {
+      "type": "image-with-text",
+      "settings": {}
+    },
+    "editorial": {
+      "type": "editorial-grid",
+      "settings": {},
+      "blocks": {},
+      "block_order": []
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "intro",
+    "featured_collections",
+    "image_with_text",
+    "editorial",
+    "newsletter"
+  ]
+}

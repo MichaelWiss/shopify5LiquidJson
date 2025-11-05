@@ -1,0 +1,27 @@
+{
+  "general": {
+    "navigation": "Main navigation",
+    "breadcrumbs": {
+      "label": "Breadcrumbs",
+      "home": "Home"
+    },
+    "pagination": {
+      "label": "Pagination"
+    }
+  },
+  "collections": {
+    "sorting": {
+      "title": "Sort by"
+    }
+  },
+  "newsletter": {
+    "label": "Email address"
+  },
+  "products": {
+    "product": {
+      "quantity": "Quantity",
+      "vendor": "Vendor",
+      "sku": "SKU"
+    }
+  }
+}

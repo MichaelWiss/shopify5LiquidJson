@@ -1,0 +1,11 @@
+{
+  "name": "shopify5-liquid-json",
+  "private": true,
+  "scripts": {
+    "build:css": "sass --no-source-map theme.scss assets/theme.css",
+    "watch:css": "sass --watch theme.scss:assets/theme.css"
+  },
+  "devDependencies": {
+    "sass": "^1.72.0"
+  }
+}

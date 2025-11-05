@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {}
+    },
+    "main": {
+      "type": "product-detail",
+      "settings": {},
+      "blocks": {},
+      "block_order": []
+    },
+    "finish-swatches": {
+      "type": "finish-swatches",
+      "settings": {}
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {}
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main",
+    "finish-swatches",
+    "related-products"
+  ]
+}

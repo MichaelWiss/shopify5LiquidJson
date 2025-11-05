@@ -1,0 +1,35 @@
+<section class="collection-banner">
+  <div class="collection-banner__inner">
+    <p class="collection-banner__eyebrow">{{ section.settings.eyebrow | default: 'Collection' }}</p>
+    <h1 class="collection-banner__heading">{{ collection.title }}</h1>
+
+    {% if section.settings.show_description and collection.description != blank %}
+      <div class="collection-banner__description">{{ collection.description }}</div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection banner"
+    }
+  ]
+}
+{% endschema %}

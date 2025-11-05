@@ -1,0 +1,13 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "settings": {
+        "color_background": "#fefdfb",
+        "color_text": "#2d2820",
+        "color_accent": "#5a534a",
+        "body_font": "sans"
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@use "tokens" as *;
+@use "reset";
+@use "base";
+
+:root {
+  --color-bg: #{$color-bg};
+  --color-surface: #{$color-surface};
+  --color-text: #{$color-text};
+  --color-muted: #{$color-muted};
+  --color-border: #{$color-border};
+
+  --font-sans: #{$font-sans};
+  --font-serif: #{$font-serif};
+
+  --space-0: #{$space-0};
+  --space-1: #{$space-1};
+  --space-2: #{$space-2};
+  --space-3: #{$space-3};
+  --space-4: #{$space-4};
+  --space-5: #{$space-5};
+  --space-6: #{$space-6};
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: $font-size-body;
+  line-height: $line-height-body;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+/* Component class hooks from Liquid sections */
+.site-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero-split,
+.intro-text,
+.featured-collections,
+.image-with-text,
+.editorial-grid,
+.newsletter,
+.footer,
+.collection-banner,
+.collection-grid,
+.product-detail,
+.finish-swatches,
+.related-products {
+  padding-inline: var(--space-5);
+  padding-block: var(--space-5);
+}

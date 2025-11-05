@@ -1,0 +1,23 @@
+<article class="product-card" {% if product.available == false %}data-product-sold-out="true"{% endif %}>
+  <a class="product-card__link" href="{{ product.url }}">
+    <div class="product-card__media">
+      {% if product.featured_media %}
+        {{ product.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', class: 'product-card__image' }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'product-card__placeholder' }}
+      {% endif %}
+    </div>
+
+    <div class="product-card__meta">
+      <h3 class="product-card__title">{{ product.title }}</h3>
+      <p class="product-card__price">
+        {% if product.compare_at_price > product.price %}
+          <span class="product-card__price--sale">{{ product.price | money }}</span>
+          <span class="product-card__price--compare">{{ product.compare_at_price | money }}</span>
+        {% else %}
+          {{ product.price | money }}
+        {% endif %}
+      </p>
+    </div>
+  </a>
+</article>

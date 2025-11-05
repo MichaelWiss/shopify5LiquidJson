@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Theme settings",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background color",
+        "default": "#fefdfb"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text color",
+        "default": "#2d2820"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color",
+        "default": "#5a534a"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "body_font",
+        "label": "Body font",
+        "default": "sans",
+        "options": [
+          { "value": "sans", "label": "Sans serif" },
+          { "value": "serif", "label": "Serif" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Theme style",
+    "theme_settings": [],
+    "presets": [
+      {
+        "name": "Default",
+        "category": "In Common With",
+        "settings": {}
+      }
+    ]
+  }
+]

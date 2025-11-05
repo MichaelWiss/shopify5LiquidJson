@@ -1,0 +1,160 @@
+<section class="product-detail">
+  <div class="product-detail__gallery">
+    {% if product.media.size > 0 %}
+      {% for media in product.media %}
+        <figure class="product-detail__media">
+          {{ media | media_tag }}
+        </figure>
+      {% endfor %}
+    {% else %}
+      {{ 'product-1' | placeholder_svg_tag: 'product-detail__placeholder' }}
+    {% endif %}
+  </div>
+
+  <aside class="product-detail__sidebar">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'title' %}
+          <h1 class="product-detail__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+
+        {% when 'price' %}
+          <div class="product-detail__price" {{ block.shopify_attributes }}>
+            {{ product.selected_or_first_available_variant.price | money }}
+          </div>
+
+        {% when 'variant_picker' %}
+          <div class="product-detail__form-group" {{ block.shopify_attributes }}>
+            {% form 'product', product, class: 'product-detail__form' %}
+              {% if product.has_only_default_variant %}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              {% else %}
+                {% for option in product.options_with_values %}
+                  <label class="product-detail__label" for="Option-{{ forloop.index0 }}-{{ section.id }}">
+                    {{ option.name }}
+                  </label>
+                  <select
+                    id="Option-{{ forloop.index0 }}-{{ section.id }}"
+                    class="product-detail__select"
+                    name="options[{{ option.name }}]"
+                  >
+                    {% for value in option.values %}
+                      <option {% if option.selected_value == value %}selected{% endif %}>
+                        {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                {% endfor %}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              {% endif %}
+
+              <label class="product-detail__label" for="Quantity-{{ section.id }}">
+                {{ 'products.product.quantity' | t }}
+              </label>
+
+              <input
+                id="Quantity-{{ section.id }}"
+                class="product-detail__select"
+                name="quantity"
+                type="number"
+                min="1"
+                value="{{ cart | default: 1 }}"
+              >
+
+              <button class="product-detail__cta" type="submit">
+                {{ block.settings.button_label }}
+              </button>
+            {% endform %}
+          </div>
+
+        {% when 'description' %}
+          {% if product.description != blank %}
+            <div class="product-detail__description" {{ block.shopify_attributes }}>
+              {{ product.description }}
+            </div>
+          {% endif %}
+
+        {% when 'meta' %}
+          <dl class="product-detail__meta" {{ block.shopify_attributes }}>
+            {% if block.settings.show_vendor and product.vendor != blank %}
+              <div>
+                <dt class="product-detail__meta-key">{{ 'products.product.vendor' | t }}</dt>
+                <dd class="product-detail__meta-value">{{ product.vendor }}</dd>
+              </div>
+            {% endif %}
+            {% if block.settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
+              <div>
+                <dt class="product-detail__meta-key">{{ 'products.product.sku' | t }}</dt>
+                <dd class="product-detail__meta-value">{{ product.selected_or_first_available_variant.sku }}</dd>
+              </div>
+            {% endif %}
+          </dl>
+      {% endcase %}
+    {% endfor %}
+  </aside>
+</section>
+
+{% schema %}
+{
+  "name": "Product detail",
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "variant_picker",
+      "name": "Variant picker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Add to cart"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "meta",
+      "name": "Meta",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_vendor",
+          "label": "Show vendor",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_sku",
+          "label": "Show SKU",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product detail",
+      "blocks": [
+        { "type": "title" },
+        { "type": "price" },
+        { "type": "variant_picker" },
+        { "type": "description" },
+        { "type": "meta" }
+      ]
+    }
+  ]
+}
+{% endschema %}

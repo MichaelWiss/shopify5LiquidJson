@@ -1,0 +1,63 @@
+{% assign limit = section.settings.products_to_show | default: 4 %}
+
+<section class="related-products">
+  <div class="related-products__inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="related-products__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="related-products__grid">
+      {% if product.related_products_count > 0 %}
+        {% for related in product.related_products limit: limit %}
+          <article class="related-products__item">
+            {% render 'product-card', product: related %}
+          </article>
+        {% endfor %}
+      {% else %}
+        {% assign fallback_collection = collections[section.settings.fallback_collection] | default: product.collections.first %}
+        {% if fallback_collection %}
+          {% for item in fallback_collection.products limit: limit %}
+            {% unless item.id == product.id %}
+              <article class="related-products__item">
+                {% render 'product-card', product: item %}
+              </article>
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Related products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Related fixtures"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "collection",
+      "id": "fallback_collection",
+      "label": "Fallback collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related products"
+    }
+  ]
+}
+{% endschema %}

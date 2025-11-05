@@ -1,0 +1,82 @@
+<section class="newsletter">
+  <div class="newsletter__inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="newsletter__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.text != blank %}
+      <p class="newsletter__text">{{ section.settings.text }}</p>
+    {% endif %}
+
+    {% form 'customer', class: 'newsletter__form' %}
+      {% if form.posted_successfully? %}
+        <p class="newsletter__feedback newsletter__feedback--success">{{ section.settings.success_message }}</p>
+      {% else %}
+        {% if form.errors %}
+          <p class="newsletter__feedback newsletter__feedback--error">{{ form.errors | default_errors }}</p>
+        {% endif %}
+
+        <input type="hidden" name="contact[tags]" value="newsletter">
+
+        <label class="newsletter__label" for="newsletter-email-{{ section.id }}">
+          <span class="visually-hidden">{{ 'newsletter.label' | t }}</span>
+        </label>
+        <input
+          id="newsletter-email-{{ section.id }}"
+          class="newsletter__input"
+          type="email"
+          name="contact[email]"
+          value="{{ form.email }}"
+          placeholder="{{ section.settings.placeholder }}"
+          required
+        >
+        <button class="newsletter__submit" type="submit">
+          {{ section.settings.button_label }}
+        </button>
+      {% endif %}
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Stay in the loop"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Supporting text",
+      "default": "Notes from the studio, launch announcements, and materials research. No noise."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email placeholder",
+      "default": "Email address"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for subscribing."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

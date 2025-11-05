@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "page-content": {
+      "type": "intro-text",
+      "settings": {
+        "alignment": "center"
+      }
+    }
+  },
+  "order": ["page-content"]
+}

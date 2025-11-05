@@ -1,0 +1,88 @@
+<section class="hero-split {% if section.settings.text_position == 'right' %}hero-split--reverse{% endif %}">
+  <div class="hero-split__media">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'eager', class: 'hero-split__image' }}
+    {% else %}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'hero-split__placeholder' }}
+    {% endif %}
+  </div>
+
+  <div class="hero-split__body">
+    <div class="hero-split__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="hero-split__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="hero-split__heading">{{ section.settings.heading }}</h1>
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+        <div class="hero-split__text">{{ section.settings.text }}</div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <a class="hero-split__cta" href="{{ section.settings.button_link }}">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero split",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "New collection"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Lighting, furniture, and objects"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Body text",
+      "default": "<p>Built on a quiet editorial grid with generous spacing and typographic restraint.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Browse collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text position",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero split"
+    }
+  ]
+}
+{% endschema %}
