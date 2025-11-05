@@ -1364,6 +1364,7 @@ body {
 }
 
 .product-sidebar {
+  position: -webkit-sticky;
   position: sticky;
   top: 80px;
   height: fit-content;
@@ -1372,6 +1373,11 @@ body {
   gap: calc(var(--space-unit) * 3);
 }
 
+@media (min-width: 1024px) {
+  .product-sidebar {
+    align-self: flex-start;
+  }
+}
 .product-summary {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);

@@ -1388,12 +1388,19 @@ body {
 }
 
 .product-sidebar {
+  position: -webkit-sticky;
   position: sticky;
   top: 80px;
   height: fit-content;
   display: flex;
   flex-direction: column;
   gap: calc(var(--space-unit) * 3);
+}
+
+@media (min-width: 1024px) {
+  .product-sidebar {
+    align-self: flex-start;
+  }
 }
 
 .product-summary {
