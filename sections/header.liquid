@@ -3,15 +3,22 @@
     <a class="site-header__logo" href="/">{{ section.settings.logo_text | default: shop.name }}</a>
 
     <nav class="site-header__nav" aria-label="{{ 'general.navigation' | t }}">
-      {% if section.blocks.size > 0 %}
-        <ul class="site-header__menu">
+      <ul class="site-header__menu">
+        {% if section.blocks.size > 0 %}
           {% for block in section.blocks %}
             <li class="site-header__item" {{ block.shopify_attributes }}>
               <a class="site-header__link" href="{{ block.settings.url | default: '#' }}">{{ block.settings.label }}</a>
             </li>
           {% endfor %}
-        </ul>
-      {% endif %}
+        {% else %}
+          {% assign defaults = 'Shop,Collections,Showrooms,Trade' | split: ',' %}
+          {% for label in defaults %}
+            <li class="site-header__item">
+              <a class="site-header__link" href="#">{{ label }}</a>
+            </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
     </nav>
 
     <div class="site-header__actions">
