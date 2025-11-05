@@ -111,7 +111,7 @@ body {
 .grid-2,
 .grid-3 {
   display: grid;
-  gap: 24px;
+  gap: 48px;
 }
 
 @media (min-width: 768px) {
@@ -251,10 +251,10 @@ body {
 
 .site-header__link {
   color: var(--color-bg);
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1;
   letter-spacing: 0.03em;
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 400;
   transition: opacity 200ms ease;
   text-decoration: none;
