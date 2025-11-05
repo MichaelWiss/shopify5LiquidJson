@@ -1,72 +1,101 @@
 {% if section.settings.demo_content and section.blocks.size > 0 %}
-  <section class="collection-section">
-    <div class="collection-section__inner">
-      <header class="collection-section__header">
-        <h1 class="collection-section__title">{{ section.settings.demo_heading | default: collection.title }}</h1>
-        {% if section.settings.demo_count != blank %}
-          <p class="collection-section__count">{{ section.settings.demo_count }}</p>
-        {% endif %}
-      </header>
+  <section class="collection-page">
+    <div class="collection-page__inner">
+      <div class="collection-page__content">
+        <header class="collection-page__header">
+          <h1 class="collection-page__title">{{ section.settings.demo_heading | default: collection.title }}</h1>
+          {% if section.settings.demo_count != blank %}
+            <p class="collection-page__count">{{ section.settings.demo_count }}</p>
+          {% endif %}
+        </header>
 
-      <div class="collection-section__grid collection-section__grid--demo">
-        {% for block in section.blocks %}
-          <article class="collection-demo-card" style="background: linear-gradient(135deg, {{ block.settings.gradient_start }} 0%, {{ block.settings.gradient_end }} 100%);" {{ block.shopify_attributes }}>
-            <div class="collection-demo-card__meta">
-              {% if block.settings.eyebrow != blank %}
-                <p class="collection-demo-card__eyebrow">{{ block.settings.eyebrow }}</p>
-              {% endif %}
-              {% if block.settings.title != blank %}
-                <h3 class="collection-demo-card__title">{{ block.settings.title }}</h3>
-              {% endif %}
-              {% if block.settings.link_label != blank %}
-                <a class="collection-demo-card__link" href="{{ block.settings.link | default: '#' }}">
-                  {{ block.settings.link_label }}
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              {% endif %}
-            </div>
-          </article>
-        {% endfor %}
+        <div class="collection-page__grid collection-page__grid--demo">
+          {% for block in section.blocks %}
+            <article class="collection-demo-card" style="background: linear-gradient(135deg, {{ block.settings.gradient_start }} 0%, {{ block.settings.gradient_end }} 100%);" {{ block.shopify_attributes }}>
+              <div class="collection-demo-card__meta">
+                {% if block.settings.eyebrow != blank %}
+                  <p class="collection-demo-card__eyebrow">{{ block.settings.eyebrow }}</p>
+                {% endif %}
+                {% if block.settings.title != blank %}
+                  <h3 class="collection-demo-card__title">{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.link_label != blank %}
+                  <a class="collection-demo-card__link" href="{{ block.settings.link | default: '#' }}">
+                    {{ block.settings.link_label }}
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                {% endif %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </section>
 {% else %}
   {% paginate collection.products by section.settings.products_per_page %}
-    <section class="collection-section">
-      <div class="collection-section__inner">
-        <header class="collection-section__header">
-          <h1 class="collection-section__title">{{ collection.title }}</h1>
-          <p class="collection-section__count">
-            {{ collection.products_count }} {{ collection.products_count | pluralize: 'item', 'items' }}
-          </p>
-        </header>
+    <section class="collection-page">
+      <div class="collection-page__inner">
+        {% if section.settings.show_sidebar %}
+          <aside class="collection-page__sidebar">
+            {% if section.settings.sidebar_title != blank %}
+              <p class="collection-page__menu-title">{{ section.settings.sidebar_title }}</p>
+            {% endif %}
 
-        {% if section.settings.enable_sorting %}
-          <form class="collection-section__sort" method="get">
-            <label class="visually-hidden" for="SortBy-{{ section.id }}">{{ 'collections.sorting.title' | t }}</label>
-            <select id="SortBy-{{ section.id }}" name="sort_by" class="form-select" onchange="this.form.submit()">
-              {% for option in collection.sort_options %}
-                <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>
-                  {{ option.name }}
-                </option>
-              {% endfor %}
-            </select>
-          </form>
+            {% if section.settings.sidebar_menu != blank and linklists[section.settings.sidebar_menu] %}
+              <ul class="collection-page__menu" aria-label="{{ section.settings.sidebar_title | default: 'Collections' }}">
+                {% for link in linklists[section.settings.sidebar_menu].links %}
+                  <li><a href="{{ link.url }}" {% if link.active %}class="is-active"{% endif %}>{{ link.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+
+            {% if section.settings.sidebar_links != blank %}
+              <ul class="collection-page__menu" aria-label="{{ 'general.navigation' | t }}">
+                {% assign quick_links = section.settings.sidebar_links | split: '\n' %}
+                {% for item in quick_links %}
+                  {% assign parts = item | strip | split: '|' %}
+                  {% if parts[0] != blank %}
+                    <li><a href="{{ parts[1] | default: '#' }}">{{ parts[0] }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </aside>
         {% endif %}
 
-        <div class="collection-section__grid">
-          {% for product in collection.products %}
-            {% render 'product-card', product: product %}
-          {% endfor %}
+        <div class="collection-page__content">
+          <header class="collection-page__header">
+            <h1 class="collection-page__title">{{ collection.title }}</h1>
+            <p class="collection-page__count">
+              {{ collection.products_count }} {{ collection.products_count | pluralize: 'item', 'items' }}
+            </p>
+          </header>
+
+          <div class="collection-page__toolbar">
+            <a class="collection-page__filter" href="#">+ Filter</a>
+            <div class="collection-page__view-toggle">
+              <span>View:</span>
+              <span>S</span>
+              <span class="is-active">M</span>
+              <span>L</span>
+            </div>
+          </div>
+
+          <div class="collection-page__grid">
+            {% for product in collection.products %}
+              {% render 'product-card', product: product %}
+            {% endfor %}
+          </div>
+
+          {% if paginate.pages > 1 %}
+            <nav class="collection-page__pagination" aria-label="{{ 'general.pagination.label' | t }}">
+              {{ paginate | default_pagination }}
+            </nav>
+          {% endif %}
         </div>
-
-        {% if paginate.pages > 1 %}
-          <nav class="collection-section__pagination" aria-label="{{ 'general.pagination.label' | t }}">
-            {{ paginate | default_pagination }}
-          </nav>
-        {% endif %}
       </div>
     </section>
   {% endpaginate %}
@@ -80,7 +109,7 @@
       "type": "checkbox",
       "id": "demo_content",
       "label": "Use demo content",
-      "default": true
+      "default": false
     },
     {
       "type": "text",
@@ -108,6 +137,29 @@
       "id": "enable_sorting",
       "label": "Enable sorting",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sidebar",
+      "label": "Show sidebar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sidebar_title",
+      "label": "Sidebar heading",
+      "default": "Collections"
+    },
+    {
+      "type": "link_list",
+      "id": "sidebar_menu",
+      "label": "Sidebar menu"
+    },
+    {
+      "type": "textarea",
+      "id": "sidebar_links",
+      "label": "Sidebar quick links",
+      "info": "One per line in the format Label|URL"
     }
   ],
   "blocks": [

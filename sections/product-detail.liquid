@@ -28,14 +28,9 @@
       {% endif %}
     {% endfor %}
   {% endcapture %}
+  {% assign summary_rows = summary_rows | strip %}
 
   <aside class="product-sidebar">
-    {% if summary_rows != blank %}
-      <div class="product-summary">
-        {{ summary_rows }}
-      </div>
-    {% endif %}
-
     {% for block in section.blocks %}
       {% if block.type == 'summary_row' %}
         {% continue %}
@@ -49,6 +44,12 @@
           <div class="product-price" {{ block.shopify_attributes }}>
             {{ product.selected_or_first_available_variant.price | money }}
           </div>
+          {% if summary_rows != blank %}
+            <div class="product-summary">
+              {{ summary_rows }}
+            </div>
+            {% assign summary_rows = '' %}
+          {% endif %}
 
         {% when 'variant_picker' %}
           <div class="product-form-block" {{ block.shopify_attributes }}>
