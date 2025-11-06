@@ -11,195 +11,197 @@
   {% endcapture %}
   {% assign summary_rows = summary_rows | strip %}
 
-  <aside class="product-sidebar">
-    {% for block in section.blocks %}
-      {% if block.type == 'summary_row' %}
-        {% continue %}
+  <div class="product-detail__inner">
+    <div class="product-detail__gallery product-images">
+      {% assign media_count = product.media.size %}
+      {% if media_count > 0 %}
+        {% for media in product.media %}
+          <div class="product-gallery-item">
+            <div class="product-image">
+              {{ media | media_tag }}
+            </div>
+            {% if media.alt != blank %}
+              <p class="image-caption">{{ media.alt }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
       {% endif %}
 
-      {% case block.type %}
-        {% when 'title' %}
-          <h1 class="product-title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
-
-        {% when 'price' %}
-          <div class="product-price" {{ block.shopify_attributes }}>
-            {{ product.selected_or_first_available_variant.price | money }}
+      {% assign minimum_views = 4 %}
+      {% if media_count < minimum_views %}
+        {% assign placeholders_needed = minimum_views | minus: media_count %}
+        {% assign placeholder_styles = "linear-gradient(180deg, #E8DCC8 0%, #D4C8B8 100%)|linear-gradient(180deg, #A4B08C 0%, #7A8450 100%)|linear-gradient(135deg, #8B6B47 0%, #4A3426 100%)|linear-gradient(180deg, #C4932C 0%, #A0584F 100%)" | split: "|" %}
+        {% for i in (1..placeholders_needed) %}
+          {% assign style_index = forloop.index0 | modulo: placeholder_styles.size %}
+          {% assign fallback_style = placeholder_styles[style_index] | strip %}
+          <div class="product-gallery-item">
+            <div class="product-image" style="background: {{ fallback_style }};"></div>
+            <p class="image-caption">Fig. {{ media_count | plus: forloop.index }} — {{ product.title | escape }}</p>
           </div>
-          {% if summary_rows != blank %}
-            <div class="product-summary">
-              {{ summary_rows }}
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <aside class="product-detail__sidebar product-sidebar">
+      {% for block in section.blocks %}
+        {% if block.type == 'summary_row' %}
+          {% continue %}
+        {% endif %}
+
+        {% case block.type %}
+          {% when 'title' %}
+            <h1 class="product-title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+
+          {% when 'price' %}
+            <div class="product-price" {{ block.shopify_attributes }}>
+              {{ product.selected_or_first_available_variant.price | money }}
             </div>
-            {% assign summary_rows = '' %}
-          {% endif %}
+            {% if summary_rows != blank %}
+              <div class="product-summary">
+                {{ summary_rows }}
+              </div>
+              {% assign summary_rows = '' %}
+            {% endif %}
 
-        {% when 'variant_picker' %}
-          <div class="product-form-block" {{ block.shopify_attributes }}>
-            {% form 'product', product, class: 'product-form' %}
-              {% if product.has_only_default_variant %}
-                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-              {% else %}
-                {% assign swatch_options_raw = block.settings.swatch_options | default: '' %}
-                {% assign swatch_options = swatch_options_raw | split: ',' %}
-                {% assign swatch_entries = block.settings.swatch_value_colors | default: '' | newline_to_br | split: '<br />' %}
+          {% when 'variant_picker' %}
+            <div class="product-form-block" {{ block.shopify_attributes }}>
+              {% form 'product', product, class: 'product-form' %}
+                {% if product.has_only_default_variant %}
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                {% else %}
+                  {% assign swatch_options_raw = block.settings.swatch_options | default: '' %}
+                  {% assign swatch_options = swatch_options_raw | split: ',' %}
+                  {% assign swatch_entries = block.settings.swatch_value_colors | default: '' | newline_to_br | split: '<br />' %}
 
-                {% for option in product.options_with_values %}
-                  {% assign option_name_normalized = option.name | strip | downcase %}
-                  {% assign is_swatch_option = false %}
-                  {% for swatch_option in swatch_options %}
-                    {% assign swatch_option_normalized = swatch_option | strip | downcase %}
-                    {% if swatch_option_normalized != '' and swatch_option_normalized == option_name_normalized %}
-                      {% assign is_swatch_option = true %}
-                      {% break %}
-                    {% endif %}
-                  {% endfor %}
+                  {% for option in product.options_with_values %}
+                    {% assign option_name_normalized = option.name | strip | downcase %}
+                    {% assign is_swatch_option = false %}
+                    {% for swatch_option in swatch_options %}
+                      {% assign swatch_option_normalized = swatch_option | strip | downcase %}
+                      {% if swatch_option_normalized != '' and swatch_option_normalized == option_name_normalized %}
+                        {% assign is_swatch_option = true %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
 
-                  <div class="product-option">
-                    {% if is_swatch_option %}
-                      <div class="option-label">{{ option.name }}</div>
-                      <div class="color-dots" role="radiogroup" aria-label="{{ option.name }}">
-                        {% for value in option.values %}
-                          {% assign value_normalized = value | strip | downcase %}
-                          {% assign swatch_background = '' %}
-                          {% for entry in swatch_entries %}
-                            {% assign trimmed_entry = entry | strip %}
-                            {% if trimmed_entry != '' %}
-                              {% assign pair = trimmed_entry | split: ':' %}
-                              {% if pair.size > 1 %}
-                                {% assign entry_key = pair[0] | strip | downcase %}
-                                {% if entry_key == value_normalized %}
-                                  {% assign swatch_background = pair[1] | strip %}
-                                  {% break %}
+                    <div class="product-option">
+                      {% if is_swatch_option %}
+                        <div class="option-label">{{ option.name }}</div>
+                        <div class="color-dots" role="radiogroup" aria-label="{{ option.name }}">
+                          {% for value in option.values %}
+                            {% assign value_normalized = value | strip | downcase %}
+                            {% assign swatch_background = '' %}
+                            {% for entry in swatch_entries %}
+                              {% assign trimmed_entry = entry | strip %}
+                              {% if trimmed_entry != '' %}
+                                {% assign pair = trimmed_entry | split: ':' %}
+                                {% if pair.size > 1 %}
+                                  {% assign entry_key = pair[0] | strip | downcase %}
+                                  {% if entry_key == value_normalized %}
+                                    {% assign swatch_background = pair[1] | strip %}
+                                    {% break %}
+                                  {% endif %}
                                 {% endif %}
                               {% endif %}
+                            {% endfor %}
+                            {% assign input_id = 'Option-' | append: section.id | append: '-' | append: option.position | append: '-' | append: forloop.index0 %}
+                            <input
+                              class="visually-hidden"
+                              type="radio"
+                              id="{{ input_id }}"
+                              name="options[{{ option.name }}]"
+                              value="{{ value }}"
+                              {% if option.selected_value == value %}checked{% endif %}
+                            >
+                            {% assign swatch_style = '' %}
+                            {% if swatch_background != '' %}
+                              {% assign swatch_style = 'background: ' | append: swatch_background | append: ';' %}
                             {% endif %}
+                            <label class="color-dot{% if option.selected_value == value %} selected{% endif %}" for="{{ input_id }}"{% if swatch_style != '' %} style="{{ swatch_style }}"{% endif %} title="{{ value }}">
+                              <span class="visually-hidden">{{ value }}</span>
+                            </label>
                           {% endfor %}
-                          {% assign input_id = 'Option-' | append: section.id | append: '-' | append: option.position | append: '-' | append: forloop.index0 %}
-                          <input
-                            class="visually-hidden"
-                            type="radio"
-                            id="{{ input_id }}"
-                            name="options[{{ option.name }}]"
-                            value="{{ value }}"
-                            {% if option.selected_value == value %}checked{% endif %}
-                          >
-                          {% assign swatch_style = '' %}
-                          {% if swatch_background != '' %}
-                            {% assign swatch_style = 'background: ' | append: swatch_background | append: ';' %}
-                          {% endif %}
-                          <label class="color-dot{% if option.selected_value == value %} selected{% endif %}" for="{{ input_id }}"{% if swatch_style != '' %} style="{{ swatch_style }}"{% endif %} title="{{ value }}">
-                            <span class="visually-hidden">{{ value }}</span>
-                          </label>
-                        {% endfor %}
-                      </div>
-                    {% else %}
-                      <label class="option-label" for="Option-{{ forloop.index0 }}-{{ section.id }}">
-                        {{ option.name }}
-                      </label>
-                      <select
-                        id="Option-{{ forloop.index0 }}-{{ section.id }}"
-                        class="form-select"
-                        name="options[{{ option.name }}]"
-                      >
-                        {% for value in option.values %}
-                          <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>
-                            {{ value }}
-                          </option>
-                        {% endfor %}
-                      </select>
-                    {% endif %}
-                  </div>
-                {% endfor %}
-                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-              {% endif %}
-
-              <div class="product-option">
-                <label class="option-label" for="Quantity-{{ section.id }}">
-                  {{ 'products.product.quantity' | t }}
-                </label>
-                <select
-                  id="Quantity-{{ section.id }}"
-                  class="form-select"
-                  name="quantity"
-                >
-                  {% assign quantity_limit = block.settings.quantity_limit | default: 10 %}
-                  {% for i in (1..quantity_limit) %}
-                    <option value="{{ i }}" {% if i == 1 %}selected{% endif %}>{{ i }}</option>
+                        </div>
+                      {% else %}
+                        <label class="option-label" for="Option-{{ forloop.index0 }}-{{ section.id }}">
+                          {{ option.name }}
+                        </label>
+                        <select
+                          id="Option-{{ forloop.index0 }}-{{ section.id }}"
+                          class="form-select"
+                          name="options[{{ option.name }}]"
+                        >
+                          {% for value in option.values %}
+                            <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>
+                              {{ value }}
+                            </option>
+                          {% endfor %}
+                        </select>
+                      {% endif %}
+                    </div>
                   {% endfor %}
-                </select>
-              </div>
-
-              <button class="btn" type="submit">
-                {{ block.settings.button_label }}
-              </button>
-
-              {% if block.settings.secondary_button_label != blank %}
-                {% if block.settings.secondary_button_link != blank %}
-                  <a class="btn btn-secondary" href="{{ block.settings.secondary_button_link }}">
-                    {{ block.settings.secondary_button_label }}
-                  </a>
-                {% else %}
-                  <button class="btn btn-secondary" type="button">
-                    {{ block.settings.secondary_button_label }}
-                  </button>
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                 {% endif %}
-              {% endif %}
-            {% endform %}
-          </div>
 
-        {% when 'description' %}
-          {% if product.description != blank %}
-            <div class="product-description" {{ block.shopify_attributes }}>
-              {{ product.description }}
+                <div class="product-option">
+                  <label class="option-label" for="Quantity-{{ section.id }}">
+                    {{ 'products.product.quantity' | t }}
+                  </label>
+                  <select
+                    id="Quantity-{{ section.id }}"
+                    class="form-select"
+                    name="quantity"
+                  >
+                    {% assign quantity_limit = block.settings.quantity_limit | default: 10 %}
+                    {% for i in (1..quantity_limit) %}
+                      <option value="{{ i }}" {% if i == 1 %}selected{% endif %}>{{ i }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <button class="btn" type="submit">
+                  {{ block.settings.button_label }}
+                </button>
+
+                {% if block.settings.secondary_button_label != blank %}
+                  {% if block.settings.secondary_button_link != blank %}
+                    <a class="btn btn-secondary" href="{{ block.settings.secondary_button_link }}">
+                      {{ block.settings.secondary_button_label }}
+                    </a>
+                  {% else %}
+                    <button class="btn btn-secondary" type="button">
+                      {{ block.settings.secondary_button_label }}
+                    </button>
+                  {% endif %}
+                {% endif %}
+              {% endform %}
             </div>
-          {% endif %}
 
-        {% when 'meta' %}
-          <dl class="product-meta" {{ block.shopify_attributes }}>
-            {% if block.settings.show_vendor and product.vendor != blank %}
-              <div class="product-meta-row">
-                <dt class="product-meta-key">{{ 'products.product.vendor' | t }}</dt>
-                <dd class="product-meta-value">{{ product.vendor }}</dd>
+          {% when 'description' %}
+            {% if product.description != blank %}
+              <div class="product-description" {{ block.shopify_attributes }}>
+                {{ product.description }}
               </div>
             {% endif %}
-            {% if block.settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
-              <div class="product-meta-row">
-                <dt class="product-meta-key">{{ 'products.product.sku' | t }}</dt>
-                <dd class="product-meta-value">{{ product.selected_or_first_available_variant.sku }}</dd>
-              </div>
-            {% endif %}
-          </dl>
-          {% endcase %}
-        {% endfor %}
-  </aside>
 
-  {% assign media_count = product.media.size %}
-  <div class="product-images">
-    {% if media_count > 0 %}
-      {% for media in product.media %}
-        <div>
-          <div class="product-image">
-            {{ media | media_tag }}
-          </div>
-          {% if media.alt != blank %}
-            <p class="image-caption">{{ media.alt }}</p>
-          {% endif %}
-        </div>
+          {% when 'meta' %}
+            <dl class="product-meta" {{ block.shopify_attributes }}>
+              {% if block.settings.show_vendor and product.vendor != blank %}
+                <div class="product-meta-row">
+                  <dt class="product-meta-key">{{ 'products.product.vendor' | t }}</dt>
+                  <dd class="product-meta-value">{{ product.vendor }}</dd>
+                </div>
+              {% endif %}
+              {% if block.settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
+                <div class="product-meta-row">
+                  <dt class="product-meta-key">{{ 'products.product.sku' | t }}</dt>
+                  <dd class="product-meta-value">{{ product.selected_or_first_available_variant.sku }}</dd>
+                </div>
+              {% endif %}
+            </dl>
+        {% endcase %}
       {% endfor %}
-    {% endif %}
-
-    {% assign minimum_views = 4 %}
-    {% if media_count < minimum_views %}
-      {% assign placeholders_needed = minimum_views | minus: media_count %}
-      {% assign placeholder_styles = "linear-gradient(180deg, #E8DCC8 0%, #D4C8B8 100%)|linear-gradient(180deg, #A4B08C 0%, #7A8450 100%)|linear-gradient(135deg, #8B6B47 0%, #4A3426 100%)|linear-gradient(180deg, #C4932C 0%, #A0584F 100%)" | split: "|" %}
-      {% for i in (1..placeholders_needed) %}
-        {% assign style_index = forloop.index0 | modulo: placeholder_styles.size %}
-        {% assign fallback_style = placeholder_styles[style_index] | strip %}
-        <div>
-          <div class="product-image" style="background: {{ fallback_style }};"></div>
-          <p class="image-caption">Fig. {{ media_count | plus: forloop.index }} — {{ product.title | escape }}</p>
-        </div>
-      {% endfor %}
-    {% endif %}
+    </aside>
   </div>
 </section>
 
