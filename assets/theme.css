@@ -1554,6 +1554,10 @@ body {
 }
 
 /* Demo-aligned PDP helpers */
+#shopify-section-breadcrumbs {
+  margin-top: 41px;
+}
+
 .finish-swatches {
   padding: 64px 32px;
   border-top: 1px solid var(--color-border);
