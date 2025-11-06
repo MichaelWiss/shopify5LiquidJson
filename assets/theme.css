@@ -1518,13 +1518,11 @@ body {
 }
 
 .breadcrumbs-container {
-  margin-top: calc(var(--header-height-mobile) * -1);
   padding-top: var(--header-height-mobile);
 }
 
 @media (min-width: 768px) {
   .breadcrumbs-container {
-    margin-top: calc(var(--header-height-desktop) * -1);
     padding-top: var(--header-height-desktop);
   }
 }
