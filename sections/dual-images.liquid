@@ -1,10 +1,15 @@
 <section class="final-two">
+  {% assign dual_fallbacks = "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=90|https://images.unsplash.com/photo-1615873968403-89e068629265?w=800&q=90" | split: "|" %}
+  {% assign dual_alt = "Final Image 1|Final Image 2" | split: "|" %}
   {% for block in section.blocks %}
+    {% assign fallback_src = dual_fallbacks[forloop.index0] %}
+    {% assign fallback_alt = dual_alt[forloop.index0] | default: 'Showcase image' %}
+    {% assign image_alt = block.settings.alt_text | default: fallback_alt %}
     <div class="final-image" {{ block.shopify_attributes }}>
       {% if block.settings.image != blank %}
-        {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', class: 'final-image-media', sizes: '(min-width: 768px) 50vw, 100vw' }}
+        {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '(min-width: 768px) 50vw, 100vw', alt: image_alt }}
       {% else %}
-        {{ 'lifestyle-1' | placeholder_svg_tag: 'final-image-media final-image-media--placeholder' }}
+        <img src="{{ fallback_src }}" alt="{{ image_alt }}" loading="lazy">
       {% endif %}
     </div>
   {% endfor %}
@@ -23,6 +28,11 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text"
         }
       ]
     }

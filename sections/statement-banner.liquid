@@ -5,7 +5,7 @@
         <h2>{{ section.settings.heading }}</h2>
       {% endif %}
       {% if section.settings.body != blank %}
-        {{ section.settings.body }}
+        <p>{{ section.settings.body | escape | newline_to_br }}</p>
       {% endif %}
       {% if section.settings.link_label != blank and section.settings.link_url != blank %}
         <a class="statement-link" href="{{ section.settings.link_url }}">{{ section.settings.link_label }}</a>
@@ -44,10 +44,10 @@
       "default": "Our Trade Program offers the support and resources you need to bring exceptional projects to life."
     },
     {
-      "type": "richtext",
+      "type": "textarea",
       "id": "body",
       "label": "Body copy",
-      "default": "<p>Whether you are an established practice or independent designer, we're here to help you with product selection, finish specification, and custom solutions tailored to your vision.</p>"
+      "default": "Whether you are an established practice or independent designer, we're here to help you with product selection, finish specification, and custom solutions tailored to your vision."
     },
     {
       "type": "text",

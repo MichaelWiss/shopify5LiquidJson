@@ -1,8 +1,9 @@
 <section class="hero">
+  {% assign fallback_hero = 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=90' %}
   {% if section.settings.image != blank %}
     {{ section.settings.image | image_url: width: 3200 | image_tag: loading: 'eager', class: 'hero-image', sizes: '100vw' }}
   {% else %}
-    {{ 'lifestyle-1' | placeholder_svg_tag: 'hero-image hero-image--placeholder' }}
+    <img src="{{ fallback_hero }}" alt="{{ section.settings.heading | default: 'In Common With' | escape }}" class="hero-image" loading="eager">
   {% endif %}
   <div class="hero-overlay"></div>
   {% if section.settings.heading != blank %}

@@ -1,11 +1,16 @@
 <section class="three-column">
+  {% assign triptych_fallbacks = "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=90|https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=90|https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=90" | split: "|" %}
+  {% assign triptych_alt = "Interior 1|Interior 2|Interior 3" | split: "|" %}
   <div class="three-grid">
     {% for block in section.blocks %}
+      {% assign fallback_src = triptych_fallbacks[forloop.index0] %}
+      {% assign fallback_alt = triptych_alt[forloop.index0] | default: 'Gallery image' %}
+      {% assign image_alt = block.settings.alt_text | default: fallback_alt %}
       <div class="three-item" {{ block.shopify_attributes }}>
         {% if block.settings.image != blank %}
-          {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', class: 'three-item-media', sizes: '(min-width: 1024px) 33vw, 100vw' }}
+          {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 33vw, 100vw', alt: image_alt }}
         {% else %}
-          {{ 'collection-1' | placeholder_svg_tag: 'three-item-media three-item-media--placeholder' }}
+          <img src="{{ fallback_src }}" alt="{{ image_alt }}" loading="lazy">
         {% endif %}
       </div>
     {% endfor %}
@@ -25,6 +30,11 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text"
         }
       ]
     }

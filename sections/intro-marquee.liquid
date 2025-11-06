@@ -4,21 +4,21 @@
   {% endif %}
 
   {% if section.settings.text != blank %}
-    <div class="intro-text">
-      {{ section.settings.text }}
-    </div>
+    <p class="intro-text">{{ section.settings.text | escape | newline_to_br }}</p>
   {% endif %}
 
   {% if section.blocks.size > 0 %}
+    {% assign fallback_products = "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=200&q=85|https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=200&q=85|https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=200&q=85|https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=200&q=85|https://images.unsplash.com/photo-1543365067-fa27f2b03c9d?w=200&q=85|https://images.unsplash.com/photo-1578898886225-fe3321dac771?w=200&q=85" | split: "|" %}
     <div class="products-section">
       <div class="products-scroll" role="list">
         {% for block in section.blocks %}
+          {% assign fallback_src = fallback_products[forloop.index0] %}
           <a class="product-thumb" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }} role="listitem">
             <div class="product-thumb-image">
               {% if block.settings.image != blank %}
                 {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '140px', alt: block.settings.title }}
               {% else %}
-                {{ 'product-apparel-1' | placeholder_svg_tag: 'product-thumb-image-placeholder' }}
+                <img src="{{ fallback_src }}" alt="{{ block.settings.title | default: 'Product' }}" width="140" height="180" loading="lazy">
               {% endif %}
             </div>
             {% if block.settings.title != blank %}
@@ -45,10 +45,10 @@
       "default": "Our Approach"
     },
     {
-      "type": "richtext",
+      "type": "textarea",
       "id": "text",
       "label": "Intro text",
-      "default": "<p>Introducing Omilia — a family of wall and ceiling-mounted lamps that embody timeless craftsmanship. Each piece celebrates the natural character of stone and wood, designed to elevate the spaces we inhabit with subtle elegance and enduring warmth.</p>"
+      "default": "Introducing Omilia — a family of wall and ceiling-mounted lamps that embody timeless craftsmanship. Each piece celebrates the natural character of stone and wood, designed to elevate the spaces we inhabit with subtle elegance and enduring warmth."
     }
   ],
   "blocks": [

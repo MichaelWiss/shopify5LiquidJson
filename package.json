@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "build:css": "sass --no-source-map theme.scss assets/theme.css",
-    "watch:css": "sass --watch theme.scss:assets/theme.css"
+    "watch:css": "sass --watch theme.scss:assets/theme.css",
+    "lint:homepage": "node scripts/check-homepage-styles.js"
   },
   "devDependencies": {
     "sass": "^1.72.0"

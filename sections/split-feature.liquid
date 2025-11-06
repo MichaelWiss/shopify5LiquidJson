@@ -1,9 +1,10 @@
 <section class="side-by-side{% if section.settings.layout == 'image-right' %} side-by-side--reverse{% endif %}">
+  {% assign fallback_side_image = 'https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?w=800&q=90' %}
   <div class="side-image">
     {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 50vw, 100vw', class: 'side-image-media' }}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 50vw, 100vw' }}
     {% else %}
-      {{ 'lifestyle-3' | placeholder_svg_tag: 'side-image-media side-image-media--placeholder' }}
+      <img src="{{ fallback_side_image }}" alt="{{ section.settings.heading | default: 'Feature image' }}" loading="lazy">
     {% endif %}
   </div>
   <div class="side-content">
@@ -15,9 +16,7 @@
         <h2 class="side-heading">{{ section.settings.heading }}</h2>
       {% endif %}
       {% if section.settings.body != blank %}
-        <div class="side-text">
-          {{ section.settings.body }}
-        </div>
+        <p class="side-text">{{ section.settings.body | escape | newline_to_br }}</p>
       {% endif %}
       {% if section.settings.link_label != blank and section.settings.link_url != blank %}
         <a class="side-link" href="{{ section.settings.link_url }}">
@@ -63,10 +62,10 @@
       "default": "Form Meets Function"
     },
     {
-      "type": "richtext",
+      "type": "textarea",
       "id": "body",
       "label": "Body text",
-      "default": "<p>A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.</p>"
+      "default": "A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments."
     },
     {
       "type": "text",
