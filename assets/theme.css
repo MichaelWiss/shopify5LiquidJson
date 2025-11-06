@@ -63,6 +63,8 @@ body {
   --space-5: 40px;
   --space-6: 64px;
   --space-7: 96px;
+  --header-height-mobile: 48px;
+  --header-height-desktop: 64px;
 }
 
 body {
@@ -74,15 +76,6 @@ body {
   line-height: 1.6;
 }
 
-.site-main {
-  padding-top: 56px;
-}
-
-@media (max-width: 767px) {
-  .site-main {
-    padding-top: 41px;
-  }
-}
 .section {
   padding-block: var(--space-5);
 }
@@ -1524,6 +1517,17 @@ body {
   margin-top: calc(var(--space-unit) * 5);
 }
 
+.breadcrumbs-container {
+  margin-top: calc(var(--header-height-mobile) * -1);
+  padding-top: var(--header-height-mobile);
+}
+
+@media (min-width: 768px) {
+  .breadcrumbs-container {
+    margin-top: calc(var(--header-height-desktop) * -1);
+    padding-top: var(--header-height-desktop);
+  }
+}
 .breadcrumbs {
   background: var(--warm-white);
   padding: 18px 32px 16px;

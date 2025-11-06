@@ -55,6 +55,8 @@
   --space-5: #{$space-5};
   --space-6: #{$space-6};
   --space-7: #{$space-7};
+  --header-height-mobile: 48px;
+  --header-height-desktop: 64px;
 }
 
 body {
@@ -64,16 +66,6 @@ body {
   font-family: var(--font-secondary);
   font-size: $font-size-body;
   line-height: $line-height-body;
-}
-
-.site-main {
-  padding-top: 56px;
-}
-
-@media (max-width: 767px) {
-  .site-main {
-    padding-top: 41px;
-  }
 }
 
 .section {
@@ -1553,6 +1545,18 @@ body {
   display: flex;
   justify-content: center;
   margin-top: calc(var(--space-unit) * 5);
+}
+
+.breadcrumbs-container {
+  margin-top: calc(var(--header-height-mobile) * -1);
+  padding-top: var(--header-height-mobile);
+}
+
+@media (min-width: 768px) {
+  .breadcrumbs-container {
+    margin-top: calc(var(--header-height-desktop) * -1);
+    padding-top: var(--header-height-desktop);
+  }
 }
 
 .breadcrumbs {
