@@ -1,0 +1,139 @@
+<div class="cart-page">
+  <div class="cart-drawer">
+    <div class="cart-drawer__header">
+      <h1 class="cart-drawer__title">Your Cart</h1>
+      <a href="{{ routes.all_products_collection_url }}" class="cart-drawer__close">Close</a>
+    </div>
+
+    {% if cart.item_count > 0 %}
+      <div class="cart-drawer__items">
+        {% for item in cart.items %}
+          <div class="cart-item" data-line-item="{{ forloop.index }}">
+            <div class="cart-item__image">
+              {% if item.image %}
+                <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title }}" loading="lazy">
+              {% endif %}
+            </div>
+
+            <div class="cart-item__details">
+              <div class="cart-item__header">
+                <h3 class="cart-item__title">{{ item.product.title }}</h3>
+                <div class="cart-item__quantity">
+                  <button class="cart-item__qty-btn" data-action="decrease" data-line="{{ forloop.index }}">−</button>
+                  <span class="cart-item__qty-value">{{ item.quantity }}</span>
+                  <button class="cart-item__qty-btn" data-action="increase" data-line="{{ forloop.index }}">+</button>
+                </div>
+                <div class="cart-item__price">{{ item.final_line_price | money }}</div>
+              </div>
+
+              <div class="cart-item__meta">
+                {% unless item.variant.title == 'Default Title' %}
+                  {% for option in item.options_with_values %}
+                    <p class="cart-item__option">
+                      {{ option.value }}
+                    </p>
+                  {% endfor %}
+                {% endunless %}
+                
+                {% if item.variant.sku != blank %}
+                  <p class="cart-item__sku">{{ item.variant.sku }}</p>
+                {% endif %}
+
+                <button class="cart-item__remove" data-line="{{ forloop.index }}">Remove</button>
+              </div>
+
+              {% if item.properties.sidemark %}
+                <p class="cart-item__sidemark">Add Sidemark</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="cart-drawer__footer">
+        <div class="cart-drawer__subtotal">
+          <span class="cart-drawer__subtotal-label">Subtotal:</span>
+          <span class="cart-drawer__subtotal-value">{{ cart.total_price | money }}</span>
+        </div>
+
+        <div class="cart-drawer__actions">
+          <button class="cart-btn cart-btn--secondary" type="button">Add a P.O. Number</button>
+          <button class="cart-btn cart-btn--secondary" type="button">Request Quote</button>
+          <form action="{{ routes.cart_url }}" method="post">
+            <button class="cart-btn cart-btn--primary" type="submit" name="checkout">Checkout</button>
+          </form>
+        </div>
+      </div>
+    {% else %}
+      <div class="cart-empty">
+        <p class="cart-empty__message">Your cart is empty</p>
+        <a href="{{ routes.all_products_collection_url }}" class="cart-btn cart-btn--primary">Continue Shopping</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+(function() {
+  // Quantity controls
+  document.querySelectorAll('.cart-item__qty-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const line = this.dataset.line;
+      const action = this.dataset.action;
+      const item = this.closest('.cart-item');
+      const qtyEl = item.querySelector('.cart-item__qty-value');
+      let qty = parseInt(qtyEl.textContent);
+      
+      if (action === 'increase') {
+        qty++;
+      } else if (action === 'decrease' && qty > 1) {
+        qty--;
+      }
+      
+      updateCartItem(line, qty);
+    });
+  });
+
+  // Remove button
+  document.querySelectorAll('.cart-item__remove').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const line = this.dataset.line;
+      updateCartItem(line, 0);
+    });
+  });
+
+  function updateCartItem(line, quantity) {
+    fetch('/cart/change.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        line: line,
+        quantity: quantity
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      window.location.reload();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Cart"
+    }
+  ]
+}
+{% endschema %}

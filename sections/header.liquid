@@ -15,7 +15,7 @@
           <a href="{{ link.url }}">{{ link.title }}</a>
         {% endfor %}
       {% else %}
-        {% assign fallback_links = section.settings.fallback_links | default: "Shop|/collections/all,Collections|/collections,Showrooms|/pages/showrooms,Trade|/pages/trade" %}
+        {% assign fallback_links = section.settings.fallback_links | default: "Shop|/collections/all,Collections|/collections,Showrooms|/pages/showrooms" %}
         {% assign fallback_items = fallback_links | split: "," %}
         {% for item in fallback_items %}
           {% assign parts = item | split: "|" %}
@@ -52,7 +52,7 @@
       "type": "text",
       "id": "fallback_links",
       "label": "Fallback links",
-      "default": "Shop|/collections/all,Collections|/collections,Showrooms|/pages/showrooms,Trade|/pages/trade",
+      "default": "Shop|/collections/all,Collections|/collections,Showrooms|/pages/showrooms",
       "info": "Comma separated pairs in the format Label|URL, used when no menu is assigned."
     }
   ],
