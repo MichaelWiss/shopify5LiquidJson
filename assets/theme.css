@@ -74,6 +74,15 @@ body {
   line-height: 1.6;
 }
 
+.site-main {
+  padding-top: 56px;
+}
+
+@media (max-width: 767px) {
+  .site-main {
+    padding-top: 41px;
+  }
+}
 .section {
   padding-block: var(--space-5);
 }
