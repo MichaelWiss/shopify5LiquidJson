@@ -30,9 +30,11 @@
 
     <main role="main">
       {% if settings.show_global_breadcrumbs %}
-        <div class="breadcrumbs-container">
-          {% render 'breadcrumbs-bar' %}
-        </div>
+        {% unless request.page_type == 'index' or request.page_type == 'cart' %}
+          <div class="breadcrumbs-container">
+            {% render 'breadcrumbs-bar' %}
+          </div>
+        {% endunless %}
       {% endif %}
       {{ content_for_layout }}
     </main>

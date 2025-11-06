@@ -21,49 +21,47 @@
   {% endif %}
 {% endif %}
 
-{% unless page_type == 'index' or page_type == 'cart' %}
-  <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs.label' | t: default: 'Breadcrumbs' }}">
-    <ol class="breadcrumbs-list">
-      <li class="breadcrumbs-item">
-        <a href="/">{{ 'general.breadcrumbs.home' | t: default: 'Home' }}</a>
-      </li>
+<nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs.label' | t: default: 'Breadcrumbs' }}">
+  <ol class="breadcrumbs-list">
+    <li class="breadcrumbs-item">
+      <a href="/">{{ 'general.breadcrumbs.home' | t: default: 'Home' }}</a>
+    </li>
 
-      {% if page_type == 'product' and classification_title != blank %}
-        <li class="breadcrumbs-separator" aria-hidden="true">→</li>
-        <li class="breadcrumbs-item breadcrumbs-item--classification">
-          {% if classification_url != blank %}
-            <a href="{{ classification_url }}">{{ classification_title }}</a>
-          {% else %}
-            {{ classification_title }}
-          {% endif %}
-        </li>
-      {% endif %}
-
-      {% if page_type == 'collection' and collection %}
-        <li class="breadcrumbs-separator" aria-hidden="true">→</li>
-        <li class="breadcrumbs-item current">
-          <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
-          <span class="breadcrumbs-current-label">{{ collection.title }}</span>
-        </li>
-      {% elsif page_type == 'product' %}
-        {% if collection %}
-          <li class="breadcrumbs-separator" aria-hidden="true">→</li>
-          <li class="breadcrumbs-item">
-            <a href="{{ collection.url }}">{{ collection.title }}</a>
-          </li>
+    {% if page_type == 'product' and classification_title != blank %}
+      <li class="breadcrumbs-separator" aria-hidden="true">→</li>
+      <li class="breadcrumbs-item breadcrumbs-item--classification">
+        {% if classification_url != blank %}
+          <a href="{{ classification_url }}">{{ classification_title }}</a>
+        {% else %}
+          {{ classification_title }}
         {% endif %}
+      </li>
+    {% endif %}
+
+    {% if page_type == 'collection' and collection %}
+      <li class="breadcrumbs-separator" aria-hidden="true">→</li>
+      <li class="breadcrumbs-item current">
+        <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
+        <span class="breadcrumbs-current-label">{{ collection.title }}</span>
+      </li>
+    {% elsif page_type == 'product' %}
+      {% if collection %}
         <li class="breadcrumbs-separator" aria-hidden="true">→</li>
-        <li class="breadcrumbs-item current">
-          <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
-          <span class="breadcrumbs-current-label">{{ product.title }}</span>
-        </li>
-      {% elsif page_type == 'page' %}
-        <li class="breadcrumbs-separator" aria-hidden="true">→</li>
-        <li class="breadcrumbs-item current">
-          <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
-          <span class="breadcrumbs-current-label">{{ page.title }}</span>
+        <li class="breadcrumbs-item">
+          <a href="{{ collection.url }}">{{ collection.title }}</a>
         </li>
       {% endif %}
-    </ol>
-  </nav>
-{% endunless %}
+      <li class="breadcrumbs-separator" aria-hidden="true">→</li>
+      <li class="breadcrumbs-item current">
+        <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
+        <span class="breadcrumbs-current-label">{{ product.title }}</span>
+      </li>
+    {% elsif page_type == 'page' %}
+      <li class="breadcrumbs-separator" aria-hidden="true">→</li>
+      <li class="breadcrumbs-item current">
+        <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
+        <span class="breadcrumbs-current-label">{{ page.title }}</span>
+      </li>
+    {% endif %}
+  </ol>
+</nav>
