@@ -635,6 +635,11 @@ body {
 }
 
 /* Homepage — In Common With */
+// Override section padding for hero to make it flush with header
+#shopify-section-hero_full_bleed {
+  padding-top: 0 !important;
+}
+
 .hero {
   margin-top: 0;
   height: 90vh;

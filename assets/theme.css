@@ -625,6 +625,10 @@ body {
 }
 
 /* Homepage — In Common With */
+#shopify-section-hero_full_bleed {
+  padding-top: 0 !important;
+}
+
 .hero {
   margin-top: 0;
   height: 90vh;
