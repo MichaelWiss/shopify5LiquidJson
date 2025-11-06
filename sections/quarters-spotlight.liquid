@@ -1,0 +1,81 @@
+<section class="quarters-spotlight">
+  <div class="quarters-spotlight__container">
+    {% if section.settings.heading != blank %}
+      <h2 class="quarters-spotlight__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    <div class="quarters-spotlight__layout">
+      <div class="quarters-spotlight__text">
+        {% if section.settings.intro != blank %}
+          <div class="quarters-spotlight__intro">
+            {{ section.settings.intro }}
+          </div>
+        {% endif %}
+        {% if section.settings.details != blank %}
+          <div class="quarters-spotlight__details">
+            {{ section.settings.details }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="quarters-spotlight__images">
+        {% for block in section.blocks %}
+          <div class="quarters-spotlight__image" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'quarters-spotlight__image-media', sizes: '(min-width: 1024px) 50vw, 100vw' }}
+            {% else %}
+              {{ 'collection-2' | placeholder_svg_tag: 'quarters-spotlight__image-media quarters-spotlight__image-media--placeholder' }}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Quarters spotlight",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Quarters"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro copy",
+      "default": "<p>The Quarters is our reflection on uncluttered living and hospitality. From our carefully selected furniture to the art on the walls, the studio invites you to experience how our products integrate into real living spaces.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "details",
+      "label": "Details copy",
+      "default": "<p><strong>Opening Hours</strong><br>Tuesday to Sunday: 11am – 6pm<br>Monday: Closed</p><p><strong>Address</strong><br>Quarters by In Common With<br>27 Greenpoint Ave<br>Brooklyn, NY 11222</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Quarters spotlight",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

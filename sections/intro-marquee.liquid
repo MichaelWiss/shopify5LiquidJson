@@ -1,0 +1,99 @@
+<section class="intro-marquee">
+  <div class="intro-marquee__inner">
+    {% if section.settings.section_label != blank %}
+      <p class="intro-marquee__label">{{ section.settings.section_label }}</p>
+    {% endif %}
+
+    {% if section.settings.text != blank %}
+      <div class="intro-marquee__text">
+        {{ section.settings.text }}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="intro-marquee__products" role="list">
+        {% for block in section.blocks %}
+          <a class="intro-marquee__thumb" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }} role="listitem">
+            <div class="intro-marquee__thumb-image">
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '140px', alt: block.settings.title }}
+              {% else %}
+                {{ 'product-apparel-1' | placeholder_svg_tag: 'intro-marquee__thumb-image-placeholder' }}
+              {% endif %}
+            </div>
+            {% if block.settings.title != blank %}
+              <div class="intro-marquee__thumb-title">{{ block.settings.title }}</div>
+            {% endif %}
+            {% if block.settings.price_text != blank %}
+              <div class="intro-marquee__thumb-price">{{ block.settings.price_text }}</div>
+            {% endif %}
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Intro with marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section label",
+      "default": "Our Approach"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Intro text",
+      "default": "<p>Introducing Omilia — a family of wall and ceiling-mounted lamps that embody timeless craftsmanship. Each piece celebrates the natural character of stone and wood, designed to elevate the spaces we inhabit with subtle elegance and enduring warmth.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product marquee item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Floor Lamps"
+        },
+        {
+          "type": "text",
+          "id": "price_text",
+          "label": "Price text",
+          "default": "From $1,245"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Intro with marquee",
+      "blocks": [
+        { "type": "product", "settings": { "title": "Floor Lamps", "price_text": "From $1,245" } },
+        { "type": "product", "settings": { "title": "Surface Mounts", "price_text": "From $875" } },
+        { "type": "product", "settings": { "title": "Chandeliers", "price_text": "From $2,890" } },
+        { "type": "product", "settings": { "title": "Table Lamps", "price_text": "From $625" } },
+        { "type": "product", "settings": { "title": "Pendants", "price_text": "From $1,450" } },
+        { "type": "product", "settings": { "title": "Sconces", "price_text": "From $780" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

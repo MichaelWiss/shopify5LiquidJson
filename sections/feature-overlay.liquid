@@ -1,0 +1,51 @@
+<section class="feature-overlay">
+  <div class="feature-overlay__media">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 3200 | image_tag: loading: 'lazy', class: 'feature-overlay__image', sizes: '100vw' }}
+    {% else %}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'feature-overlay__image feature-overlay__image--placeholder' }}
+    {% endif %}
+  </div>
+  {% if section.settings.caption_label != blank or section.settings.caption_body != blank %}
+    <div class="feature-overlay__caption">
+      {% if section.settings.caption_label != blank %}
+        <span class="feature-overlay__caption-label">{{ section.settings.caption_label }}</span>
+      {% endif %}
+      {% if section.settings.caption_body != blank %}
+        <div class="feature-overlay__caption-body">
+          {{ section.settings.caption_body }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Feature overlay",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "caption_label",
+      "label": "Caption label",
+      "default": "5 Min Location Street"
+    },
+    {
+      "type": "richtext",
+      "id": "caption_body",
+      "label": "Caption body",
+      "default": "<p>A curved glass accent that merges form and lighting. The bathroom features warm wood tones and subtle sconces that create an intimate, contemplative atmosphere.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature overlay"
+    }
+  ]
+}
+{% endschema %}

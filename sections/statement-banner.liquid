@@ -1,0 +1,77 @@
+<section class="statement-banner" style="background-color: {{ section.settings.background_color }};">
+  <div class="statement-banner__inner">
+    <div class="statement-banner__text">
+      {% if section.settings.heading != blank %}
+        <h2 class="statement-banner__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.body != blank %}
+        <div class="statement-banner__body">
+          {{ section.settings.body }}
+        </div>
+      {% endif %}
+      {% if section.settings.link_label != blank and section.settings.link_url != blank %}
+        <a class="statement-banner__link" href="{{ section.settings.link_url }}">{{ section.settings.link_label }}</a>
+      {% endif %}
+    </div>
+    <div class="statement-banner__media">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'statement-banner__image', sizes: '180px' }}
+      {% else %}
+        <div class="statement-banner__placeholder" style="background-color: {{ section.settings.accent_color }};"></div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Statement banner",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#9BA88F"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color when no image",
+      "default": "#A0584F"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Trade Program offers the support and resources you need to bring exceptional projects to life."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body copy",
+      "default": "<p>Whether you are an established practice or independent designer, we're here to help you with product selection, finish specification, and custom solutions tailored to your vision.</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Square image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Statement banner"
+    }
+  ]
+}
+{% endschema %}
