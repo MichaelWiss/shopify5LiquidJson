@@ -1557,9 +1557,8 @@ body {
 
 .breadcrumbs {
   background: var(--warm-white);
-  padding: 12px 32px 20px;
+  padding: 18px 32px 18px;
   color: var(--text-secondary);
-  border-bottom: 1px solid rgba(45, 40, 32, 0.08);
 }
 
 .breadcrumbs-list {
@@ -1567,19 +1566,18 @@ body {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 14px;
   list-style: none;
   padding: 0;
   font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: none;
+  letter-spacing: 0.02em;
 }
 
 .breadcrumbs-item,
 .breadcrumbs-separator {
   display: inline-flex;
   align-items: center;
-  gap: 20px;
+  gap: 14px;
 }
 
 .breadcrumbs-item a {
@@ -1592,10 +1590,9 @@ body {
   color: var(--text-primary);
 }
 
-.breadcrumbs-separator svg {
-  width: 12px;
-  height: 12px;
-  stroke: rgba(45, 40, 32, 0.35);
+.breadcrumbs-separator {
+  color: rgba(45, 40, 32, 0.35);
+  font-size: 12px;
 }
 
 .breadcrumbs-item.current {
@@ -1603,7 +1600,8 @@ body {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  font-weight: 600;
 }
 
 .breadcrumbs-current-dot {
@@ -1616,7 +1614,7 @@ body {
 
 .breadcrumbs-current-label {
   position: relative;
-  padding-bottom: 3px;
+  padding-bottom: 2px;
 }
 
 .breadcrumbs-current-label::after {
@@ -1631,17 +1629,17 @@ body {
 
 @media (max-width: 767px) {
   .breadcrumbs {
-    padding: 12px 24px 18px;
+    padding: 16px 24px 16px;
   }
 
   .breadcrumbs-list {
-    gap: 14px;
+    gap: 12px;
     font-size: 11px;
   }
 
   .breadcrumbs-item,
   .breadcrumbs-separator {
-    gap: 14px;
+    gap: 12px;
   }
 }
 
