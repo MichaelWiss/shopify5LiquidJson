@@ -1,28 +1,24 @@
-<section class="quarters-spotlight">
-  <div class="quarters-spotlight__container">
+<section class="quarters-section">
+  <div class="quarters-container">
     {% if section.settings.heading != blank %}
-      <h2 class="quarters-spotlight__heading">{{ section.settings.heading }}</h2>
+      <h2 class="quarters-heading">{{ section.settings.heading }}</h2>
     {% endif %}
-    <div class="quarters-spotlight__layout">
-      <div class="quarters-spotlight__text">
+    <div class="quarters-layout">
+      <div class="quarters-text">
         {% if section.settings.intro != blank %}
-          <div class="quarters-spotlight__intro">
-            {{ section.settings.intro }}
-          </div>
+          {{ section.settings.intro }}
         {% endif %}
         {% if section.settings.details != blank %}
-          <div class="quarters-spotlight__details">
-            {{ section.settings.details }}
-          </div>
+          {{ section.settings.details }}
         {% endif %}
       </div>
-      <div class="quarters-spotlight__images">
+      <div class="quarters-images">
         {% for block in section.blocks %}
-          <div class="quarters-spotlight__image" {{ block.shopify_attributes }}>
+          <div class="quarters-image" {{ block.shopify_attributes }}>
             {% if block.settings.image != blank %}
-              {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'quarters-spotlight__image-media', sizes: '(min-width: 1024px) 50vw, 100vw' }}
+              {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'quarters-image-media', sizes: '(min-width: 1024px) 50vw, 100vw' }}
             {% else %}
-              {{ 'collection-2' | placeholder_svg_tag: 'quarters-spotlight__image-media quarters-spotlight__image-media--placeholder' }}
+              {{ 'collection-2' | placeholder_svg_tag: 'quarters-image-media quarters-image-media--placeholder' }}
             {% endif %}
           </div>
         {% endfor %}

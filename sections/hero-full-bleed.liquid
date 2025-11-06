@@ -1,16 +1,12 @@
-<section class="hero-full-bleed">
-  <div class="hero-full-bleed__media">
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 3200 | image_tag: loading: 'eager', class: 'hero-full-bleed__image', sizes: '100vw' }}
-    {% else %}
-      {{ 'lifestyle-1' | placeholder_svg_tag: 'hero-full-bleed__image hero-full-bleed__image--placeholder' }}
-    {% endif %}
-    <div class="hero-full-bleed__overlay"></div>
-  </div>
+<section class="hero">
+  {% if section.settings.image != blank %}
+    {{ section.settings.image | image_url: width: 3200 | image_tag: loading: 'eager', class: 'hero-image', sizes: '100vw' }}
+  {% else %}
+    {{ 'lifestyle-1' | placeholder_svg_tag: 'hero-image hero-image--placeholder' }}
+  {% endif %}
+  <div class="hero-overlay"></div>
   {% if section.settings.heading != blank %}
-    <div class="hero-full-bleed__title-wrapper">
-      <h1 class="hero-full-bleed__title">{{ section.settings.heading }}</h1>
-    </div>
+    <h1 class="hero-title">{{ section.settings.heading }}</h1>
   {% endif %}
 </section>
 

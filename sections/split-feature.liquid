@@ -1,28 +1,28 @@
-<section class="split-feature{% if section.settings.layout == 'image-right' %} split-feature--reverse{% endif %}">
-  <div class="split-feature__image">
+<section class="side-by-side{% if section.settings.layout == 'image-right' %} side-by-side--reverse{% endif %}">
+  <div class="side-image">
     {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 50vw, 100vw', class: 'split-feature__image-media' }}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 50vw, 100vw', class: 'side-image-media' }}
     {% else %}
-      {{ 'lifestyle-3' | placeholder_svg_tag: 'split-feature__image-media split-feature__image-media--placeholder' }}
+      {{ 'lifestyle-3' | placeholder_svg_tag: 'side-image-media side-image-media--placeholder' }}
     {% endif %}
   </div>
-  <div class="split-feature__content">
-    <div class="split-feature__content-inner">
+  <div class="side-content">
+    <div class="side-content-inner">
       {% if section.settings.eyebrow != blank %}
-        <p class="split-feature__eyebrow">{{ section.settings.eyebrow }}</p>
+        <div class="side-eyebrow">{{ section.settings.eyebrow }}</div>
       {% endif %}
       {% if section.settings.heading != blank %}
-        <h2 class="split-feature__heading">{{ section.settings.heading }}</h2>
+        <h2 class="side-heading">{{ section.settings.heading }}</h2>
       {% endif %}
       {% if section.settings.body != blank %}
-        <div class="split-feature__text">
+        <div class="side-text">
           {{ section.settings.body }}
         </div>
       {% endif %}
       {% if section.settings.link_label != blank and section.settings.link_url != blank %}
-        <a class="split-feature__link" href="{{ section.settings.link_url }}">
+        <a class="side-link" href="{{ section.settings.link_url }}">
           {{ section.settings.link_label }}
-          <svg class="split-feature__link-icon" width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>

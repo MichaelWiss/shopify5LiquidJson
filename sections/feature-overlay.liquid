@@ -1,20 +1,16 @@
-<section class="feature-overlay">
-  <div class="feature-overlay__media">
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 3200 | image_tag: loading: 'lazy', class: 'feature-overlay__image', sizes: '100vw' }}
-    {% else %}
-      {{ 'lifestyle-2' | placeholder_svg_tag: 'feature-overlay__image feature-overlay__image--placeholder' }}
-    {% endif %}
-  </div>
+<section class="feature-large">
+  {% if section.settings.image != blank %}
+    {{ section.settings.image | image_url: width: 3200 | image_tag: loading: 'lazy', class: 'feature-image', sizes: '100vw' }}
+  {% else %}
+    {{ 'lifestyle-2' | placeholder_svg_tag: 'feature-image feature-image--placeholder' }}
+  {% endif %}
   {% if section.settings.caption_label != blank or section.settings.caption_body != blank %}
-    <div class="feature-overlay__caption">
+    <div class="feature-caption">
       {% if section.settings.caption_label != blank %}
-        <span class="feature-overlay__caption-label">{{ section.settings.caption_label }}</span>
+        <div class="caption-label">{{ section.settings.caption_label }}</div>
       {% endif %}
       {% if section.settings.caption_body != blank %}
-        <div class="feature-overlay__caption-body">
-          {{ section.settings.caption_body }}
-        </div>
+        {{ section.settings.caption_body }}
       {% endif %}
     </div>
   {% endif %}

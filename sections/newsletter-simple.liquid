@@ -1,27 +1,29 @@
-<section class="newsletter-simple">
-  <div class="newsletter-simple__container">
+<section class="newsletter">
+  <div class="newsletter-container">
     {% if section.settings.heading != blank %}
-      <h2 class="newsletter-simple__heading">{{ section.settings.heading }}</h2>
+      <h2>{{ section.settings.heading }}</h2>
     {% endif %}
-    {% form 'customer', id: 'NewsletterForm-' | append: section.id, class: 'newsletter-simple__form' %}
+    {% assign newsletter_form_id = 'NewsletterForm-' | append: section.id %}
+    {% form 'customer', id: newsletter_form_id, class: 'newsletter-form-wrapper' %}
       {% if form.posted_successfully? %}
-        <p class="newsletter-simple__success">{{ section.settings.success_message }}</p>
+        <p class="newsletter-success">{{ section.settings.success_message }}</p>
       {% else %}
-        <div class="newsletter-simple__fields">
+        <div class="newsletter-form">
+          <input type="hidden" name="contact[tags]" value="newsletter">
           <input
             type="email"
             name="contact[email]"
-            class="newsletter-simple__input"
+            class="newsletter-input"
             value="{{ form.email | escape }}"
             placeholder="{{ section.settings.placeholder }}"
             required
           >
-          <button type="submit" class="newsletter-simple__submit">
+          <button type="submit" class="newsletter-submit">
             {{ section.settings.button_label }}
           </button>
         </div>
         {% if form.errors %}
-          <p class="newsletter-simple__error">{{ form.errors.translated_fields['email'] | default: form.errors.messages['email'] }}</p>
+          <p class="newsletter-error">{{ form.errors.translated_fields['email'] | default: form.errors.messages['email'] }}</p>
         {% endif %}
       {% endif %}
     {% endform %}

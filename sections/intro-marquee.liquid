@@ -1,37 +1,61 @@
-<section class="intro-marquee">
-  <div class="intro-marquee__inner">
-    {% if section.settings.section_label != blank %}
-      <p class="intro-marquee__label">{{ section.settings.section_label }}</p>
-    {% endif %}
+<section class="intro-section">
+  {% if section.settings.section_label != blank %}
+    <div class="intro-label">{{ section.settings.section_label }}</div>
+  {% endif %}
 
-    {% if section.settings.text != blank %}
-      <div class="intro-marquee__text">
-        {{ section.settings.text }}
-      </div>
-    {% endif %}
+  {% if section.settings.text != blank %}
+    <div class="intro-text">
+      {{ section.settings.text }}
+    </div>
+  {% endif %}
 
-    {% if section.blocks.size > 0 %}
-      <div class="intro-marquee__products" role="list">
-        {% for block in section.blocks %}
-          <a class="intro-marquee__thumb" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }} role="listitem">
-            <div class="intro-marquee__thumb-image">
-              {% if block.settings.image != blank %}
-                {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '140px', alt: block.settings.title }}
-              {% else %}
-                {{ 'product-apparel-1' | placeholder_svg_tag: 'intro-marquee__thumb-image-placeholder' }}
+  {% if section.blocks.size > 0 %}
+    <div class="products-section">
+      <div class="products-carousel" data-carousel>
+        <button
+          class="products-carousel__control products-carousel__control--prev"
+          type="button"
+          aria-label="{{ 'sections.slideshow.previous_slide' | t }}"
+          data-carousel-prev
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M12.5 4.5 7.5 10l5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="products-scroll" role="list" data-carousel-track>
+          {% for block in section.blocks %}
+            <a class="product-thumb" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }} role="listitem">
+              <div class="product-thumb-image">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '140px', alt: block.settings.title }}
+                {% else %}
+                  {{ 'product-apparel-1' | placeholder_svg_tag: 'product-thumb-image-placeholder' }}
+                {% endif %}
+              </div>
+              {% if block.settings.title != blank %}
+                <div class="product-thumb-title">{{ block.settings.title }}</div>
               {% endif %}
-            </div>
-            {% if block.settings.title != blank %}
-              <div class="intro-marquee__thumb-title">{{ block.settings.title }}</div>
-            {% endif %}
-            {% if block.settings.price_text != blank %}
-              <div class="intro-marquee__thumb-price">{{ block.settings.price_text }}</div>
-            {% endif %}
-          </a>
-        {% endfor %}
+              {% if block.settings.price_text != blank %}
+                <div class="product-thumb-price">{{ block.settings.price_text }}</div>
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+
+        <button
+          class="products-carousel__control products-carousel__control--next"
+          type="button"
+          aria-label="{{ 'sections.slideshow.next_slide' | t }}"
+          data-carousel-next
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="m7.5 4.5 5 5.5-5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
       </div>
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 </section>
 
 {% schema %}

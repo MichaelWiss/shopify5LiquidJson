@@ -1,25 +1,23 @@
-<section class="statement-banner" style="background-color: {{ section.settings.background_color }};">
-  <div class="statement-banner__inner">
-    <div class="statement-banner__text">
+<section class="statement-section" style="background-color: {{ section.settings.background_color }};">
+  <div class="statement-container">
+    <div class="statement-text">
       {% if section.settings.heading != blank %}
-        <h2 class="statement-banner__heading">{{ section.settings.heading }}</h2>
+        <h2>{{ section.settings.heading }}</h2>
       {% endif %}
       {% if section.settings.body != blank %}
-        <div class="statement-banner__body">
-          {{ section.settings.body }}
-        </div>
+        {{ section.settings.body }}
       {% endif %}
       {% if section.settings.link_label != blank and section.settings.link_url != blank %}
-        <a class="statement-banner__link" href="{{ section.settings.link_url }}">{{ section.settings.link_label }}</a>
+        <a class="statement-link" href="{{ section.settings.link_url }}">{{ section.settings.link_label }}</a>
       {% endif %}
     </div>
-    <div class="statement-banner__media">
-      {% if section.settings.image != blank %}
-        {{ section.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'statement-banner__image', sizes: '180px' }}
-      {% else %}
-        <div class="statement-banner__placeholder" style="background-color: {{ section.settings.accent_color }};"></div>
-      {% endif %}
-    </div>
+    {% if section.settings.image != blank %}
+      <div class="statement-image">
+        {{ section.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'statement-image-media', sizes: '180px', alt: section.settings.image_alt }}
+      </div>
+    {% else %}
+      <div class="statement-image" style="background-color: {{ section.settings.accent_color }};"></div>
+    {% endif %}
   </div>
 </section>
 
@@ -66,6 +64,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "Square image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text"
     }
   ],
   "presets": [

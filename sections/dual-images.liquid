@@ -1,15 +1,13 @@
-<section class="dual-images">
-  <div class="dual-images__grid">
-    {% for block in section.blocks %}
-      <div class="dual-images__item" {{ block.shopify_attributes }}>
-        {% if block.settings.image != blank %}
-          {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', class: 'dual-images__media', sizes: '(min-width: 768px) 50vw, 100vw' }}
-        {% else %}
-          {{ 'lifestyle-4' | placeholder_svg_tag: 'dual-images__media dual-images__media--placeholder' }}
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div>
+<section class="final-two">
+  {% for block in section.blocks %}
+    <div class="final-image" {{ block.shopify_attributes }}>
+      {% if block.settings.image != blank %}
+        {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', class: 'final-image-media', sizes: '(min-width: 768px) 50vw, 100vw' }}
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'final-image-media final-image-media--placeholder' }}
+      {% endif %}
+    </div>
+  {% endfor %}
 </section>
 
 {% schema %}

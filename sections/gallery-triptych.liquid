@@ -1,11 +1,11 @@
-<section class="gallery-triptych">
-  <div class="gallery-triptych__grid">
+<section class="three-column">
+  <div class="three-grid">
     {% for block in section.blocks %}
-      <div class="gallery-triptych__item" {{ block.shopify_attributes }}>
+      <div class="three-item" {{ block.shopify_attributes }}>
         {% if block.settings.image != blank %}
-          {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', class: 'gallery-triptych__image', sizes: '(min-width: 1024px) 33vw, 100vw' }}
+          {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', class: 'three-item-media', sizes: '(min-width: 1024px) 33vw, 100vw' }}
         {% else %}
-          {{ 'collection-1' | placeholder_svg_tag: 'gallery-triptych__image gallery-triptych__image--placeholder' }}
+          {{ 'collection-1' | placeholder_svg_tag: 'three-item-media three-item-media--placeholder' }}
         {% endif %}
       </div>
     {% endfor %}
