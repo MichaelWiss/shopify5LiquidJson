@@ -704,89 +704,26 @@ body {
   margin: 0 auto;
 }
 
-.products-carousel {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
 .products-scroll {
   display: flex;
   gap: 12px;
   overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 0 32px 8px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
 
 .products-scroll::-webkit-scrollbar {
-  display: none;
+  height: 4px;
 }
 
-.products-carousel__control {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--warm-white);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: transform 160ms ease, opacity 160ms ease, background-color 160ms ease, color 160ms ease, border-color 160ms ease;
-  opacity: 0.85;
+.products-scroll::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.products-carousel__control svg {
-  width: 16px;
-  height: 16px;
-}
-
-.products-carousel__control svg path {
-  stroke-width: 1.25;
-}
-
-.products-carousel__control:hover {
-  opacity: 1;
-  border-color: var(--text-primary);
-}
-
-.products-carousel__control:active {
-  transform: translateY(calc(-50% + 1px));
-}
-
-.products-carousel__control:focus-visible {
-  outline: 2px solid var(--text-primary);
-  outline-offset: 2px;
-}
-
-.products-carousel__control--prev {
-  left: 12px;
-}
-
-.products-carousel__control--next {
-  right: 12px;
-}
-
-.products-carousel__control[disabled] {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
-.products-carousel:not(.is-scrollable) .products-carousel__control {
-  display: none;
-}
-
-@media (max-width: 639px) {
-  .products-carousel__control {
-    display: none;
-  }
+.products-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
 }
 
 .product-thumb {
