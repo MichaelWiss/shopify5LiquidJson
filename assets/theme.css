@@ -1515,6 +1515,17 @@ body {
   margin-top: calc(var(--space-unit) * 5);
 }
 
+.breadcrumbs-container {
+  margin-top: -41px;
+  padding-top: 41px;
+}
+
+@media (min-width: 768px) {
+  .breadcrumbs-container {
+    margin-top: -56px;
+    padding-top: 56px;
+  }
+}
 .breadcrumbs {
   background: var(--color-burgundy);
   padding: 0 32px 16px;
