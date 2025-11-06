@@ -90,11 +90,7 @@
             {% endfor %}
           </div>
 
-          {% if paginate.pages > 1 %}
-            <nav class="collection-page__pagination" aria-label="{{ 'general.pagination.label' | t }}">
-              {{ paginate | default_pagination }}
-            </nav>
-          {% endif %}
+          {% render 'pagination', paginate: paginate %}
         </div>
       </div>
     </section>
