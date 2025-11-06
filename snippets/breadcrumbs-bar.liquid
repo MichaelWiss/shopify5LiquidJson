@@ -2,9 +2,9 @@
 {% unless page_type == 'index' or page_type == 'cart' %}
   <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs.label' | t: default: 'Breadcrumbs' }}">
     <ol class="breadcrumbs-list">
-      <li class="breadcrumbs-item">
-        <a href="/">{{ 'general.breadcrumbs.home' | t: default: 'Home' }}</a>
-      </li>
+        <li class="breadcrumbs-item">
+          <a href="/">{{ 'general.breadcrumbs.home' | t: default: 'Home' }}</a>
+        </li>
 
       {% if page_type == 'collection' and collection %}
         <li class="breadcrumbs-separator" aria-hidden="true">
@@ -13,7 +13,8 @@
           </svg>
         </li>
         <li class="breadcrumbs-item current">
-          {{ collection.title }}
+          <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
+          <span class="breadcrumbs-current-label">{{ collection.title }}</span>
         </li>
       {% elsif page_type == 'product' %}
         {% if collection %}
@@ -32,7 +33,8 @@
           </svg>
         </li>
         <li class="breadcrumbs-item current">
-          {{ product.title }}
+          <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
+          <span class="breadcrumbs-current-label">{{ product.title }}</span>
         </li>
       {% elsif page_type == 'page' %}
         <li class="breadcrumbs-separator" aria-hidden="true">
@@ -41,7 +43,8 @@
           </svg>
         </li>
         <li class="breadcrumbs-item current">
-          {{ page.title }}
+          <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
+          <span class="breadcrumbs-current-label">{{ page.title }}</span>
         </li>
       {% endif %}
     </ol>
