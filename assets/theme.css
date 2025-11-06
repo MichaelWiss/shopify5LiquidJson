@@ -65,6 +65,8 @@ body {
   --space-7: 96px;
   --header-height-mobile: 28px;
   --header-height-desktop: 36px;
+  --icon-arrow-size: 24px;
+  --icon-arrow-back-size: 24px;
 }
 
 body {
@@ -1576,6 +1578,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.breadcrumbs-arrow {
+  width: var(--icon-arrow-size);
+  height: var(--icon-arrow-size);
+  display: block;
+}
+
+.breadcrumbs-arrow-back {
+  width: var(--icon-arrow-back-size);
+  height: var(--icon-arrow-back-size);
+  display: block;
 }
 
 .breadcrumbs-separator svg {

@@ -1,0 +1,52 @@
+{% comment %}
+  Pagination snippet with SVG arrow navigation
+  Usage: {% render 'pagination', paginate: paginate %}
+{% endcomment %}
+
+{% if paginate.pages > 1 %}
+  <nav class="pagination" role="navigation" aria-label="Pagination">
+    <ul class="pagination-list">
+      {% if paginate.previous %}
+        <li class="pagination-item pagination-item--prev">
+          <a href="{{ paginate.previous.url }}" class="pagination-link">
+            <svg class="pagination-arrow pagination-arrow--prev" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="20 24 12 32 20 40" stroke="currentColor" stroke-width="2" fill="none"></polyline>
+              <line x1="52" y1="32" x2="12" y2="32" stroke="currentColor" stroke-width="2"></line>
+            </svg>
+            <span class="visually-hidden">Previous</span>
+          </a>
+        </li>
+      {% endif %}
+
+      {% for part in paginate.parts %}
+        {% if part.is_link %}
+          <li class="pagination-item">
+            <a href="{{ part.url }}" class="pagination-link">{{ part.title }}</a>
+          </li>
+        {% else %}
+          {% if part.title == paginate.current_page %}
+            <li class="pagination-item pagination-item--current">
+              <span class="pagination-current" aria-current="page">{{ part.title }}</span>
+            </li>
+          {% else %}
+            <li class="pagination-item">
+              <span class="pagination-ellipsis">{{ part.title }}</span>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      {% if paginate.next %}
+        <li class="pagination-item pagination-item--next">
+          <a href="{{ paginate.next.url }}" class="pagination-link">
+            <span class="pagination-next-text">Next</span>
+            <svg class="pagination-arrow pagination-arrow--next" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="44 24 52 32 44 40" stroke="currentColor" stroke-width="2" fill="none"></polyline>
+              <line x1="52" y1="32" x2="12" y2="32" stroke="currentColor" stroke-width="2"></line>
+            </svg>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
