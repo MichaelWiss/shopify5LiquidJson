@@ -28,7 +28,11 @@
     </li>
 
     {% if page_type == 'product' and classification_title != blank %}
-      <li class="breadcrumbs-separator" aria-hidden="true">→</li>
+      <li class="breadcrumbs-separator" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </li>
       <li class="breadcrumbs-item breadcrumbs-item--classification">
         {% if classification_url != blank %}
           <a href="{{ classification_url }}">{{ classification_title }}</a>
@@ -39,25 +43,41 @@
     {% endif %}
 
     {% if page_type == 'collection' and collection %}
-      <li class="breadcrumbs-separator" aria-hidden="true">→</li>
+      <li class="breadcrumbs-separator" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </li>
       <li class="breadcrumbs-item current">
         <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
         <span class="breadcrumbs-current-label">{{ collection.title }}</span>
       </li>
     {% elsif page_type == 'product' %}
       {% if collection %}
-        <li class="breadcrumbs-separator" aria-hidden="true">→</li>
+        <li class="breadcrumbs-separator" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </li>
         <li class="breadcrumbs-item">
           <a href="{{ collection.url }}">{{ collection.title }}</a>
         </li>
       {% endif %}
-      <li class="breadcrumbs-separator" aria-hidden="true">→</li>
+      <li class="breadcrumbs-separator" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </li>
       <li class="breadcrumbs-item current">
         <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
         <span class="breadcrumbs-current-label">{{ product.title }}</span>
       </li>
     {% elsif page_type == 'page' %}
-      <li class="breadcrumbs-separator" aria-hidden="true">→</li>
+      <li class="breadcrumbs-separator" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </li>
       <li class="breadcrumbs-item current">
         <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
         <span class="breadcrumbs-current-label">{{ page.title }}</span>
