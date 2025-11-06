@@ -63,8 +63,8 @@ body {
   --space-5: 40px;
   --space-6: 64px;
   --space-7: 96px;
-  --header-height-mobile: 48px;
-  --header-height-desktop: 64px;
+  --header-height-mobile: 28px;
+  --header-height-desktop: 36px;
 }
 
 body {
