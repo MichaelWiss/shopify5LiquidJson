@@ -236,6 +236,18 @@ body {
   top: 0;
   z-index: 400;
   width: 100%;
+  left: 0;
+  right: 0;
+}
+
+#shopify-section-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 450;
+  width: 100%;
+  left: 0;
+  right: 0;
 }
 
 .site-header__inner {
@@ -1567,6 +1579,7 @@ body {
 @media (min-width: 1024px) {
   .product-detail {
     grid-template-columns: 320px 1fr;
+    align-items: start;
   }
   .product-images {
     grid-template-columns: 1fr 1fr;
