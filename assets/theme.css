@@ -1515,6 +1515,10 @@ body {
   margin-top: calc(var(--space-unit) * 5);
 }
 
+.breadcrumbs-container {
+  margin-top: 41px;
+}
+
 .breadcrumbs {
   background: var(--color-burgundy);
   padding: 0 32px 16px;
@@ -1554,10 +1558,6 @@ body {
 }
 
 /* Demo-aligned PDP helpers */
-#shopify-section-breadcrumbs {
-  margin-top: 41px;
-}
-
 .finish-swatches {
   padding: 64px 32px;
   border-top: 1px solid var(--color-border);

@@ -1,9 +1,5 @@
 {
   "sections": {
-    "breadcrumbs": {
-      "type": "breadcrumbs",
-      "settings": {}
-    },
     "page-content": {
       "type": "intro-text",
       "settings": {
@@ -11,5 +7,5 @@
       }
     }
   },
-  "order": ["breadcrumbs", "page-content"]
+  "order": ["page-content"]
 }

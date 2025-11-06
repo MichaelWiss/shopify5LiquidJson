@@ -29,6 +29,11 @@
     {% section 'header' %}
 
     <main role="main">
+      {% if settings.show_global_breadcrumbs %}
+        <div class="breadcrumbs-container">
+          {% render 'breadcrumbs-bar' %}
+        </div>
+      {% endif %}
       {{ content_for_layout }}
     </main>
 

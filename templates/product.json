@@ -1,9 +1,5 @@
 {
   "sections": {
-    "breadcrumbs": {
-      "type": "breadcrumbs",
-      "settings": {}
-    },
     "main": {
       "type": "product-detail",
       "settings": {},
@@ -267,7 +263,6 @@
     }
   },
   "order": [
-    "breadcrumbs",
     "main",
     "product-intro",
     "specifications",

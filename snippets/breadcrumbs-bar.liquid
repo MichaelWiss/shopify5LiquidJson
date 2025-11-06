@@ -1,0 +1,49 @@
+{% assign page_type = request.page_type %}
+{% unless page_type == 'index' or page_type == 'cart' %}
+  <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs.label' | t: default: 'Breadcrumbs' }}">
+    <ol class="breadcrumbs-list">
+      <li class="breadcrumbs-item">
+        <a href="/">{{ 'general.breadcrumbs.home' | t: default: 'Home' }}</a>
+      </li>
+
+      {% if page_type == 'collection' and collection %}
+        <li class="breadcrumbs-separator" aria-hidden="true">
+          <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </li>
+        <li class="breadcrumbs-item current">
+          {{ collection.title }}
+        </li>
+      {% elsif page_type == 'product' %}
+        {% if collection %}
+          <li class="breadcrumbs-separator" aria-hidden="true">
+            <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </li>
+          <li class="breadcrumbs-item">
+            <a href="{{ collection.url }}">{{ collection.title }}</a>
+          </li>
+        {% endif %}
+        <li class="breadcrumbs-separator" aria-hidden="true">
+          <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </li>
+        <li class="breadcrumbs-item current">
+          {{ product.title }}
+        </li>
+      {% elsif page_type == 'page' %}
+        <li class="breadcrumbs-separator" aria-hidden="true">
+          <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </li>
+        <li class="breadcrumbs-item current">
+          {{ page.title }}
+        </li>
+      {% endif %}
+    </ol>
+  </nav>
+{% endunless %}

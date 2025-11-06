@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "name": "Global settings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_global_breadcrumbs",
+        "label": "Show breadcrumbs on products, collections, and pages",
+        "default": true
+      }
+    ]
+  }
+]
