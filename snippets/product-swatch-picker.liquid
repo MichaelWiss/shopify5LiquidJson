@@ -1,0 +1,66 @@
+{% comment %}
+  Renders color swatch dots for a product option.
+  
+  Accepts:
+  - option: {Object} Product option object (required)
+  - swatch_value_colors: {String} Newline-separated key:value pairs (e.g., "Terracotta:#A0584F")
+  - section_id: {String} Unique section ID for input IDs
+  
+  Usage:
+  {% render 'product-swatch-picker',
+    option: option,
+    swatch_value_colors: block.settings.swatch_value_colors,
+    section_id: section.id
+  %}
+{% endcomment %}
+
+{% assign swatch_entries = swatch_value_colors | default: '' | newline_to_br | split: '<br />' %}
+
+<div class="product-option">
+  <div class="option-label">{{ option.name }}</div>
+  <div class="color-dots" role="radiogroup" aria-label="{{ option.name }}">
+    {% for value in option.values %}
+      {% assign value_normalized = value | strip | downcase %}
+      {% assign swatch_background = '' %}
+      
+      {% comment %} Find matching swatch color from settings {% endcomment %}
+      {% for entry in swatch_entries %}
+        {% assign trimmed_entry = entry | strip %}
+        {% if trimmed_entry != '' %}
+          {% assign pair = trimmed_entry | split: ':' %}
+          {% if pair.size > 1 %}
+            {% assign entry_key = pair[0] | strip | downcase %}
+            {% if entry_key == value_normalized %}
+              {% assign swatch_background = pair[1] | strip %}
+              {% break %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      
+      {% assign input_id = 'Option-' | append: section_id | append: '-' | append: option.position | append: '-' | append: forloop.index0 %}
+      
+      <input
+        class="visually-hidden"
+        type="radio"
+        id="{{ input_id }}"
+        name="options[{{ option.name }}]"
+        value="{{ value }}"
+        {% if option.selected_value == value %}checked{% endif %}
+      >
+      
+      {% assign swatch_style = '' %}
+      {% if swatch_background != '' %}
+        {% assign swatch_style = 'background: ' | append: swatch_background | append: ';' %}
+      {% endif %}
+      
+      <label 
+        class="color-dot{% if option.selected_value == value %} selected{% endif %}" 
+        for="{{ input_id }}"
+        {% if swatch_style != '' %} style="{{ swatch_style }}"{% endif %} 
+        title="{{ value }}">
+        <span class="visually-hidden">{{ value }}</span>
+      </label>
+    {% endfor %}
+  </div>
+</div>

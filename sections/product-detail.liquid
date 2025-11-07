@@ -41,7 +41,6 @@
                 {% else %}
                   {% assign swatch_options_raw = block.settings.swatch_options | default: '' %}
                   {% assign swatch_options = swatch_options_raw | split: ',' %}
-                  {% assign swatch_entries = block.settings.swatch_value_colors | default: '' | newline_to_br | split: '<br />' %}
 
                   {% for option in product.options_with_values %}
                     {% assign option_name_normalized = option.name | strip | downcase %}
@@ -54,45 +53,14 @@
                       {% endif %}
                     {% endfor %}
 
-                    <div class="product-option">
-                      {% if is_swatch_option %}
-                        <div class="option-label">{{ option.name }}</div>
-                        <div class="color-dots" role="radiogroup" aria-label="{{ option.name }}">
-                          {% for value in option.values %}
-                            {% assign value_normalized = value | strip | downcase %}
-                            {% assign swatch_background = '' %}
-                            {% for entry in swatch_entries %}
-                              {% assign trimmed_entry = entry | strip %}
-                              {% if trimmed_entry != '' %}
-                                {% assign pair = trimmed_entry | split: ':' %}
-                                {% if pair.size > 1 %}
-                                  {% assign entry_key = pair[0] | strip | downcase %}
-                                  {% if entry_key == value_normalized %}
-                                    {% assign swatch_background = pair[1] | strip %}
-                                    {% break %}
-                                  {% endif %}
-                                {% endif %}
-                              {% endif %}
-                            {% endfor %}
-                            {% assign input_id = 'Option-' | append: section.id | append: '-' | append: option.position | append: '-' | append: forloop.index0 %}
-                            <input
-                              class="visually-hidden"
-                              type="radio"
-                              id="{{ input_id }}"
-                              name="options[{{ option.name }}]"
-                              value="{{ value }}"
-                              {% if option.selected_value == value %}checked{% endif %}
-                            >
-                            {% assign swatch_style = '' %}
-                            {% if swatch_background != '' %}
-                              {% assign swatch_style = 'background: ' | append: swatch_background | append: ';' %}
-                            {% endif %}
-                            <label class="color-dot{% if option.selected_value == value %} selected{% endif %}" for="{{ input_id }}"{% if swatch_style != '' %} style="{{ swatch_style }}"{% endif %} title="{{ value }}">
-                              <span class="visually-hidden">{{ value }}</span>
-                            </label>
-                          {% endfor %}
-                        </div>
-                      {% else %}
+                    {% if is_swatch_option %}
+                      {% render 'product-swatch-picker',
+                        option: option,
+                        swatch_value_colors: block.settings.swatch_value_colors,
+                        section_id: section.id
+                      %}
+                    {% else %}
+                      <div class="product-option">
                         <label class="option-label" for="Option-{{ forloop.index0 }}-{{ section.id }}">
                           {{ option.name }}
                         </label>
@@ -107,8 +75,8 @@
                             </option>
                           {% endfor %}
                         </select>
-                      {% endif %}
-                    </div>
+                      </div>
+                    {% endif %}
                   {% endfor %}
                   <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                 {% endif %}
@@ -177,14 +145,7 @@
       {% assign media_count = product.media.size %}
       {% if media_count > 0 %}
         {% for media in product.media %}
-          <div class="product-gallery-item">
-            <div class="product-image">
-              {{ media | media_tag }}
-            </div>
-            {% if media.alt != blank %}
-              <p class="image-caption">{{ media.alt }}</p>
-            {% endif %}
-          </div>
+          {% render 'product-gallery-item', media: media %}
         {% endfor %}
       {% endif %}
 
@@ -195,10 +156,12 @@
         {% for i in (1..placeholders_needed) %}
           {% assign style_index = forloop.index0 | modulo: placeholder_styles.size %}
           {% assign fallback_style = placeholder_styles[style_index] | strip %}
-          <div class="product-gallery-item">
-            <div class="product-image" style="background: {{ fallback_style }};"></div>
-            <p class="image-caption">Fig. {{ media_count | plus: forloop.index }} — {{ product.title | escape }}</p>
-          </div>
+          {% assign figure_num = media_count | plus: forloop.index %}
+          {% render 'product-gallery-item',
+            placeholder_style: fallback_style,
+            product_title: product.title,
+            figure_number: figure_num
+          %}
         {% endfor %}
       {% endif %}
     </div>

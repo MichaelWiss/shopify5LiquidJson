@@ -19,12 +19,12 @@
         <p class="side-text">{{ section.settings.body | escape | newline_to_br }}</p>
       {% endif %}
       {% if section.settings.link_label != blank and section.settings.link_url != blank %}
-        <a class="side-link" href="{{ section.settings.link_url }}">
-          {{ section.settings.link_label }}
-          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+        {% render 'arrow-link',
+          text: section.settings.link_label,
+          url: section.settings.link_url,
+          class: 'side-link',
+          icon_size: '11'
+        %}
       {% endif %}
     </div>
   </div>

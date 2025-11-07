@@ -26,12 +26,12 @@
       {% endif %}
 
       {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        <a class="image-text-link" href="{{ section.settings.button_link }}">
-          {{ section.settings.button_label }}
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+        {% render 'arrow-link',
+          text: section.settings.button_label,
+          url: section.settings.button_link,
+          class: 'image-text-link',
+          icon_size: '14'
+        %}
       {% endif %}
     </div>
   </div>

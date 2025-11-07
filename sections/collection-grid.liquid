@@ -20,12 +20,12 @@
                   <h3 class="collection-demo-card__title">{{ block.settings.title }}</h3>
                 {% endif %}
                 {% if block.settings.link_label != blank %}
-                  <a class="collection-demo-card__link" href="{{ block.settings.link | default: '#' }}">
-                    {{ block.settings.link_label }}
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </a>
+                  {% render 'arrow-link',
+                    text: block.settings.link_label,
+                    url: block.settings.link | default: '#',
+                    class: 'collection-demo-card__link',
+                    icon_size: '14'
+                  %}
                 {% endif %}
               </div>
             </article>

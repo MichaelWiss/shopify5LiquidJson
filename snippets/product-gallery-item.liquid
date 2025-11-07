@@ -1,0 +1,33 @@
+{% comment %}
+  Renders a product gallery item (image or placeholder).
+  
+  Accepts:
+  - media: {Object} Product media object (optional)
+  - placeholder_style: {String} CSS background for placeholder (optional)
+  - caption: {String} Image caption (optional)
+  - product_title: {String} Product title for placeholder caption (optional)
+  - figure_number: {Number} Figure number for placeholder caption (optional)
+  
+  Usage:
+  {% render 'product-gallery-item', media: media %}
+  {% render 'product-gallery-item', 
+    placeholder_style: 'linear-gradient(180deg, #E8DCC8 0%, #D4C8B8 100%)',
+    product_title: product.title,
+    figure_number: 5
+  %}
+{% endcomment %}
+
+<div class="product-gallery-item">
+  <div class="product-image"{% if placeholder_style %} style="background: {{ placeholder_style }};"{% endif %}>
+    {% if media %}
+      {{ media | media_tag }}
+    {% endif %}
+  </div>
+  {% if media and media.alt != blank %}
+    <p class="image-caption">{{ media.alt }}</p>
+  {% elsif caption %}
+    <p class="image-caption">{{ caption }}</p>
+  {% elsif figure_number and product_title %}
+    <p class="image-caption">Fig. {{ figure_number }} — {{ product_title | escape }}</p>
+  {% endif %}
+</div>
