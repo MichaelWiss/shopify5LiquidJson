@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_full_bleed": {
@@ -8,51 +17,53 @@
     },
     "intro_marquee": {
       "type": "intro-marquee",
-      "settings": {
-        "section_label": "Our Approach",
-        "text": "Introducing Omilia — a family of wall and ceiling-mounted lamps that embody timeless craftsmanship. Each piece celebrates the natural character of stone and wood, designed to elevate the spaces we inhabit with subtle elegance and enduring warmth."
-      },
       "blocks": {
         "intro_marquee_item_1": {
           "type": "product",
           "settings": {
             "title": "Floor Lamps",
-            "price_text": "From $1,245"
+            "price_text": "From $1,245",
+            "link": ""
           }
         },
         "intro_marquee_item_2": {
           "type": "product",
           "settings": {
             "title": "Surface Mounts",
-            "price_text": "From $875"
+            "price_text": "From $875",
+            "link": ""
           }
         },
         "intro_marquee_item_3": {
           "type": "product",
           "settings": {
             "title": "Chandeliers",
-            "price_text": "From $2,890"
+            "price_text": "From $2,890",
+            "link": ""
           }
         },
         "intro_marquee_item_4": {
           "type": "product",
           "settings": {
             "title": "Table Lamps",
-            "price_text": "From $625"
+            "price_text": "From $625",
+            "link": ""
           }
         },
         "intro_marquee_item_5": {
           "type": "product",
           "settings": {
             "title": "Pendants",
-            "price_text": "From $1,450"
+            "price_text": "From $1,450",
+            "link": ""
           }
         },
         "intro_marquee_item_6": {
           "type": "product",
           "settings": {
             "title": "Sconces",
-            "price_text": "From $780"
+            "price_text": "From $780",
+            "link": ""
           }
         }
       },
@@ -63,7 +74,11 @@
         "intro_marquee_item_4",
         "intro_marquee_item_5",
         "intro_marquee_item_6"
-      ]
+      ],
+      "settings": {
+        "section_label": "Our Approach",
+        "text": "Introducing Omilia — a family of wall and ceiling-mounted lamps that embody timeless craftsmanship. Each piece celebrates the natural character of stone and wood, designed to elevate the spaces we inhabit with subtle elegance and enduring warmth."
+      }
     },
     "feature_overlay": {
       "type": "feature-overlay",
@@ -75,66 +90,80 @@
     "split_feature": {
       "type": "split-feature",
       "settings": {
+        "layout": "image-left",
         "eyebrow": "A Functional Workspace",
         "heading": "Form Meets Function",
         "body": "A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.",
-        "link_label": "Explore Details"
+        "link_label": "Explore Details",
+        "link_url": ""
       }
     },
     "statement_banner": {
       "type": "statement-banner",
       "settings": {
-        "background_color": "#9BA88F",
-        "accent_color": "#A0584F",
+        "background_color": "#9ba88f",
+        "accent_color": "#a0584f",
         "heading": "Our Trade Program offers the support and resources you need to bring exceptional projects to life.",
         "body": "Whether you are an established practice or independent designer, we're here to help you with product selection, finish specification, and custom solutions tailored to your vision.",
-        "link_label": "Learn More"
+        "link_label": "Learn More",
+        "link_url": "",
+        "image_alt": ""
       }
     },
     "gallery_triptych": {
       "type": "gallery-triptych",
-      "settings": {},
       "blocks": {
         "gallery_triptych_image_1": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "alt_text": ""
+          }
         },
         "gallery_triptych_image_2": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "alt_text": ""
+          }
         },
         "gallery_triptych_image_3": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "alt_text": ""
+          }
         }
       },
       "block_order": [
         "gallery_triptych_image_1",
         "gallery_triptych_image_2",
         "gallery_triptych_image_3"
-      ]
+      ],
+      "settings": {}
     },
     "quarters_spotlight": {
       "type": "quarters-spotlight",
-      "settings": {
-        "heading": "Quarters",
-        "intro": "<p>The Quarters is our reflection on uncluttered living and hospitality. From our carefully selected furniture to the art on the walls, the studio invites you to experience how our products integrate into real living spaces.</p>",
-        "details": "<p><strong>Opening Hours</strong><br>Tuesday to Sunday: 11am – 6pm<br>Monday: Closed</p><p><strong>Address</strong><br>Quarters by In Common With<br>27 Greenpoint Ave<br>Brooklyn, NY 11222</p>"
-      },
       "blocks": {
         "quarters_image_1": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "alt_text": ""
+          }
         },
         "quarters_image_2": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "alt_text": ""
+          }
         }
       },
       "block_order": [
         "quarters_image_1",
         "quarters_image_2"
-      ]
+      ],
+      "settings": {
+        "heading": "Quarters",
+        "intro": "<p>The Quarters is our reflection on uncluttered living and hospitality. From our carefully selected furniture to the art on the walls, the studio invites you to experience how our products integrate into real living spaces.</p>",
+        "details": "<p><strong>Opening Hours</strong><br>Tuesday to Sunday: 11am – 6pm<br>Monday: Closed</p><p><strong>Address</strong><br>Quarters by In Common With<br>27 Greenpoint Ave<br>Brooklyn, NY 11222</p>"
+      }
     },
     "newsletter_simple": {
       "type": "newsletter-simple",
@@ -147,21 +176,64 @@
     },
     "dual_images": {
       "type": "dual-images",
-      "settings": {},
       "blocks": {
         "dual_image_1": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "alt_text": ""
+          }
         },
         "dual_image_2": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "alt_text": ""
+          }
         }
       },
       "block_order": [
         "dual_image_1",
         "dual_image_2"
-      ]
+      ],
+      "settings": {}
+    },
+    "footer_CaVzfU": {
+      "type": "footer",
+      "blocks": {
+        "menu_ydjNCK": {
+          "type": "menu",
+          "settings": {
+            "heading": "Shop",
+            "menu": "",
+            "fallback_links": "Lighting|/collections/lighting\nSeating|/collections/seating\nTables|/collections/tables\nAccessories|/collections/accessories"
+          }
+        },
+        "menu_XwJdHp": {
+          "type": "menu",
+          "settings": {
+            "heading": "Shop",
+            "menu": "",
+            "fallback_links": "Lighting|/collections/lighting\nSeating|/collections/seating\nTables|/collections/tables\nAccessories|/collections/accessories"
+          }
+        },
+        "text_ckLKax": {
+          "type": "text",
+          "settings": {
+            "heading": "Studio",
+            "body": "Flagship — Brooklyn, NY\nConsultations by appointment."
+          }
+        }
+      },
+      "block_order": [
+        "menu_ydjNCK",
+        "menu_XwJdHp",
+        "text_ckLKax"
+      ],
+      "name": "Footer",
+      "settings": {
+        "credits": "© 2024 In Common With. All rights reserved.",
+        "privacy_link": "",
+        "terms_link": ""
+      }
     }
   },
   "order": [
@@ -173,6 +245,7 @@
     "gallery_triptych",
     "quarters_spotlight",
     "newsletter_simple",
-    "dual_images"
+    "dual_images",
+    "footer_CaVzfU"
   ]
 }
