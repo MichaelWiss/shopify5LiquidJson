@@ -1,26 +1,45 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "product-detail",
-      "settings": {},
       "blocks": {
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {}
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "summary-size": {
           "type": "summary_row",
-          "settings": { "label": "Size", "value": "Medium" }
+          "settings": {
+            "label": "Size",
+            "value": "Medium"
+          }
         },
         "summary-orientation": {
           "type": "summary_row",
-          "settings": { "label": "Orientation", "value": "Vertical" }
+          "settings": {
+            "label": "Orientation",
+            "value": "Vertical"
+          }
         },
         "summary-mounting": {
           "type": "summary_row",
-          "settings": { "label": "Mounting", "value": "Surface" }
+          "settings": {
+            "label": "Mounting",
+            "value": "Surface"
+          }
         },
         "variant": {
           "type": "variant_picker",
@@ -33,10 +52,12 @@
           }
         },
         "description": {
-          "type": "description"
+          "type": "description",
+          "settings": {}
         },
         "meta": {
-          "type": "meta"
+          "type": "meta",
+          "settings": {}
         }
       },
       "block_order": [
@@ -48,13 +69,11 @@
         "variant",
         "description",
         "meta"
-      ]
+      ],
+      "settings": {}
     },
     "finish-swatches": {
       "type": "finish-swatches",
-      "settings": {
-        "heading": ""
-      },
       "blocks": {
         "swatch-standard-1": {
           "type": "swatch",
@@ -178,7 +197,10 @@
         "swatch-wood-3",
         "swatch-wood-4",
         "swatch-wood-5"
-      ]
+      ],
+      "settings": {
+        "heading": ""
+      }
     },
     "related-products": {
       "type": "related-products",
@@ -197,9 +219,6 @@
     },
     "specifications": {
       "type": "specs-table",
-      "settings": {
-        "heading": "Tech Specs"
-      },
       "blocks": {
         "dimensions": {
           "type": "spec",
@@ -259,7 +278,10 @@
         "construction",
         "dimming",
         "installation"
-      ]
+      ],
+      "settings": {
+        "heading": "Tech Specs"
+      }
     }
   },
   "order": [

@@ -1,0 +1,144 @@
+{% comment %}{% comment %}
+
+  Renders a newsletter signup form with Shopify customer form integration.  Renders a newsletter signup form with Shopify customer form integration.
+
+    
+
+  Accepts:  Accepts:
+
+  - style: {String} Form style - 'full' or 'simple' (default: 'full')  - style: {String} Form style - 'full' or 'simple' (default: 'full')
+
+  - heading: {String} Form heading  - heading: {String} Form heading
+
+  - text: {String} Supporting text (only for 'full' style)  - text: {String} Supporting text (only for 'full' style)
+
+  - placeholder: {String} Email input placeholder  - placeholder: {String} Email input placeholder
+
+  - button_label: {String} Submit button label  - button_label: {String} Submit button label
+
+  - success_message: {String} Success message  - success_message: {String} Success message
+
+  - section_id: {String} Unique section ID for form element ID  - section_id: {String} Unique section ID for form element ID
+
+    
+
+  Usage:  Usage:
+
+  {% render 'newsletter-form',   {% render 'newsletter-form', 
+
+    style: 'full',     style: 'full', 
+
+    heading: section.settings.heading,    heading: section.settings.heading,
+
+    text: section.settings.text,    text: section.settings.text,
+
+    placeholder: section.settings.placeholder,    placeholder: section.settings.placeholder,
+
+    button_label: section.settings.button_label,    button_label: section.settings.button_label,
+
+    success_message: section.settings.success_message,    success_message: section.settings.success_message,
+
+    section_id: section.id    section_id: section.id
+
+  %}  %}
+
+{% endcomment %}{% endcomment %}
+
+
+
+{% assign style = style | default: 'full' %}{% assign style = style | default: 'full' %}
+
+{% assign newsletter_form_id = 'NewsletterForm-' | append: section_id %}{% assign newsletter_form_id = 'NewsletterForm-' | append: section_id %}
+
+
+
+<div class="newsletter-container"><div class="newsletter-container">
+
+  {% if heading != blank %}  {% if heading != blank %}
+
+    <h2 {% if style == 'full' %}class="newsletter-heading"{% endif %}>{{ heading }}</h2>    <h2 {% if style == 'full' %}class="newsletter-heading"{% endif %}>{{ heading }}</h2>
+
+  {% endif %}  {% endif %}
+
+
+
+  {% if style == 'full' and text != blank %}  {% if style == 'full' and text != blank %}
+
+    <p class="newsletter-text">{{ text }}</p>    <p class="newsletter-text">{{ text }}</p>
+
+  {% endif %}  {% endif %}
+
+
+
+  {% form 'customer', id: newsletter_form_id, class: 'newsletter-form' %}  {% form 'customer', id: newsletter_form_id, class: 'newsletter-form' %}
+
+    {% if form.posted_successfully? %}    {% if form.posted_successfully? %}
+
+      <p class="newsletter-feedback newsletter-feedback--success{% if style == 'simple' %} newsletter-success{% endif %}">      <p class="newsletter-feedback newsletter-feedback--success{% if style == 'simple' %} newsletter-success{% endif %}">
+
+        {{ success_message }}        {{ success_message }}
+
+      </p>      </p>
+
+    {% else %}    {% else %}
+
+      {% if form.errors %}      {% if form.errors %}
+
+        <p class="newsletter-feedback newsletter-feedback--error{% if style == 'simple' %} newsletter-error{% endif %}">        <p class="newsletter-feedback newsletter-feedback--error{% if style == 'simple' %} newsletter-error{% endif %}">
+
+          {{ form.errors | default_errors }}          {{ form.errors | default_errors }}
+
+        </p>        </p>
+
+      {% endif %}      {% endif %}
+
+
+
+      <input type="hidden" name="contact[tags]" value="newsletter">      <input type="hidden" name="contact[tags]" value="newsletter">
+
+
+
+      {% if style == 'full' %}      {% if style == 'full' %}
+
+        <label class="newsletter-label" for="newsletter-email-{{ section_id }}">        <label class="newsletter-label" for="newsletter-email-{{ section_id }}">
+
+          <span class="visually-hidden">{{ 'newsletter.label' | t }}</span>          <span class="visually-hidden">{{ 'newsletter.label' | t }}</span>
+
+        </label>        </label>
+
+      {% endif %}      {% endif %}
+
+
+
+      <input      <input
+
+        id="newsletter-email-{{ section_id }}"        id="newsletter-email-{{ section_id }}"
+
+        class="newsletter-input"        class="newsletter-input"
+
+        type="email"        type="email"
+
+        name="contact[email]"        name="contact[email]"
+
+        value="{{ form.email }}"        value="{{ form.email }}"
+
+        placeholder="{{ placeholder }}"        placeholder="{{ placeholder }}"
+
+        required        required
+
+      >      >
+
+            
+
+      <button class="newsletter-submit" type="submit">      <button class="newsletter-submit" type="submit">
+
+        {{ button_label }}        {{ button_label }}
+
+      </button>      </button>
+
+    {% endif %}    {% endif %}
+
+  {% endform %}  {% endform %}
+
+</div></div>
+
