@@ -207,6 +207,72 @@
         "link_label": "Explore Details",
         "link_url": ""
       }
+    },
+    "intro_marquee_BPDmRL": {
+      "type": "intro-marquee",
+      "blocks": {
+        "product_GzLPkz": {
+          "type": "product",
+          "settings": {
+            "title": "Floor Lamps",
+            "price_text": "From $1,245",
+            "link": ""
+          }
+        },
+        "product_y7deHa": {
+          "type": "product",
+          "settings": {
+            "title": "Surface Mounts",
+            "price_text": "From $875",
+            "link": ""
+          }
+        },
+        "product_HLVEwK": {
+          "type": "product",
+          "settings": {
+            "title": "Chandeliers",
+            "price_text": "From $2,890",
+            "link": ""
+          }
+        },
+        "product_x7gEzY": {
+          "type": "product",
+          "settings": {
+            "title": "Table Lamps",
+            "price_text": "From $625",
+            "link": ""
+          }
+        },
+        "product_HwDt6r": {
+          "type": "product",
+          "settings": {
+            "title": "Pendants",
+            "price_text": "From $1,450",
+            "link": ""
+          }
+        },
+        "product_rFC6Rb": {
+          "type": "product",
+          "settings": {
+            "title": "Sconces",
+            "price_text": "From $780",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_GzLPkz",
+        "product_y7deHa",
+        "product_HLVEwK",
+        "product_x7gEzY",
+        "product_HwDt6r",
+        "product_rFC6Rb"
+      ],
+      "name": "Intro with marquee",
+      "settings": {
+        "section_label": "",
+        "text": ""
+      }
     }
   },
   "order": [
@@ -219,6 +285,7 @@
     "quarters_spotlight",
     "newsletter_simple",
     "dual_images",
-    "split_feature_WYJAeH"
+    "split_feature_WYJAeH",
+    "intro_marquee_BPDmRL"
   ]
 }
