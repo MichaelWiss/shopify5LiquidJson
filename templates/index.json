@@ -83,6 +83,7 @@
     "feature_overlay": {
       "type": "feature-overlay",
       "settings": {
+        "image": "shopify://shop_images/00-FEATURE-nicola-harding-homing-instinct-excerpt-tuscan-villa-domino-01.webp",
         "caption_label": "5 Min Location Street",
         "caption_body": "A curved glass accent that merges form and lighting. The bathroom features warm wood tones and subtle sconces that create an intimate, contemplative atmosphere."
       }
@@ -90,6 +91,7 @@
     "split_feature": {
       "type": "split-feature",
       "settings": {
+        "image": "shopify://shop_images/227d796910f5bfba24f3fcfce241c7ce646b33e0.avif",
         "layout": "image-left",
         "eyebrow": "A Functional Workspace",
         "heading": "Form Meets Function",
