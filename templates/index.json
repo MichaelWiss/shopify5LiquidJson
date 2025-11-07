@@ -188,12 +188,14 @@
         "dual_image_1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Soko-Design-Founder-Home-Tour-Domino-01.webp",
             "alt_text": ""
           }
         },
         "dual_image_2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/tbo-architecture-philadelphia-renovation-domino-10_494b4015-dc12-4e79-aeaa-fb44fd161e58.webp",
             "alt_text": ""
           }
         }
@@ -208,6 +210,7 @@
       "type": "split-feature",
       "name": "Split feature",
       "settings": {
+        "image": "shopify://shop_images/former-19th-century-art-school-converted-into-an-apartment-v0-yXzdAhF-oMw-MICX5Wxl3uxt7vcUsslg9nW2qlTDlZQ.webp",
         "layout": "image-left",
         "eyebrow": "A Functional Workspace",
         "heading": "Form Meets Function",
