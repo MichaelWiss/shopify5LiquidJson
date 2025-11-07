@@ -1,12 +1,34 @@
 <section class="side-by-side{% if section.settings.layout == 'image-right' %} side-by-side--reverse{% endif %}">
   {% assign fallback_side_image = 'https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?w=800&q=90' %}
-  <div class="side-image">
+  <figure class="side-image figure-frame">
     {% if section.settings.image != blank %}
       {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 50vw, 100vw' }}
     {% else %}
       <img src="{{ fallback_side_image }}" alt="{{ section.settings.heading | default: 'Feature image' }}" loading="lazy">
     {% endif %}
-  </div>
+    {% if section.settings.image_caption != blank or section.settings.image_caption_link_label != blank or section.settings.image_caption_label != blank %}
+      <figcaption class="figure-caption">
+        {% if section.settings.image_caption_label != blank or section.settings.image_caption != blank %}
+          <div class="figure-caption__label">
+            {% if section.settings.image_caption_label != blank %}
+              <span class="figure-caption__fig">{{ section.settings.image_caption_label }}</span>
+            {% endif %}
+            {% if section.settings.image_caption != blank %}
+              <span>{{ section.settings.image_caption }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.settings.image_caption_link_label != blank and section.settings.image_caption_link_url != blank %}
+          {% render 'arrow-link',
+            text: section.settings.image_caption_link_label,
+            url: section.settings.image_caption_link_url,
+            class: 'figure-caption__link',
+            icon_size: '11'
+          %}
+        {% endif %}
+      </figcaption>
+    {% endif %}
+  </figure>
   <div class="side-content">
     <div class="side-content-inner">
       {% if section.settings.eyebrow != blank %}
@@ -77,6 +99,28 @@
       "type": "url",
       "id": "link_url",
       "label": "Link URL"
+    },
+    {
+      "type": "text",
+      "id": "image_caption_label",
+      "label": "Image figure label",
+      "default": "Fig. 02"
+    },
+    {
+      "type": "text",
+      "id": "image_caption",
+      "label": "Image caption"
+    },
+    {
+      "type": "text",
+      "id": "image_caption_link_label",
+      "label": "Image caption link label",
+      "default": "View details"
+    },
+    {
+      "type": "url",
+      "id": "image_caption_link_url",
+      "label": "Image caption link URL"
     }
   ],
   "presets": [

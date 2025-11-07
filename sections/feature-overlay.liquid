@@ -1,20 +1,37 @@
 <section class="feature-large">
   {% assign fallback_feature = 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=90' %}
-  {% if section.settings.image != blank %}
-    {{ section.settings.image | image_url: width: 3200 | image_tag: loading: 'lazy', class: 'feature-image', sizes: '100vw' }}
-  {% else %}
-    <img src="{{ fallback_feature }}" alt="{{ section.settings.caption_label | default: 'Feature image' }}" class="feature-image" loading="lazy">
-  {% endif %}
-  {% if section.settings.caption_label != blank or section.settings.caption_body != blank %}
-    <div class="feature-caption">
-      {% if section.settings.caption_label != blank %}
-        <div class="caption-label">{{ section.settings.caption_label }}</div>
-      {% endif %}
-      {% if section.settings.caption_body != blank %}
-        {{ section.settings.caption_body | escape | newline_to_br }}
-      {% endif %}
-    </div>
-  {% endif %}
+  <figure class="feature-figure figure-frame">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 3200 | image_tag: loading: 'lazy', class: 'feature-image', sizes: '100vw' }}
+    {% else %}
+      <img src="{{ fallback_feature }}" alt="{{ section.settings.caption_label | default: 'Feature image' }}" class="feature-image" loading="lazy">
+    {% endif %}
+    {% if section.settings.caption_label != blank or section.settings.caption_body != blank or section.settings.caption_link_label != blank %}
+      <figcaption class="feature-caption figure-caption">
+        {% if section.settings.caption_number != blank or section.settings.caption_label != blank or section.settings.caption_body != blank %}
+          <div class="figure-caption__label">
+            {% if section.settings.caption_number != blank %}
+              <span class="figure-caption__fig">{{ section.settings.caption_number }}</span>
+            {% endif %}
+            {% if section.settings.caption_label != blank %}
+              <span>{{ section.settings.caption_label }}</span>
+            {% endif %}
+            {% if section.settings.caption_body != blank %}
+              <span class="feature-caption__body">{{ section.settings.caption_body | escape | newline_to_br }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.settings.caption_link_label != blank and section.settings.caption_link_url != blank %}
+          {% render 'arrow-link',
+            text: section.settings.caption_link_label,
+            url: section.settings.caption_link_url,
+            class: 'figure-caption__link',
+            icon_size: '11'
+          %}
+        {% endif %}
+      </figcaption>
+    {% endif %}
+  </figure>
 </section>
 
 {% schema %}
@@ -33,10 +50,27 @@
       "default": "5 Min Location Street"
     },
     {
+      "type": "text",
+      "id": "caption_number",
+      "label": "Figure label",
+      "default": "Fig. 01"
+    },
+    {
       "type": "textarea",
       "id": "caption_body",
       "label": "Caption body",
       "default": "A curved glass accent that merges form and lighting. The bathroom features warm wood tones and subtle sconces that create an intimate, contemplative atmosphere."
+    },
+    {
+      "type": "text",
+      "id": "caption_link_label",
+      "label": "Caption link label",
+      "default": "View project"
+    },
+    {
+      "type": "url",
+      "id": "caption_link_url",
+      "label": "Caption link URL"
     }
   ],
   "presets": [

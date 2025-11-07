@@ -6,13 +6,35 @@
       {% assign fallback_src = triptych_fallbacks[forloop.index0] %}
       {% assign fallback_alt = triptych_alt[forloop.index0] | default: 'Gallery image' %}
       {% assign image_alt = block.settings.alt_text | default: fallback_alt %}
-      <div class="three-item" {{ block.shopify_attributes }}>
+      <figure class="three-item figure-frame" {{ block.shopify_attributes }}>
         {% if block.settings.image != blank %}
           {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 33vw, 100vw', alt: image_alt }}
         {% else %}
           <img src="{{ fallback_src }}" alt="{{ image_alt }}" loading="lazy">
         {% endif %}
-      </div>
+        {% if block.settings.caption != blank or block.settings.caption_link_label != blank or block.settings.fig_label != blank %}
+          <figcaption class="figure-caption">
+            {% if block.settings.fig_label != blank or block.settings.caption != blank %}
+              <div class="figure-caption__label">
+                {% if block.settings.fig_label != blank %}
+                  <span class="figure-caption__fig">{{ block.settings.fig_label }}</span>
+                {% endif %}
+                {% if block.settings.caption != blank %}
+                  <span>{{ block.settings.caption }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if block.settings.caption_link_label != blank and block.settings.caption_link_url != blank %}
+              {% render 'arrow-link',
+                text: block.settings.caption_link_label,
+                url: block.settings.caption_link_url,
+                class: 'figure-caption__link',
+                icon_size: '11'
+              %}
+            {% endif %}
+          </figcaption>
+        {% endif %}
+      </figure>
     {% endfor %}
   </div>
 </section>
@@ -35,6 +57,27 @@
           "type": "text",
           "id": "alt_text",
           "label": "Alt text"
+        },
+        {
+          "type": "text",
+          "id": "fig_label",
+          "label": "Figure label",
+          "default": "Fig."
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        },
+        {
+          "type": "text",
+          "id": "caption_link_label",
+          "label": "Caption link label"
+        },
+        {
+          "type": "url",
+          "id": "caption_link_url",
+          "label": "Caption link URL"
         }
       ]
     }

@@ -110,7 +110,8 @@
         "body": "Whether you are an established practice or independent designer, we're here to help you with product selection, finish specification, and custom solutions tailored to your vision.",
         "link_label": "Learn More",
         "link_url": "",
-        "image_alt": "Frankish Lamp"
+        "image": "shopify://shop_images/nicola-harding-homing-instinct-excerpt-tuscan-villa-domino-05_d43cac.webp",
+        "image_alt": "Ocean Mirror"
       }
     },
     "gallery_triptych": {
@@ -119,18 +120,21 @@
         "gallery_triptych_image_1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-11-06_at_11.02.14_PM.png",
             "alt_text": ""
           }
         },
         "gallery_triptych_image_2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/former-19th-century-art-school-converted-into-an-apartment-v0-yXzdAhF-oMw-MICX5Wxl3uxt7vcUsslg9nW2qlTDlZQ.webp",
             "alt_text": ""
           }
         },
         "gallery_triptych_image_3": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/room-with-mid-century-modern-furniture-in-a-1956-residence-v0-f0846fyW0ZfEPX0GDtJFlsMw4LvLbcCJ8eSfZfcl30w.webp",
             "alt_text": ""
           }
         }
@@ -148,12 +152,14 @@
         "quarters_image_1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Alyse-Borkan-Home-Tour-Domino-30.webp",
             "alt_text": ""
           }
         },
         "quarters_image_2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/domino-YSG-Studio_Crane-in-the-Sky_Low34-1.webp",
             "alt_text": ""
           }
         }
@@ -177,18 +183,56 @@
         "success_message": "Thanks for subscribing."
       }
     },
+    "text_columns": {
+      "type": "text-columns",
+      "blocks": {
+        "text_column_1": {
+          "type": "column",
+          "settings": {
+            "heading": "Services",
+            "body": "Consultations by appointment.\nBespoke finish sourcing.\nTrade support."
+          }
+        },
+        "text_column_2": {
+          "type": "column",
+          "settings": {
+            "heading": "Materials",
+            "body": "Stone, glass, and patinated metal.\nKiln-fired shades.\nCustom upholstery partnerships."
+          }
+        },
+        "text_column_3": {
+          "type": "column",
+          "settings": {
+            "heading": "Contact",
+            "body": "Email studio@refinements.com\nCall 917-555-2034\nVisit the Brooklyn showroom."
+          }
+        }
+      },
+      "block_order": [
+        "text_column_1",
+        "text_column_2",
+        "text_column_3"
+      ],
+      "settings": {
+        "eyebrow": "Trade Program",
+        "heading": "Quiet services",
+        "text": "<p>Support for architects, designers, and collectors.</p>"
+      }
+    },
     "dual_images": {
       "type": "dual-images",
       "blocks": {
         "dual_image_1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Soko-Design-Founder-Home-Tour-Domino-01.webp",
             "alt_text": ""
           }
         },
         "dual_image_2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/00-FEATURE-nicola-harding-homing-instinct-excerpt-tuscan-villa-domino-01.webp",
             "alt_text": ""
           }
         }
@@ -203,6 +247,7 @@
       "type": "split-feature",
       "name": "Split feature",
       "settings": {
+        "image": "shopify://shop_images/Andrew-Licout-Home-Tour-Domino-46.webp",
         "layout": "image-left",
         "eyebrow": "A Functional Workspace",
         "heading": "Form Meets Function",
@@ -278,17 +323,18 @@
       }
     }
   },
-  "order": [
-    "hero_full_bleed",
-    "intro_marquee",
-    "feature_overlay",
-    "split_feature",
-    "statement_banner",
-    "gallery_triptych",
-    "quarters_spotlight",
-    "newsletter_simple",
-    "dual_images",
-    "split_feature_WYJAeH",
-    "intro_marquee_BPDmRL"
-  ]
-}
+    "order": [
+      "hero_full_bleed",
+      "intro_marquee",
+      "feature_overlay",
+      "split_feature",
+      "statement_banner",
+      "gallery_triptych",
+      "quarters_spotlight",
+      "newsletter_simple",
+      "text_columns",
+      "dual_images",
+      "split_feature_WYJAeH",
+      "intro_marquee_BPDmRL"
+    ]
+  }

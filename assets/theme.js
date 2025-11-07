@@ -271,8 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  initProductForms();
   // Initial attachment
+  initProductForms();
+  initMarqueeControls();
   attachCartEventListeners();
 
   function trapFocusInCartDrawer() {
@@ -344,6 +345,23 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       handleVariantChange({ form, productData, sectionWrapper, variantInput });
+    });
+  }
+
+  function initMarqueeControls() {
+    document.querySelectorAll('[data-marquee]').forEach((section) => {
+      const scroller = section.querySelector('.products-scroll');
+      if (!scroller) return;
+      const step = Math.max(scroller.clientWidth / 2, 200);
+      section.querySelectorAll('[data-marquee-btn]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const direction = btn.dataset.marqueeBtn === 'next' ? 1 : -1;
+          scroller.scrollBy({
+            left: direction * step,
+            behavior: 'smooth'
+          });
+        });
+      });
     });
   }
 
