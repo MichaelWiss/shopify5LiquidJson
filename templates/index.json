@@ -196,43 +196,16 @@
       ],
       "settings": {}
     },
-    "footer_CaVzfU": {
-      "type": "footer",
-      "blocks": {
-        "menu_ydjNCK": {
-          "type": "menu",
-          "settings": {
-            "heading": "Shop",
-            "menu": "",
-            "fallback_links": "Lighting|/collections/lighting\nSeating|/collections/seating\nTables|/collections/tables\nAccessories|/collections/accessories"
-          }
-        },
-        "menu_XwJdHp": {
-          "type": "menu",
-          "settings": {
-            "heading": "Shop",
-            "menu": "",
-            "fallback_links": "Lighting|/collections/lighting\nSeating|/collections/seating\nTables|/collections/tables\nAccessories|/collections/accessories"
-          }
-        },
-        "text_ckLKax": {
-          "type": "text",
-          "settings": {
-            "heading": "Studio",
-            "body": "Flagship — Brooklyn, NY\nConsultations by appointment."
-          }
-        }
-      },
-      "block_order": [
-        "menu_ydjNCK",
-        "menu_XwJdHp",
-        "text_ckLKax"
-      ],
-      "name": "Footer",
+    "split_feature_WYJAeH": {
+      "type": "split-feature",
+      "name": "Split feature",
       "settings": {
-        "credits": "© 2024 In Common With. All rights reserved.",
-        "privacy_link": "",
-        "terms_link": ""
+        "layout": "image-left",
+        "eyebrow": "A Functional Workspace",
+        "heading": "Form Meets Function",
+        "body": "A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.",
+        "link_label": "Explore Details",
+        "link_url": ""
       }
     }
   },
@@ -246,6 +219,6 @@
     "quarters_spotlight",
     "newsletter_simple",
     "dual_images",
-    "footer_CaVzfU"
+    "split_feature_WYJAeH"
   ]
 }

@@ -1,5 +1,69 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "current": "Default",
+  "current": {
+    "settings": {
+      "color_background": "#fefdfb",
+      "color_text": "#2d2820",
+      "color_accent": "#5a534a",
+      "body_font": "sans",
+      "show_global_breadcrumbs": true
+    },
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_text": "In Common With",
+          "menu": "",
+          "fallback_links": "Shop|/collections/all,Collections|/collections,Showrooms|/pages/showrooms"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "text_yBVB7i": {
+            "type": "text",
+            "settings": {
+              "heading": "Studio",
+              "body": "Flagship — Brooklyn, NY\nConsultations by appointment."
+            }
+          },
+          "text_jfyDCt": {
+            "type": "text",
+            "settings": {
+              "heading": "Studio",
+              "body": "Flagship — Brooklyn, NY\nConsultations by appointment."
+            }
+          },
+          "text_hdmVKR": {
+            "type": "text",
+            "settings": {
+              "heading": "Studio",
+              "body": "Flagship — Brooklyn, NY\nConsultations by appointment."
+            }
+          }
+        },
+        "block_order": [
+          "text_yBVB7i",
+          "text_jfyDCt",
+          "text_hdmVKR"
+        ],
+        "settings": {
+          "credits": "© 2024 In Common With. All rights reserved.",
+          "privacy_link": "",
+          "terms_link": ""
+        }
+      }
+    },
+    "content_for_index": []
+  },
   "presets": {
     "Default": {
       "settings": {
