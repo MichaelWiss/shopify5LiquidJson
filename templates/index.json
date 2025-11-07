@@ -151,12 +151,14 @@
         "quarters_image_1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/room-with-mid-century-modern-furniture-in-a-1956-residence-v0-f0846fyW0ZfEPX0GDtJFlsMw4LvLbcCJ8eSfZfcl30w.webp",
             "alt_text": ""
           }
         },
         "quarters_image_2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/20.webp",
             "alt_text": ""
           }
         }
@@ -168,7 +170,7 @@
       "settings": {
         "heading": "Quarters",
         "intro": "<p>The Quarters is our reflection on uncluttered living and hospitality. From our carefully selected furniture to the art on the walls, the studio invites you to experience how our products integrate into real living spaces.</p>",
-        "details": "<p><strong>Opening Hours</strong><br>Tuesday to Sunday: 11am – 6pm<br>Monday: Closed</p><p><strong>Address</strong><br>Quarters by In Common With<br>27 Greenpoint Ave<br>Brooklyn, NY 11222</p>"
+        "details": "<p><strong>Opening Hours</strong><br/>Tuesday to Sunday: 11am – 6pm<br/>Monday: Closed</p><p><strong>Address</strong><br/>Quarters by In Common With<br/>27 Greenpoint Ave<br/>Brooklyn, NY 11222</p>"
       }
     },
     "newsletter_simple": {
