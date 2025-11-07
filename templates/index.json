@@ -12,6 +12,7 @@
     "hero_full_bleed": {
       "type": "hero-full-bleed",
       "settings": {
+        "image": "shopify://shop_images/2156.avif",
         "heading": "In Common With"
       }
     },
