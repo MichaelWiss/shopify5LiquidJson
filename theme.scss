@@ -138,6 +138,31 @@ body {
   opacity: 0.7;
 }
 
+/* Arrow link component - subtle CTA with inline SVG arrow */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--text-primary);
+  padding-bottom: 1px;
+  transition: gap 200ms ease;
+}
+
+.arrow-link:hover {
+  gap: 10px;
+}
+
+.arrow-link-icon {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+}
+
 .grid-2,
 .grid-3 {
   display: grid;
@@ -3576,6 +3601,9 @@ body.cart-drawer-open {
 .image-caption {
   font-size: 10px;
   color: var(--text-secondary);
+  margin-top: 8px;
+  opacity: 0.8;
+  letter-spacing: 0.02em;
 }
 
 @media (min-width: 768px) {

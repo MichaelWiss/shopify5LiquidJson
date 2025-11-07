@@ -1,0 +1,15 @@
+{% comment %}
+  Subtle arrow link component
+  
+  Parameters:
+  - text: Link text (required)
+  - url: Link destination (required)
+  - class: Additional CSS classes (optional)
+{% endcomment %}
+
+<a href="{{ url }}" class="arrow-link{% if class %} {{ class }}{% endif %}">
+  {{ text }}
+  <svg class="arrow-link-icon" width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+</a>
