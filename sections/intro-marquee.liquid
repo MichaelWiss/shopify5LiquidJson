@@ -10,25 +10,47 @@
   {% if section.blocks.size > 0 %}
     {% assign fallback_products = "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=200&q=85|https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=200&q=85|https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=200&q=85|https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=200&q=85|https://images.unsplash.com/photo-1543365067-fa27f2b03c9d?w=200&q=85|https://images.unsplash.com/photo-1578898886225-fe3321dac771?w=200&q=85" | split: "|" %}
     <div class="products-section">
-      <div class="products-scroll" role="list">
-        {% for block in section.blocks %}
-          {% assign fallback_src = fallback_products[forloop.index0] %}
-          <a class="product-thumb" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }} role="listitem">
-            <div class="product-thumb-image">
-              {% if block.settings.image != blank %}
-                {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '140px', alt: block.settings.title }}
-              {% else %}
-                <img src="{{ fallback_src }}" alt="{{ block.settings.title | default: 'Product' }}" width="140" height="180" loading="lazy">
+      <div class="products-marquee-wrapper">
+        <div class="products-scroll" role="list">
+          {% comment %}First set of products{% endcomment %}
+          {% for block in section.blocks %}
+            {% assign fallback_src = fallback_products[forloop.index0] %}
+            <a class="product-thumb" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }} role="listitem">
+              <div class="product-thumb-image">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '140px', alt: block.settings.title }}
+                {% else %}
+                  <img src="{{ fallback_src }}" alt="{{ block.settings.title | default: 'Product' }}" width="140" height="180" loading="lazy">
+                {% endif %}
+              </div>
+              {% if block.settings.title != blank %}
+                <div class="product-thumb-title">{{ block.settings.title }}</div>
               {% endif %}
-            </div>
-            {% if block.settings.title != blank %}
-              <div class="product-thumb-title">{{ block.settings.title }}</div>
-            {% endif %}
-            {% if block.settings.price_text != blank %}
-              <div class="product-thumb-price">{{ block.settings.price_text }}</div>
-            {% endif %}
-          </a>
-        {% endfor %}
+              {% if block.settings.price_text != blank %}
+                <div class="product-thumb-price">{{ block.settings.price_text }}</div>
+              {% endif %}
+            </a>
+          {% endfor %}
+          {% comment %}Duplicate products for seamless loop{% endcomment %}
+          {% for block in section.blocks %}
+            {% assign fallback_src = fallback_products[forloop.index0] %}
+            <a class="product-thumb" href="{{ block.settings.link | default: '#' }}" aria-hidden="true" role="listitem">
+              <div class="product-thumb-image">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '140px', alt: block.settings.title }}
+                {% else %}
+                  <img src="{{ fallback_src }}" alt="{{ block.settings.title | default: 'Product' }}" width="140" height="180" loading="lazy">
+                {% endif %}
+              </div>
+              {% if block.settings.title != blank %}
+                <div class="product-thumb-title">{{ block.settings.title }}</div>
+              {% endif %}
+              {% if block.settings.price_text != blank %}
+                <div class="product-thumb-price">{{ block.settings.price_text }}</div>
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
       </div>
     </div>
   {% endif %}

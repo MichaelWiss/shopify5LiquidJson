@@ -1,6 +1,23 @@
 document.documentElement.classList.remove('no-js');
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Navigation scroll detection
+  const siteHeader = document.querySelector('.site-header');
+  let scrollThreshold = 50;
+  
+  function handleScroll() {
+    if (window.scrollY > scrollThreshold) {
+      siteHeader.classList.add('scrolled');
+    } else {
+      siteHeader.classList.remove('scrolled');
+    }
+  }
+  
+  if (siteHeader) {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial state
+  }
+
   const cartCount = document.querySelector('.cart-count');
   if (cartCount && Number(cartCount.textContent) > 0) {
     cartCount.removeAttribute('hidden');
