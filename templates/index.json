@@ -84,7 +84,6 @@
     "feature_overlay": {
       "type": "feature-overlay",
       "settings": {
-        "image": "shopify://shop_images/00-FEATURE-nicola-harding-homing-instinct-excerpt-tuscan-villa-domino-01.webp",
         "caption_label": "5 Min Location Street",
         "caption_body": "A curved glass accent that merges form and lighting. The bathroom features warm wood tones and subtle sconces that create an intimate, contemplative atmosphere."
       }
@@ -92,7 +91,6 @@
     "split_feature": {
       "type": "split-feature",
       "settings": {
-        "image": "shopify://shop_images/227d796910f5bfba24f3fcfce241c7ce646b33e0.avif",
         "layout": "image-left",
         "eyebrow": "A Functional Workspace",
         "heading": "Form Meets Function",
@@ -110,7 +108,6 @@
         "body": "Whether you are an established practice or independent designer, we're here to help you with product selection, finish specification, and custom solutions tailored to your vision.",
         "link_label": "Learn More",
         "link_url": "",
-        "image": "shopify://shop_images/12fb680f0cbc119b840d056285f237df.webp",
         "image_alt": "Frankish Lamp"
       }
     },
@@ -120,21 +117,18 @@
         "gallery_triptych_image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Stellah-DeVille-Mexico-City-Home-Tour-Domino5.webp",
             "alt_text": ""
           }
         },
         "gallery_triptych_image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/tbo-architecture-philadelphia-renovation-domino-10.webp",
             "alt_text": ""
           }
         },
         "gallery_triptych_image_3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Alyse-Borkan-Home-Tour-Domino-30.webp",
             "alt_text": ""
           }
         }
@@ -152,14 +146,12 @@
         "quarters_image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/room-with-mid-century-modern-furniture-in-a-1956-residence-v0-f0846fyW0ZfEPX0GDtJFlsMw4LvLbcCJ8eSfZfcl30w.webp",
             "alt_text": ""
           }
         },
         "quarters_image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/20.webp",
             "alt_text": ""
           }
         }
@@ -189,14 +181,12 @@
         "dual_image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Soko-Design-Founder-Home-Tour-Domino-01.webp",
             "alt_text": ""
           }
         },
         "dual_image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/tbo-architecture-philadelphia-renovation-domino-10_494b4015-dc12-4e79-aeaa-fb44fd161e58.webp",
             "alt_text": ""
           }
         }
@@ -211,7 +201,6 @@
       "type": "split-feature",
       "name": "Split feature",
       "settings": {
-        "image": "shopify://shop_images/former-19th-century-art-school-converted-into-an-apartment-v0-yXzdAhF-oMw-MICX5Wxl3uxt7vcUsslg9nW2qlTDlZQ.webp",
         "layout": "image-left",
         "eyebrow": "A Functional Workspace",
         "heading": "Form Meets Function",
