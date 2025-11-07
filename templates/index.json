@@ -84,6 +84,7 @@
     "feature_overlay": {
       "type": "feature-overlay",
       "settings": {
+        "image": "shopify://shop_images/glass-dome-home-domino-4.webp",
         "caption_label": "5 Min Location Street",
         "caption_body": "A curved glass accent that merges form and lighting. The bathroom features warm wood tones and subtle sconces that create an intimate, contemplative atmosphere."
       }
@@ -91,6 +92,7 @@
     "split_feature": {
       "type": "split-feature",
       "settings": {
+        "image": "shopify://shop_images/Stellah-DeVille-Mexico-City-Home-Tour-Domino5.webp",
         "layout": "image-left",
         "eyebrow": "A Functional Workspace",
         "heading": "Form Meets Function",
