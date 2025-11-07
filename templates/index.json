@@ -119,18 +119,21 @@
         "gallery_triptych_image_1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Stellah-DeVille-Mexico-City-Home-Tour-Domino5.webp",
             "alt_text": ""
           }
         },
         "gallery_triptych_image_2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/tbo-architecture-philadelphia-renovation-domino-10.webp",
             "alt_text": ""
           }
         },
         "gallery_triptych_image_3": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Alyse-Borkan-Home-Tour-Domino-30.webp",
             "alt_text": ""
           }
         }
