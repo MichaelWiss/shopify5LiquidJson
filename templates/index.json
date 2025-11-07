@@ -120,18 +120,21 @@
         "gallery_triptych_image_1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-11-06_at_11.02.14_PM.png",
             "alt_text": ""
           }
         },
         "gallery_triptych_image_2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/former-19th-century-art-school-converted-into-an-apartment-v0-yXzdAhF-oMw-MICX5Wxl3uxt7vcUsslg9nW2qlTDlZQ.webp",
             "alt_text": ""
           }
         },
         "gallery_triptych_image_3": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/room-with-mid-century-modern-furniture-in-a-1956-residence-v0-f0846fyW0ZfEPX0GDtJFlsMw4LvLbcCJ8eSfZfcl30w.webp",
             "alt_text": ""
           }
         }
@@ -149,12 +152,14 @@
         "quarters_image_1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Alyse-Borkan-Home-Tour-Domino-30.webp",
             "alt_text": ""
           }
         },
         "quarters_image_2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/domino-YSG-Studio_Crane-in-the-Sky_Low34-1.webp",
             "alt_text": ""
           }
         }
@@ -184,12 +189,14 @@
         "dual_image_1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/former-19th-century-art-school-converted-into-an-apartment-v0-yXzdAhF-oMw-MICX5Wxl3uxt7vcUsslg9nW2qlTDlZQ.webp",
             "alt_text": ""
           }
         },
         "dual_image_2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/00-FEATURE-nicola-harding-homing-instinct-excerpt-tuscan-villa-domino-01.webp",
             "alt_text": ""
           }
         }
@@ -204,6 +211,7 @@
       "type": "split-feature",
       "name": "Split feature",
       "settings": {
+        "image": "shopify://shop_images/Andrew-Licout-Home-Tour-Domino-46.webp",
         "layout": "image-left",
         "eyebrow": "A Functional Workspace",
         "heading": "Form Meets Function",
