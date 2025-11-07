@@ -169,8 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Function to refresh cart drawer content
   async function refreshCartDrawer() {
     try {
+      const { pathname, search } = window.location;
+      const requestUrl = `${pathname}${search || ''}`;
+
       if (cartDrawerContent) {
-        const drawerResponse = await fetch(`${window.location.pathname}?sections=cart-drawer`);
+        const drawerResponse = await fetch(`${requestUrl}${search ? '&' : '?'}sections=cart-drawer`);
         if (!drawerResponse.ok) {
           throw new Error('Failed to fetch cart drawer section');
         }

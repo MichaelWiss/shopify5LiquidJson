@@ -26,7 +26,7 @@
           class="newsletter-input"
           type="email"
           name="contact[email]"
-          value="{{ form.email }}"
+          value="{{ form.email | escape }}"
           placeholder="{{ section.settings.placeholder }}"
           required
         >

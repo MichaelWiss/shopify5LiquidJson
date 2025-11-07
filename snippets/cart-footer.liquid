@@ -18,10 +18,16 @@
   </div>
 
   <div class="cart-drawer__actions">
-    <button class="cart-btn cart-btn--secondary" type="button">Add a P.O. Number</button>
-    <button class="cart-btn cart-btn--secondary" type="button">Request Quote</button>
+    <button class="cart-btn cart-btn--secondary" type="button">
+      {{ 'cart.actions.add_po' | t }}
+    </button>
+    <button class="cart-btn cart-btn--secondary" type="button">
+      {{ 'cart.actions.request_quote' | t }}
+    </button>
     <form action="{{ routes.cart_url }}" method="post">
-      <button class="cart-btn cart-btn--primary" type="submit" name="checkout">Checkout</button>
+      <button class="cart-btn cart-btn--primary" type="submit" name="checkout">
+        {{ 'cart.actions.checkout' | t }}
+      </button>
     </form>
   </div>
 </div>

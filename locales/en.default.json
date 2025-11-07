@@ -16,7 +16,16 @@
   },
   "cart": {
     "general": {
+      "title": "Your Cart",
+      "close": "Close",
+      "empty": "Your cart is empty",
+      "continue": "Continue Shopping",
       "subtotal": "Subtotal:"
+    },
+    "actions": {
+      "add_po": "Add a P.O. Number",
+      "request_quote": "Request Quote",
+      "checkout": "Checkout"
     }
   },
   "newsletter": {
