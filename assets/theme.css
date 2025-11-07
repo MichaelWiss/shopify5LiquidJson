@@ -971,7 +971,7 @@ body.cart-drawer-open {
   min-height: 100vh;
 }
 
-/* Homepage — In Common With */
+/* Homepage — Refinements */
 #shopify-section-hero_full_bleed {
   padding-top: 0 !important;
 }
@@ -1069,6 +1069,18 @@ body.cart-drawer-open {
 
 .products-scroll:hover {
   animation-play-state: paused;
+}
+
+.products-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.products-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+}
+
+.products-scroll::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .product-thumb {

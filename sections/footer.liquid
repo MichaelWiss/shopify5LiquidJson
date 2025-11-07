@@ -44,7 +44,7 @@
   </div>
 
 {% capture default_credits %}© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.{% endcapture %}
-{% assign default_setting = "© 2024 In Common With. All rights reserved." %}
+{% assign default_setting = "© 2024 Refinements. All rights reserved." %}
 {% assign credits_setting = section.settings.credits | default: '' | strip %}
 {% if credits_setting == blank or credits_setting == default_setting %}
   {% assign credits_content = default_credits %}
@@ -74,7 +74,7 @@
       "type": "textarea",
       "id": "credits",
       "label": "Credits / legal copy",
-      "default": "© 2024 In Common With. All rights reserved.",
+      "default": "© 2024 Refinements. All rights reserved.",
       "info": "Leave as-is or update copy; theme will override with © YEAR SHOP NAME if unchanged."
     },
     {

@@ -27,7 +27,7 @@
     <div class="header-icons">
       <a href="/search" class="header-icon">{% render 'icon', name: 'search' %}</a>
       <a href="/cart" class="header-icon">{% render 'icon', name: 'cart' %}
-        <span class="cart-count" {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+        <span class="cart-count {% if cart.item_count == 0 %}visually-hidden{% endif %}" aria-live="polite">{{ cart.item_count }}</span>
       </a>
     </div>
   </div>
@@ -41,7 +41,7 @@
       "type": "text",
       "id": "logo_text",
       "label": "Logo text",
-      "default": "In Common With"
+      "default": "Refinements"
     },
     {
       "type": "link_list",

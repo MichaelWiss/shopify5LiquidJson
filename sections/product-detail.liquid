@@ -1,20 +1,20 @@
-<section class="product-detail">
-  {% capture summary_rows %}
-    {% for block in section.blocks %}
-      {% if block.type == 'summary_row' %}
-        <div class="option-row" {{ block.shopify_attributes }}>
-          <span class="option-row-label">{{ block.settings.label }}</span>
-          <span class="option-row-value">{{ block.settings.value }}</span>
-        </div>
-      {% endif %}
-    {% endfor %}
-  {% endcapture %}
-  {% assign summary_rows = summary_rows | strip %}
+<section class="product-detail" data-product-section="{{ section.id }}">
+  {% assign summary_wrapper_open = false %}
 
   <div class="product-detail__inner">
     <aside class="product-detail__sidebar product-sidebar">
       {% for block in section.blocks %}
+        {% if block.type != 'summary_row' and summary_wrapper_open %}
+          </div>
+          {% assign summary_wrapper_open = false %}
+        {% endif %}
+
         {% if block.type == 'summary_row' %}
+          {% if summary_wrapper_open == false %}
+            <div class="product-summary">
+            {% assign summary_wrapper_open = true %}
+          {% endif %}
+          {% render 'product-summary-row', block: block %}
           {% continue %}
         {% endif %}
 
@@ -23,21 +23,16 @@
             <h1 class="product-title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
 
           {% when 'price' %}
-            <div class="product-price" {{ block.shopify_attributes }}>
+            <div class="product-price" {{ block.shopify_attributes }} data-product-price aria-live="polite">
               {{ product.selected_or_first_available_variant.price | money }}
             </div>
-            {% if summary_rows != blank %}
-              <div class="product-summary">
-                {{ summary_rows }}
-              </div>
-              {% assign summary_rows = '' %}
-            {% endif %}
 
           {% when 'variant_picker' %}
             <div class="product-form-block" {{ block.shopify_attributes }}>
-              {% form 'product', product, class: 'product-form' %}
+              {% form 'product', product, class: 'product-form', data-section-id: section.id %}
+                {% assign add_to_cart_label = block.settings.button_label | default: 'Add to cart' %}
                 {% if product.has_only_default_variant %}
-                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id-input>
                 {% else %}
                   {% assign swatch_options_raw = block.settings.swatch_options | default: '' %}
                   {% assign swatch_options = swatch_options_raw | split: ',' %}
@@ -68,6 +63,7 @@
                           id="Option-{{ forloop.index0 }}-{{ section.id }}"
                           class="form-select"
                           name="options[{{ option.name }}]"
+                          data-option-position="{{ option.position }}"
                         >
                           {% for value in option.values %}
                             <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>
@@ -78,7 +74,7 @@
                       </div>
                     {% endif %}
                   {% endfor %}
-                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id-input>
                 {% endif %}
 
                 <div class="product-option">
@@ -97,9 +93,16 @@
                   </select>
                 </div>
 
-                <button class="btn" type="submit">
-                  {{ block.settings.button_label }}
+                <button
+                  class="btn product-form__submit"
+                  type="submit"
+                  data-product-atc
+                  data-default-label="{{ add_to_cart_label }}"
+                  data-sold-out-label="{{ 'products.product.sold_out' | t }}"
+                >
+                  {{ add_to_cart_label }}
                 </button>
+                <p class="product-form__status" data-product-availability data-unavailable-copy="{{ 'products.product.unavailable' | t }}" aria-live="polite"></p>
 
                 {% if block.settings.secondary_button_label != blank %}
                   {% if block.settings.secondary_button_link != blank %}
@@ -130,15 +133,19 @@
                   <dd class="product-meta-value">{{ product.vendor }}</dd>
                 </div>
               {% endif %}
-              {% if block.settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
-                <div class="product-meta-row">
+              {% if block.settings.show_sku %}
+                {% assign sku_value = product.selected_or_first_available_variant.sku %}
+                <div class="product-meta-row product-meta-row--sku" data-product-sku-row {% if sku_value == blank %}hidden{% endif %}>
                   <dt class="product-meta-key">{{ 'products.product.sku' | t }}</dt>
-                  <dd class="product-meta-value">{{ product.selected_or_first_available_variant.sku }}</dd>
+                  <dd class="product-meta-value" data-product-sku>{{ sku_value }}</dd>
                 </div>
               {% endif %}
             </dl>
         {% endcase %}
       {% endfor %}
+      {% if summary_wrapper_open %}
+        </div>
+      {% endif %}
     </aside>
 
     <div class="product-detail__gallery product-images">
@@ -149,7 +156,7 @@
         {% endfor %}
       {% endif %}
 
-      {% assign minimum_views = 4 %}
+      {% assign minimum_views = section.settings.minimum_gallery_items | default: 4 %}
       {% if media_count < minimum_views %}
         {% assign placeholders_needed = minimum_views | minus: media_count %}
         {% assign placeholder_styles = "linear-gradient(180deg, #E8DCC8 0%, #D4C8B8 100%)|linear-gradient(180deg, #A4B08C 0%, #7A8450 100%)|linear-gradient(135deg, #8B6B47 0%, #4A3426 100%)|linear-gradient(180deg, #C4932C 0%, #A0584F 100%)" | split: "|" %}
@@ -168,9 +175,25 @@
   </div>
 </section>
 
+<script type="application/json" data-product-json="{{ section.id }}">
+  {{ product | json }}
+</script>
+
 {% schema %}
 {
   "name": "Product detail",
+  "settings": [
+    {
+      "type": "range",
+      "id": "minimum_gallery_items",
+      "label": "Minimum gallery items",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "default": 4,
+      "info": "Placeholder tiles fill the gallery to this count."
+    }
+  ],
   "blocks": [
     {
       "type": "title",

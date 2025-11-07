@@ -1,0 +1,32 @@
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle" aria-hidden="true">
+  <div class="cart-drawer__header">
+    <h2 class="cart-drawer__title" id="cartDrawerTitle">Your Cart</h2>
+    <button class="cart-drawer__close" id="cartDrawerClose" aria-label="Close cart">Close</button>
+  </div>
+
+  <div class="cart-drawer__content" id="cartDrawerContent">
+    {% if cart.item_count > 0 %}
+      <div class="cart-drawer__items">
+        {% for item in cart.items %}
+          {% render 'cart-item', item: item, line_index: forloop.index, include_aria_labels: true %}
+        {% endfor %}
+      </div>
+
+      {% render 'cart-footer', cart: cart, context: 'drawer' %}
+    {% else %}
+      <div class="cart-empty">
+        <p class="cart-empty__message">Your cart is empty</p>
+        <a href="{{ routes.all_products_collection_url }}" class="cart-btn cart-btn--primary">Continue Shopping</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": []
+}
+{% endschema %}

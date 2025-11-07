@@ -46,6 +46,7 @@
         id="{{ input_id }}"
         name="options[{{ option.name }}]"
         value="{{ value }}"
+        data-option-position="{{ option.position }}"
         {% if option.selected_value == value %}checked{% endif %}
       >
       

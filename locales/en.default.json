@@ -14,6 +14,11 @@
       "title": "Sort by"
     }
   },
+  "cart": {
+    "general": {
+      "subtotal": "Subtotal:"
+    }
+  },
   "newsletter": {
     "label": "Email address"
   },
@@ -21,7 +26,9 @@
     "product": {
       "quantity": "Quantity",
       "vendor": "Vendor",
-      "sku": "SKU"
+      "sku": "SKU",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable"
     }
   }
 }

@@ -1,7 +1,7 @@
 # Shopify Theme Scaffold Requirements
 
 ## 1. Overview
-- Deliver a custom Shopify Online Store 2.0 theme modeled on the "In Common With" style system described in the shared ChatGPT conversation.
+- Deliver a custom Shopify Online Store 2.0 theme modeled on the "Refinements" style system described in the shared ChatGPT conversation.
 - Provide a reusable foundation for future client projects, emphasising editorial composition, quiet typography, and modular sections.
 - Support Shopify section-based customization so merchants can rearrange homepage and template content without code changes.
 

@@ -1,7 +1,7 @@
 # Shopify Theme Scaffold Project Plan
 
 ## 1. Project Overview
-- **Project Name:** In Common With-Inspired Shopify Theme Scaffold
+- **Project Name:** Refinements-Inspired Shopify Theme Scaffold
 - **Goal:** Transform the ChatGPT-derived design system into a production-ready Shopify Online Store 2.0 theme scaffold, ready for bespoke styling and content rollout.
 - **Primary Stakeholder:** Michael Wiss / Studio team
 - **Technical Lead:** Codex assistant (handover to internal dev once scaffold ready)

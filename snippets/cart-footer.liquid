@@ -1,0 +1,27 @@
+{% comment %}
+  Shared cart totals/actions footer for cart page and drawer.
+
+  Accepts:
+  - cart: {Object} required Shopify cart object
+  - context: {String} 'drawer' (default) or 'page' for optional modifiers
+{% endcomment %}
+
+{% assign footer_class = 'cart-drawer__footer' %}
+{% if context == 'page' %}
+  {% assign footer_class = footer_class | append: ' cart-drawer__footer--page' %}
+{% endif %}
+
+<div class="{{ footer_class }}">
+  <div class="cart-drawer__subtotal">
+    <span class="cart-drawer__subtotal-label">{{ 'cart.general.subtotal' | t }}</span>
+    <span class="cart-drawer__subtotal-value">{{ cart.total_price | money }}</span>
+  </div>
+
+  <div class="cart-drawer__actions">
+    <button class="cart-btn cart-btn--secondary" type="button">Add a P.O. Number</button>
+    <button class="cart-btn cart-btn--secondary" type="button">Request Quote</button>
+    <form action="{{ routes.cart_url }}" method="post">
+      <button class="cart-btn cart-btn--primary" type="submit" name="checkout">Checkout</button>
+    </form>
+  </div>
+</div>

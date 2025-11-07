@@ -1,0 +1,12 @@
+{% comment %}
+  Renders a single summary row within the product detail info stack.
+{% endcomment %}
+
+<div class="option-row" {{ block.shopify_attributes }}>
+  {% if block.settings.label != blank %}
+    <span class="option-row-label">{{ block.settings.label }}</span>
+  {% endif %}
+  {% if block.settings.value != blank %}
+    <span class="option-row-value">{{ block.settings.value }}</span>
+  {% endif %}
+</div>

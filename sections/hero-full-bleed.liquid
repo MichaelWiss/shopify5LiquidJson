@@ -3,7 +3,7 @@
   {% if section.settings.image != blank %}
     {{ section.settings.image | image_url: width: 3200 | image_tag: loading: 'eager', class: 'hero-image', sizes: '100vw' }}
   {% else %}
-    <img src="{{ fallback_hero }}" alt="{{ section.settings.heading | default: 'In Common With' | escape }}" class="hero-image" loading="eager">
+    <img src="{{ fallback_hero }}" alt="{{ section.settings.heading | default: 'Refinements' | escape }}" class="hero-image" loading="eager">
   {% endif %}
   <div class="hero-overlay"></div>
   {% if section.settings.heading != blank %}
@@ -25,7 +25,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "In Common With"
+      "default": "Refinements"
     }
   ],
   "presets": [
