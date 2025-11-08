@@ -5,14 +5,14 @@
     {% assign fallback_src = dual_fallbacks[forloop.index0] %}
     {% assign fallback_alt = dual_alt[forloop.index0] | default: 'Showcase image' %}
     {% assign image_alt = block.settings.alt_text | default: fallback_alt %}
-    <figure class="final-image figure-frame" {{ block.shopify_attributes }}>
+    <figure class="final-image" {{ block.shopify_attributes }}>
       {% if block.settings.image != blank %}
-        {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '(min-width: 768px) 50vw, 100vw', alt: image_alt }}
+        {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '(min-width: 768px) 50vw, 100vw', alt: image_alt, class: 'final-image-media' }}
       {% else %}
-        <img src="{{ fallback_src }}" alt="{{ image_alt }}" loading="lazy">
+        <img class="final-image-media" src="{{ fallback_src }}" alt="{{ image_alt }}" loading="lazy">
       {% endif %}
       {% if block.settings.caption != blank or block.settings.caption_link_label != blank or block.settings.fig_label != blank %}
-        <figcaption class="gallery-caption">
+        <figcaption class="gallery-caption final-image-caption">
           {% if block.settings.fig_label != blank or block.settings.caption != blank %}
             <div class="gallery-caption__label">
               {% if block.settings.fig_label != blank %}

@@ -1509,15 +1509,21 @@ body.cart-drawer-open {
 
 .final-image {
   width: 100%;
-  height: 60vh;
+  display: block;
   overflow: hidden;
+  background: var(--warm-white);
 }
 
 .final-image-media {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
+  object-fit: cover;
+}
+
+.final-image-caption {
+  white-space: normal;
+  margin-top: calc(var(--space-unit) * 1.5);
 }
 
 @media (min-width: 768px) {
@@ -3311,21 +3317,12 @@ body.cart-drawer-open {
   gap: 1px;
 }
 
-.final-image {
-  width: 100%;
-  height: 60vh;
-  overflow: hidden;
-}
-
-.final-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 @media (min-width: 768px) {
   .final-two {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .final-image-media {
+    height: 60vh;
   }
 }
 /* Footer */
