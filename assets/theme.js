@@ -273,7 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial attachment
   initProductForms();
-  initMarqueeControls();
   attachCartEventListeners();
 
   function trapFocusInCartDrawer() {
@@ -348,22 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function initMarqueeControls() {
-    document.querySelectorAll('[data-marquee]').forEach((section) => {
-      const scroller = section.querySelector('.products-scroll');
-      if (!scroller) return;
-      const step = Math.max(scroller.clientWidth / 2, 200);
-      section.querySelectorAll('[data-marquee-btn]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const direction = btn.dataset.marqueeBtn === 'next' ? 1 : -1;
-          scroller.scrollBy({
-            left: direction * step,
-            behavior: 'smooth'
-          });
-        });
-      });
-    });
-  }
 
   function handleVariantChange({ form, productData, sectionWrapper, variantInput }) {
     const totalOptions = Array.isArray(productData.options) ? productData.options.length : 0;

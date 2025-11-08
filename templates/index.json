@@ -183,42 +183,6 @@
         "success_message": "Thanks for subscribing."
       }
     },
-    "text_columns": {
-      "type": "text-columns",
-      "blocks": {
-        "text_column_1": {
-          "type": "column",
-          "settings": {
-            "heading": "Services",
-            "body": "Consultations by appointment.\nBespoke finish sourcing.\nTrade support."
-          }
-        },
-        "text_column_2": {
-          "type": "column",
-          "settings": {
-            "heading": "Materials",
-            "body": "Stone, glass, and patinated metal.\nKiln-fired shades.\nCustom upholstery partnerships."
-          }
-        },
-        "text_column_3": {
-          "type": "column",
-          "settings": {
-            "heading": "Contact",
-            "body": "Email studio@refinements.com\nCall 917-555-2034\nVisit the Brooklyn showroom."
-          }
-        }
-      },
-      "block_order": [
-        "text_column_1",
-        "text_column_2",
-        "text_column_3"
-      ],
-      "settings": {
-        "eyebrow": "Trade Program",
-        "heading": "Quiet services",
-        "text": "<p>Support for architects, designers, and collectors.</p>"
-      }
-    },
     "dual_images": {
       "type": "dual-images",
       "blocks": {
@@ -331,9 +295,8 @@
       "statement_banner",
       "gallery_triptych",
       "quarters_spotlight",
-      "newsletter_simple",
-      "text_columns",
-      "dual_images",
+    "newsletter_simple",
+    "dual_images",
       "split_feature_WYJAeH",
       "intro_marquee_BPDmRL"
     ]
