@@ -12,11 +12,11 @@
         <img src="{{ fallback_src }}" alt="{{ image_alt }}" loading="lazy">
       {% endif %}
       {% if block.settings.caption != blank or block.settings.caption_link_label != blank or block.settings.fig_label != blank %}
-        <figcaption class="figure-caption">
+        <figcaption class="gallery-caption">
           {% if block.settings.fig_label != blank or block.settings.caption != blank %}
-            <div class="figure-caption__label">
+            <div class="gallery-caption__label">
               {% if block.settings.fig_label != blank %}
-                <span class="figure-caption__fig">{{ block.settings.fig_label }}</span>
+                <span class="gallery-caption__fig">{{ block.settings.fig_label }}</span>
               {% endif %}
               {% if block.settings.caption != blank %}
                 <span>{{ block.settings.caption }}</span>
@@ -27,7 +27,7 @@
             {% render 'arrow-link',
               text: block.settings.caption_link_label,
               url: block.settings.caption_link_url,
-              class: 'figure-caption__link',
+              class: 'gallery-caption__link',
               icon_size: '11'
             %}
           {% endif %}

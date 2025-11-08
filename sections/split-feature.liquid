@@ -7,11 +7,11 @@
       <img src="{{ fallback_side_image }}" alt="{{ section.settings.heading | default: 'Feature image' }}" loading="lazy">
     {% endif %}
     {% if section.settings.image_caption != blank or section.settings.image_caption_link_label != blank or section.settings.image_caption_label != blank %}
-      <figcaption class="figure-caption">
+      <figcaption class="gallery-caption">
         {% if section.settings.image_caption_label != blank or section.settings.image_caption != blank %}
-          <div class="figure-caption__label">
+          <div class="gallery-caption__label">
             {% if section.settings.image_caption_label != blank %}
-              <span class="figure-caption__fig">{{ section.settings.image_caption_label }}</span>
+              <span class="gallery-caption__fig">{{ section.settings.image_caption_label }}</span>
             {% endif %}
             {% if section.settings.image_caption != blank %}
               <span>{{ section.settings.image_caption }}</span>
@@ -22,7 +22,7 @@
           {% render 'arrow-link',
             text: section.settings.image_caption_link_label,
             url: section.settings.image_caption_link_url,
-            class: 'figure-caption__link',
+            class: 'gallery-caption__link',
             icon_size: '11'
           %}
         {% endif %}

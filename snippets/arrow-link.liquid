@@ -8,11 +8,12 @@
   - icon_size: SVG size - '11' or '14' (default: '14')
 {% endcomment %}
 
-{% assign icon_size = icon_size | default: '14' %}
+{% assign icon_size = icon_size | default: '24' %}
 
 <a href="{{ url }}" class="{% if class %}{{ class }}{% else %}arrow-link{% endif %}">
   {{ text }}
-  <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <svg class="arrow-link__icon" width="{{ icon_size }}" height="{{ icon_size | times: 0.625 | round }}" viewBox="0 0 64 40" fill="none" aria-hidden="true">
+    <line x1="2" y1="20" x2="53" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    <polyline points="45 12 53 20 45 28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
   </svg>
 </a>
