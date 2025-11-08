@@ -86,7 +86,10 @@
       "settings": {
         "image": "shopify://shop_images/glass-dome-home-domino-4.webp",
         "caption_label": "5 Min Location Street",
-        "caption_body": "A curved glass accent that merges form and lighting. The bathroom features warm wood tones and subtle sconces that create an intimate, contemplative atmosphere."
+        "caption_number": "Fig. 01",
+        "caption_body": "A curved glass accent that merges form and lighting. The bathroom features warm wood tones and subtle sconces that create an intimate, contemplative atmosphere.",
+        "caption_link_label": "View project",
+        "caption_link_url": ""
       }
     },
     "split_feature": {
@@ -98,7 +101,11 @@
         "heading": "Form Meets Function",
         "body": "A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.",
         "link_label": "Explore Details",
-        "link_url": ""
+        "link_url": "",
+        "image_caption_label": "Fig. 02",
+        "image_caption": "",
+        "image_caption_link_label": "View details",
+        "image_caption_link_url": ""
       }
     },
     "statement_banner": {
@@ -121,21 +128,33 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2025-11-06_at_11.02.14_PM.png",
-            "alt_text": ""
+            "alt_text": "",
+            "fig_label": "Fig.",
+            "caption": "",
+            "caption_link_label": "",
+            "caption_link_url": ""
           }
         },
         "gallery_triptych_image_2": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/former-19th-century-art-school-converted-into-an-apartment-v0-yXzdAhF-oMw-MICX5Wxl3uxt7vcUsslg9nW2qlTDlZQ.webp",
-            "alt_text": ""
+            "alt_text": "",
+            "fig_label": "Fig.",
+            "caption": "",
+            "caption_link_label": "",
+            "caption_link_url": ""
           }
         },
         "gallery_triptych_image_3": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/room-with-mid-century-modern-furniture-in-a-1956-residence-v0-f0846fyW0ZfEPX0GDtJFlsMw4LvLbcCJ8eSfZfcl30w.webp",
-            "alt_text": ""
+            "alt_text": "",
+            "fig_label": "Fig.",
+            "caption": "",
+            "caption_link_label": "",
+            "caption_link_url": ""
           }
         }
       },
@@ -183,38 +202,6 @@
         "success_message": "Thanks for subscribing."
       }
     },
-    "text_columns": {
-      "type": "text-columns",
-      "blocks": {
-        "text_column_1": {
-          "type": "column",
-          "settings": {
-            "heading": "Services",
-            "body": "Consultations by appointment.\nTrade support.\nProject coordination."
-          }
-        },
-        "text_column_2": {
-          "type": "column",
-          "settings": {
-            "heading": "Materials",
-            "body": "Stone, glass, metal finishes.\nCustom shades.\nArchival research."
-          }
-        },
-        "text_column_3": {
-          "type": "column",
-          "settings": {
-            "heading": "Contact",
-            "body": "studio@refinements.com\n917-555-2034\nBrooklyn, New York"
-          }
-        }
-      },
-      "block_order": [
-        "text_column_1",
-        "text_column_2",
-        "text_column_3"
-      ],
-      "settings": {}
-    },
     "dual_images": {
       "type": "dual-images",
       "blocks": {
@@ -222,14 +209,22 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Soko-Design-Founder-Home-Tour-Domino-01.webp",
-            "alt_text": ""
+            "alt_text": "",
+            "fig_label": "Fig.",
+            "caption": "Savanna table",
+            "caption_link_label": "",
+            "caption_link_url": ""
           }
         },
         "dual_image_2": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/00-FEATURE-nicola-harding-homing-instinct-excerpt-tuscan-villa-domino-01.webp",
-            "alt_text": ""
+            "alt_text": "",
+            "fig_label": "Fig.",
+            "caption": "",
+            "caption_link_label": "",
+            "caption_link_url": ""
           }
         }
       },
@@ -249,7 +244,11 @@
         "heading": "Form Meets Function",
         "body": "A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.",
         "link_label": "Explore Details",
-        "link_url": ""
+        "link_url": "",
+        "image_caption_label": "Fig. 02",
+        "image_caption": "",
+        "image_caption_link_label": "View details",
+        "image_caption_link_url": ""
       }
     },
     "intro_marquee_BPDmRL": {
@@ -317,20 +316,52 @@
         "section_label": "",
         "text": ""
       }
+    },
+    "text_columns": {
+      "type": "text-columns",
+      "blocks": {
+        "text_column_1": {
+          "type": "column",
+          "settings": {
+            "heading": "Services",
+            "body": "Consultations by appointment.\nTrade support.\nProject coordination."
+          }
+        },
+        "text_column_2": {
+          "type": "column",
+          "settings": {
+            "heading": "Materials",
+            "body": "Stone, glass, metal finishes.\nCustom shades.\nArchival research."
+          }
+        },
+        "text_column_3": {
+          "type": "column",
+          "settings": {
+            "heading": "Contact",
+            "body": "studio@refinements.com\n917-555-2034\nBrooklyn, New York"
+          }
+        }
+      },
+      "block_order": [
+        "text_column_1",
+        "text_column_2",
+        "text_column_3"
+      ],
+      "settings": {}
     }
   },
-    "order": [
-      "hero_full_bleed",
-      "intro_marquee",
-      "feature_overlay",
-      "split_feature",
-      "statement_banner",
-      "gallery_triptych",
-      "quarters_spotlight",
+  "order": [
+    "hero_full_bleed",
+    "intro_marquee",
+    "feature_overlay",
+    "split_feature",
+    "statement_banner",
+    "gallery_triptych",
+    "quarters_spotlight",
     "newsletter_simple",
-    "text_columns",
     "dual_images",
-      "split_feature_WYJAeH",
-      "intro_marquee_BPDmRL"
-    ]
-  }
+    "split_feature_WYJAeH",
+    "intro_marquee_BPDmRL",
+    "text_columns"
+  ]
+}
