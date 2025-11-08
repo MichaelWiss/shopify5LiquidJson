@@ -221,7 +221,7 @@
           "settings": {
             "image": "shopify://shop_images/00-FEATURE-nicola-harding-homing-instinct-excerpt-tuscan-villa-domino-01.webp",
             "alt_text": "",
-            "fig_label": "Fig.",
+            "fig_label": "",
             "caption": "",
             "caption_link_label": "",
             "caption_link_url": ""
@@ -245,7 +245,7 @@
         "body": "A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.",
         "link_label": "Explore Details",
         "link_url": "",
-        "image_caption_label": "Fig. 02",
+        "image_caption_label": "Fig. 02 Butter Couch",
         "image_caption": "",
         "image_caption_link_label": "View details",
         "image_caption_link_url": ""
