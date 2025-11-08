@@ -3530,18 +3530,19 @@ body.cart-drawer-open {
   margin-top: calc(var(--space-unit) * 1);
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: calc(var(--space-unit) * 1);
+  align-items: center;
+  gap: calc(var(--space-unit) * 2);
   font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--text-secondary);
+  white-space: nowrap;
 }
 
 .figure-caption__label {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--space-unit) * 2);
 }
 
 .figure-caption__fig {
