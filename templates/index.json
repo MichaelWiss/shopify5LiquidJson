@@ -86,7 +86,7 @@
       "settings": {
         "image": "shopify://shop_images/glass-dome-home-domino-4.webp",
         "caption_label": "5 Min Location Street",
-        "caption_number": "Fig. 01",
+        "caption_number": "",
         "caption_body": "A curved glass accent that merges form and lighting. The bathroom features warm wood tones and subtle sconces that create an intimate, contemplative atmosphere.",
         "caption_link_label": "View project",
         "caption_link_url": ""
@@ -102,7 +102,7 @@
         "body": "A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.",
         "link_label": "Explore Details",
         "link_url": "",
-        "image_caption_label": "Fig. 02",
+        "image_caption_label": "",
         "image_caption": "",
         "image_caption_link_label": "View details",
         "image_caption_link_url": ""
@@ -129,7 +129,7 @@
           "settings": {
             "image": "shopify://shop_images/Screenshot_2025-11-06_at_11.02.14_PM.png",
             "alt_text": "",
-            "fig_label": "Fig.",
+            "fig_label": "",
             "caption": "",
             "caption_link_label": "",
             "caption_link_url": ""
@@ -140,7 +140,7 @@
           "settings": {
             "image": "shopify://shop_images/former-19th-century-art-school-converted-into-an-apartment-v0-yXzdAhF-oMw-MICX5Wxl3uxt7vcUsslg9nW2qlTDlZQ.webp",
             "alt_text": "",
-            "fig_label": "Fig.",
+            "fig_label": "",
             "caption": "",
             "caption_link_label": "",
             "caption_link_url": ""
@@ -151,7 +151,7 @@
           "settings": {
             "image": "shopify://shop_images/room-with-mid-century-modern-furniture-in-a-1956-residence-v0-f0846fyW0ZfEPX0GDtJFlsMw4LvLbcCJ8eSfZfcl30w.webp",
             "alt_text": "",
-            "fig_label": "Fig.",
+            "fig_label": "",
             "caption": "",
             "caption_link_label": "",
             "caption_link_url": ""
@@ -210,8 +210,8 @@
           "settings": {
             "image": "shopify://shop_images/Soko-Design-Founder-Home-Tour-Domino-01.webp",
             "alt_text": "",
-            "fig_label": "Fig.",
-            "caption": "Savanna table",
+            "fig_label": "Fig. 1 Savanna table",
+            "caption": "",
             "caption_link_label": "",
             "caption_link_url": ""
           }
@@ -221,7 +221,7 @@
           "settings": {
             "image": "shopify://shop_images/00-FEATURE-nicola-harding-homing-instinct-excerpt-tuscan-villa-domino-01.webp",
             "alt_text": "",
-            "fig_label": "Fig.",
+            "fig_label": "",
             "caption": "",
             "caption_link_label": "",
             "caption_link_url": ""
@@ -245,7 +245,7 @@
         "body": "A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.",
         "link_label": "Explore Details",
         "link_url": "",
-        "image_caption_label": "Fig. 02",
+        "image_caption_label": "Fig. 02 Butter Couch",
         "image_caption": "",
         "image_caption_link_label": "View details",
         "image_caption_link_url": ""
