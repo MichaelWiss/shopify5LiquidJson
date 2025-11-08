@@ -3555,11 +3555,26 @@ body.cart-drawer-open {
   white-space: nowrap;
 }
 
+.feature-caption {
+  padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
+  gap: calc(var(--space-unit) * 1.5);
+  flex-direction: column;
+  align-items: flex-start;
+  white-space: normal;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+.feature-caption .figure-caption__label {
+  white-space: nowrap;
+}
+
 .feature-caption__body {
   text-transform: none;
   letter-spacing: 0;
   line-height: 1.5;
   font-size: 12px;
+  white-space: normal;
 }
 
 @media (min-width: 768px) {
