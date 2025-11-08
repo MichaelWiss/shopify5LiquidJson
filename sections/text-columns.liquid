@@ -1,0 +1,56 @@
+<section class="site-footer text-columns">
+  <div class="footer-grid">
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        <div class="footer-column" {{ block.shopify_attributes }}>
+          {% if block.settings.heading != blank %}
+            <h3>{{ block.settings.heading }}</h3>
+          {% endif %}
+          {% if block.settings.body != blank %}
+            <div class="footer-links footer-text">
+              {{ block.settings.body | newline_to_br }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Text columns",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Column heading"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Add supporting text here."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Text columns",
+      "blocks": [
+        { "type": "column", "settings": { "heading": "Column one", "body": "First column copy." } },
+        { "type": "column", "settings": { "heading": "Column two", "body": "Second column copy." } },
+        { "type": "column", "settings": { "heading": "Column three", "body": "Third column copy." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -183,6 +183,38 @@
         "success_message": "Thanks for subscribing."
       }
     },
+    "text_columns": {
+      "type": "text-columns",
+      "blocks": {
+        "text_column_1": {
+          "type": "column",
+          "settings": {
+            "heading": "Services",
+            "body": "Consultations by appointment.\nTrade support.\nProject coordination."
+          }
+        },
+        "text_column_2": {
+          "type": "column",
+          "settings": {
+            "heading": "Materials",
+            "body": "Stone, glass, metal finishes.\nCustom shades.\nArchival research."
+          }
+        },
+        "text_column_3": {
+          "type": "column",
+          "settings": {
+            "heading": "Contact",
+            "body": "studio@refinements.com\n917-555-2034\nBrooklyn, New York"
+          }
+        }
+      },
+      "block_order": [
+        "text_column_1",
+        "text_column_2",
+        "text_column_3"
+      ],
+      "settings": {}
+    },
     "dual_images": {
       "type": "dual-images",
       "blocks": {
@@ -296,6 +328,7 @@
       "gallery_triptych",
       "quarters_spotlight",
     "newsletter_simple",
+    "text_columns",
     "dual_images",
       "split_feature_WYJAeH",
       "intro_marquee_BPDmRL"
