@@ -3537,6 +3537,7 @@ body.cart-drawer-open {
   text-transform: none;
   color: var(--text-secondary);
   white-space: nowrap;
+  background: transparent;
 }
 
 .figure-caption__label {
