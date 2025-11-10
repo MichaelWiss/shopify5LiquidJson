@@ -43,6 +43,9 @@
   --s5: #{$s5};
   --s6: #{$s6};
   
+  // Header dimensions
+  --header-height: 48px;
+  
   // Icon & arrow dimensions
   --icon-arrow-size: #{$icon-arrow-size};
   --icon-arrow-back-size: #{$icon-arrow-back-size};
@@ -204,7 +207,7 @@ body {
 }
 
 .card-image {
-  @include card-image(4 / 5);
+  @include card-image((4 / 5));
   @include image-hover-scale(1.03);
 }
 
@@ -377,7 +380,7 @@ body {
 }
 
 .hero-split__eyebrow {
-  @extend .eyebrow;
+  @include eyebrow;
   color: var(--ink-2);
   margin-bottom: var(--s2);
 }
@@ -405,7 +408,7 @@ body {
 }
 
 .hero-split__cta {
-  @extend .link-cue;
+  @include arrow-link;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -2127,18 +2130,11 @@ body.cart-drawer-open {
 
 .breadcrumbs-container,
 .breadcrumbs-section {
-  padding-top: var(--header-height-mobile);
-}
-
-@media (min-width: 768px) {
-  .breadcrumbs-container,
-  .breadcrumbs-section {
-    padding-top: var(--header-height-desktop);
-  }
+  padding-top: var(--header-height);
 }
 
 .breadcrumbs {
-  padding: var(--s2) calc(var(--space-unit) * 4.5);
+  padding: var(--s2) var(--s4);
   font-size: 11px;
   letter-spacing: 0.02em;
   color: var(--ink-2);
