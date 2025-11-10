@@ -68,23 +68,87 @@
 
         <div class="collection-page__content">
           <header class="collection-page__header">
-            <h1 class="collection-page__title">{{ collection.title }}</h1>
-            <p class="collection-page__count">
-              {{ collection.products_count }} {{ collection.products_count | pluralize: 'item', 'items' }}
-            </p>
+            <div class="collection-page__header-row">
+              <h1 class="collection-page__title">
+                {{ collection.title }}
+                <span class="collection-page__title-count">{{ collection.products_count }}</span>
+              </h1>
+              
+              <div class="collection-page__controls">
+                {% if collection.filters.size > 0 %}
+                  <button class="collection-page__filter-toggle" 
+                          id="collectionFilterToggle" 
+                          aria-expanded="false" 
+                          aria-controls="collectionFilters">
+                    <span class="collection-page__filter-icon">+</span>
+                    <span class="collection-page__filter-text">Filter</span>
+                  </button>
+                {% endif %}
+                
+                <div class="collection-page__view-toggle">
+                  <span class="collection-page__view-label">View:</span>
+                  <div class="collection-page__view-buttons">
+                    <button class="collection-page__view-btn" data-view="small">S</button>
+                    <button class="collection-page__view-btn is-active" data-view="medium">M</button>
+                    <button class="collection-page__view-btn" data-view="large">L</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% if collection.filters.size > 0 %}
+              <div class="collection-page__filters" id="collectionFilters" aria-hidden="true">
+                {% for filter in collection.filters %}
+                  <div class="collection-page__filter-group">
+                    <p class="collection-page__filter-label">{{ filter.label }}</p>
+                    
+                    {% case filter.type %}
+                      {% when 'list' %}
+                        <ul class="collection-page__filter-list">
+                          {% for value in filter.values %}
+                            <li class="collection-page__filter-item">
+                              <a href="{{ value.url_to_add }}" 
+                                 class="collection-page__filter-link{% if value.active %} is-active{% endif %}">
+                                {{ value.label }}
+                                {% if value.active %}
+                                  <span class="collection-page__filter-remove" aria-label="Remove filter">×</span>
+                                {% endif %}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      
+                      {% when 'price_range' %}
+                        <div class="collection-page__filter-price">
+                          <form action="{{ collection.url }}" method="get">
+                            <input type="number" 
+                                   name="filter.v.price.gte" 
+                                   placeholder="Min" 
+                                   value="{{ filter.min_value.value }}" 
+                                   min="0">
+                            <span>to</span>
+                            <input type="number" 
+                                   name="filter.v.price.lte" 
+                                   placeholder="Max" 
+                                   value="{{ filter.max_value.value }}" 
+                                   min="0">
+                            <button type="submit">Apply</button>
+                          </form>
+                        </div>
+                    {% endcase %}
+                  </div>
+                {% endfor %}
+                
+                {% if collection.filters.size > 0 %}
+                  <div class="collection-page__filter-actions">
+                    <a href="{{ collection.url }}" class="collection-page__filter-clear">Clear all filters</a>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
           </header>
 
-          <div class="collection-page__toolbar">
-            <a class="collection-page__filter" href="#">+ Filter</a>
-            <div class="collection-page__view-toggle">
-              <span>View:</span>
-              <span>S</span>
-              <span class="is-active">M</span>
-              <span>L</span>
-            </div>
-          </div>
-
-          <div class="collection-page__grid">
+          <div class="collection-page__grid" data-view="medium">
             {% for product in collection.products %}
               {% render 'product-card', product: product %}
             {% endfor %}

@@ -275,6 +275,42 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductForms();
   attachCartEventListeners();
 
+  // Collection filter toggle
+  const filterToggle = document.getElementById('collectionFilterToggle');
+  const filterPanel = document.getElementById('collectionFilters');
+  const filterIcon = filterToggle?.querySelector('.collection-page__filter-icon');
+
+  if (filterToggle && filterPanel) {
+    filterToggle.addEventListener('click', () => {
+      const isOpen = filterPanel.classList.toggle('is-open');
+      filterToggle.setAttribute('aria-expanded', isOpen);
+      filterPanel.setAttribute('aria-hidden', !isOpen);
+      
+      if (filterIcon) {
+        filterIcon.textContent = isOpen ? '—' : '+';
+      }
+    });
+  }
+
+  // Collection view size toggle
+  const viewButtons = document.querySelectorAll('.collection-page__view-btn');
+  const productGrid = document.querySelector('.collection-page__grid[data-view]');
+
+  if (viewButtons.length && productGrid) {
+    viewButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const viewSize = button.dataset.view;
+        
+        // Update active state
+        viewButtons.forEach(btn => btn.classList.remove('is-active'));
+        button.classList.add('is-active');
+        
+        // Update grid view
+        productGrid.setAttribute('data-view', viewSize);
+      });
+    });
+  }
+
   function trapFocusInCartDrawer() {
     if (!cartDrawer) return;
     const focusableElements = cartDrawer.querySelectorAll(focusableDrawerSelectors);
