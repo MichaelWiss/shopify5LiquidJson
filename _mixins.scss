@@ -1,0 +1,184 @@
+// ========================================
+// DESIGN SYSTEM MIXINS
+// Reusable patterns to eliminate duplication
+// ========================================
+
+@use "tokens" as *;
+
+// ========================================
+// IMAGE CONTAINERS
+// ========================================
+
+@mixin image-container($ratio: (4 / 5)) {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: $ratio;
+  border: 1px solid var(--hair);
+  background: var(--paper);
+}
+
+@mixin image-container-inner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+@mixin image-hover-scale($scale: 1.03) {
+  transition: transform 400ms ease;
+  
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+// ========================================
+// GRID LAYOUTS
+// ========================================
+
+@mixin grid-base($gap: $s4) {
+  display: grid;
+  gap: $gap;
+}
+
+@mixin grid-2-col($gap: $s4, $breakpoint: 1024px) {
+  @include grid-base($gap);
+  grid-template-columns: 1fr;
+  
+  @media (min-width: $breakpoint) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@mixin grid-3-col($gap: $s4, $breakpoint: 768px) {
+  @include grid-base($gap);
+  grid-template-columns: 1fr;
+  
+  @media (min-width: $breakpoint) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@mixin grid-4-col($gap: $s5, $breakpoint: 768px) {
+  @include grid-base($gap);
+  grid-template-columns: 1fr;
+  
+  @media (min-width: $breakpoint) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+// ========================================
+// TYPOGRAPHY
+// ========================================
+
+@mixin eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+  color: var(--ink-2);
+}
+
+@mixin serif-heading($size: 32px) {
+  font-family: var(--serif);
+  font-size: $size;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+@mixin label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+}
+
+// ========================================
+// BUTTONS & LINKS
+// ========================================
+
+@mixin btn-base {
+  padding: 13px 16px;
+  text-align: center;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+  border-radius: 2px;
+  cursor: pointer;
+  border: none;
+  transition: opacity 250ms ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+@mixin arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+  color: var(--ink);
+  text-decoration: none;
+  transition: gap 200ms ease;
+}
+
+// ========================================
+// LAYOUT UTILITIES
+// ========================================
+
+@mixin container($max-width: 1280px) {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $s4;
+}
+
+@mixin section-padding {
+  padding: $s6 $s4 $s5;
+}
+
+@mixin media-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+// ========================================
+// FORM CONTROLS
+// ========================================
+
+@mixin form-select {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 12px;
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  font-size: 12px;
+  color: var(--ink);
+  cursor: pointer;
+  
+  &:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+// ========================================
+// CARD PATTERNS
+// ========================================
+
+@mixin card-base {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 200ms ease;
+}
+
+@mixin card-image($ratio: (4 / 5)) {
+  @include image-container($ratio);
+  margin-bottom: $s2;
+}
