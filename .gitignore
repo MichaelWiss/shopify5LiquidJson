@@ -61,3 +61,6 @@ theme-upload.zip
 # Documentation build artifacts
 docs/_build/
 docs/.doctrees/
+
+# Warp AI agent context
+WARP.md
