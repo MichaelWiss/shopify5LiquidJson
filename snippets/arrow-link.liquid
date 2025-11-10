@@ -5,14 +5,22 @@
   - text: Link text (required)
   - url: Link destination (required)
   - class: Additional CSS classes (optional)
-  - icon_size: SVG size - '11' or '14' (default: '14')
+  - icon_size: SVG size - '11' or '14' or 'standard' (default: '24')
+    - 'standard' uses the project's breadcrumb arrow dimensions
 {% endcomment %}
 
-{% assign icon_size = icon_size | default: '24' %}
+{% if icon_size == 'standard' %}
+  {% assign width = '29' %}
+  {% assign height = '17' %}
+{% else %}
+  {% assign icon_size = icon_size | default: '24' %}
+  {% assign width = icon_size %}
+  {% assign height = icon_size | times: 0.625 | round %}
+{% endif %}
 
 <a href="{{ url }}" class="{% if class %}{{ class }}{% else %}arrow-link{% endif %}">
   {{ text }}
-  <span class="arrow-link__icon" style="width: {{ icon_size }}px; height: {{ icon_size | times: 0.625 | round }}px; display: inline-block;">
+  <span class="arrow-link__icon" style="width: {{ width }}px; height: {{ height }}px; display: inline-block;">
     {% render 'icon', name: 'arrow-right-wide' %}
   </span>
 </a>

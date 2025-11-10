@@ -59,6 +59,11 @@
   --header-height-desktop: 60px;
   --icon-arrow-size: #{$icon-arrow-size};
   --icon-arrow-back-size: #{$icon-arrow-back-size};
+  
+  // Standard arrow dimensions (used in breadcrumbs and throughout project)
+  --breadcrumb-arrow-width: #{$breadcrumb-arrow-width};
+  --breadcrumb-arrow-height: #{$breadcrumb-arrow-height};
+  --breadcrumb-arrow-stroke: #{$breadcrumb-arrow-stroke};
 }
 
 body {
@@ -159,6 +164,14 @@ body {
 
 .arrow-link__icon {
   flex-shrink: 0;
+  display: inline-block;
+}
+
+/* Standard arrow icon dimensions - use across project */
+.arrow-icon-standard {
+  width: var(--breadcrumb-arrow-width);
+  height: var(--breadcrumb-arrow-height);
+  stroke-width: var(--breadcrumb-arrow-stroke);
   display: inline-block;
 }
 
@@ -1293,9 +1306,11 @@ body.cart-drawer-open {
 }
 
 .side-link .arrow-link__icon {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   vertical-align: middle;
+  position: relative;
+  top: -1px;
 }
 
 .side-link:hover {
@@ -2214,9 +2229,9 @@ body.cart-drawer-open {
 .breadcrumbs-arrow,
 .breadcrumbs-separator .icon--arrow-right {
   display: inline-block;
-  width: 29px;
-  height: 17px;
-  stroke-width: 1.2;
+  width: $breadcrumb-arrow-width;
+  height: $breadcrumb-arrow-height;
+  stroke-width: $breadcrumb-arrow-stroke;
 }
 
 .breadcrumbs-item.current {
@@ -3364,9 +3379,11 @@ body.cart-drawer-open {
 }
 
 .side-link .arrow-link__icon {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   vertical-align: middle;
+  position: relative;
+  top: -1px;
 }
 
 .side-link:hover {
