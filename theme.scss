@@ -55,8 +55,8 @@
   --space-5: #{$space-5};
   --space-6: #{$space-6};
   --space-7: #{$space-7};
-  --header-height-mobile: 60px;
-  --header-height-desktop: 72px;
+  --header-height-mobile: 56px;
+  --header-height-desktop: 64px;
   --icon-arrow-size: #{$icon-arrow-size};
   --icon-arrow-back-size: #{$icon-arrow-back-size};
 }
@@ -2161,7 +2161,7 @@ body.cart-drawer-open {
 
 .breadcrumbs-section {
   padding-top: var(--header-height-mobile);
-  background: #f5f3f0;
+  background: #f7f5f2;
 }
 
 @media (min-width: 768px) {
@@ -2171,37 +2171,41 @@ body.cart-drawer-open {
 }
 
 .breadcrumbs {
-  padding: 24px 32px;
+  padding: 20px 48px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .breadcrumbs {
-    padding: 28px 48px;
+    padding: 22px 48px;
   }
 }
 
 .breadcrumbs-list {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
-  color: var(--text-secondary);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  color: #6b6158;
 }
 
 .breadcrumbs-item {
   display: inline-flex;
   align-items: center;
+  font-weight: 300;
 }
 
 .breadcrumbs-item a {
-  color: var(--text-secondary);
+  color: #6b6158;
   text-decoration: none;
+  font-weight: 300;
   transition: color 200ms ease;
 }
 
@@ -2212,13 +2216,16 @@ body.cart-drawer-open {
 .breadcrumbs-separator {
   display: flex;
   align-items: center;
-  color: var(--text-secondary);
+  font-weight: 300;
+  color: #6b6158;
+  line-height: 1;
 }
 
 .breadcrumbs-separator::before {
-  content: '→';
-  font-size: 14px;
-  color: var(--text-secondary);
+  content: '⟶';
+  font-size: 16px;
+  font-weight: 300;
+  color: #6b6158;
 }
 
 .breadcrumbs-arrow {
@@ -2229,12 +2236,13 @@ body.cart-drawer-open {
   color: var(--text-primary);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  font-weight: 400;
 }
 
 .breadcrumbs-current-dot {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
   background: var(--text-primary);
   display: inline-block;
@@ -2245,21 +2253,23 @@ body.cart-drawer-open {
   text-decoration: underline;
   text-decoration-color: var(--text-primary);
   text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+  font-weight: 400;
 }
 
 .breadcrumbs-item--classification {
-  color: var(--text-secondary);
+  color: #6b6158;
+  font-weight: 300;
 }
 
 @media (max-width: 767px) {
   .breadcrumbs {
-    padding: 20px 24px;
+    padding: 16px 32px;
   }
 
   .breadcrumbs-list {
-    gap: 8px;
-    font-size: 13px;
+    gap: 14px;
+    font-size: 15px;
   }
 }
 
