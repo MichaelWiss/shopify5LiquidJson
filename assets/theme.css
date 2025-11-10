@@ -2164,17 +2164,17 @@ body.cart-drawer-open {
 }
 
 .breadcrumbs-separator {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 0 0.6rem;
-  font-family: var(--font-primary);
 }
 
-.breadcrumbs-separator::before {
-  content: "⟶";
-}
-
-.breadcrumbs-arrow {
-  display: none;
+.breadcrumbs-arrow,
+.breadcrumbs-separator .icon--arrow-right {
+  display: inline-block;
+  width: 29px;
+  height: 17px;
+  stroke-width: 1.2;
 }
 
 .breadcrumbs-item.current {
