@@ -1,4 +1,63 @@
+# Node.js dependencies
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+# Shopify
+.shopify/
+
+# Build artifacts
+*.log
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Thumbnails
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Compiled CSS (if you want to generate it on each environment)
+# Uncomment the line below if you prefer to build CSS locally
+# assets/theme.css
+
+# OS generated files
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Shopify theme uploads
+theme-upload.zip
+*.zip
+
+# Documentation build artifacts
+docs/_build/
+docs/.doctrees/
