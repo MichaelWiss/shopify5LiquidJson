@@ -1,22 +1,21 @@
-{% assign is_simple = section.settings.layout_style == 'simple' %}
-<section class="{% if is_simple %}newsletter{% else %}newsletter-section{% endif %}">
+<section class="{% if section.settings.layout_style == 'simple' %}newsletter{% else %}newsletter-section{% endif %}">
   <div class="newsletter-container">
     {% if section.settings.heading != blank %}
-      {% if is_simple %}
+      {% if section.settings.layout_style == 'simple' %}
         <h2>{{ section.settings.heading }}</h2>
       {% else %}
         <h2 class="newsletter-heading">{{ section.settings.heading }}</h2>
       {% endif %}
     {% endif %}
 
-    {% if section.settings.text != blank and is_simple == false %}
+    {% if section.settings.text != blank and section.settings.layout_style != 'simple' %}
       <p class="newsletter-text">{{ section.settings.text }}</p>
     {% endif %}
 
     {% assign newsletter_form_id = 'NewsletterForm-' | append: section.id %}
     {% form 'customer', id: newsletter_form_id, class: 'newsletter-form' %}
       {% if form.posted_successfully? %}
-        {% if is_simple %}
+        {% if section.settings.layout_style == 'simple' %}
           <p class="newsletter-success">{{ section.settings.success_message }}</p>
         {% else %}
           <p class="newsletter-feedback newsletter-feedback--success">{{ section.settings.success_message }}</p>
@@ -36,7 +35,7 @@
           {{ section.settings.button_label }}
         </button>
         {% if form.errors %}
-          {% if is_simple %}
+          {% if section.settings.layout_style == 'simple' %}
             <p class="newsletter-error">{{ form.errors.translated_fields['email'] | default: form.errors.messages['email'] }}</p>
           {% else %}
             <p class="newsletter-feedback newsletter-feedback--error">{{ form.errors | default_errors }}</p>
