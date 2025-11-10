@@ -1,14 +1,14 @@
 <div class="cart-page">
-  <div class="cart-drawer">
-    <div class="cart-drawer__header">
-      <h1 class="cart-drawer__title">{{ 'cart.general.title' | t }}</h1>
-      <button class="cart-drawer__close cart-page__close" type="button" onclick="window.history.back()">
+  <div class="cart-page__content">
+    <div class="cart-page__header">
+      <h1 class="cart-page__title">{{ 'cart.general.title' | t }}</h1>
+      <button class="cart-page__close" type="button" onclick="window.history.back()">
         {{ 'cart.general.close' | t }}
       </button>
     </div>
 
     {% if cart.item_count > 0 %}
-      <div class="cart-drawer__items">
+      <div class="cart-page__items">
         {% for item in cart.items %}
           {% render 'cart-item', item: item, line_index: forloop.index, include_aria_labels: true %}
         {% endfor %}

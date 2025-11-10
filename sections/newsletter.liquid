@@ -1,26 +1,28 @@
-<section class="newsletter-section">
+{% assign is_simple = section.settings.layout_style == 'simple' %}
+<section class="{% if is_simple %}newsletter{% else %}newsletter-section{% endif %}">
   <div class="newsletter-container">
     {% if section.settings.heading != blank %}
-      <h2 class="newsletter-heading">{{ section.settings.heading }}</h2>
+      {% if is_simple %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% else %}
+        <h2 class="newsletter-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
     {% endif %}
 
-    {% if section.settings.text != blank %}
+    {% if section.settings.text != blank and is_simple == false %}
       <p class="newsletter-text">{{ section.settings.text }}</p>
     {% endif %}
 
-    {% form 'customer', class: 'newsletter-form' %}
+    {% assign newsletter_form_id = 'NewsletterForm-' | append: section.id %}
+    {% form 'customer', id: newsletter_form_id, class: 'newsletter-form' %}
       {% if form.posted_successfully? %}
-        <p class="newsletter-feedback newsletter-feedback--success">{{ section.settings.success_message }}</p>
-      {% else %}
-        {% if form.errors %}
-          <p class="newsletter-feedback newsletter-feedback--error">{{ form.errors | default_errors }}</p>
+        {% if is_simple %}
+          <p class="newsletter-success">{{ section.settings.success_message }}</p>
+        {% else %}
+          <p class="newsletter-feedback newsletter-feedback--success">{{ section.settings.success_message }}</p>
         {% endif %}
-
+      {% else %}
         <input type="hidden" name="contact[tags]" value="newsletter">
-
-        <label class="newsletter-label" for="newsletter-email-{{ section.id }}">
-          <span class="visually-hidden">{{ 'newsletter.label' | t }}</span>
-        </label>
         <input
           id="newsletter-email-{{ section.id }}"
           class="newsletter-input"
@@ -33,6 +35,13 @@
         <button class="newsletter-submit" type="submit">
           {{ section.settings.button_label }}
         </button>
+        {% if form.errors %}
+          {% if is_simple %}
+            <p class="newsletter-error">{{ form.errors.translated_fields['email'] | default: form.errors.messages['email'] }}</p>
+          {% else %}
+            <p class="newsletter-feedback newsletter-feedback--error">{{ form.errors | default_errors }}</p>
+          {% endif %}
+        {% endif %}
       {% endif %}
     {% endform %}
   </div>
@@ -43,7 +52,23 @@
   "name": "Newsletter",
   "settings": [
     {
-      "type": "text",
+      "type": "select",
+      "id": "layout_style",
+      "label": "Layout style",
+      "options": [
+        {
+          "value": "detailed",
+          "label": "Detailed (heading + supporting text)"
+        },
+        {
+          "value": "simple",
+          "label": "Simple (heading only)"
+        }
+      ],
+      "default": "detailed"
+    },
+    {
+      "type": "textarea",
       "id": "heading",
       "label": "Heading",
       "default": "Stay in the loop"
@@ -52,7 +77,8 @@
       "type": "textarea",
       "id": "text",
       "label": "Supporting text",
-      "default": "Notes from the studio, launch announcements, and materials research. No noise."
+      "default": "Notes from the studio, launch announcements, and materials research. No noise.",
+      "info": "Only shown in 'detailed' layout style"
     },
     {
       "type": "text",

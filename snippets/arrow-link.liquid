@@ -12,8 +12,7 @@
 
 <a href="{{ url }}" class="{% if class %}{{ class }}{% else %}arrow-link{% endif %}">
   {{ text }}
-  <svg class="arrow-link__icon" width="{{ icon_size }}" height="{{ icon_size | times: 0.625 | round }}" viewBox="0 0 64 40" fill="none" aria-hidden="true">
-    <line x1="2" y1="20" x2="53" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-    <polyline points="45 12 53 20 45 28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-  </svg>
+  <span class="arrow-link__icon" style="width: {{ icon_size }}px; height: {{ icon_size | times: 0.625 | round }}px; display: inline-block;">
+    {% render 'icon', name: 'arrow-right-wide' %}
+  </span>
 </a>
