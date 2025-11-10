@@ -1292,6 +1292,12 @@ body.cart-drawer-open {
   transition: gap 200ms ease;
 }
 
+.side-link .arrow-link__icon {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
 .side-link:hover {
   gap: 10px;
 }
@@ -3355,6 +3361,12 @@ body.cart-drawer-open {
   border-bottom: 1px solid var(--text-primary);
   padding-bottom: 1px;
   transition: gap 200ms ease;
+}
+
+.side-link .arrow-link__icon {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
 }
 
 .side-link:hover {
