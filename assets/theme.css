@@ -74,8 +74,8 @@ body {
   --space-5: 40px;
   --space-6: 64px;
   --space-7: 96px;
-  --header-height-mobile: 28px;
-  --header-height-desktop: 36px;
+  --header-height-mobile: 60px;
+  --header-height-desktop: 72px;
   --icon-arrow-size: 24px;
   --icon-arrow-back-size: 24px;
 }
