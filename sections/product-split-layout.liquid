@@ -4,12 +4,6 @@
 {% endcomment %}
 
 <style>
-  .product-split-{{ section.id }} * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
   .product-split-{{ section.id }} {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
@@ -30,6 +24,7 @@
     top: 0;
     height: 100vh;
     overflow: hidden;
+    background-color: #000;
   }
 
   .product-split-{{ section.id }} .image-container img {
@@ -37,6 +32,8 @@
     height: 120%;
     object-fit: cover;
     object-position: center top;
+    display: block;
+    will-change: transform;
   }
 
   .product-split-{{ section.id }} .label {
@@ -49,6 +46,7 @@
     color: {{ section.settings.label_color }};
     font-size: 14px;
     z-index: 10;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
   }
 
   .product-split-{{ section.id }} .label-dot {
@@ -56,22 +54,23 @@
     height: 10px;
     background-color: {{ section.settings.label_color }};
     border-radius: 50%;
+    flex-shrink: 0;
   }
 
   .product-split-{{ section.id }} .right-column {
     width: 340px;
     background-color: {{ section.settings.sidebar_bg }};
+    flex-shrink: 0;
   }
 
   .product-split-{{ section.id }} .sidebar {
     padding: 40px 32px;
-    background-color: {{ section.settings.sidebar_bg }};
   }
 
   .product-split-{{ section.id }} .sticky-content {
     position: sticky;
     top: 0;
-    transition: position 35ms ease-out;
+    transition: all 0.3s ease;
   }
   
   .product-split-{{ section.id }} .sticky-content.release {
@@ -93,6 +92,15 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-split-{{ section.id }} .product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 20px;
   }
 
   .product-split-{{ section.id }} .product-orb {
@@ -134,14 +142,11 @@
   }
 
   .product-split-{{ section.id }} .shop-link {
+    display: inline-block;
     font-size: 13px;
     color: {{ section.settings.text_color }};
     text-decoration: underline;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-    font-family: inherit;
+    transition: color 0.2s ease;
   }
 
   .product-split-{{ section.id }} .shop-link:hover {
@@ -152,6 +157,10 @@
     margin-top: 60px;
     padding-top: 60px;
     border-top: 1px solid {{ section.settings.divider_color }};
+  }
+
+  .product-split-{{ section.id }} .extra-content:first-of-type {
+    margin-top: 60px;
   }
 
   .product-split-{{ section.id }} .extra-content h3 {
@@ -165,23 +174,35 @@
     font-size: 13px;
     line-height: 1.6;
     color: {{ section.settings.secondary_text_color }};
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+  }
+
+  .product-split-{{ section.id }} .extra-content p:last-child {
+    margin-bottom: 0;
   }
 
   .product-split-{{ section.id }} .spec-item {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     font-size: 13px;
     padding: 12px 0;
     border-bottom: 1px solid {{ section.settings.spec_divider_color }};
+    gap: 16px;
+  }
+
+  .product-split-{{ section.id }} .spec-item:first-child {
+    padding-top: 0;
   }
 
   .product-split-{{ section.id }} .spec-label {
     color: {{ section.settings.secondary_text_color }};
+    flex-shrink: 0;
   }
 
   .product-split-{{ section.id }} .spec-value {
     color: {{ section.settings.text_color }};
+    text-align: right;
   }
 
   @media (max-width: 968px) {
@@ -192,15 +213,25 @@
 
     .product-split-{{ section.id }} .left-column {
       height: 60vh;
+      min-height: 400px;
     }
 
     .product-split-{{ section.id }} .image-container {
       position: relative;
-      height: 60vh;
+      height: 100%;
+    }
+
+    .product-split-{{ section.id }} .image-container img {
+      height: 100%;
+      object-position: center center;
     }
 
     .product-split-{{ section.id }} .right-column {
       width: 100%;
+    }
+
+    .product-split-{{ section.id }} .sidebar {
+      padding: 32px 20px;
     }
 
     .product-split-{{ section.id }} .sticky-content {
@@ -214,21 +245,21 @@
     <div class="left-column">
       <div class="image-container">
         {% if section.settings.hero_image != blank %}
-          <img 
-            id="heroImage-{{ section.id }}" 
-            src="{{ section.settings.hero_image | image_url: width: 1600 }}" 
-            alt="{{ section.settings.hero_image.alt | default: section.settings.product_title }}"
-            loading="lazy"
-          >
+          {{ section.settings.hero_image | image_url: width: 1600 | image_tag: 
+             loading: 'eager',
+             id: 'heroImage-' | append: section.id,
+             alt: section.settings.hero_image.alt | default: section.settings.product_title | default: 'Product image',
+             widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+          }}
         {% else %}
           <img 
             id="heroImage-{{ section.id }}" 
-            src="https://cdn.shopify.com/s/files/1/0000/0000/files/placeholder.jpg" 
-            alt="Product"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1200'%3E%3Crect fill='%23cccccc' width='1600' height='1200'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='%23666666' text-anchor='middle' dominant-baseline='middle'%3EHero Image%3C/text%3E%3C/svg%3E"
+            alt="Hero image placeholder"
           >
         {% endif %}
         
-        {% if section.settings.show_label %}
+        {% if section.settings.show_label and section.settings.label_text != blank %}
           <div class="label">
             <div class="label-dot"></div>
             <span>{{ section.settings.label_text }}</span>
@@ -241,13 +272,16 @@
       <div class="sidebar">
         <div class="sticky-content" id="stickyContent-{{ section.id }}">
           {% if section.settings.description != blank %}
-            <p class="description">{{ section.settings.description }}</p>
+            <div class="description">{{ section.settings.description }}</div>
           {% endif %}
           
           {% if section.settings.show_product_visual %}
             <div class="product-image-container">
               {% if section.settings.product_image != blank %}
-                {{ section.settings.product_image | image_url: width: 300 | image_tag: alt: section.settings.product_title }}
+                {{ section.settings.product_image | image_url: width: 600 | image_tag: 
+                   alt: section.settings.product_title | default: 'Product',
+                   loading: 'lazy'
+                }}
               {% else %}
                 <div class="product-orb">
                   <div class="orb-main"></div>
@@ -272,17 +306,18 @@
           {% endif %}
 
           {% if section.settings.show_specs %}
-            <div class="extra-content">
-              <h3>{{ section.settings.specs_title | default: "Specifications" }}</h3>
-              {% for block in section.blocks %}
-                {% if block.type == 'specification' %}
+            {% assign spec_blocks = section.blocks | where: "type", "specification" %}
+            {% if spec_blocks.size > 0 %}
+              <div class="extra-content">
+                <h3>{{ section.settings.specs_title | default: "Specifications" }}</h3>
+                {% for block in spec_blocks %}
                   <div class="spec-item" {{ block.shopify_attributes }}>
                     <span class="spec-label">{{ block.settings.spec_label }}</span>
                     <span class="spec-value">{{ block.settings.spec_value }}</span>
                   </div>
-                {% endif %}
-              {% endfor %}
-            </div>
+                {% endfor %}
+              </div>
+            {% endif %}
           {% endif %}
         </div>
 
@@ -293,9 +328,7 @@
                 <h3>{{ block.settings.heading }}</h3>
               {% endif %}
               {% if block.settings.content != blank %}
-                <div class="rich-text">
-                  {{ block.settings.content }}
-                </div>
+                {{ block.settings.content }}
               {% endif %}
             </div>
           {% endif %}
@@ -306,33 +339,84 @@
 </div>
 
 <script>
-  (function() {
-    const sectionId = '{{ section.id }}';
-    const heroImage = document.getElementById('heroImage-' + sectionId);
-    const leftColumn = document.querySelector('.product-split-' + sectionId + ' .left-column');
-    const stickyContent = document.getElementById('stickyContent-' + sectionId);
-    let scrollTimer = null;
+(function() {
+  'use strict';
+  
+  const sectionId = '{{ section.id }}';
+  const heroImage = document.getElementById('heroImage-' + sectionId);
+  const leftColumn = document.querySelector('.product-split-' + sectionId + ' .left-column');
+  const stickyContent = document.getElementById('stickyContent-' + sectionId);
+  
+  if (!heroImage || !leftColumn || !stickyContent) {
+    return;
+  }
+
+  let ticking = false;
+  let lastScrollY = window.pageYOffset || window.scrollY;
+
+  function updateParallax() {
+    const scrollY = window.pageYOffset || window.scrollY;
     
-    if (heroImage && leftColumn && stickyContent) {
-      window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        const parallax = scrollY * 0.4;
-        heroImage.style.transform = `translateY(${parallax}px)`;
-        
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => {
-          const leftColumnBottom = leftColumn.offsetTop + leftColumn.offsetHeight;
-          const scrollBottom = scrollY + window.innerHeight;
-          
-          if (scrollBottom >= leftColumnBottom - 100) {
-            stickyContent.classList.add('release');
-          } else {
-            stickyContent.classList.remove('release');
-          }
-        }, 35);
-      });
+    // Calculate parallax effect - move image at 40% speed of scroll
+    const parallax = scrollY * 0.4;
+    heroImage.style.transform = 'translateY(' + parallax + 'px)';
+    
+    ticking = false;
+  }
+
+  function updateStickyRelease() {
+    const scrollY = window.pageYOffset || window.scrollY;
+    const leftColumnRect = leftColumn.getBoundingClientRect();
+    const leftColumnBottom = leftColumnRect.bottom + scrollY;
+    const scrollBottom = scrollY + window.innerHeight;
+    
+    // Release sticky content when left column is about to end
+    if (scrollBottom >= leftColumnBottom - 100) {
+      stickyContent.classList.add('release');
+    } else {
+      stickyContent.classList.remove('release');
     }
-  })();
+  }
+
+  function onScroll() {
+    lastScrollY = window.pageYOffset || window.scrollY;
+    
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateParallax();
+        updateStickyRelease();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  // Only apply parallax on desktop
+  if (window.innerWidth > 968) {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    // Initial calculation
+    updateParallax();
+    updateStickyRelease();
+  }
+
+  // Re-initialize on window resize
+  let resizeTimeout;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+      if (window.innerWidth > 968) {
+        window.addEventListener('scroll', onScroll, { passive: true });
+        updateParallax();
+        updateStickyRelease();
+      } else {
+        window.removeEventListener('scroll', onScroll);
+        heroImage.style.transform = 'translateY(0)';
+        stickyContent.classList.remove('release');
+      }
+    }, 250);
+  });
+})();
 </script>
 
 {% schema %}
@@ -348,7 +432,8 @@
     {
       "type": "image_picker",
       "id": "hero_image",
-      "label": "Hero image"
+      "label": "Hero image",
+      "info": "Recommended: 1600 x 1800px for best parallax effect"
     },
     {
       "type": "checkbox",
@@ -370,7 +455,7 @@
       "type": "textarea",
       "id": "description",
       "label": "Product description",
-      "default": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore."
+      "default": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale, Orb lights are available in a range of sizes and finishes, and can be mounted to either walls or ceilings."
     },
     {
       "type": "checkbox",
@@ -382,7 +467,7 @@
       "type": "image_picker",
       "id": "product_image",
       "label": "Product image",
-      "info": "Leave empty to show decorative orb"
+      "info": "Leave empty to show decorative orb graphic"
     },
     {
       "type": "text",
@@ -399,13 +484,13 @@
     {
       "type": "text",
       "id": "shop_link_text",
-      "label": "Shop link text",
+      "label": "Shop button text",
       "default": "Shop"
     },
     {
       "type": "url",
       "id": "shop_link_url",
-      "label": "Shop link URL"
+      "label": "Shop button link"
     },
     {
       "type": "header",
@@ -414,18 +499,18 @@
     {
       "type": "checkbox",
       "id": "show_specs",
-      "label": "Show specifications",
+      "label": "Show specifications section",
       "default": true
     },
     {
       "type": "text",
       "id": "specs_title",
-      "label": "Specifications title",
+      "label": "Specifications heading",
       "default": "Specifications"
     },
     {
       "type": "header",
-      "content": "Colors"
+      "content": "Color Settings"
     },
     {
       "type": "color",
@@ -436,7 +521,7 @@
     {
       "type": "color",
       "id": "text_color",
-      "label": "Text color",
+      "label": "Primary text color",
       "default": "#1a1a1a"
     },
     {
@@ -448,7 +533,7 @@
     {
       "type": "color",
       "id": "label_color",
-      "label": "Label color",
+      "label": "Label overlay color",
       "default": "#ffffff"
     },
     {
@@ -460,13 +545,13 @@
     {
       "type": "color",
       "id": "divider_color",
-      "label": "Section divider color",
+      "label": "Section divider",
       "default": "#dddddd"
     },
     {
       "type": "color",
       "id": "spec_divider_color",
-      "label": "Spec divider color",
+      "label": "Specification divider",
       "default": "#eeeeee"
     }
   ],
@@ -503,7 +588,7 @@
           "type": "richtext",
           "id": "content",
           "label": "Content",
-          "default": "<p>Add your content here.</p>"
+          "default": "<p>Add your content here. You can include multiple paragraphs and format text as needed.</p>"
         }
       ]
     }
@@ -548,17 +633,31 @@
           }
         },
         {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Wattage",
+            "spec_value": "40W max"
+          }
+        },
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Dimming",
+            "spec_value": "Compatible"
+          }
+        },
+        {
           "type": "content_block",
           "settings": {
             "heading": "Details",
-            "content": "<p>Each fixture features a hand-blown glass sphere that diffuses light evenly in all directions.</p>"
+            "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
           }
         },
         {
           "type": "content_block",
           "settings": {
             "heading": "Care Instructions",
-            "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.</p>"
+            "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
           }
         }
       ]
