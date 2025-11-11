@@ -27,14 +27,13 @@
     background-color: #f5f5f5;
   }
 
-  .product-split-{{ section.id }} .image-container img {
+  .product-split-{{ section.id }} .hero-image {
     width: 100%;
     height: 120%;
     object-fit: cover;
     object-position: center top;
     display: block;
     will-change: transform;
-    position: relative;
   }
 
   .product-split-{{ section.id }} .label {
@@ -66,12 +65,13 @@
 
   .product-split-{{ section.id }} .sidebar {
     padding: 40px 32px;
+    background-color: {{ section.settings.sidebar_bg }};
   }
 
   .product-split-{{ section.id }} .sticky-content {
     position: sticky;
     top: 0;
-    transition: all 0.3s ease;
+    transition: position 35ms ease-out;
   }
   
   .product-split-{{ section.id }} .sticky-content.release {
@@ -94,7 +94,6 @@
     justify-content: center;
     margin-bottom: 20px;
     position: relative;
-    overflow: hidden;
   }
 
   .product-split-{{ section.id }} .product-image-container img {
@@ -160,10 +159,6 @@
     border-top: 1px solid {{ section.settings.divider_color }};
   }
 
-  .product-split-{{ section.id }} .extra-content:first-of-type {
-    margin-top: 60px;
-  }
-
   .product-split-{{ section.id }} .extra-content h3 {
     font-size: 14px;
     font-weight: 500;
@@ -176,10 +171,6 @@
     line-height: 1.6;
     color: {{ section.settings.secondary_text_color }};
     margin-bottom: 16px;
-  }
-
-  .product-split-{{ section.id }} .extra-content p:last-child {
-    margin-bottom: 0;
   }
 
   .product-split-{{ section.id }} .spec-item {
@@ -222,9 +213,8 @@
       height: 100%;
     }
 
-    .product-split-{{ section.id }} .image-container img {
+    .product-split-{{ section.id }} .hero-image {
       height: 100%;
-      object-position: center center;
     }
 
     .product-split-{{ section.id }} .right-column {
@@ -244,19 +234,26 @@
 <div class="product-split-{{ section.id }}">
   <div class="page-wrapper">
     <div class="left-column">
-      <div class="image-container" id="imageContainer-{{ section.id }}">
+      <div class="image-container">
         {% if section.settings.hero_image %}
           <img 
-            id="heroImage-{{ section.id }}"
-            src="{{ section.settings.hero_image | image_url: width: 2000 }}"
-            alt="{{ section.settings.product_title }}"
+            class="hero-image"
+            id="heroImage{{ section.id }}"
+            src="{{ section.settings.hero_image | img_url: '1600x' }}"
+            srcset="{{ section.settings.hero_image | img_url: '400x' }} 400w,
+                    {{ section.settings.hero_image | img_url: '800x' }} 800w,
+                    {{ section.settings.hero_image | img_url: '1200x' }} 1200w,
+                    {{ section.settings.hero_image | img_url: '1600x' }} 1600w,
+                    {{ section.settings.hero_image | img_url: '2000x' }} 2000w"
+            sizes="(max-width: 968px) 100vw, 66vw"
+            alt="{{ section.settings.product_title | default: 'Product' | escape }}"
+            onload="console.log('Hero image loaded successfully')"
+            onerror="console.error('Hero image failed to load:', this.src)"
           >
         {% else %}
-          <img 
-            id="heroImage-{{ section.id }}" 
-            src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png"
-            alt="Placeholder"
-          >
+          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #e8e4dc 0%, #d0cbc1 100%); display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">
+            Add Hero Image
+          </div>
         {% endif %}
         
         {% if section.settings.show_label and section.settings.label_text != blank %}
@@ -270,18 +267,17 @@
     
     <div class="right-column">
       <div class="sidebar">
-        <div class="sticky-content" id="stickyContent-{{ section.id }}">
+        <div class="sticky-content" id="stickyContent{{ section.id }}">
           {% if section.settings.description != blank %}
             <div class="description">{{ section.settings.description }}</div>
           {% endif %}
           
           {% if section.settings.show_product_visual %}
             <div class="product-image-container">
-              {% if section.settings.product_image != blank %}
+              {% if section.settings.product_image %}
                 <img 
-                  src="{{ section.settings.product_image | image_url: width: 600 }}"
-                  alt="{{ section.settings.product_title | default: 'Product' }}"
-                  loading="lazy"
+                  src="{{ section.settings.product_image | img_url: '600x' }}"
+                  alt="{{ section.settings.product_title | default: 'Product' | escape }}"
                 >
               {% else %}
                 <div class="product-orb">
@@ -341,37 +337,35 @@
 
 <script>
 (function() {
-  'use strict';
-  
-  const sectionId = '{{ section.id }}';
-  const heroImage = document.getElementById('heroImage-' + sectionId);
-  const leftColumn = document.querySelector('.product-split-' + sectionId + ' .left-column');
-  const stickyContent = document.getElementById('stickyContent-' + sectionId);
+  var sectionId = '{{ section.id }}';
+  var heroImage = document.getElementById('heroImage' + sectionId);
+  var leftColumn = document.querySelector('.product-split-' + sectionId + ' .left-column');
+  var stickyContent = document.getElementById('stickyContent' + sectionId);
   
   if (!heroImage || !leftColumn || !stickyContent) {
+    console.log('Elements not found:', {
+      heroImage: !!heroImage,
+      leftColumn: !!leftColumn,
+      stickyContent: !!stickyContent
+    });
     return;
   }
 
-  let ticking = false;
-  let lastScrollY = window.pageYOffset || window.scrollY;
+  var ticking = false;
 
   function updateParallax() {
-    const scrollY = window.pageYOffset || window.scrollY;
-    
-    // Calculate parallax effect - move image at 40% speed of scroll
-    const parallax = scrollY * 0.4;
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    var parallax = scrollY * 0.4;
     heroImage.style.transform = 'translateY(' + parallax + 'px)';
-    
     ticking = false;
   }
 
   function updateStickyRelease() {
-    const scrollY = window.pageYOffset || window.scrollY;
-    const leftColumnRect = leftColumn.getBoundingClientRect();
-    const leftColumnBottom = leftColumnRect.bottom + scrollY;
-    const scrollBottom = scrollY + window.innerHeight;
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    var leftColumnRect = leftColumn.getBoundingClientRect();
+    var leftColumnBottom = leftColumnRect.top + scrollY + leftColumn.offsetHeight;
+    var scrollBottom = scrollY + window.innerHeight;
     
-    // Release sticky content when left column is about to end
     if (scrollBottom >= leftColumnBottom - 100) {
       stickyContent.classList.add('release');
     } else {
@@ -380,8 +374,6 @@
   }
 
   function onScroll() {
-    lastScrollY = window.pageYOffset || window.scrollY;
-    
     if (!ticking) {
       window.requestAnimationFrame(function() {
         updateParallax();
@@ -392,30 +384,22 @@
     }
   }
 
-  // Only apply parallax on desktop
   if (window.innerWidth > 968) {
-    window.addEventListener('scroll', onScroll, { passive: true });
-    
-    // Initial calculation
+    window.addEventListener('scroll', onScroll);
     updateParallax();
     updateStickyRelease();
   }
 
-  // Re-initialize on window resize
-  let resizeTimeout;
   window.addEventListener('resize', function() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(function() {
-      if (window.innerWidth > 968) {
-        window.addEventListener('scroll', onScroll, { passive: true });
-        updateParallax();
-        updateStickyRelease();
-      } else {
-        window.removeEventListener('scroll', onScroll);
-        heroImage.style.transform = 'translateY(0)';
-        stickyContent.classList.remove('release');
-      }
-    }, 250);
+    if (window.innerWidth > 968) {
+      window.addEventListener('scroll', onScroll);
+      updateParallax();
+      updateStickyRelease();
+    } else {
+      window.removeEventListener('scroll', onScroll);
+      heroImage.style.transform = 'translateY(0)';
+      stickyContent.classList.remove('release');
+    }
   });
 })();
 </script>
@@ -434,7 +418,7 @@
       "type": "image_picker",
       "id": "hero_image",
       "label": "Hero image",
-      "info": "Recommended: 1600 x 1800px for best parallax effect"
+      "info": "Tall images work best (e.g., 1200 x 1600px)"
     },
     {
       "type": "checkbox",
