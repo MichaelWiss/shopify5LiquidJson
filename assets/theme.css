@@ -149,7 +149,14 @@ body {
 
 .arrow-link__icon {
   flex-shrink: 0;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.arrow-link__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .arrow-icon-standard {
@@ -264,7 +271,16 @@ body {
   left: 0;
   right: 0;
   z-index: 100;
-  transition: background-color 300ms ease;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+.site-header[data-color-mode=dynamic] {
+  background: var(--dynamic-header-bg, var(--ink));
+  color: var(--dynamic-header-text, var(--paper));
+}
+.site-header[data-color-mode=dynamic] .site-logo,
+.site-header[data-color-mode=dynamic] .header-nav a,
+.site-header[data-color-mode=dynamic] .header-icon {
+  color: var(--dynamic-header-text, var(--paper));
 }
 
 #shopify-section-header {
@@ -1595,6 +1611,12 @@ body.cart-drawer-open {
   aspect-ratio: 0.8;
   border: 1px solid var(--hair);
   background: var(--paper);
+}
+.gallery-grid__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .footer__inner {
@@ -3120,6 +3142,10 @@ body.cart-drawer-open {
   letter-spacing: -0.01em;
   max-width: 320px;
   z-index: 2;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+.hero-title[data-scroll-fade] {
+  will-change: opacity, transform;
 }
 
 @media (min-width: 768px) {
@@ -3181,16 +3207,16 @@ body.cart-drawer-open {
 
 .newsletter-signup__heading {
   font-family: var(--serif);
-  font-size: 42px;
-  font-weight: 300;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
   color: var(--ink);
   margin-bottom: 50px;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
 }
 @media (max-width: 768px) {
   .newsletter-signup__heading {
-    font-size: 32px;
+    font-size: 28px;
   }
 }
 

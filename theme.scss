@@ -142,7 +142,15 @@ body {
 
 .arrow-link__icon {
   flex-shrink: 0;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 }
 
 .arrow-icon-standard {
@@ -249,7 +257,19 @@ body {
   left: 0;
   right: 0;
   z-index: 100;
-  transition: background-color 300ms ease;
+  transition: background-color 300ms ease, color 300ms ease;
+  
+  // Dynamic header color mode
+  &[data-color-mode="dynamic"] {
+    background: var(--dynamic-header-bg, var(--ink));
+    color: var(--dynamic-header-text, var(--paper));
+    
+    .site-logo,
+    .header-nav a,
+    .header-icon {
+      color: var(--dynamic-header-text, var(--paper));
+    }
+  }
 }
 
 #shopify-section-header {
@@ -1448,6 +1468,13 @@ body.cart-drawer-open {
 
 .gallery-grid__item {
   @include image-container;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 }
 
 .footer__inner {
@@ -2946,6 +2973,11 @@ body.cart-drawer-open {
   letter-spacing: -0.01em;
   max-width: 320px;
   z-index: 2;
+  transition: opacity 300ms ease, transform 300ms ease;
+  
+  &[data-scroll-fade] {
+    will-change: opacity, transform;
+  }
 }
 
 @media (min-width: 768px) {
@@ -3006,16 +3038,12 @@ body.cart-drawer-open {
 }
 
 .newsletter-signup__heading {
-  font-family: var(--serif);
-  font-size: 42px;
-  font-weight: 300;
+  @include serif-heading(32px);
   color: var(--ink);
   margin-bottom: 50px;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
 
   @media (max-width: 768px) {
-    font-size: 32px;
+    font-size: 28px;
   }
 }
 

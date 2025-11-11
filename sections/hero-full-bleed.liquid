@@ -7,7 +7,7 @@
   {% endif %}
   <div class="hero-overlay"></div>
   {% if section.settings.heading != blank %}
-    <h1 class="hero-title">{{ section.settings.heading }}</h1>
+    <h1 class="hero-title" {% if section.settings.enable_scroll_fade %}data-scroll-fade{% endif %}>{{ section.settings.heading }}</h1>
   {% endif %}
 </section>
 
@@ -26,6 +26,13 @@
       "id": "heading",
       "label": "Heading",
       "default": "Refinements"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_scroll_fade",
+      "label": "Enable scroll fade effect",
+      "default": true,
+      "info": "Logo fades and moves as user scrolls"
     }
   ],
   "presets": [

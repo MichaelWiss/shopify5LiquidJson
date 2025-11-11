@@ -489,4 +489,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize product forms
   initProductForms();
+
+  // ========================================
+  // DYNAMIC HEADER COLOR SWITCHING
+  // ========================================
+  const header = document.querySelector('.site-header[data-color-mode="dynamic"]');
+  if (header) {
+    const sectionsWithColor = document.querySelectorAll('[data-header-color]');
+    
+    if (sectionsWithColor.length > 0) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+            const bgColor = entry.target.dataset.headerBg || '#ffffff';
+            const textColor = entry.target.dataset.headerText || '#1a1a1a';
+            
+            header.style.setProperty('--dynamic-header-bg', bgColor);
+            header.style.setProperty('--dynamic-header-text', textColor);
+          }
+        });
+      }, {
+        threshold: [0, 0.3, 0.5, 0.7, 1],
+        rootMargin: '-80px 0px 0px 0px'
+      });
+
+      sectionsWithColor.forEach(section => observer.observe(section));
+    }
+  }
+
+  // ========================================
+  // SCROLL-AWARE LOGO FADE
+  // ========================================
+  const scrollFadeElements = document.querySelectorAll('[data-scroll-fade]');
+  if (scrollFadeElements.length > 0) {
+    let ticking = false;
+    
+    const updateFade = () => {
+      const scrollPercent = window.scrollY / window.innerHeight;
+      scrollFadeElements.forEach(el => {
+        const opacity = Math.max(0, 1 - scrollPercent * 2);
+        el.style.opacity = opacity;
+        el.style.transform = `translateY(${scrollPercent * 50}px)`;
+      });
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateFade);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
 });

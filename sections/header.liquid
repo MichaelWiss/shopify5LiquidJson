@@ -1,4 +1,4 @@
-<header class="site-header">
+<header class="site-header" {% if section.settings.enable_dynamic_color %}data-color-mode="dynamic"{% endif %}>
   <div class="header-container">
     <a href="/" class="site-logo">{{ section.settings.logo_text | default: shop.name }}</a>
 
@@ -54,6 +54,13 @@
       "label": "Fallback links",
       "default": "Shop|/collections/all,Collections|/collections,Showrooms|/pages/showrooms",
       "info": "Comma separated pairs in the format Label|URL, used when no menu is assigned."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_dynamic_color",
+      "label": "Enable dynamic header color",
+      "default": false,
+      "info": "Header color changes based on section settings"
     }
   ],
   "presets": [
