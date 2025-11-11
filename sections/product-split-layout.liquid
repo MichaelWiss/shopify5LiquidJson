@@ -1,0 +1,568 @@
+{% comment %}
+  Product Split Layout Section
+  Save this as: sections/product-split-layout.liquid
+{% endcomment %}
+
+<style>
+  .product-split-{{ section.id }} * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .product-split-{{ section.id }} {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .product-split-{{ section.id }} .page-wrapper {
+    display: flex;
+    min-height: 200vh;
+  }
+
+  .product-split-{{ section.id }} .left-column {
+    flex: 1;
+    height: 150vh;
+    position: relative;
+  }
+
+  .product-split-{{ section.id }} .image-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .product-split-{{ section.id }} .image-container img {
+    width: 100%;
+    height: 120%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .product-split-{{ section.id }} .label {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: {{ section.settings.label_color }};
+    font-size: 14px;
+    z-index: 10;
+  }
+
+  .product-split-{{ section.id }} .label-dot {
+    width: 10px;
+    height: 10px;
+    background-color: {{ section.settings.label_color }};
+    border-radius: 50%;
+  }
+
+  .product-split-{{ section.id }} .right-column {
+    width: 340px;
+    background-color: {{ section.settings.sidebar_bg }};
+  }
+
+  .product-split-{{ section.id }} .sidebar {
+    padding: 40px 32px;
+    background-color: {{ section.settings.sidebar_bg }};
+  }
+
+  .product-split-{{ section.id }} .sticky-content {
+    position: sticky;
+    top: 0;
+    transition: position 35ms ease-out;
+  }
+  
+  .product-split-{{ section.id }} .sticky-content.release {
+    position: relative;
+  }
+
+  .product-split-{{ section.id }} .description {
+    font-size: 14px;
+    line-height: 1.7;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 60px;
+  }
+
+  .product-split-{{ section.id }} .product-image-container {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: {{ section.settings.product_box_bg }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .product-split-{{ section.id }} .product-orb {
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+
+  .product-split-{{ section.id }} .orb-main {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #f5f0ea);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .product-split-{{ section.id }} .orb-ring {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 32px;
+    height: 32px;
+    border: 3px solid #8b4513;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+
+  .product-split-{{ section.id }} .product-title {
+    font-size: 13px;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+
+  .product-split-{{ section.id }} .product-price {
+    font-size: 13px;
+    color: {{ section.settings.secondary_text_color }};
+    margin-bottom: 16px;
+  }
+
+  .product-split-{{ section.id }} .shop-link {
+    font-size: 13px;
+    color: {{ section.settings.text_color }};
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+  }
+
+  .product-split-{{ section.id }} .shop-link:hover {
+    color: {{ section.settings.secondary_text_color }};
+  }
+
+  .product-split-{{ section.id }} .extra-content {
+    margin-top: 60px;
+    padding-top: 60px;
+    border-top: 1px solid {{ section.settings.divider_color }};
+  }
+
+  .product-split-{{ section.id }} .extra-content h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: {{ section.settings.text_color }};
+  }
+
+  .product-split-{{ section.id }} .extra-content p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: {{ section.settings.secondary_text_color }};
+    margin-bottom: 20px;
+  }
+
+  .product-split-{{ section.id }} .spec-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 12px 0;
+    border-bottom: 1px solid {{ section.settings.spec_divider_color }};
+  }
+
+  .product-split-{{ section.id }} .spec-label {
+    color: {{ section.settings.secondary_text_color }};
+  }
+
+  .product-split-{{ section.id }} .spec-value {
+    color: {{ section.settings.text_color }};
+  }
+
+  @media (max-width: 968px) {
+    .product-split-{{ section.id }} .page-wrapper {
+      flex-direction: column;
+      min-height: auto;
+    }
+
+    .product-split-{{ section.id }} .left-column {
+      height: 60vh;
+    }
+
+    .product-split-{{ section.id }} .image-container {
+      position: relative;
+      height: 60vh;
+    }
+
+    .product-split-{{ section.id }} .right-column {
+      width: 100%;
+    }
+
+    .product-split-{{ section.id }} .sticky-content {
+      position: relative !important;
+    }
+  }
+</style>
+
+<div class="product-split-{{ section.id }}">
+  <div class="page-wrapper">
+    <div class="left-column">
+      <div class="image-container">
+        {% if section.settings.hero_image != blank %}
+          <img 
+            id="heroImage-{{ section.id }}" 
+            src="{{ section.settings.hero_image | image_url: width: 1600 }}" 
+            alt="{{ section.settings.hero_image.alt | default: section.settings.product_title }}"
+            loading="lazy"
+          >
+        {% else %}
+          <img 
+            id="heroImage-{{ section.id }}" 
+            src="https://cdn.shopify.com/s/files/1/0000/0000/files/placeholder.jpg" 
+            alt="Product"
+          >
+        {% endif %}
+        
+        {% if section.settings.show_label %}
+          <div class="label">
+            <div class="label-dot"></div>
+            <span>{{ section.settings.label_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    
+    <div class="right-column">
+      <div class="sidebar">
+        <div class="sticky-content" id="stickyContent-{{ section.id }}">
+          {% if section.settings.description != blank %}
+            <p class="description">{{ section.settings.description }}</p>
+          {% endif %}
+          
+          {% if section.settings.show_product_visual %}
+            <div class="product-image-container">
+              {% if section.settings.product_image != blank %}
+                {{ section.settings.product_image | image_url: width: 300 | image_tag: alt: section.settings.product_title }}
+              {% else %}
+                <div class="product-orb">
+                  <div class="orb-main"></div>
+                  <div class="orb-ring"></div>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+          
+          {% if section.settings.product_title != blank %}
+            <div class="product-title">{{ section.settings.product_title }}</div>
+          {% endif %}
+          
+          {% if section.settings.product_price != blank %}
+            <div class="product-price">{{ section.settings.product_price }}</div>
+          {% endif %}
+          
+          {% if section.settings.shop_link_url != blank %}
+            <a href="{{ section.settings.shop_link_url }}" class="shop-link">
+              {{ section.settings.shop_link_text | default: "Shop" }}
+            </a>
+          {% endif %}
+
+          {% if section.settings.show_specs %}
+            <div class="extra-content">
+              <h3>{{ section.settings.specs_title | default: "Specifications" }}</h3>
+              {% for block in section.blocks %}
+                {% if block.type == 'specification' %}
+                  <div class="spec-item" {{ block.shopify_attributes }}>
+                    <span class="spec-label">{{ block.settings.spec_label }}</span>
+                    <span class="spec-value">{{ block.settings.spec_value }}</span>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        {% for block in section.blocks %}
+          {% if block.type == 'content_block' %}
+            <div class="extra-content" {{ block.shopify_attributes }}>
+              {% if block.settings.heading != blank %}
+                <h3>{{ block.settings.heading }}</h3>
+              {% endif %}
+              {% if block.settings.content != blank %}
+                <div class="rich-text">
+                  {{ block.settings.content }}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const sectionId = '{{ section.id }}';
+    const heroImage = document.getElementById('heroImage-' + sectionId);
+    const leftColumn = document.querySelector('.product-split-' + sectionId + ' .left-column');
+    const stickyContent = document.getElementById('stickyContent-' + sectionId);
+    let scrollTimer = null;
+    
+    if (heroImage && leftColumn && stickyContent) {
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const parallax = scrollY * 0.4;
+        heroImage.style.transform = `translateY(${parallax}px)`;
+        
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          const leftColumnBottom = leftColumn.offsetTop + leftColumn.offsetHeight;
+          const scrollBottom = scrollY + window.innerHeight;
+          
+          if (scrollBottom >= leftColumnBottom - 100) {
+            stickyContent.classList.add('release');
+          } else {
+            stickyContent.classList.remove('release');
+          }
+        }, 35);
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product Split Layout",
+  "tag": "section",
+  "class": "product-split-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_label",
+      "label": "Show label overlay",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Label text",
+      "default": "Orb 4 Surface Mount"
+    },
+    {
+      "type": "header",
+      "content": "Product Information"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Product description",
+      "default": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_visual",
+      "label": "Show product visual",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image",
+      "info": "Leave empty to show decorative orb"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Product title",
+      "default": "Orb 4 Surface Mount"
+    },
+    {
+      "type": "text",
+      "id": "product_price",
+      "label": "Product price",
+      "default": "From $300.00"
+    },
+    {
+      "type": "text",
+      "id": "shop_link_text",
+      "label": "Shop link text",
+      "default": "Shop"
+    },
+    {
+      "type": "url",
+      "id": "shop_link_url",
+      "label": "Shop link URL"
+    },
+    {
+      "type": "header",
+      "content": "Specifications"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_specs",
+      "label": "Show specifications",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "specs_title",
+      "label": "Specifications title",
+      "default": "Specifications"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "sidebar_bg",
+      "label": "Sidebar background",
+      "default": "#fafafa"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "secondary_text_color",
+      "label": "Secondary text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "product_box_bg",
+      "label": "Product box background",
+      "default": "#e8e4df"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Section divider color",
+      "default": "#dddddd"
+    },
+    {
+      "type": "color",
+      "id": "spec_divider_color",
+      "label": "Spec divider color",
+      "default": "#eeeeee"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "specification",
+      "name": "Specification",
+      "settings": [
+        {
+          "type": "text",
+          "id": "spec_label",
+          "label": "Label",
+          "default": "Diameter"
+        },
+        {
+          "type": "text",
+          "id": "spec_value",
+          "label": "Value",
+          "default": "4 inches"
+        }
+      ]
+    },
+    {
+      "type": "content_block",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Details"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Add your content here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Split Layout",
+      "blocks": [
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Diameter",
+            "spec_value": "4 inches"
+          }
+        },
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Height",
+            "spec_value": "4.5 inches"
+          }
+        },
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Weight",
+            "spec_value": "1.2 lbs"
+          }
+        },
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Material",
+            "spec_value": "Hand-blown glass, brass"
+          }
+        },
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Bulb Type",
+            "spec_value": "E26 LED (included)"
+          }
+        },
+        {
+          "type": "content_block",
+          "settings": {
+            "heading": "Details",
+            "content": "<p>Each fixture features a hand-blown glass sphere that diffuses light evenly in all directions.</p>"
+          }
+        },
+        {
+          "type": "content_block",
+          "settings": {
+            "heading": "Care Instructions",
+            "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
