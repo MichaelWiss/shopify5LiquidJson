@@ -26,7 +26,7 @@
 
     <div class="header-icons">
       <a href="/search" class="header-icon">{% render 'icon', name: 'search' %}</a>
-      <a href="/cart" class="header-icon">{% render 'icon', name: 'cart' %}
+      <a href="/cart" class="header-icon" data-action="open-cart">{% render 'icon', name: 'cart' %}
         <span class="cart-count {% if cart.item_count == 0 %}visually-hidden{% endif %}" aria-live="polite">{{ cart.item_count }}</span>
       </a>
     </div>

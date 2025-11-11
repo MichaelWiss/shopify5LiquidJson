@@ -2972,45 +2972,6 @@ body.cart-drawer-open {
   margin-bottom: 40px;
 }
 
-/* Product Scroll - Duplicate removed, using single definition above */
-
-.product-thumb {
-  flex-shrink: 0;
-  width: 140px;
-  text-decoration: none;
-  color: inherit;
-}
-
-.product-thumb-image {
-  width: 140px;
-  height: 180px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  background: var(--paper);
-}
-
-.product-thumb-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.product-thumb:hover .product-thumb-image img {
-  transform: scale(1.03);
-}
-
-.product-thumb-title {
-  font-size: 11px;
-  margin-bottom: 2px;
-  font-weight: 400;
-}
-
-.product-thumb-price {
-  font-size: 10px;
-  color: var(--ink-2);
-}
-
 /* Three Column */
 .three-column {
   @include section-padding;
@@ -3110,7 +3071,7 @@ body.cart-drawer-open {
     font-size: 12px;
     color: var(--ink-2);
     text-decoration: none;
-    transition: color 200ms ease;
+    @include transition-color;
 
     &:hover {
       color: var(--ink);

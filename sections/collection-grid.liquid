@@ -77,7 +77,8 @@
               <div class="collection-page__controls">
                 {% if collection.filters.size > 0 %}
                   <button class="collection-page__filter-toggle" 
-                          id="collectionFilterToggle" 
+                          id="collectionFilterToggle"
+                          data-action="toggle-filters" 
                           aria-expanded="false" 
                           aria-controls="collectionFilters">
                     <span class="collection-page__filter-icon">+</span>
@@ -88,9 +89,9 @@
                 <div class="collection-page__view-toggle">
                   <span class="collection-page__view-label">View:</span>
                   <div class="collection-page__view-buttons">
-                    <button class="collection-page__view-btn" data-view="small">S</button>
-                    <button class="collection-page__view-btn is-active" data-view="medium">M</button>
-                    <button class="collection-page__view-btn" data-view="large">L</button>
+                    <button class="collection-page__view-btn" data-action="toggle-view" data-view="small">S</button>
+                    <button class="collection-page__view-btn is-active" data-action="toggle-view" data-view="medium">M</button>
+                    <button class="collection-page__view-btn" data-action="toggle-view" data-view="large">L</button>
                   </div>
                 </div>
               </div>

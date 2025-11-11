@@ -182,3 +182,27 @@
   @include image-container($ratio);
   margin-bottom: $s2;
 }
+
+// ========================================
+// TRANSITIONS
+// ========================================
+
+@mixin transition-color {
+  transition: color 200ms ease;
+}
+
+@mixin transition-opacity {
+  transition: opacity 200ms ease;
+}
+
+@mixin transition-background {
+  transition: background 200ms ease;
+}
+
+@mixin transition-transform {
+  transition: transform 200ms ease;
+}
+
+@mixin transition-all {
+  transition: all 200ms ease;
+}

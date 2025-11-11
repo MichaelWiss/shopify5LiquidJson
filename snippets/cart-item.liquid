@@ -29,13 +29,13 @@
       <div class="cart-item__quantity">
         <button 
           class="cart-item__qty-btn" 
-          data-action="decrease" 
+          data-action="cart-qty-decrease" 
           data-line="{{ line_index }}"
           {% if include_aria_labels %}aria-label="Decrease quantity"{% endif %}>−</button>
         <span class="cart-item__qty-value">{{ item.quantity }}</span>
         <button 
           class="cart-item__qty-btn" 
-          data-action="increase" 
+          data-action="cart-qty-increase" 
           data-line="{{ line_index }}"
           {% if include_aria_labels %}aria-label="Increase quantity"{% endif %}>+</button>
       </div>
@@ -53,7 +53,7 @@
         <p class="cart-item__sku">{{ item.variant.sku }}</p>
       {% endif %}
 
-      <button class="cart-item__remove" data-line="{{ line_index }}">Remove</button>
+      <button class="cart-item__remove" data-action="cart-remove" data-line="{{ line_index }}">Remove</button>
     </div>
 
     {% if item.properties.sidemark %}
