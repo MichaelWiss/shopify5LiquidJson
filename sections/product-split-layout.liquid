@@ -245,14 +245,12 @@
   <div class="page-wrapper">
     <div class="left-column">
       <div class="image-container" id="imageContainer-{{ section.id }}">
-        {% if section.settings.hero_image != blank %}
+        {% if section.settings.hero_image %}
           <img 
             id="heroImage-{{ section.id }}"
-            src="{{ section.settings.hero_image | img_url: '1600x' }}"
-            alt="{{ section.settings.hero_image.alt | default: section.settings.product_title | default: 'Product image' }}"
+            src="{{ section.settings.hero_image | image_url: width: 1600 }}"
+            alt="{{ section.settings.product_title | default: 'Product image' }}"
             loading="eager"
-            width="1600"
-            height="1800"
           >
         {% else %}
           <img 
@@ -260,10 +258,416 @@
             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1200'%3E%3Crect fill='%23e8e4dc' width='1600' height='1200'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='%23666666' text-anchor='middle' dominant-baseline='middle'%3EAdd Hero Image%3C/text%3E%3C/svg%3E"
             alt="Hero image placeholder"
             loading="eager"
-            width="1600"
-            height="1200"
           >
         {% endif %}
+        
+        {% if section.settings.show_label and section.settings.label_text != blank %}
+          <div class="label">
+            <div class="label-dot"></div>
+            <span>{{ section.settings.label_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    
+    <div class="right-column">
+      <div class="sidebar">
+        <div class="sticky-content" id="stickyContent-{{ section.id }}">
+          {% if section.settings.description != blank %}
+            <div class="description">{{ section.settings.description }}</div>
+          {% endif %}
+          
+          {% if section.settings.show_product_visual %}
+            <div class="product-image-container">
+              {% if section.settings.product_image != blank %}
+                <img 
+                  src="{{ section.settings.product_image | image_url: width: 600 }}"
+                  alt="{{ section.settings.product_title | default: 'Product' }}"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="product-orb">
+                  <div class="orb-main"></div>
+                  <div class="orb-ring"></div>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+          
+          {% if section.settings.product_title != blank %}
+            <div class="product-title">{{ section.settings.product_title }}</div>
+          {% endif %}
+          
+          {% if section.settings.product_price != blank %}
+            <div class="product-price">{{ section.settings.product_price }}</div>
+          {% endif %}
+          
+          {% if section.settings.shop_link_url != blank %}
+            <a href="{{ section.settings.shop_link_url }}" class="shop-link">
+              {{ section.settings.shop_link_text | default: "Shop" }}
+            </a>
+          {% endif %}
+
+          {% if section.settings.show_specs %}
+            {% assign spec_blocks = section.blocks | where: "type", "specification" %}
+            {% if spec_blocks.size > 0 %}
+              <div class="extra-content">
+                <h3>{{ section.settings.specs_title | default: "Specifications" }}</h3>
+                {% for block in spec_blocks %}
+                  <div class="spec-item" {{ block.shopify_attributes }}>
+                    <span class="spec-label">{{ block.settings.spec_label }}</span>
+                    <span class="spec-value">{{ block.settings.spec_value }}</span>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+
+        {% for block in section.blocks %}
+          {% if block.type == 'content_block' %}
+            <div class="extra-content" {{ block.shopify_attributes }}>
+              {% if block.settings.heading != blank %}
+                <h3>{{ block.settings.heading }}</h3>
+              {% endif %}
+              {% if block.settings.content != blank %}
+                {{ block.settings.content }}
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+  
+  const sectionId = '{{ section.id }}';
+  const heroImage = document.getElementById('heroImage-' + sectionId);
+  const leftColumn = document.querySelector('.product-split-' + sectionId + ' .left-column');
+  const stickyContent = document.getElementById('stickyContent-' + sectionId);
+  
+  if (!heroImage || !leftColumn || !stickyContent) {
+    return;
+  }
+
+  let ticking = false;
+  let lastScrollY = window.pageYOffset || window.scrollY;
+
+  function updateParallax() {
+    const scrollY = window.pageYOffset || window.scrollY;
+    
+    // Calculate parallax effect - move image at 40% speed of scroll
+    const parallax = scrollY * 0.4;
+    heroImage.style.transform = 'translateY(' + parallax + 'px)';
+    
+    ticking = false;
+  }
+
+  function updateStickyRelease() {
+    const scrollY = window.pageYOffset || window.scrollY;
+    const leftColumnRect = leftColumn.getBoundingClientRect();
+    const leftColumnBottom = leftColumnRect.bottom + scrollY;
+    const scrollBottom = scrollY + window.innerHeight;
+    
+    // Release sticky content when left column is about to end
+    if (scrollBottom >= leftColumnBottom - 100) {
+      stickyContent.classList.add('release');
+    } else {
+      stickyContent.classList.remove('release');
+    }
+  }
+
+  function onScroll() {
+    lastScrollY = window.pageYOffset || window.scrollY;
+    
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateParallax();
+        updateStickyRelease();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  // Only apply parallax on desktop
+  if (window.innerWidth > 968) {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    // Initial calculation
+    updateParallax();
+    updateStickyRelease();
+  }
+
+  // Re-initialize on window resize
+  let resizeTimeout;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+      if (window.innerWidth > 968) {
+        window.addEventListener('scroll', onScroll, { passive: true });
+        updateParallax();
+        updateStickyRelease();
+      } else {
+        window.removeEventListener('scroll', onScroll);
+        heroImage.style.transform = 'translateY(0)';
+        stickyContent.classList.remove('release');
+      }
+    }, 250);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Product Split Layout",
+  "tag": "section",
+  "class": "product-split-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image",
+      "info": "Recommended: 1600 x 1800px for best parallax effect"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_label",
+      "label": "Show label overlay",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Label text",
+      "default": "Orb 4 Surface Mount"
+    },
+    {
+      "type": "header",
+      "content": "Product Information"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Product description",
+      "default": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale, Orb lights are available in a range of sizes and finishes, and can be mounted to either walls or ceilings."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_visual",
+      "label": "Show product visual",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image",
+      "info": "Leave empty to show decorative orb graphic"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Product title",
+      "default": "Orb 4 Surface Mount"
+    },
+    {
+      "type": "text",
+      "id": "product_price",
+      "label": "Product price",
+      "default": "From $300.00"
+    },
+    {
+      "type": "text",
+      "id": "shop_link_text",
+      "label": "Shop button text",
+      "default": "Shop"
+    },
+    {
+      "type": "url",
+      "id": "shop_link_url",
+      "label": "Shop button link"
+    },
+    {
+      "type": "header",
+      "content": "Specifications"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_specs",
+      "label": "Show specifications section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "specs_title",
+      "label": "Specifications heading",
+      "default": "Specifications"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "sidebar_bg",
+      "label": "Sidebar background",
+      "default": "#fafafa"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Primary text color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "secondary_text_color",
+      "label": "Secondary text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label overlay color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "product_box_bg",
+      "label": "Product box background",
+      "default": "#e8e4df"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Section divider",
+      "default": "#dddddd"
+    },
+    {
+      "type": "color",
+      "id": "spec_divider_color",
+      "label": "Specification divider",
+      "default": "#eeeeee"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "specification",
+      "name": "Specification",
+      "settings": [
+        {
+          "type": "text",
+          "id": "spec_label",
+          "label": "Label",
+          "default": "Diameter"
+        },
+        {
+          "type": "text",
+          "id": "spec_value",
+          "label": "Value",
+          "default": "4 inches"
+        }
+      ]
+    },
+    {
+      "type": "content_block",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Details"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Add your content here. You can include multiple paragraphs and format text as needed.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Split Layout",
+      "blocks": [
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Diameter",
+            "spec_value": "4 inches"
+          }
+        },
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Height",
+            "spec_value": "4.5 inches"
+          }
+        },
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Weight",
+            "spec_value": "1.2 lbs"
+          }
+        },
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Material",
+            "spec_value": "Hand-blown glass, brass"
+          }
+        },
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Bulb Type",
+            "spec_value": "E26 LED (included)"
+          }
+        },
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Wattage",
+            "spec_value": "40W max"
+          }
+        },
+        {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Dimming",
+            "spec_value": "Compatible"
+          }
+        },
+        {
+          "type": "content_block",
+          "settings": {
+            "heading": "Details",
+            "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
+          }
+        },
+        {
+          "type": "content_block",
+          "settings": {
+            "heading": "Care Instructions",
+            "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
         
         {% if section.settings.show_label and section.settings.label_text != blank %}
           <div class="label">
