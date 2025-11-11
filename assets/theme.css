@@ -3128,6 +3128,8 @@ body.cart-drawer-open {
   right: 0;
   bottom: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hero-title {
