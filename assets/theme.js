@@ -496,17 +496,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('.site-header[data-color-mode="dynamic"]');
   if (header) {
     let ticking = false;
-    const headerHeight = header.offsetHeight;
+    const heroSection = document.querySelector('.hero');
     
     const updateHeaderColor = () => {
-      const scrolled = window.scrollY > headerHeight;
+      if (!heroSection) {
+        ticking = false;
+        return;
+      }
       
-      if (scrolled) {
-        header.style.setProperty('--dynamic-header-bg', '#ffffff');
+      const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+      const scrollPos = window.scrollY;
+      
+      // At top of page: dark grey bg with white text
+      if (scrollPos === 0) {
+        header.style.setProperty('--dynamic-header-bg', '#1a1a1a');
+        header.style.setProperty('--dynamic-header-text', '#ffffff');
+      }
+      // Scrolling over hero image: transparent bg with white text
+      else if (scrollPos < heroBottom) {
+        header.style.setProperty('--dynamic-header-bg', 'transparent');
+        header.style.setProperty('--dynamic-header-text', '#ffffff');
+      } 
+      // Past hero: transparent bg with dark text
+      else {
+        header.style.setProperty('--dynamic-header-bg', 'transparent');
         header.style.setProperty('--dynamic-header-text', '#1a1a1a');
-      } else {
-        header.style.setProperty('--dynamic-header-bg', 'var(--ink)');
-        header.style.setProperty('--dynamic-header-text', 'var(--paper)');
       }
       
       ticking = false;

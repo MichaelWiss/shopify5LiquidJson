@@ -272,6 +272,8 @@ body {
   right: 0;
   z-index: 100;
   transition: background-color 300ms ease, color 300ms ease;
+  border: none;
+  box-shadow: none;
 }
 .site-header[data-color-mode=dynamic] {
   background: var(--dynamic-header-bg, var(--ink));
@@ -1045,7 +1047,7 @@ body.cart-drawer-open {
 
 .hero {
   margin-top: 0;
-  height: 90vh;
+  height: 120vh;
   position: relative;
   overflow: hidden;
 }
@@ -1053,8 +1055,10 @@ body.cart-drawer-open {
 .hero-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center center;
   display: block;
+  min-height: 120vh;
 }
 
 .hero-overlay {
@@ -3048,7 +3052,6 @@ body.cart-drawer-open {
   left: 0;
   right: 0;
   z-index: 100;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
@@ -3110,7 +3113,7 @@ body.cart-drawer-open {
 /* Hero */
 .hero {
   margin-top: 41px;
-  height: 90vh;
+  height: 125vh;
   position: relative;
   overflow: hidden;
 }
