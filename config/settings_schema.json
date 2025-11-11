@@ -104,7 +104,7 @@
         "type": "font_picker",
         "id": "body_font",
         "label": "Body sans",
-        "default": "system",
+        "default": "assistant_n4",
         "info": "Maps to token --sans (body copy + UI)."
       }
     ]
