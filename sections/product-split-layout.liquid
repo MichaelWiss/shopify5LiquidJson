@@ -244,20 +244,15 @@
 <div class="product-split-{{ section.id }}">
   <div class="page-wrapper">
     <div class="left-column">
-      <div class="image-container">
+      <div class="image-container" id="imageContainer-{{ section.id }}">
         {% if section.settings.hero_image != blank %}
           <img 
             id="heroImage-{{ section.id }}"
-            src="{{ section.settings.hero_image | image_url: width: 1600 }}"
-            srcset="{{ section.settings.hero_image | image_url: width: 375 }} 375w,
-                    {{ section.settings.hero_image | image_url: width: 750 }} 750w,
-                    {{ section.settings.hero_image | image_url: width: 1100 }} 1100w,
-                    {{ section.settings.hero_image | image_url: width: 1500 }} 1500w,
-                    {{ section.settings.hero_image | image_url: width: 1780 }} 1780w,
-                    {{ section.settings.hero_image | image_url: width: 2000 }} 2000w"
-            sizes="(max-width: 968px) 100vw, 66vw"
+            src="{{ section.settings.hero_image | img_url: '1600x' }}"
             alt="{{ section.settings.hero_image.alt | default: section.settings.product_title | default: 'Product image' }}"
             loading="eager"
+            width="1600"
+            height="1800"
           >
         {% else %}
           <img 
@@ -265,6 +260,8 @@
             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1200'%3E%3Crect fill='%23e8e4dc' width='1600' height='1200'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='%23666666' text-anchor='middle' dominant-baseline='middle'%3EAdd Hero Image%3C/text%3E%3C/svg%3E"
             alt="Hero image placeholder"
             loading="eager"
+            width="1600"
+            height="1200"
           >
         {% endif %}
         
