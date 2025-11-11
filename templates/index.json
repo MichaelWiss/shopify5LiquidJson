@@ -378,6 +378,91 @@
         "divider_color": "#c4bfb5"
       }
     },
+    "product_split_layout_kdrBNb": {
+      "type": "product-split-layout",
+      "blocks": {
+        "specification_UHDPnP": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Diameter",
+            "spec_value": "4 inches"
+          }
+        },
+        "specification_NnPy8D": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Height",
+            "spec_value": "4.5 inches"
+          }
+        },
+        "specification_YCeRFG": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Weight",
+            "spec_value": "1.2 lbs"
+          }
+        },
+        "specification_7zHknN": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Material",
+            "spec_value": "Hand-blown glass, brass"
+          }
+        },
+        "specification_69NLUe": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Bulb Type",
+            "spec_value": "E26 LED (included)"
+          }
+        },
+        "content_block_GikAKN": {
+          "type": "content_block",
+          "settings": {
+            "heading": "Details",
+            "content": "<p>Each fixture features a hand-blown glass sphere that diffuses light evenly in all directions.</p>"
+          }
+        },
+        "content_block_ftrnU3": {
+          "type": "content_block",
+          "settings": {
+            "heading": "Care Instructions",
+            "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "specification_UHDPnP",
+        "specification_NnPy8D",
+        "specification_YCeRFG",
+        "specification_7zHknN",
+        "specification_69NLUe",
+        "content_block_GikAKN",
+        "content_block_ftrnU3"
+      ],
+      "name": "Product Split Layout",
+      "settings": {
+        "hero_image": "shopify://shop_images/Screenshot_2025-11-06_at_11.02.14_PM.png",
+        "show_label": true,
+        "label_text": "Orb 4 Surface Mount",
+        "description": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore.",
+        "show_product_visual": true,
+        "product_image": "shopify://shop_images/Zoe-Feldman-Home-Tour-Domino-12.webp",
+        "product_title": "Orb 4 Surface Mount",
+        "product_price": "From $300.00",
+        "shop_link_text": "Shop",
+        "shop_link_url": "",
+        "show_specs": true,
+        "specs_title": "Specifications",
+        "sidebar_bg": "#fafafa",
+        "text_color": "#1a1a1a",
+        "secondary_text_color": "#666666",
+        "label_color": "#ffffff",
+        "product_box_bg": "#e8e4df",
+        "divider_color": "#dddddd",
+        "spec_divider_color": "#eeeeee"
+      }
+    },
     "text_columns": {
       "type": "text-columns",
       "blocks": {
@@ -424,6 +509,7 @@
     "split_feature_WYJAeH",
     "intro_marquee_BPDmRL",
     "studio_carousel_nKLLVi",
+    "product_split_layout_kdrBNb",
     "text_columns"
   ]
 }
