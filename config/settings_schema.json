@@ -9,5 +9,104 @@
         "default": true
       }
     ]
+  },
+  {
+    "name": "Color system",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Core surfaces"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#F6F2EA",
+        "info": "Maps to token --bg (canvas linen tone)."
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Surface",
+        "default": "#FBF8F3",
+        "info": "Maps to token --paper (cards, sections)."
+      },
+      {
+        "type": "color",
+        "id": "color_overlay",
+        "label": "Overlay",
+        "default": "#EFEAE1",
+        "info": "Maps to token --veil (soft overlay blocks)."
+      },
+      {
+        "type": "header",
+        "content": "Typography colors"
+      },
+      {
+        "type": "color",
+        "id": "color_text_primary",
+        "label": "Primary text",
+        "default": "#29241E",
+        "info": "Maps to token --ink."
+      },
+      {
+        "type": "color",
+        "id": "color_text_secondary",
+        "label": "Secondary text",
+        "default": "#655E53",
+        "info": "Maps to token --ink-2 (captions, meta)."
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Hairline border base",
+        "default": "#6C6458",
+        "info": "Used to derive token --hair with reduced alpha."
+      },
+      {
+        "type": "header",
+        "content": "Accents"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Primary accent",
+        "default": "#6A1F1F",
+        "info": "Maps to token --accent (burgundy)."
+      },
+      {
+        "type": "color",
+        "id": "color_accent_secondary",
+        "label": "Secondary accent",
+        "default": "#A06050",
+        "info": "Maps to token --terracotta for complementary UI."
+      },
+      {
+        "type": "color",
+        "id": "color_accent_tertiary",
+        "label": "Tertiary accent",
+        "default": "#7D8156",
+        "info": "Maps to token --moss for subtle highlights."
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "heading_font",
+        "label": "Heading serif",
+        "default": "times_new_roman_n4",
+        "info": "Maps to token --serif (hero + editorial headings)."
+      },
+      {
+        "type": "font_picker",
+        "id": "body_font",
+        "label": "Body sans",
+        "default": "system",
+        "info": "Maps to token --sans (body copy + UI)."
+      }
+    ]
   }
 ]

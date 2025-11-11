@@ -10,11 +10,18 @@
 {
   "current": {
     "settings": {
-      "color_background": "#fefdfb",
-      "color_text": "#2d2820",
-      "color_accent": "#5a534a",
-      "body_font": "sans",
-      "show_global_breadcrumbs": true
+      "show_global_breadcrumbs": true,
+      "color_background": "#F6F2EA",
+      "color_surface": "#FBF8F3",
+      "color_overlay": "#EFEAE1",
+      "color_text_primary": "#29241E",
+      "color_text_secondary": "#655E53",
+      "color_border": "#6C6458",
+      "color_accent": "#6A1F1F",
+      "color_accent_secondary": "#A06050",
+      "color_accent_tertiary": "#7D8156",
+      "heading_font": "times_new_roman_n4",
+      "body_font": "system"
     },
     "sections": {
       "header": {
@@ -72,11 +79,18 @@
   "presets": {
     "Default": {
       "settings": {
-        "color_background": "#fefdfb",
-        "color_text": "#2d2820",
-        "color_accent": "#5a534a",
-        "body_font": "sans",
-        "show_global_breadcrumbs": true
+        "show_global_breadcrumbs": true,
+        "color_background": "#F6F2EA",
+        "color_surface": "#FBF8F3",
+        "color_overlay": "#EFEAE1",
+        "color_text_primary": "#29241E",
+        "color_text_secondary": "#655E53",
+        "color_border": "#6C6458",
+        "color_accent": "#6A1F1F",
+        "color_accent_secondary": "#A06050",
+        "color_accent_tertiary": "#7D8156",
+        "heading_font": "times_new_roman_n4",
+        "body_font": "system"
       }
     }
   }

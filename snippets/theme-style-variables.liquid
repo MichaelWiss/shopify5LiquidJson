@@ -1,0 +1,63 @@
+{% comment %}
+  Injects dynamic CSS custom properties + font-face rules derived from theme settings.
+  Keeps SCSS tokens as fallbacks while letting merchants tweak palette/typography.
+{% endcomment %}
+
+{% liquid
+  assign heading_font = settings.heading_font
+  assign body_font = settings.body_font
+
+  assign bg = settings.color_background | default: '#F6F2EA'
+  assign paper = settings.color_surface | default: '#FBF8F3'
+  assign veil = settings.color_overlay | default: '#EFEAE1'
+  assign ink = settings.color_text_primary | default: '#29241E'
+  assign ink_2 = settings.color_text_secondary | default: '#655E53'
+  assign border_base = settings.color_border | default: '#6C6458'
+  assign accent_primary = settings.color_accent | default: '#6A1F1F'
+  assign accent_secondary = settings.color_accent_secondary | default: '#A06050'
+  assign accent_tertiary = settings.color_accent_tertiary | default: '#7D8156'
+
+  assign hair_color = border_base | color_modify: 'alpha', 0.18
+  if hair_color == blank
+    assign hair_color = 'rgba(108, 100, 88, 0.18)'
+  endif
+
+  assign serif_primary = '"Times New Roman"'
+  assign serif_fallbacks = 'Georgia, serif'
+  if heading_font != blank
+    assign serif_primary = heading_font.family | json
+    assign serif_fallbacks = heading_font.fallback_families | default: 'Georgia, serif'
+  endif
+
+  assign sans_primary = '-apple-system'
+  assign sans_fallbacks = "BlinkMacSystemFont, 'Segoe UI', sans-serif"
+  if body_font != blank
+    assign sans_primary = body_font.family | json
+    assign sans_fallbacks = body_font.fallback_families | default: "BlinkMacSystemFont, 'Segoe UI', sans-serif"
+  endif
+%}
+
+{% if heading_font != blank %}
+  {{ heading_font | font_face: font_display: 'swap' }}
+{% endif %}
+{% if body_font != blank %}
+  {% if heading_font == blank or body_font.family != heading_font.family %}
+    {{ body_font | font_face: font_display: 'swap' }}
+  {% endif %}
+{% endif %}
+
+<style>
+  :root {
+    --bg: {{ bg }};
+    --paper: {{ paper }};
+    --veil: {{ veil }};
+    --ink: {{ ink }};
+    --ink-2: {{ ink_2 }};
+    --hair: {{ hair_color }};
+    --accent: {{ accent_primary }};
+    --terracotta: {{ accent_secondary }};
+    --moss: {{ accent_tertiary }};
+    --serif: {{ serif_primary }}, {{ serif_fallbacks }};
+    --sans: {{ sans_primary }}, {{ sans_fallbacks }};
+  }
+</style>
