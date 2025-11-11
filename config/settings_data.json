@@ -22,7 +22,8 @@
         "settings": {
           "logo_text": "Refinements",
           "menu": "",
-          "fallback_links": "Shop|/collections/all,Collections|/collections,Showrooms|/pages/showrooms"
+          "fallback_links": "Shop|/collections/all,Collections|/collections,Showrooms|/pages/showrooms",
+          "enable_dynamic_color": true
         }
       },
       "footer": {
@@ -60,6 +61,10 @@
           "privacy_link": "",
           "terms_link": ""
         }
+      },
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {}
       }
     },
     "content_for_index": []
