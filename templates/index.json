@@ -13,7 +13,8 @@
       "type": "hero-full-bleed",
       "settings": {
         "image": "shopify://shop_images/00-FEATURE-Stellah-DeVille-Mexico-City-Home-Tour-Domino.webp",
-        "heading": "Refinements"
+        "heading": "Refinements",
+        "enable_scroll_fade": true
       }
     },
     "intro_marquee": {
@@ -123,9 +124,6 @@
     },
     "gallery_triptych": {
       "type": "gallery-grid",
-      "settings": {
-        "columns": 3
-      },
       "blocks": {
         "gallery_triptych_image_1": {
           "type": "image",
@@ -165,7 +163,10 @@
         "gallery_triptych_image_1",
         "gallery_triptych_image_2",
         "gallery_triptych_image_3"
-      ]
+      ],
+      "settings": {
+        "columns": 3
+      }
     },
     "quarters_spotlight": {
       "type": "quarters-spotlight",
@@ -207,9 +208,6 @@
     },
     "dual_images": {
       "type": "gallery-grid",
-      "settings": {
-        "columns": 2
-      },
       "blocks": {
         "dual_image_1": {
           "type": "image",
@@ -237,7 +235,10 @@
       "block_order": [
         "dual_image_1",
         "dual_image_2"
-      ]
+      ],
+      "settings": {
+        "columns": 2
+      }
     },
     "split_feature_WYJAeH": {
       "type": "split-feature",
@@ -353,6 +354,60 @@
         "text_column_3"
       ],
       "settings": {}
+    },
+    "studio_carousel_nKLLVi": {
+      "type": "studio-carousel",
+      "blocks": {
+        "slide_xGxFjG": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/2155.avif",
+            "label": "Fig. 1 — Walnut / Cream",
+            "description": "A study in thickness, grain, and warm illumination. Shape as invitation.",
+            "link_text": "Read More",
+            "link_url": ""
+          }
+        },
+        "slide_ykL7qT": {
+          "type": "slide",
+          "settings": {
+            "label": "Fig. 2 — Moss / Brass",
+            "description": "Natural finish combinations with controlled reflectivity.",
+            "link_text": "Journal Notes",
+            "link_url": ""
+          }
+        },
+        "slide_Ab9dqW": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/227d796910f5bfba24f3fcfce241c7ce646b33e0.avif",
+            "label": "Fig. 3 — Oak / Stone",
+            "description": "Exploring the intersection of organic materials and geometric form in contemporary design.",
+            "link_text": "View Collection",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_xGxFjG",
+        "slide_ykL7qT",
+        "slide_Ab9dqW"
+      ],
+      "name": "Studio Carousel",
+      "settings": {
+        "show_label": true,
+        "label_text": "FEATURED",
+        "heading": "This Week in the Studio",
+        "enable_autoplay": true,
+        "autoplay_speed": 8,
+        "bg_color": "#e8e4dc",
+        "label_color": "#6b5d4f",
+        "heading_color": "#1a1a1a",
+        "text_color": "#1a1a1a",
+        "image_bg_color": "#d0cbc1",
+        "border_color": "#b8b0a0",
+        "divider_color": "#c4bfb5"
+      }
     }
   },
   "order": [
@@ -367,6 +422,7 @@
     "dual_images",
     "split_feature_WYJAeH",
     "intro_marquee_BPDmRL",
-    "text_columns"
+    "text_columns",
+    "studio_carousel_nKLLVi"
   ]
 }
