@@ -378,66 +378,66 @@
         "divider_color": "#c4bfb5"
       }
     },
-    "product_split_layout_yBT8qT": {
+    "product_split_layout_ART6xx": {
       "type": "product-split-layout",
       "blocks": {
-        "specification_wh77ya": {
+        "specification_jLzXA3": {
           "type": "specification",
           "settings": {
             "spec_label": "Diameter",
             "spec_value": "4 inches"
           }
         },
-        "specification_7VR3Ng": {
+        "specification_kA7Ury": {
           "type": "specification",
           "settings": {
             "spec_label": "Height",
             "spec_value": "4.5 inches"
           }
         },
-        "specification_MyGNYe": {
+        "specification_wG9zVe": {
           "type": "specification",
           "settings": {
             "spec_label": "Weight",
             "spec_value": "1.2 lbs"
           }
         },
-        "specification_bMP8xE": {
+        "specification_EXnB9V": {
           "type": "specification",
           "settings": {
             "spec_label": "Material",
             "spec_value": "Hand-blown glass, brass"
           }
         },
-        "specification_tTwzG3": {
+        "specification_wYpwaV": {
           "type": "specification",
           "settings": {
             "spec_label": "Bulb Type",
             "spec_value": "E26 LED (included)"
           }
         },
-        "specification_gYgGqD": {
+        "specification_xEqF37": {
           "type": "specification",
           "settings": {
             "spec_label": "Wattage",
             "spec_value": "40W max"
           }
         },
-        "specification_TRQapJ": {
+        "specification_4Vdn3W": {
           "type": "specification",
           "settings": {
             "spec_label": "Dimming",
             "spec_value": "Compatible"
           }
         },
-        "content_block_8tjUVH": {
+        "content_block_fKitRA": {
           "type": "content_block",
           "settings": {
             "heading": "Details",
             "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
           }
         },
-        "content_block_3JrAhe": {
+        "content_block_TfCPp3": {
           "type": "content_block",
           "settings": {
             "heading": "Care Instructions",
@@ -446,15 +446,15 @@
         }
       },
       "block_order": [
-        "specification_wh77ya",
-        "specification_7VR3Ng",
-        "specification_MyGNYe",
-        "specification_bMP8xE",
-        "specification_tTwzG3",
-        "specification_gYgGqD",
-        "specification_TRQapJ",
-        "content_block_8tjUVH",
-        "content_block_3JrAhe"
+        "specification_jLzXA3",
+        "specification_kA7Ury",
+        "specification_wG9zVe",
+        "specification_EXnB9V",
+        "specification_wYpwaV",
+        "specification_xEqF37",
+        "specification_4Vdn3W",
+        "content_block_fKitRA",
+        "content_block_TfCPp3"
       ],
       "name": "Product Split Layout",
       "settings": {
@@ -463,7 +463,7 @@
         "label_text": "Orb 4 Surface Mount",
         "description": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale, Orb lights are available in a range of sizes and finishes, and can be mounted to either walls or ceilings.",
         "show_product_visual": true,
-        "product_image": "shopify://shop_images/Zoe-Feldman-Home-Tour-Domino-12.webp",
+        "product_image": "shopify://shop_images/20.webp",
         "product_title": "Orb 4 Surface Mount",
         "product_price": "From $300.00",
         "shop_link_text": "Shop",
@@ -525,7 +525,7 @@
     "split_feature_WYJAeH",
     "intro_marquee_BPDmRL",
     "studio_carousel_nKLLVi",
-    "product_split_layout_yBT8qT",
+    "product_split_layout_ART6xx",
     "text_columns"
   ]
 }
