@@ -1,45 +1,40 @@
-<section class="{% if section.settings.layout_style == 'simple' %}newsletter{% else %}newsletter-section{% endif %}">
-  <div class="newsletter-container">
-    {% if section.settings.heading != blank %}
-      {% if section.settings.layout_style == 'simple' %}
-        <h2>{{ section.settings.heading }}</h2>
-      {% else %}
-        <h2 class="newsletter-heading">{{ section.settings.heading }}</h2>
-      {% endif %}
+<section class="newsletter-signup">
+  <div class="newsletter-signup__container">
+    {% if section.settings.label != blank %}
+      <div class="newsletter-signup__label">{{ section.settings.label }}</div>
     {% endif %}
-
-    {% if section.settings.text != blank and section.settings.layout_style != 'simple' %}
-      <p class="newsletter-text">{{ section.settings.text }}</p>
+    
+    {% if section.settings.heading != blank %}
+      <h2 class="newsletter-signup__heading">{{ section.settings.heading }}</h2>
     {% endif %}
 
     {% assign newsletter_form_id = 'NewsletterForm-' | append: section.id %}
-    {% form 'customer', id: newsletter_form_id, class: 'newsletter-form' %}
+    {% form 'customer', id: newsletter_form_id, class: 'newsletter-signup__form' %}
       {% if form.posted_successfully? %}
-        {% if section.settings.layout_style == 'simple' %}
-          <p class="newsletter-success">{{ section.settings.success_message }}</p>
-        {% else %}
-          <p class="newsletter-feedback newsletter-feedback--success">{{ section.settings.success_message }}</p>
-        {% endif %}
+        <div class="newsletter-signup__success">
+          {{ section.settings.success_message }}
+        </div>
       {% else %}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        <input
-          id="newsletter-email-{{ section.id }}"
-          class="newsletter-input"
-          type="email"
-          name="contact[email]"
-          value="{{ form.email | escape }}"
-          placeholder="{{ section.settings.placeholder }}"
-          required
-        >
-        <button class="newsletter-submit" type="submit">
-          {{ section.settings.button_label }}
-        </button>
+        <div class="newsletter-signup__form-wrapper">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input
+            id="newsletter-email-{{ section.id }}"
+            class="newsletter-signup__input"
+            type="email"
+            name="contact[email]"
+            value="{{ form.email | escape }}"
+            placeholder="{{ section.settings.placeholder }}"
+            required
+            aria-label="Email address"
+          >
+          <button class="newsletter-signup__button" type="submit">
+            <span class="newsletter-signup__text">{{ section.settings.button_label }}</span>
+          </button>
+        </div>
         {% if form.errors %}
-          {% if section.settings.layout_style == 'simple' %}
-            <p class="newsletter-error">{{ form.errors.translated_fields['email'] | default: form.errors.messages['email'] }}</p>
-          {% else %}
-            <p class="newsletter-feedback newsletter-feedback--error">{{ form.errors | default_errors }}</p>
-          {% endif %}
+          <div class="newsletter-signup__error">
+            {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+          </div>
         {% endif %}
       {% endif %}
     {% endform %}
@@ -48,59 +43,42 @@
 
 {% schema %}
 {
-  "name": "Newsletter",
+  "name": "Newsletter signup",
   "settings": [
     {
-      "type": "select",
-      "id": "layout_style",
-      "label": "Layout style",
-      "options": [
-        {
-          "value": "detailed",
-          "label": "Detailed (heading + supporting text)"
-        },
-        {
-          "value": "simple",
-          "label": "Simple (heading only)"
-        }
-      ],
-      "default": "detailed"
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "NEWSLETTER"
     },
     {
-      "type": "textarea",
+      "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Stay in the loop"
-    },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "Supporting text",
-      "default": "Notes from the studio, launch announcements, and materials research. No noise.",
-      "info": "Only shown in 'detailed' layout style"
+      "default": "Studio News & Updates"
     },
     {
       "type": "text",
       "id": "placeholder",
       "label": "Email placeholder",
-      "default": "Email address"
+      "default": "Your Email Address"
     },
     {
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Subscribe"
+      "default": "SIGN UP"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "success_message",
       "label": "Success message",
-      "default": "Thanks for subscribing."
+      "default": "Thank you for subscribing!"
     }
   ],
   "presets": [
     {
-      "name": "Newsletter"
+      "name": "Newsletter signup"
     }
   ]
 }

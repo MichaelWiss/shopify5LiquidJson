@@ -6,28 +6,12 @@
     {% else %}
       <img src="{{ fallback_side_image }}" alt="{{ section.settings.heading | default: 'Feature image' }}" loading="lazy">
     {% endif %}
-    {% if section.settings.image_caption != blank or section.settings.image_caption_link_label != blank or section.settings.image_caption_label != blank %}
-      <figcaption class="gallery-caption">
-        {% if section.settings.image_caption_label != blank or section.settings.image_caption != blank %}
-          <div class="gallery-caption__label">
-            {% if section.settings.image_caption_label != blank %}
-              <span class="gallery-caption__fig">{{ section.settings.image_caption_label }}</span>
-            {% endif %}
-            {% if section.settings.image_caption != blank %}
-              <span>{{ section.settings.image_caption }}</span>
-            {% endif %}
-          </div>
-        {% endif %}
-        {% if section.settings.image_caption_link_label != blank and section.settings.image_caption_link_url != blank %}
-          {% render 'arrow-link',
-            text: section.settings.image_caption_link_label,
-            url: section.settings.image_caption_link_url,
-            class: 'gallery-caption__link',
-            icon_size: '11'
-          %}
-        {% endif %}
-      </figcaption>
-    {% endif %}
+    {% render 'gallery-caption',
+      fig_label: section.settings.image_caption_label,
+      caption: section.settings.image_caption,
+      link_label: section.settings.image_caption_link_label,
+      link_url: section.settings.image_caption_link_url
+    %}
   </figure>
   <div class="side-content">
     <div class="side-content-inner">
@@ -38,7 +22,7 @@
         <h2 class="side-heading">{{ section.settings.heading }}</h2>
       {% endif %}
       {% if section.settings.body != blank %}
-        <p class="side-text">{{ section.settings.body | escape | newline_to_br }}</p>
+        <div class="side-text">{{ section.settings.body }}</div>
       {% endif %}
       {% if section.settings.link_label != blank and section.settings.link_url != blank %}
         {% render 'arrow-link',
@@ -84,10 +68,10 @@
       "default": "Form Meets Function"
     },
     {
-      "type": "textarea",
+      "type": "richtext",
       "id": "body",
       "label": "Body text",
-      "default": "A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments."
+      "default": "<p>A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.</p>"
     },
     {
       "type": "text",

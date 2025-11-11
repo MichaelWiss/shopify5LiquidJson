@@ -1,0 +1,40 @@
+{% comment %}
+  Gallery Caption Snippet
+  
+  Parameters:
+  - fig_label: Figure label text (e.g. "Fig. 01")
+  - caption: Main caption text
+  - link_label: Link text
+  - link_url: Link URL
+  
+  Usage:
+  {% render 'gallery-caption',
+    fig_label: 'Fig. 01',
+    caption: 'Description text',
+    link_label: 'View more',
+    link_url: '/collections/all'
+  %}
+{% endcomment %}
+
+{% if fig_label != blank or caption != blank or link_label != blank %}
+  <figcaption class="gallery-caption">
+    {% if fig_label != blank or caption != blank %}
+      <div class="gallery-caption__label">
+        {% if fig_label != blank %}
+          <span class="gallery-caption__fig">{{ fig_label }}</span>
+        {% endif %}
+        {% if caption != blank %}
+          <span>{{ caption }}</span>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if link_label != blank and link_url != blank %}
+      {% render 'arrow-link',
+        text: link_label,
+        url: link_url,
+        class: 'gallery-caption__link',
+        icon_size: '11'
+      %}
+    {% endif %}
+  </figcaption>
+{% endif %}

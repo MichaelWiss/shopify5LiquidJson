@@ -3,13 +3,14 @@
 // Reusable patterns to eliminate duplication
 // ========================================
 
+@use "sass:math";
 @use "tokens" as *;
 
 // ========================================
 // IMAGE CONTAINERS
 // ========================================
 
-@mixin image-container($ratio: (4 / 5)) {
+@mixin image-container($ratio: math.div(4, 5)) {
   position: relative;
   overflow: hidden;
   aspect-ratio: $ratio;
@@ -178,7 +179,7 @@
   transition: opacity 200ms ease;
 }
 
-@mixin card-image($ratio: (4 / 5)) {
+@mixin card-image($ratio: math.div(4, 5)) {
   @include image-container($ratio);
   margin-bottom: $s2;
 }

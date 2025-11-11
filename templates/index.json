@@ -99,7 +99,7 @@
         "layout": "image-left",
         "eyebrow": "A Functional Workspace",
         "heading": "Form Meets Function",
-        "body": "A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.",
+        "body": "<p>A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.</p>",
         "link_label": "Explore Details",
         "link_url": "shopify://collections/all",
         "image_caption_label": "",
@@ -122,7 +122,10 @@
       }
     },
     "gallery_triptych": {
-      "type": "gallery-triptych",
+      "type": "gallery-grid",
+      "settings": {
+        "columns": 3
+      },
       "blocks": {
         "gallery_triptych_image_1": {
           "type": "image",
@@ -162,8 +165,7 @@
         "gallery_triptych_image_1",
         "gallery_triptych_image_2",
         "gallery_triptych_image_3"
-      ],
-      "settings": {}
+      ]
     },
     "quarters_spotlight": {
       "type": "quarters-spotlight",
@@ -194,16 +196,20 @@
       }
     },
     "newsletter_simple": {
-      "type": "newsletter-simple",
+      "type": "newsletter",
       "settings": {
+        "label": "NEWSLETTER",
         "heading": "Subscribe to our newsletter to stay in the know and get 10% off the latest news and happenings.",
         "placeholder": "Enter your email address",
-        "button_label": "Subscribe",
+        "button_label": "SIGN UP",
         "success_message": "Thanks for subscribing."
       }
     },
     "dual_images": {
-      "type": "dual-images",
+      "type": "gallery-grid",
+      "settings": {
+        "columns": 2
+      },
       "blocks": {
         "dual_image_1": {
           "type": "image",
@@ -231,8 +237,7 @@
       "block_order": [
         "dual_image_1",
         "dual_image_2"
-      ],
-      "settings": {}
+      ]
     },
     "split_feature_WYJAeH": {
       "type": "split-feature",
@@ -242,7 +247,7 @@
         "layout": "image-left",
         "eyebrow": "A Functional Workspace",
         "heading": "Form Meets Function",
-        "body": "A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.",
+        "body": "<p>A sculptural approach to workspace lighting. Richly colored stone paired with solid wood creates fixtures that are both purposeful and beautiful, transforming utilitarian spaces into considered environments.</p>",
         "link_label": "Explore Details",
         "link_url": "",
         "image_caption_label": "Fig. 02 Butter Couch",
