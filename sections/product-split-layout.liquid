@@ -248,7 +248,7 @@
         {% if section.settings.hero_image %}
           <img 
             id="heroImage-{{ section.id }}"
-            src="{{ section.settings.hero_image | img_url: 'master' }}"
+            src="{{ section.settings.hero_image | image_url: width: 2000 }}"
             alt="{{ section.settings.product_title }}"
           >
         {% else %}
