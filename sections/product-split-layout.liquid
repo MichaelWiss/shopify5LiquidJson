@@ -10,14 +10,12 @@
 
   .product-split-layout__wrapper {
     display: flex;
-    align-items: stretch;
   }
 
   .product-split-layout__left {
     flex: 1;
     min-height: 300vh;
     background-color: var(--veil);
-    position: relative;
   }
 
   .product-split-layout__left img {
@@ -28,12 +26,12 @@
   }
 
   .product-split-layout__label {
-    position: absolute;
-    top: calc(var(--header-height) + var(--s3));
-    left: var(--s3);
+    position: fixed;
+    top: calc(var(--header-height, 48px) + var(--s3, 20px));
+    left: var(--s3, 20px);
     display: flex;
     align-items: center;
-    gap: var(--s1);
+    gap: var(--s1, 6px);
     color: var(--paper);
     font-size: 11px;
     letter-spacing: 0.02em;
@@ -55,15 +53,14 @@
   }
 
   .product-split-layout__sidebar {
-    padding: var(--s5) var(--s4);
-    min-height: 100%;
+    padding: 40px 32px;
   }
 
   .product-split-layout__sticky {
+    position: -webkit-sticky;
     position: sticky;
-    top: 80px;
-  }
->>>>>>> 089aedecbc65102cebcb715e6f30d7b4b2bdba4f
+    top: 0;
+    padding-top: 20px;
   }
 
   .product-split-layout__description {
@@ -314,6 +311,45 @@
     </div>
   </div>
 </div>
+
+<script>
+  (function () {
+    if (typeof document === 'undefined') return;
+    const sections = document.querySelectorAll('.product-split-layout');
+    sections.forEach((section) => {
+      if (section.dataset.productSplitStickyReset === 'true') return;
+      section.dataset.productSplitStickyReset = 'true';
+      const sticky = section.querySelector('.product-split-layout__sticky');
+      if (!sticky) return;
+
+      const blockingSelectors = [];
+      for (let node = sticky.parentElement; node && node !== document.body; node = node.parentElement) {
+        const computed = window.getComputedStyle(node);
+        const overflowCandidates = [computed.overflow, computed.overflowX, computed.overflowY];
+        const hasOverflow = overflowCandidates.some((value) => value && value !== 'visible' && value !== 'inherit' && value !== 'initial' && value !== 'unset');
+        const hasTransform = computed.transform && computed.transform !== 'none';
+        if (hasOverflow || hasTransform) {
+          if (hasOverflow) {
+            node.style.overflow = 'visible';
+          }
+          if (hasTransform) {
+            node.style.transform = 'none';
+          }
+          blockingSelectors.push(node);
+        }
+      }
+
+      if (blockingSelectors.length && window.console && window.console.debug) {
+        const selectorList = blockingSelectors.map((node) => {
+          const classes = node.className ? `.${node.className.trim().replace(/\s+/g, '.')}` : '';
+          const id = node.id ? `#${node.id}` : '';
+          return `${node.tagName.toLowerCase()}${id}${classes}`;
+        });
+        console.debug('Product Split Layout: cleared overflow/transform on', selectorList);
+      }
+    });
+  })();
+</script>
 
 {% schema %}
 {
