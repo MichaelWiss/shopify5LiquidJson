@@ -36,17 +36,17 @@
           Add Hero Image
         </div>
       {% endif %}
+
+      {% if section.settings.show_label and section.settings.label_text != blank %}
+        <div class="product-split__label">
+          <span class="product-split__label-dot"></span>
+          <span>{{ section.settings.label_text }}</span>
+        </div>
+      {% endif %}
     </div>
 
-    {% if section.settings.show_label and section.settings.label_text != blank %}
-      <div class="product-split__label">
-        <span class="product-split__label-dot"></span>
-        <span>{{ section.settings.label_text }}</span>
-      </div>
-    {% endif %}
-
     <div class="product-split__details">
-      <div class="product-split__sidebar">
+      <div class="product-split__panel">
         <div class="product-split__sticky">
           {% if section.settings.description != blank %}
             <p class="product-split__description">{{ section.settings.description }}</p>
@@ -94,22 +94,22 @@
             </div>
           {% endif %}
         </div>
-      </div>
 
-      {% if content_blocks.size > 0 %}
-        <div class="product-split__additional">
-          {% for block in content_blocks %}
-            <article class="product-split__extra" {{ block.shopify_attributes }}>
-              {% if block.settings.heading != blank %}
-                <h3>{{ block.settings.heading }}</h3>
-              {% endif %}
-              {% if block.settings.content != blank %}
-                {{ block.settings.content }}
-              {% endif %}
-            </article>
-          {% endfor %}
-        </div>
-      {% endif %}
+        {% if content_blocks.size > 0 %}
+          <div class="product-split__additional">
+            {% for block in content_blocks %}
+              <article class="product-split__extra" {{ block.shopify_attributes }}>
+                {% if block.settings.heading != blank %}
+                  <h3>{{ block.settings.heading }}</h3>
+                {% endif %}
+                {% if block.settings.content != blank %}
+                  {{ block.settings.content }}
+                {% endif %}
+              </article>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
     </div>
   </div>
 </section>
