@@ -378,38 +378,6 @@
         "divider_color": "#c4bfb5"
       }
     },
-    "text_columns": {
-      "type": "text-columns",
-      "blocks": {
-        "text_column_1": {
-          "type": "column",
-          "settings": {
-            "heading": "Services",
-            "body": "Consultations by appointment.\nTrade support.\nProject coordination."
-          }
-        },
-        "text_column_2": {
-          "type": "column",
-          "settings": {
-            "heading": "Materials",
-            "body": "Stone, glass, metal finishes.\nCustom shades.\nArchival research."
-          }
-        },
-        "text_column_3": {
-          "type": "column",
-          "settings": {
-            "heading": "Contact",
-            "body": "studio@refinements.com\n917-555-2034\nBrooklyn, New York"
-          }
-        }
-      },
-      "block_order": [
-        "text_column_1",
-        "text_column_2",
-        "text_column_3"
-      ],
-      "settings": {}
-    },
     "product_split_layout_cbxkJw": {
       "type": "product-split-layout",
       "blocks": {
@@ -490,15 +458,17 @@
       ],
       "name": "Product Split Layout",
       "settings": {
+        "hero_image": "shopify://shop_images/2256.avif",
         "show_label": true,
         "label_text": "Orb 4 Surface Mount",
         "description": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale, Orb lights are available in a range of sizes and finishes, and can be mounted to either walls or ceilings.",
         "show_product_visual": true,
+        "product_image": "shopify://shop_images/Casa-Yamagoya-domino-5.webp",
         "product_title": "Orb 4 Surface Mount",
         "product_price": "From $300.00",
         "shop_link_text": "Shop",
         "shop_link_url": "",
-        "show_specs": true,
+        "show_specs": false,
         "specs_title": "Specifications",
         "sidebar_bg": "#fafafa",
         "text_color": "#1a1a1a",
@@ -508,6 +478,38 @@
         "divider_color": "#dddddd",
         "spec_divider_color": "#eeeeee"
       }
+    },
+    "text_columns": {
+      "type": "text-columns",
+      "blocks": {
+        "text_column_1": {
+          "type": "column",
+          "settings": {
+            "heading": "Services",
+            "body": "Consultations by appointment.\nTrade support.\nProject coordination."
+          }
+        },
+        "text_column_2": {
+          "type": "column",
+          "settings": {
+            "heading": "Materials",
+            "body": "Stone, glass, metal finishes.\nCustom shades.\nArchival research."
+          }
+        },
+        "text_column_3": {
+          "type": "column",
+          "settings": {
+            "heading": "Contact",
+            "body": "studio@refinements.com\n917-555-2034\nBrooklyn, New York"
+          }
+        }
+      },
+      "block_order": [
+        "text_column_1",
+        "text_column_2",
+        "text_column_3"
+      ],
+      "settings": {}
     }
   },
   "order": [
