@@ -1,3 +1,4 @@
+
 {% comment %}
   Product Split Layout Section
   Save this as: sections/product-split-layout.liquid
@@ -15,33 +16,22 @@
 
   .product-split-{{ section.id }} .left-column {
     flex: 1;
-    min-height: calc(280vh + var(--hero-parallax-extra, 800px));
+    height: 150vh;
     position: relative;
   }
 
   .product-split-{{ section.id }} .image-container {
-    position: sticky;
-    top: calc(var(--header-height, 70px) + 12px);
-    height: calc(200vh - (var(--header-height, 70px) + 12px));
+    height: 100%;
     overflow: hidden;
     background-color: #f5f5f5;
-    background-size: cover;
-    background-position: center;
   }
 
-  .product-split-{{ section.id }} .hero-image {
+  .product-split-{{ section.id }} .image-container img {
     width: 100%;
-    display: block;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    object-position: center top;
-    will-change: transform;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  .product-split-{{ section.id }} .hero-image.is-loaded {
-    opacity: 1;
+    object-position: center center;
+    display: block;
   }
 
   .product-split-{{ section.id }} .label {
@@ -78,7 +68,7 @@
 
   .product-split-{{ section.id }} .sticky-content {
     position: sticky;
-    top: calc(var(--header-height, 70px) + 12px);
+    top: 0;
     transition: position 35ms ease-out;
   }
   
@@ -211,17 +201,14 @@
       min-height: auto;
     }
 
-    .product-split-{{ section.id }} .image-container {
-      position: relative;
-      top: auto;
-      height: auto;
+    .product-split-{{ section.id }} .left-column {
+      height: 60vh;
       min-height: 400px;
-      aspect-ratio: 3 / 4;
     }
 
-    .product-split-{{ section.id }} .hero-image {
-      height: auto;
-      min-height: 100%;
+    .product-split-{{ section.id }} .image-container {
+      position: relative;
+      height: 100%;
     }
 
     .product-split-{{ section.id }} .right-column {
@@ -244,19 +231,14 @@
       <div class="image-container">
         {% if section.settings.hero_image %}
           <img 
-            class="hero-image"
-            id="heroImage{{ section.id }}"
-            src="{{ section.settings.hero_image | image_url: width: 1600 }}"
-            srcset="{{ section.settings.hero_image | image_url: width: 480 }} 480w,
-                    {{ section.settings.hero_image | image_url: width: 800 }} 800w,
-                    {{ section.settings.hero_image | image_url: width: 1200 }} 1200w,
-                    {{ section.settings.hero_image | image_url: width: 1600 }} 1600w"
-            sizes="(min-width: 1440px) 55vw, (min-width: 968px) 66vw, 100vw"
-            width="{{ section.settings.hero_image.width | default: 1600 }}"
-            height="{{ section.settings.hero_image.height | default: 2000 }}"
+            src="{{ section.settings.hero_image | img_url: '1600x' }}"
+            srcset="{{ section.settings.hero_image | img_url: '400x' }} 400w,
+                    {{ section.settings.hero_image | img_url: '800x' }} 800w,
+                    {{ section.settings.hero_image | img_url: '1200x' }} 1200w,
+                    {{ section.settings.hero_image | img_url: '1600x' }} 1600w,
+                    {{ section.settings.hero_image | img_url: '2000x' }} 2000w"
+            sizes="(max-width: 968px) 100vw, 66vw"
             alt="{{ section.settings.product_title | default: 'Product' | escape }}"
-            decoding="async"
-            fetchpriority="high"
           >
         {% else %}
           <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #e8e4dc 0%, #d0cbc1 100%); display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">
@@ -346,94 +328,21 @@
 <script>
 (function() {
   var sectionId = '{{ section.id }}';
-  var heroImage = document.getElementById('heroImage' + sectionId);
   var leftColumn = document.querySelector('.product-split-' + sectionId + ' .left-column');
-  var imageContainer = document.querySelector('.product-split-' + sectionId + ' .image-container');
   var stickyContent = document.getElementById('stickyContent' + sectionId);
-  var scrollBound = false;
-  var resizeTimeout;
-  var stickyOffset = 0;
-  var parallaxMetrics = {
-    containerHeight: 0,
-    imageHeight: 0,
-    maxTranslate: 0
-  };
   
-  if (!heroImage || !leftColumn || !imageContainer || !stickyContent) {
-    console.log('Elements not found:', {
-      heroImage: !!heroImage,
-      leftColumn: !!leftColumn,
-      imageContainer: !!imageContainer,
-      stickyContent: !!stickyContent
-    });
+  if (!leftColumn || !stickyContent) {
     return;
   }
 
-  function markLoaded() {
-    heroImage.classList.add('is-loaded');
-    refreshParallaxMetrics();
-  }
-
-  if (heroImage.complete && heroImage.naturalWidth > 0) {
-    markLoaded();
-  } else {
-    heroImage.addEventListener('load', markLoaded, { once: true });
-  }
-
-  stickyOffset = parseFloat(window.getComputedStyle(imageContainer).top) || 0;
-  refreshParallaxMetrics();
-
-  var ticking = false;
-
-  function refreshParallaxMetrics() {
-    parallaxMetrics.containerHeight = imageContainer.offsetHeight;
-    parallaxMetrics.imageHeight = heroImage.offsetHeight;
-    parallaxMetrics.maxTranslate = Math.max(0, parallaxMetrics.imageHeight - parallaxMetrics.containerHeight);
-
-    var requiredHeight = parallaxMetrics.containerHeight + parallaxMetrics.maxTranslate + 1;
-    if (requiredHeight > 0) {
-      leftColumn.style.minHeight = requiredHeight + 'px';
-    }
-  }
-
-  function updateParallax() {
-    var viewportHeight = window.innerHeight;
-    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    var sectionTop = leftColumn.offsetTop;
-    var sectionHeight = leftColumn.offsetHeight;
-    var sectionBottom = sectionTop + sectionHeight;
-    var containerHeight = parallaxMetrics.containerHeight;
-    var maxTranslate = parallaxMetrics.maxTranslate;
-
-    if (scrollY + viewportHeight <= sectionTop || scrollY >= sectionBottom) {
-      return;
-    }
-
-    if (maxTranslate === 0) {
-      heroImage.style.transform = 'translate3d(0, 0, 0)';
-      return;
-    }
-
-    var startScroll = sectionTop - stickyOffset;
-    var endScroll = sectionBottom - containerHeight - stickyOffset;
-    if (endScroll <= startScroll) {
-      heroImage.style.transform = 'translate3d(0, 0, 0)';
-      return;
-    }
-
-    var clampedScroll = Math.min(endScroll, Math.max(startScroll, scrollY));
-    var progress = (clampedScroll - startScroll) / (endScroll - startScroll);
-    var parallax = progress * maxTranslate;
-    heroImage.style.transform = 'translate3d(0, ' + (-parallax) + 'px, 0)';
-    ticking = false;
-  }
+  var scrollTimer = null;
 
   function updateStickyRelease() {
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
     var leftColumnRect = leftColumn.getBoundingClientRect();
     var leftColumnBottom = leftColumnRect.top + scrollY + leftColumn.offsetHeight;
     var scrollBottom = scrollY + window.innerHeight;
-  
+    
     if (scrollBottom >= leftColumnBottom - 100) {
       stickyContent.classList.add('release');
     } else {
@@ -441,59 +350,13 @@
     }
   }
 
-  function bindScroll() {
-    if (scrollBound) return;
-    window.addEventListener('scroll', onScroll, { passive: true });
-    scrollBound = true;
-  }
-
-  function unbindScroll() {
-    if (!scrollBound) return;
-    window.removeEventListener('scroll', onScroll);
-    scrollBound = false;
-  }
-
-  function onScroll() {
-    if (window.innerWidth <= 968) {
-      return;
-    }
-
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        updateParallax();
-        updateStickyRelease();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }
-
-  if (window.innerWidth > 968) {
-    bindScroll();
-    stickyOffset = parseFloat(window.getComputedStyle(imageContainer).top) || 0;
-    refreshParallaxMetrics();
-    updateParallax();
-    updateStickyRelease();
-  } else {
-    stickyContent.classList.remove('release');
-  }
-
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(function() {
-      if (window.innerWidth > 968) {
-        bindScroll();
-        stickyOffset = parseFloat(window.getComputedStyle(imageContainer).top) || 0;
-        refreshParallaxMetrics();
-        updateParallax();
-        updateStickyRelease();
-      } else {
-        unbindScroll();
-        heroImage.style.transform = 'translate3d(0, 0, 0)';
-        stickyContent.classList.remove('release');
-      }
-    }, 200);
+  window.addEventListener('scroll', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateStickyRelease, 35);
   });
+
+  // Initial check
+  updateStickyRelease();
 })();
 </script>
 
