@@ -378,68 +378,67 @@
         "divider_color": "#c4bfb5"
       }
     },
-    "product_split_layout_cbxkJw": {
+    "product_split_layout_ptrtiq": {
       "type": "product-split-layout",
       "blocks": {
-        "specification_bWnyeh": {
+        "specification_FTFLKF": {
           "type": "specification",
           "settings": {
             "spec_label": "Diameter",
             "spec_value": "4 inches"
           }
         },
-        "specification_ELpjYd": {
+        "specification_XzFJGQ": {
           "type": "specification",
           "settings": {
             "spec_label": "Height",
             "spec_value": "4.5 inches"
           }
         },
-        "specification_UcFa7q": {
+        "specification_bHqBFe": {
           "type": "specification",
           "settings": {
             "spec_label": "Weight",
             "spec_value": "1.2 lbs"
           }
         },
-        "specification_kLcFiH": {
+        "specification_KNi3mM": {
           "type": "specification",
           "settings": {
             "spec_label": "Material",
             "spec_value": "Hand-blown glass, brass"
           }
         },
-        "specification_gLKUxy": {
+        "specification_EDXDVQ": {
           "type": "specification",
           "settings": {
             "spec_label": "Bulb Type",
             "spec_value": "E26 LED (included)"
           }
         },
-        "specification_YjxE8q": {
+        "specification_QGR9ik": {
           "type": "specification",
           "settings": {
             "spec_label": "Wattage",
             "spec_value": "40W max"
           }
         },
-        "specification_4aaEYL": {
+        "specification_NmTmgb": {
           "type": "specification",
           "settings": {
             "spec_label": "Dimming",
             "spec_value": "Compatible"
           }
         },
-        "content_block_KiY9EE": {
+        "content_block_RKbiDd": {
           "type": "content_block",
           "settings": {
             "heading": "Details",
             "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
           }
         },
-        "content_block_7dEXCL": {
+        "content_block_N8TwmN": {
           "type": "content_block",
-          "disabled": true,
           "settings": {
             "heading": "Care Instructions",
             "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
@@ -447,19 +446,19 @@
         }
       },
       "block_order": [
-        "specification_bWnyeh",
-        "specification_ELpjYd",
-        "specification_UcFa7q",
-        "specification_kLcFiH",
-        "specification_gLKUxy",
-        "specification_YjxE8q",
-        "specification_4aaEYL",
-        "content_block_KiY9EE",
-        "content_block_7dEXCL"
+        "specification_FTFLKF",
+        "specification_XzFJGQ",
+        "specification_bHqBFe",
+        "specification_KNi3mM",
+        "specification_EDXDVQ",
+        "specification_QGR9ik",
+        "specification_NmTmgb",
+        "content_block_RKbiDd",
+        "content_block_N8TwmN"
       ],
       "name": "Product Split Layout",
       "settings": {
-        "hero_image": "shopify://shop_images/2256.avif",
+        "hero_image": "shopify://shop_images/20.webp",
         "show_label": true,
         "label_text": "Orb 4 Surface Mount",
         "description": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale, Orb lights are available in a range of sizes and finishes, and can be mounted to either walls or ceilings.",
@@ -526,7 +525,7 @@
     "split_feature_WYJAeH",
     "intro_marquee_BPDmRL",
     "studio_carousel_nKLLVi",
-    "product_split_layout_cbxkJw",
+    "product_split_layout_ptrtiq",
     "text_columns"
   ]
 }
