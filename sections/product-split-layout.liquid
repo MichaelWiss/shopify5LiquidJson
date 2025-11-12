@@ -6,18 +6,20 @@
 <style>
   .product-split-layout {
     font-family: var(--sans);
+    overflow: visible;
+    position: relative;
   }
 
   .product-split-layout__wrapper {
     display: flex;
-    align-items: stretch;
+    overflow: visible;
+    position: relative;
   }
 
   .product-split-layout__left {
     flex: 1;
     min-height: 300vh;
     background-color: var(--veil);
-    position: relative;
   }
 
   .product-split-layout__left img {
@@ -28,12 +30,12 @@
   }
 
   .product-split-layout__label {
-    position: absolute;
-    top: calc(var(--header-height) + var(--s3));
-    left: var(--s3);
+    position: fixed;
+    top: calc(var(--header-height, 48px) + var(--s3, 20px));
+    left: var(--s3, 20px);
     display: flex;
     align-items: center;
-    gap: var(--s1);
+    gap: var(--s1, 6px);
     color: var(--paper);
     font-size: 11px;
     letter-spacing: 0.02em;
@@ -55,14 +57,14 @@
   }
 
   .product-split-layout__sidebar {
-    padding: var(--s5) var(--s4);
-    min-height: 100%;
+    padding: 40px 32px;
   }
 
   .product-split-layout__sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 80px;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    padding-top: 20px;
   }
 
   .product-split-layout__description {
@@ -233,13 +235,6 @@
           Add Hero Image
         </div>
       {% endif %}
-      
-      {% if section.settings.show_label and section.settings.label_text != blank %}
-        <div class="product-split-layout__label">
-          <div class="product-split-layout__label-dot"></div>
-          <span>{{ section.settings.label_text }}</span>
-        </div>
-      {% endif %}
     </div>
     
     <div class="product-split-layout__right">
@@ -312,6 +307,13 @@
       </div>
     </div>
   </div>
+  
+  {% if section.settings.show_label and section.settings.label_text != blank %}
+    <div class="product-split-layout__label">
+      <div class="product-split-layout__label-dot"></div>
+      <span>{{ section.settings.label_text }}</span>
+    </div>
+  {% endif %}
 </div>
 
 {% schema %}
