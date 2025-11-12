@@ -55,11 +55,12 @@
     width: 340px;
     background-color: var(--paper, #fafafa);
     flex-shrink: 0;
-    align-self: flex-start;
-  }
-
-  .product-split-layout__sidebar {
     padding: var(--s5) var(--s4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s4);
+    min-height: 100%;
+    align-self: flex-start;
   }
 
   .product-split-layout__sticky {
@@ -209,9 +210,6 @@
 
     .product-split-layout__right {
       width: 100%;
-    }
-
-    .product-split-layout__sidebar {
       padding: 32px 20px;
     }
 
@@ -244,72 +242,70 @@
     </div>
     
     <div class="product-split-layout__right">
-      <div class="product-split-layout__sidebar">
-        <div class="product-split-layout__sticky">
-          {% if section.settings.description != blank %}
-            <div class="product-split-layout__description">{{ section.settings.description }}</div>
-          {% endif %}
-          
-          {% if section.settings.show_product_visual %}
-            <div class="product-split-layout__visual">
-              {% if section.settings.product_image %}
-                <img 
-                  src="{{ section.settings.product_image | img_url: '600x' }}"
-                  alt="{{ section.settings.product_title | default: 'Product' | escape }}"
-                >
-              {% else %}
-                <div class="product-split-layout__orb">
-                  <div class="product-split-layout__orb-main"></div>
-                  <div class="product-split-layout__orb-ring"></div>
+      <div class="product-split-layout__sticky">
+        {% if section.settings.description != blank %}
+          <div class="product-split-layout__description">{{ section.settings.description }}</div>
+        {% endif %}
+        
+        {% if section.settings.show_product_visual %}
+          <div class="product-split-layout__visual">
+            {% if section.settings.product_image %}
+              <img 
+                src="{{ section.settings.product_image | img_url: '600x' }}"
+                alt="{{ section.settings.product_title | default: 'Product' | escape }}"
+              >
+            {% else %}
+              <div class="product-split-layout__orb">
+                <div class="product-split-layout__orb-main"></div>
+                <div class="product-split-layout__orb-ring"></div>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        
+        {% if section.settings.product_title != blank %}
+          <div class="product-split-layout__title">{{ section.settings.product_title }}</div>
+        {% endif %}
+        
+        {% if section.settings.product_price != blank %}
+          <div class="product-split-layout__price">{{ section.settings.product_price }}</div>
+        {% endif %}
+        
+        {% if section.settings.shop_link_url != blank %}
+          <a href="{{ section.settings.shop_link_url }}" class="product-split-layout__link">
+            {{ section.settings.shop_link_text | default: "Shop" }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.show_specs %}
+          {% assign spec_blocks = section.blocks | where: "type", "specification" %}
+          {% if spec_blocks.size > 0 %}
+            <div class="product-split-layout__section">
+              <h3 class="product-split-layout__section-title">{{ section.settings.specs_title | default: "Specifications" }}</h3>
+              {% for block in spec_blocks %}
+                <div class="product-split-layout__spec-item" {{ block.shopify_attributes }}>
+                  <span class="product-split-layout__spec-label">{{ block.settings.spec_label }}</span>
+                  <span class="product-split-layout__spec-value">{{ block.settings.spec_value }}</span>
                 </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      <div class="product-split-layout__non-sticky">
+        {% for block in section.blocks %}
+          {% if block.type == 'content_block' %}
+            <div class="product-split-layout__section" {{ block.shopify_attributes }}>
+              {% if block.settings.heading != blank %}
+                <h3 class="product-split-layout__section-title">{{ block.settings.heading }}</h3>
+              {% endif %}
+              {% if block.settings.content != blank %}
+                {{ block.settings.content }}
               {% endif %}
             </div>
           {% endif %}
-          
-          {% if section.settings.product_title != blank %}
-            <div class="product-split-layout__title">{{ section.settings.product_title }}</div>
-          {% endif %}
-          
-          {% if section.settings.product_price != blank %}
-            <div class="product-split-layout__price">{{ section.settings.product_price }}</div>
-          {% endif %}
-          
-          {% if section.settings.shop_link_url != blank %}
-            <a href="{{ section.settings.shop_link_url }}" class="product-split-layout__link">
-              {{ section.settings.shop_link_text | default: "Shop" }}
-            </a>
-          {% endif %}
-
-          {% if section.settings.show_specs %}
-            {% assign spec_blocks = section.blocks | where: "type", "specification" %}
-            {% if spec_blocks.size > 0 %}
-              <div class="product-split-layout__section">
-                <h3 class="product-split-layout__section-title">{{ section.settings.specs_title | default: "Specifications" }}</h3>
-                {% for block in spec_blocks %}
-                  <div class="product-split-layout__spec-item" {{ block.shopify_attributes }}>
-                    <span class="product-split-layout__spec-label">{{ block.settings.spec_label }}</span>
-                    <span class="product-split-layout__spec-value">{{ block.settings.spec_value }}</span>
-                  </div>
-                {% endfor %}
-              </div>
-            {% endif %}
-          {% endif %}
-        </div>
-
-        <div class="product-split-layout__non-sticky">
-          {% for block in section.blocks %}
-            {% if block.type == 'content_block' %}
-              <div class="product-split-layout__section" {{ block.shopify_attributes }}>
-                {% if block.settings.heading != blank %}
-                  <h3 class="product-split-layout__section-title">{{ block.settings.heading }}</h3>
-                {% endif %}
-                {% if block.settings.content != blank %}
-                  {{ block.settings.content }}
-                {% endif %}
-              </div>
-            {% endif %}
-          {% endfor %}
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
