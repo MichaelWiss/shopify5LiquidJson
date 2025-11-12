@@ -26,12 +26,12 @@
   }
 
   .product-split-layout__label {
-    position: fixed;
-    top: calc(var(--header-height, 48px) + var(--s3, 20px));
-    left: var(--s3, 20px);
+    position: absolute;
+    top: calc(var(--header-height) + var(--s3));
+    left: var(--s3);
     display: flex;
     align-items: center;
-    gap: var(--s1, 6px);
+    gap: var(--s1);
     color: var(--paper);
     font-size: 11px;
     letter-spacing: 0.02em;
@@ -59,7 +59,7 @@
   .product-split-layout__sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 80px;
     padding-top: 20px;
   }
 
@@ -191,23 +191,12 @@
       min-height: 60vh;
     }
 
-    .product-split-layout__label {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-    }
-
     .product-split-layout__right {
       width: 100%;
     }
 
     .product-split-layout__sidebar {
       padding: 32px 20px;
-    }
-
-    .product-split-layout__sticky {
-      position: relative;
-      top: 0;
     }
   }
 </style>
