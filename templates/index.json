@@ -500,7 +500,7 @@
         "product_price": "From $300.00",
         "shop_link_text": "Shop",
         "shop_link_url": "",
-        "show_specs": true,
+        "show_specs": false,
         "specs_title": "Specifications",
         "sidebar_bg": "#fafafa",
         "text_color": "#1a1a1a",
