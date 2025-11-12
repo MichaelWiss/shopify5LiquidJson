@@ -11,31 +11,23 @@
 
   .product-split-{{ section.id }} .page-wrapper {
     display: flex;
-    min-height: 200vh;
   }
 
   .product-split-{{ section.id }} .left-column {
     flex: 1;
-    height: 150vh;
-    position: relative;
-  }
-
-  .product-split-{{ section.id }} .image-container {
-    height: 100%;
-    overflow: hidden;
+    min-height: 300vh;
     background-color: #f5f5f5;
   }
 
-  .product-split-{{ section.id }} .image-container img {
+  .product-split-{{ section.id }} .left-column img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
     display: block;
   }
 
   .product-split-{{ section.id }} .label {
-    position: absolute;
+    position: fixed;
     top: 24px;
     left: 24px;
     display: flex;
@@ -52,7 +44,6 @@
     height: 10px;
     background-color: {{ section.settings.label_color }};
     border-radius: 50%;
-    flex-shrink: 0;
   }
 
   .product-split-{{ section.id }} .right-column {
@@ -63,17 +54,12 @@
 
   .product-split-{{ section.id }} .sidebar {
     padding: 40px 32px;
-    background-color: {{ section.settings.sidebar_bg }};
   }
 
   .product-split-{{ section.id }} .sticky-content {
     position: sticky;
     top: 0;
-    transition: position 35ms ease-out;
-  }
-  
-  .product-split-{{ section.id }} .sticky-content.release {
-    position: relative;
+    padding-top: 20px;
   }
 
   .product-split-{{ section.id }} .description {
@@ -91,7 +77,6 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    position: relative;
   }
 
   .product-split-{{ section.id }} .product-image-container img {
@@ -144,7 +129,6 @@
     font-size: 13px;
     color: {{ section.settings.text_color }};
     text-decoration: underline;
-    transition: color 0.2s ease;
   }
 
   .product-split-{{ section.id }} .shop-link:hover {
@@ -168,47 +152,40 @@
     font-size: 13px;
     line-height: 1.6;
     color: {{ section.settings.secondary_text_color }};
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 
   .product-split-{{ section.id }} .spec-item {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
     font-size: 13px;
     padding: 12px 0;
     border-bottom: 1px solid {{ section.settings.spec_divider_color }};
-    gap: 16px;
-  }
-
-  .product-split-{{ section.id }} .spec-item:first-child {
-    padding-top: 0;
   }
 
   .product-split-{{ section.id }} .spec-label {
     color: {{ section.settings.secondary_text_color }};
-    flex-shrink: 0;
   }
 
   .product-split-{{ section.id }} .spec-value {
     color: {{ section.settings.text_color }};
-    text-align: right;
+  }
+
+  .product-split-{{ section.id }} .non-sticky-content {
+    margin-top: 60px;
   }
 
   @media (max-width: 968px) {
     .product-split-{{ section.id }} .page-wrapper {
       flex-direction: column;
-      min-height: auto;
     }
 
     .product-split-{{ section.id }} .left-column {
-      height: 60vh;
-      min-height: 400px;
+      min-height: 60vh;
     }
 
-    .product-split-{{ section.id }} .image-container {
-      position: relative;
-      height: 100%;
+    .product-split-{{ section.id }} .label {
+      position: absolute;
     }
 
     .product-split-{{ section.id }} .right-column {
@@ -220,7 +197,7 @@
     }
 
     .product-split-{{ section.id }} .sticky-content {
-      position: relative !important;
+      position: relative;
     }
   }
 </style>
@@ -228,38 +205,36 @@
 <div class="product-split-{{ section.id }}">
   <div class="page-wrapper">
     <div class="left-column">
-      <div class="image-container">
-        {% if section.settings.hero_image %}
-          <img 
-            src="{{ section.settings.hero_image | img_url: '1600x' }}"
-            srcset="{{ section.settings.hero_image | img_url: '400x' }} 400w,
-                    {{ section.settings.hero_image | img_url: '800x' }} 800w,
-                    {{ section.settings.hero_image | img_url: '1200x' }} 1200w,
-                    {{ section.settings.hero_image | img_url: '1600x' }} 1600w,
-                    {{ section.settings.hero_image | img_url: '2000x' }} 2000w"
-            sizes="(max-width: 968px) 100vw, 66vw"
-            alt="{{ section.settings.product_title | default: 'Product' | escape }}"
-          >
-        {% else %}
-          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #e8e4dc 0%, #d0cbc1 100%); display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">
-            Add Hero Image
-          </div>
-        {% endif %}
-        
-        {% if section.settings.show_label and section.settings.label_text != blank %}
-          <div class="label">
-            <div class="label-dot"></div>
-            <span>{{ section.settings.label_text }}</span>
-          </div>
-        {% endif %}
-      </div>
+      {% if section.settings.hero_image %}
+        <img 
+          src="{{ section.settings.hero_image | img_url: '1600x' }}"
+          srcset="{{ section.settings.hero_image | img_url: '400x' }} 400w,
+                  {{ section.settings.hero_image | img_url: '800x' }} 800w,
+                  {{ section.settings.hero_image | img_url: '1200x' }} 1200w,
+                  {{ section.settings.hero_image | img_url: '1600x' }} 1600w,
+                  {{ section.settings.hero_image | img_url: '2000x' }} 2000w"
+          sizes="(max-width: 968px) 100vw, 66vw"
+          alt="{{ section.settings.product_title | default: 'Product' | escape }}"
+        >
+      {% else %}
+        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #e8e4dc 0%, #d0cbc1 100%); display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">
+          Add Hero Image
+        </div>
+      {% endif %}
+      
+      {% if section.settings.show_label and section.settings.label_text != blank %}
+        <div class="label">
+          <div class="label-dot"></div>
+          <span>{{ section.settings.label_text }}</span>
+        </div>
+      {% endif %}
     </div>
     
     <div class="right-column">
       <div class="sidebar">
-        <div class="sticky-content" id="stickyContent{{ section.id }}">
+        <div class="sticky-content">
           {% if section.settings.description != blank %}
-            <div class="description">{{ section.settings.description }}</div>
+            <p class="description">{{ section.settings.description }}</p>
           {% endif %}
           
           {% if section.settings.show_product_visual %}
@@ -308,57 +283,24 @@
           {% endif %}
         </div>
 
-        {% for block in section.blocks %}
-          {% if block.type == 'content_block' %}
-            <div class="extra-content" {{ block.shopify_attributes }}>
-              {% if block.settings.heading != blank %}
-                <h3>{{ block.settings.heading }}</h3>
-              {% endif %}
-              {% if block.settings.content != blank %}
-                {{ block.settings.content }}
-              {% endif %}
-            </div>
-          {% endif %}
-        {% endfor %}
+        <div class="non-sticky-content">
+          {% for block in section.blocks %}
+            {% if block.type == 'content_block' %}
+              <div class="extra-content" {{ block.shopify_attributes }}>
+                {% if block.settings.heading != blank %}
+                  <h3>{{ block.settings.heading }}</h3>
+                {% endif %}
+                {% if block.settings.content != blank %}
+                  {{ block.settings.content }}
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-(function() {
-  var sectionId = '{{ section.id }}';
-  var leftColumn = document.querySelector('.product-split-' + sectionId + ' .left-column');
-  var stickyContent = document.getElementById('stickyContent' + sectionId);
-  
-  if (!leftColumn || !stickyContent) {
-    return;
-  }
-
-  var scrollTimer = null;
-
-  function updateStickyRelease() {
-    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    var leftColumnRect = leftColumn.getBoundingClientRect();
-    var leftColumnBottom = leftColumnRect.top + scrollY + leftColumn.offsetHeight;
-    var scrollBottom = scrollY + window.innerHeight;
-    
-    if (scrollBottom >= leftColumnBottom - 100) {
-      stickyContent.classList.add('release');
-    } else {
-      stickyContent.classList.remove('release');
-    }
-  }
-
-  window.addEventListener('scroll', function() {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(updateStickyRelease, 35);
-  });
-
-  // Initial check
-  updateStickyRelease();
-})();
-</script>
 
 {% schema %}
 {
