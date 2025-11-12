@@ -78,13 +78,8 @@
 
   .product-split-{{ section.id }} .sticky-content {
     position: sticky;
-    top: 40px;
+    top: 0;
     transition: position 35ms ease-out;
-  }
-  
-  .product-split-{{ section.id }} .sticky-content.no-sticky {
-    position: relative;
-    top: auto;
   }
   
   .product-split-{{ section.id }} .sticky-content.release {
@@ -250,14 +245,14 @@
           <img 
             class="hero-image"
             id="heroImage{{ section.id }}"
-            src="{{ section.settings.hero_image | image_url: width: 2000 }}"
+            src="{{ section.settings.hero_image | image_url: width: 1600 }}"
             srcset="{{ section.settings.hero_image | image_url: width: 480 }} 480w,
                     {{ section.settings.hero_image | image_url: width: 800 }} 800w,
                     {{ section.settings.hero_image | image_url: width: 1200 }} 1200w,
-                    {{ section.settings.hero_image | image_url: width: 1600 }} 1600w,
-                    {{ section.settings.hero_image | image_url: width: 2000 }} 2000w,
-                    {{ section.settings.hero_image | image_url: width: 2400 }} 2400w"
-            sizes="(max-width: 968px) 100vw, 66vw"
+                    {{ section.settings.hero_image | image_url: width: 1600 }} 1600w"
+            sizes="(min-width: 1440px) 55vw, (min-width: 968px) 66vw, 100vw"
+            width="{{ section.settings.hero_image.width | default: 1600 }}"
+            height="{{ section.settings.hero_image.height | default: 2000 }}"
             alt="{{ section.settings.product_title | default: 'Product' | escape }}"
             decoding="async"
             fetchpriority="high"
@@ -354,7 +349,6 @@
   var leftColumn = document.querySelector('.product-split-' + sectionId + ' .left-column');
   var stickyContent = document.getElementById('stickyContent' + sectionId);
   var scrollBound = false;
-  var allowStickySidebar = false;
   var resizeTimeout;
   
   if (!heroImage || !leftColumn || !stickyContent) {
@@ -410,39 +404,11 @@
     scrollBound = false;
   }
 
-  function syncStickyMode() {
-    if (window.innerWidth <= 968) {
-      allowStickySidebar = false;
-      stickyContent.classList.add('no-sticky');
-      stickyContent.classList.remove('release');
-      return;
-    }
-
-    var sidebarHeight = stickyContent.offsetHeight;
-    var viewportHeight = window.innerHeight;
-    var fitsViewport = (sidebarHeight + 64) <= viewportHeight;
-
-    allowStickySidebar = fitsViewport;
-
-    if (allowStickySidebar) {
-      stickyContent.classList.remove('no-sticky');
-    } else {
-      stickyContent.classList.add('no-sticky');
-      stickyContent.classList.remove('release');
-    }
-  }
-
   function onScroll() {
-    if (window.innerWidth <= 968) {
-      return;
-    }
-
     if (!ticking) {
       window.requestAnimationFrame(function() {
         updateParallax();
-        if (allowStickySidebar) {
-          updateStickyRelease();
-        }
+        updateStickyRelease();
         ticking = false;
       });
       ticking = true;
@@ -451,13 +417,10 @@
 
   if (window.innerWidth > 968) {
     bindScroll();
-    syncStickyMode();
     updateParallax();
-    if (allowStickySidebar) {
-      updateStickyRelease();
-    }
+    updateStickyRelease();
   } else {
-    syncStickyMode();
+    stickyContent.classList.remove('release');
   }
 
   window.addEventListener('resize', function() {
@@ -465,16 +428,10 @@
     resizeTimeout = setTimeout(function() {
       if (window.innerWidth > 968) {
         bindScroll();
-        syncStickyMode();
         updateParallax();
-        if (allowStickySidebar) {
-          updateStickyRelease();
-        } else {
-          stickyContent.classList.remove('release');
-        }
+        updateStickyRelease();
       } else {
         unbindScroll();
-        syncStickyMode();
         heroImage.style.transform = 'translateY(0)';
         stickyContent.classList.remove('release');
       }
