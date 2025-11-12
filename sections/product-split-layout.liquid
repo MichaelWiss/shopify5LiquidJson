@@ -10,6 +10,7 @@
 
   .product-split-layout__wrapper {
     display: flex;
+    align-items: stretch;
   }
 
   .product-split-layout__left {
@@ -51,6 +52,7 @@
     width: 340px;
     background-color: var(--paper);
     flex-shrink: 0;
+    min-height: 300vh;
   }
 
   .product-split-layout__sidebar {
@@ -59,7 +61,7 @@
 
   .product-split-layout__sticky {
     position: sticky;
-    top: calc(var(--header-height) + var(--s2));
+    top: calc(var(--header-height, 52px) + var(--s2, 16px));
     padding-top: var(--s2);
   }
 
