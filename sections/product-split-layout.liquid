@@ -69,6 +69,14 @@
     top: 80px;
   }
 
+  .product-split-layout__sticky-placeholder {
+    display: none;
+  }
+
+  .product-split-layout__sticky.is-fixed {
+    z-index: 5;
+  }
+
   /* Ensure the Shopify section wrapper doesn't block sticky */
   .shopify-section.product-split-section {
     overflow: visible;
@@ -317,6 +325,92 @@
     </div>
   {% endif %}
 </div>
+
+<script>
+  (function () {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    const scriptEl = document.currentScript;
+    if (!scriptEl) return;
+    const sectionEl = scriptEl.closest('.shopify-section.product-split-section');
+    if (!sectionEl || sectionEl.dataset.productSplitStickyInit === 'true') return;
+    sectionEl.dataset.productSplitStickyInit = 'true';
+
+    const rightCol = sectionEl.querySelector('.product-split-layout__right');
+    const sticky = sectionEl.querySelector('.product-split-layout__sticky');
+    if (!rightCol || !sticky) return;
+
+    const offset = 80;
+    const placeholder = document.createElement('div');
+    placeholder.className = 'product-split-layout__sticky-placeholder';
+    placeholder.style.height = '0px';
+    placeholder.style.display = 'none';
+    rightCol.insertBefore(placeholder, sticky);
+
+    let isFixed = false;
+    let rafId = null;
+    const desktopQuery = window.matchMedia('(min-width: 969px)');
+
+    const resetSticky = () => {
+      isFixed = false;
+      sticky.classList.remove('is-fixed');
+      sticky.style.position = '';
+      sticky.style.top = '';
+      sticky.style.left = '';
+      sticky.style.width = '';
+      placeholder.style.display = 'none';
+    };
+
+    const updateSticky = () => {
+      if (!desktopQuery.matches) {
+        resetSticky();
+        return;
+      }
+
+      const sectionRect = sectionEl.getBoundingClientRect();
+      const rightRect = rightCol.getBoundingClientRect();
+      const scrollY = window.scrollY;
+      const sectionTop = sectionRect.top + scrollY;
+      const sectionBottom = sectionTop + sectionEl.offsetHeight;
+      const start = sectionTop - offset;
+      const end = sectionBottom - sticky.offsetHeight - offset;
+
+      const shouldFix = scrollY >= start && scrollY <= end;
+
+      if (shouldFix) {
+        if (!isFixed) {
+          isFixed = true;
+          sticky.classList.add('is-fixed');
+          placeholder.style.display = 'block';
+        }
+        placeholder.style.height = `${sticky.offsetHeight}px`;
+        sticky.style.position = 'fixed';
+        sticky.style.top = `${offset}px`;
+        sticky.style.left = `${rightRect.left}px`;
+        sticky.style.width = `${rightRect.width}px`;
+      } else if (isFixed) {
+        resetSticky();
+      }
+    };
+
+    const scheduleUpdate = () => {
+      if (rafId !== null) return;
+      rafId = window.requestAnimationFrame(() => {
+        updateSticky();
+        rafId = null;
+      });
+    };
+
+    if (desktopQuery.addEventListener) {
+      desktopQuery.addEventListener('change', scheduleUpdate);
+    } else {
+      desktopQuery.addListener(scheduleUpdate);
+    }
+
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+    updateSticky();
+  })();
+</script>
 
 {% schema %}
 {
