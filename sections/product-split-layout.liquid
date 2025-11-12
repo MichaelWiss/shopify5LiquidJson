@@ -6,14 +6,11 @@
 <style>
   .product-split-layout {
     font-family: var(--sans);
-    overflow: visible;
-    position: relative;
   }
 
   .product-split-layout__wrapper {
     display: flex;
-    overflow: visible;
-    position: relative;
+    align-items: stretch;
   }
 
   .product-split-layout__left {
@@ -55,35 +52,18 @@
     width: 340px;
     background-color: var(--paper, #fafafa);
     flex-shrink: 0;
+  }
+
+  .product-split-layout__sidebar {
     padding: var(--s5) var(--s4);
-    display: flex;
-    flex-direction: column;
-    gap: var(--s4);
     min-height: 100%;
-    align-self: flex-start;
   }
 
   .product-split-layout__sticky {
-    position: -webkit-sticky;
     position: sticky;
     top: 80px;
-    background-color: transparent;
-    width: 100%;
-    box-sizing: border-box;
   }
-
-  .product-split-layout__sticky-placeholder {
-    display: none;
-    width: 100%;
-  }
-
-  .product-split-layout__sticky.is-fixed {
-    z-index: 5;
-  }
-
-  /* Ensure the Shopify section wrapper doesn't block sticky */
-  .shopify-section.product-split-section {
-    overflow: visible;
+>>>>>>> 089aedecbc65102cebcb715e6f30d7b4b2bdba4f
   }
 
   .product-split-layout__description {
@@ -222,16 +202,15 @@
 
     .product-split-layout__right {
       width: 100%;
+    }
+
+    .product-split-layout__sidebar {
       padding: 32px 20px;
-      border: none;
-      box-shadow: none;
     }
 
     .product-split-layout__sticky {
       position: relative;
       top: 0;
-      box-shadow: none;
-      border: none;
     }
   }
 </style>
@@ -255,174 +234,86 @@
           Add Hero Image
         </div>
       {% endif %}
+      
+      {% if section.settings.show_label and section.settings.label_text != blank %}
+        <div class="product-split-layout__label">
+          <div class="product-split-layout__label-dot"></div>
+          <span>{{ section.settings.label_text }}</span>
+        </div>
+      {% endif %}
     </div>
     
     <div class="product-split-layout__right">
-      <div class="product-split-layout__sticky">
-        {% if section.settings.description != blank %}
-          <div class="product-split-layout__description">{{ section.settings.description }}</div>
-        {% endif %}
-        
-        {% if section.settings.show_product_visual %}
-          <div class="product-split-layout__visual">
-            {% if section.settings.product_image %}
-              <img 
-                src="{{ section.settings.product_image | img_url: '600x' }}"
-                alt="{{ section.settings.product_title | default: 'Product' | escape }}"
-              >
-            {% else %}
-              <div class="product-split-layout__orb">
-                <div class="product-split-layout__orb-main"></div>
-                <div class="product-split-layout__orb-ring"></div>
+      <div class="product-split-layout__sidebar">
+        <div class="product-split-layout__sticky">
+          {% if section.settings.description != blank %}
+            <div class="product-split-layout__description">{{ section.settings.description }}</div>
+          {% endif %}
+          
+          {% if section.settings.show_product_visual %}
+            <div class="product-split-layout__visual">
+              {% if section.settings.product_image %}
+                <img 
+                  src="{{ section.settings.product_image | img_url: '600x' }}"
+                  alt="{{ section.settings.product_title | default: 'Product' | escape }}"
+                >
+              {% else %}
+                <div class="product-split-layout__orb">
+                  <div class="product-split-layout__orb-main"></div>
+                  <div class="product-split-layout__orb-ring"></div>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+          
+          {% if section.settings.product_title != blank %}
+            <div class="product-split-layout__title">{{ section.settings.product_title }}</div>
+          {% endif %}
+          
+          {% if section.settings.product_price != blank %}
+            <div class="product-split-layout__price">{{ section.settings.product_price }}</div>
+          {% endif %}
+          
+          {% if section.settings.shop_link_url != blank %}
+            <a href="{{ section.settings.shop_link_url }}" class="product-split-layout__link">
+              {{ section.settings.shop_link_text | default: "Shop" }}
+            </a>
+          {% endif %}
+
+          {% if section.settings.show_specs %}
+            {% assign spec_blocks = section.blocks | where: "type", "specification" %}
+            {% if spec_blocks.size > 0 %}
+              <div class="product-split-layout__section">
+                <h3 class="product-split-layout__section-title">{{ section.settings.specs_title | default: "Specifications" }}</h3>
+                {% for block in spec_blocks %}
+                  <div class="product-split-layout__spec-item" {{ block.shopify_attributes }}>
+                    <span class="product-split-layout__spec-label">{{ block.settings.spec_label }}</span>
+                    <span class="product-split-layout__spec-value">{{ block.settings.spec_value }}</span>
+                  </div>
+                {% endfor %}
               </div>
             {% endif %}
-          </div>
-        {% endif %}
-        
-        {% if section.settings.product_title != blank %}
-          <div class="product-split-layout__title">{{ section.settings.product_title }}</div>
-        {% endif %}
-        
-        {% if section.settings.product_price != blank %}
-          <div class="product-split-layout__price">{{ section.settings.product_price }}</div>
-        {% endif %}
-        
-        {% if section.settings.shop_link_url != blank %}
-          <a href="{{ section.settings.shop_link_url }}" class="product-split-layout__link">
-            {{ section.settings.shop_link_text | default: "Shop" }}
-          </a>
-        {% endif %}
-
-        {% if section.settings.show_specs %}
-          {% assign spec_blocks = section.blocks | where: "type", "specification" %}
-          {% if spec_blocks.size > 0 %}
-            <div class="product-split-layout__section">
-              <h3 class="product-split-layout__section-title">{{ section.settings.specs_title | default: "Specifications" }}</h3>
-              {% for block in spec_blocks %}
-                <div class="product-split-layout__spec-item" {{ block.shopify_attributes }}>
-                  <span class="product-split-layout__spec-label">{{ block.settings.spec_label }}</span>
-                  <span class="product-split-layout__spec-value">{{ block.settings.spec_value }}</span>
-                </div>
-              {% endfor %}
-            </div>
           {% endif %}
-        {% endif %}
-      </div>
+        </div>
 
-      <div class="product-split-layout__non-sticky">
-        {% for block in section.blocks %}
-          {% if block.type == 'content_block' %}
-            <div class="product-split-layout__section" {{ block.shopify_attributes }}>
-              {% if block.settings.heading != blank %}
-                <h3 class="product-split-layout__section-title">{{ block.settings.heading }}</h3>
-              {% endif %}
-              {% if block.settings.content != blank %}
-                {{ block.settings.content }}
-              {% endif %}
-            </div>
-          {% endif %}
-        {% endfor %}
+        <div class="product-split-layout__non-sticky">
+          {% for block in section.blocks %}
+            {% if block.type == 'content_block' %}
+              <div class="product-split-layout__section" {{ block.shopify_attributes }}>
+                {% if block.settings.heading != blank %}
+                  <h3 class="product-split-layout__section-title">{{ block.settings.heading }}</h3>
+                {% endif %}
+                {% if block.settings.content != blank %}
+                  {{ block.settings.content }}
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
-  
-  {% if section.settings.show_label and section.settings.label_text != blank %}
-    <div class="product-split-layout__label">
-      <div class="product-split-layout__label-dot"></div>
-      <span>{{ section.settings.label_text }}</span>
-    </div>
-  {% endif %}
 </div>
-
-<script>
-  (function () {
-    if (typeof window === 'undefined' || typeof document === 'undefined') return;
-    const scriptEl = document.currentScript;
-    if (!scriptEl) return;
-    const sectionEl = scriptEl.closest('.shopify-section.product-split-section');
-    if (!sectionEl || sectionEl.dataset.productSplitStickyInit === 'true') return;
-    sectionEl.dataset.productSplitStickyInit = 'true';
-
-    const rightCol = sectionEl.querySelector('.product-split-layout__right');
-    const sticky = sectionEl.querySelector('.product-split-layout__sticky');
-    if (!rightCol || !sticky) return;
-
-    const offset = 80;
-    const placeholder = document.createElement('div');
-    placeholder.className = 'product-split-layout__sticky-placeholder';
-    placeholder.style.height = '0px';
-    placeholder.style.display = 'none';
-    rightCol.insertBefore(placeholder, sticky);
-
-    let isFixed = false;
-    let rafId = null;
-    const desktopQuery = window.matchMedia('(min-width: 969px)');
-
-    const resetSticky = () => {
-      isFixed = false;
-      sticky.classList.remove('is-fixed');
-      sticky.style.position = '';
-      sticky.style.top = '';
-      sticky.style.left = '';
-      sticky.style.width = '';
-      placeholder.style.display = 'none';
-    };
-
-    const updateSticky = () => {
-      if (!desktopQuery.matches) {
-        resetSticky();
-        return;
-      }
-
-      const sectionRect = sectionEl.getBoundingClientRect();
-      const rightRect = rightCol.getBoundingClientRect();
-      const scrollY = window.scrollY;
-      const sectionTop = sectionRect.top + scrollY;
-      const sectionBottom = sectionTop + sectionEl.offsetHeight;
-      const start = sectionTop - offset;
-      const end = sectionBottom - sticky.offsetHeight - offset;
-
-      const shouldFix = scrollY >= start && scrollY <= end;
-
-      if (shouldFix) {
-        if (!isFixed) {
-          isFixed = true;
-          sticky.classList.add('is-fixed');
-          placeholder.style.display = 'block';
-        }
-        const computed = window.getComputedStyle(sticky);
-        const marginTop = parseFloat(computed.marginTop) || 0;
-        const marginBottom = parseFloat(computed.marginBottom) || 0;
-        const totalHeight = sticky.offsetHeight + marginTop + marginBottom;
-        placeholder.style.height = `${totalHeight}px`;
-        sticky.style.position = 'fixed';
-        sticky.style.top = `${offset}px`;
-        sticky.style.left = `${rightRect.left}px`;
-        sticky.style.width = `${rightRect.width}px`;
-      } else if (isFixed) {
-        resetSticky();
-      }
-    };
-
-    const scheduleUpdate = () => {
-      if (rafId !== null) return;
-      rafId = window.requestAnimationFrame(() => {
-        updateSticky();
-        rafId = null;
-      });
-    };
-
-    if (desktopQuery.addEventListener) {
-      desktopQuery.addEventListener('change', scheduleUpdate);
-    } else {
-      desktopQuery.addListener(scheduleUpdate);
-    }
-
-    window.addEventListener('scroll', scheduleUpdate, { passive: true });
-    window.addEventListener('resize', scheduleUpdate);
-    updateSticky();
-  })();
-</script>
 
 {% schema %}
 {
