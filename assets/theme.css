@@ -276,13 +276,13 @@ body {
   box-shadow: none;
 }
 .site-header[data-color-mode=dynamic] {
-  background: var(--dynamic-header-bg, var(--ink));
-  color: var(--dynamic-header-text, var(--paper));
+  background: var(--dynamic-header-bg, #1a1a1a);
+  color: var(--dynamic-header-text, #ffffff);
 }
 .site-header[data-color-mode=dynamic] .site-logo,
 .site-header[data-color-mode=dynamic] .header-nav a,
 .site-header[data-color-mode=dynamic] .header-icon {
-  color: var(--dynamic-header-text, var(--paper));
+  color: var(--dynamic-header-text, #ffffff);
 }
 
 #shopify-section-header {
@@ -1042,12 +1042,13 @@ body.cart-drawer-open {
 
 /* Homepage — Refinements */
 #shopify-section-hero_full_bleed {
-  padding-top: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .hero {
-  margin-top: 0;
-  padding-top: 0;
+  margin: 0;
+  padding: 0;
   height: 120vh;
   position: relative;
   overflow: hidden;
