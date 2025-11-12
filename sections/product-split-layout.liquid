@@ -15,7 +15,7 @@
 
   .product-split-{{ section.id }} .left-column {
     flex: 1;
-    height: 150vh;
+    min-height: calc(100vh + var(--hero-parallax-extra, 600px));
     position: relative;
   }
 
@@ -31,7 +31,8 @@
 
   .product-split-{{ section.id }} .hero-image {
     width: 100%;
-    height: 110%;
+    height: auto;
+    min-height: 100%;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -220,7 +221,7 @@
     }
 
     .product-split-{{ section.id }} .hero-image {
-      height: 100%;
+      height: auto;
       min-height: 100%;
     }
 
@@ -348,14 +349,16 @@
   var sectionId = '{{ section.id }}';
   var heroImage = document.getElementById('heroImage' + sectionId);
   var leftColumn = document.querySelector('.product-split-' + sectionId + ' .left-column');
+  var imageContainer = document.querySelector('.product-split-' + sectionId + ' .image-container');
   var stickyContent = document.getElementById('stickyContent' + sectionId);
   var scrollBound = false;
   var resizeTimeout;
   
-  if (!heroImage || !leftColumn || !stickyContent) {
+  if (!heroImage || !leftColumn || !imageContainer || !stickyContent) {
     console.log('Elements not found:', {
       heroImage: !!heroImage,
       leftColumn: !!leftColumn,
+      imageContainer: !!imageContainer,
       stickyContent: !!stickyContent
     });
     return;
@@ -374,18 +377,31 @@
   var ticking = false;
 
   function updateParallax() {
-    var rect = leftColumn.getBoundingClientRect();
     var viewportHeight = window.innerHeight;
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    var sectionTop = leftColumn.offsetTop;
     var sectionHeight = leftColumn.offsetHeight;
+    var sectionBottom = sectionTop + sectionHeight;
 
-    if (rect.bottom <= 0 || rect.top >= viewportHeight) {
+    if (scrollY + viewportHeight <= sectionTop || scrollY >= sectionBottom) {
       return;
     }
 
-    var offset = Math.max(0, -rect.top);
-    var relativeScroll = Math.min(sectionHeight, offset);
-    var parallax = relativeScroll * 0.4;
-    heroImage.style.transform = 'translateY(' + parallax + 'px)';
+    var maxScrollWithin = Math.max(1, sectionHeight - viewportHeight);
+    var currentWithin = Math.min(maxScrollWithin, Math.max(0, scrollY - sectionTop));
+
+    var containerHeight = imageContainer.offsetHeight;
+    var imageHeight = heroImage.offsetHeight;
+    var maxTranslate = Math.max(0, imageHeight - containerHeight);
+
+    if (maxTranslate === 0) {
+      heroImage.style.transform = 'translate3d(0, 0, 0)';
+      return;
+    }
+
+    var progress = currentWithin / maxScrollWithin;
+    var parallax = progress * maxTranslate;
+    heroImage.style.transform = 'translate3d(0, ' + (-parallax) + 'px, 0)';
     ticking = false;
   }
 
