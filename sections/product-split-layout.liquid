@@ -31,7 +31,7 @@
 
   .product-split-{{ section.id }} .hero-image {
     width: 100%;
-    height: 120%;
+    height: 110%;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -78,8 +78,13 @@
 
   .product-split-{{ section.id }} .sticky-content {
     position: sticky;
-    top: 0;
+    top: 40px;
     transition: position 35ms ease-out;
+  }
+  
+  .product-split-{{ section.id }} .sticky-content.no-sticky {
+    position: relative;
+    top: auto;
   }
   
   .product-split-{{ section.id }} .sticky-content.release {
@@ -240,24 +245,18 @@
 <div class="product-split-{{ section.id }}">
   <div class="page-wrapper">
     <div class="left-column">
-      {% if section.settings.hero_image %}
-        {% assign hero_placeholder = section.settings.hero_image | image_url: width: 40 %}
-      {% endif %}
-      <div 
-        class="image-container{% if section.settings.hero_image %} has-placeholder{% endif %}"
-        {% if section.settings.hero_image %}
-          style="background-image: url('{{ hero_placeholder }}'); background-size: cover; background-position: center;"
-        {% endif %}
-      >
+      <div class="image-container">
         {% if section.settings.hero_image %}
           <img 
             class="hero-image"
             id="heroImage{{ section.id }}"
-            src="{{ section.settings.hero_image | image_url: width: 1600 }}"
-            srcset="{{ section.settings.hero_image | image_url: width: 400 }} 400w,
+            src="{{ section.settings.hero_image | image_url: width: 2000 }}"
+            srcset="{{ section.settings.hero_image | image_url: width: 480 }} 480w,
                     {{ section.settings.hero_image | image_url: width: 800 }} 800w,
                     {{ section.settings.hero_image | image_url: width: 1200 }} 1200w,
-                    {{ section.settings.hero_image | image_url: width: 1600 }} 1600w"
+                    {{ section.settings.hero_image | image_url: width: 1600 }} 1600w,
+                    {{ section.settings.hero_image | image_url: width: 2000 }} 2000w,
+                    {{ section.settings.hero_image | image_url: width: 2400 }} 2400w"
             sizes="(max-width: 968px) 100vw, 66vw"
             alt="{{ section.settings.product_title | default: 'Product' | escape }}"
             decoding="async"
@@ -354,6 +353,9 @@
   var heroImage = document.getElementById('heroImage' + sectionId);
   var leftColumn = document.querySelector('.product-split-' + sectionId + ' .left-column');
   var stickyContent = document.getElementById('stickyContent' + sectionId);
+  var scrollBound = false;
+  var allowStickySidebar = false;
+  var resizeTimeout;
   
   if (!heroImage || !leftColumn || !stickyContent) {
     console.log('Elements not found:', {
@@ -396,11 +398,51 @@
     }
   }
 
+  function bindScroll() {
+    if (scrollBound) return;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    scrollBound = true;
+  }
+
+  function unbindScroll() {
+    if (!scrollBound) return;
+    window.removeEventListener('scroll', onScroll);
+    scrollBound = false;
+  }
+
+  function syncStickyMode() {
+    if (window.innerWidth <= 968) {
+      allowStickySidebar = false;
+      stickyContent.classList.add('no-sticky');
+      stickyContent.classList.remove('release');
+      return;
+    }
+
+    var sidebarHeight = stickyContent.offsetHeight;
+    var viewportHeight = window.innerHeight;
+    var fitsViewport = (sidebarHeight + 64) <= viewportHeight;
+
+    allowStickySidebar = fitsViewport;
+
+    if (allowStickySidebar) {
+      stickyContent.classList.remove('no-sticky');
+    } else {
+      stickyContent.classList.add('no-sticky');
+      stickyContent.classList.remove('release');
+    }
+  }
+
   function onScroll() {
+    if (window.innerWidth <= 968) {
+      return;
+    }
+
     if (!ticking) {
       window.requestAnimationFrame(function() {
         updateParallax();
-        updateStickyRelease();
+        if (allowStickySidebar) {
+          updateStickyRelease();
+        }
         ticking = false;
       });
       ticking = true;
@@ -408,21 +450,35 @@
   }
 
   if (window.innerWidth > 968) {
-    window.addEventListener('scroll', onScroll);
+    bindScroll();
+    syncStickyMode();
     updateParallax();
-    updateStickyRelease();
+    if (allowStickySidebar) {
+      updateStickyRelease();
+    }
+  } else {
+    syncStickyMode();
   }
 
   window.addEventListener('resize', function() {
-    if (window.innerWidth > 968) {
-      window.addEventListener('scroll', onScroll);
-      updateParallax();
-      updateStickyRelease();
-    } else {
-      window.removeEventListener('scroll', onScroll);
-      heroImage.style.transform = 'translateY(0)';
-      stickyContent.classList.remove('release');
-    }
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+      if (window.innerWidth > 968) {
+        bindScroll();
+        syncStickyMode();
+        updateParallax();
+        if (allowStickySidebar) {
+          updateStickyRelease();
+        } else {
+          stickyContent.classList.remove('release');
+        }
+      } else {
+        unbindScroll();
+        syncStickyMode();
+        heroImage.style.transform = 'translateY(0)';
+        stickyContent.classList.remove('release');
+      }
+    }, 200);
   });
 })();
 </script>
