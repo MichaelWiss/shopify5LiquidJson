@@ -378,107 +378,6 @@
         "divider_color": "#c4bfb5"
       }
     },
-    "product_split_layout_PeaYde": {
-      "type": "product-split-layout",
-      "blocks": {
-        "specification_X3aarX": {
-          "type": "specification",
-          "settings": {
-            "spec_label": "Diameter",
-            "spec_value": "4 inches"
-          }
-        },
-        "specification_HUwDMU": {
-          "type": "specification",
-          "settings": {
-            "spec_label": "Height",
-            "spec_value": "4.5 inches"
-          }
-        },
-        "specification_JeyCp3": {
-          "type": "specification",
-          "settings": {
-            "spec_label": "Weight",
-            "spec_value": "1.2 lbs"
-          }
-        },
-        "specification_NGbCcR": {
-          "type": "specification",
-          "settings": {
-            "spec_label": "Material",
-            "spec_value": "Hand-blown glass, brass"
-          }
-        },
-        "specification_PCDgBa": {
-          "type": "specification",
-          "settings": {
-            "spec_label": "Bulb Type",
-            "spec_value": "E26 LED (included)"
-          }
-        },
-        "specification_NacJWq": {
-          "type": "specification",
-          "settings": {
-            "spec_label": "Wattage",
-            "spec_value": "40W max"
-          }
-        },
-        "specification_N7NMGc": {
-          "type": "specification",
-          "settings": {
-            "spec_label": "Dimming",
-            "spec_value": "Compatible"
-          }
-        },
-        "content_block_KdekcH": {
-          "type": "content_block",
-          "settings": {
-            "heading": "Details",
-            "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
-          }
-        },
-        "content_block_i3ChAE": {
-          "type": "content_block",
-          "settings": {
-            "heading": "Care Instructions",
-            "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "specification_X3aarX",
-        "specification_HUwDMU",
-        "specification_JeyCp3",
-        "specification_NGbCcR",
-        "specification_PCDgBa",
-        "specification_NacJWq",
-        "specification_N7NMGc",
-        "content_block_KdekcH",
-        "content_block_i3ChAE"
-      ],
-      "name": "Product Split Layout",
-      "settings": {
-        "hero_image": "shopify://shop_images/12fb680f0cbc119b840d056285f237df.webp",
-        "show_label": true,
-        "label_text": "Orb 4 Surface Mount",
-        "description": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale, Orb lights are available in a range of sizes and finishes, and can be mounted to either walls or ceilings.",
-        "show_product_visual": true,
-        "product_image": "shopify://shop_images/12fb680f0cbc119b840d056285f237df.webp",
-        "product_title": "Orb 4 Surface Mount",
-        "product_price": "From $300.00",
-        "shop_link_text": "Shop",
-        "shop_link_url": "",
-        "show_specs": true,
-        "specs_title": "Specifications",
-        "sidebar_bg": "#fafafa",
-        "text_color": "#1a1a1a",
-        "secondary_text_color": "#666666",
-        "label_color": "#ffffff",
-        "product_box_bg": "#e8e4df",
-        "divider_color": "#dddddd",
-        "spec_divider_color": "#eeeeee"
-      }
-    },
     "text_columns": {
       "type": "text-columns",
       "blocks": {
@@ -510,6 +409,109 @@
         "text_column_3"
       ],
       "settings": {}
+    },
+    "product_split_layout_yeMJzL": {
+      "type": "product-split-layout",
+      "blocks": {
+        "specification_zWyafz": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Diameter",
+            "spec_value": "4 inches"
+          }
+        },
+        "specification_FjUfYy": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Height",
+            "spec_value": "4.5 inches"
+          }
+        },
+        "specification_t4JtCg": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Weight",
+            "spec_value": "1.2 lbs"
+          }
+        },
+        "specification_FMTYMg": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Material",
+            "spec_value": "Hand-blown glass, brass"
+          }
+        },
+        "specification_i3Kffb": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Bulb Type",
+            "spec_value": "E26 LED (included)"
+          }
+        },
+        "specification_itF9t9": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Wattage",
+            "spec_value": "40W max"
+          }
+        },
+        "specification_UmT7hp": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Dimming",
+            "spec_value": "Compatible"
+          }
+        },
+        "content_block_nN8Mb8": {
+          "type": "content_block",
+          "disabled": true,
+          "settings": {
+            "heading": "Details",
+            "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
+          }
+        },
+        "content_block_7ymPeB": {
+          "type": "content_block",
+          "disabled": true,
+          "settings": {
+            "heading": "Care Instructions",
+            "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "specification_zWyafz",
+        "specification_FjUfYy",
+        "specification_t4JtCg",
+        "specification_FMTYMg",
+        "specification_i3Kffb",
+        "specification_itF9t9",
+        "specification_UmT7hp",
+        "content_block_nN8Mb8",
+        "content_block_7ymPeB"
+      ],
+      "name": "Product Split Layout",
+      "settings": {
+        "hero_image": "shopify://shop_images/12fb680f0cbc119b840d056285f237df.webp",
+        "show_label": true,
+        "label_text": "Orb 4 Surface Mount",
+        "description": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale, Orb lights are available in a range of sizes and finishes, and can be mounted to either walls or ceilings.",
+        "show_product_visual": true,
+        "product_image": "shopify://shop_images/20.webp",
+        "product_title": "Orb 4 Surface Mount",
+        "product_price": "From $300.00",
+        "shop_link_text": "Shop",
+        "shop_link_url": "",
+        "show_specs": false,
+        "specs_title": "Specifications",
+        "sidebar_bg": "#fafafa",
+        "text_color": "#1a1a1a",
+        "secondary_text_color": "#666666",
+        "label_color": "#ffffff",
+        "product_box_bg": "#e8e4df",
+        "divider_color": "#dddddd",
+        "spec_divider_color": "#eeeeee"
+      }
     }
   },
   "order": [
@@ -525,7 +527,7 @@
     "split_feature_WYJAeH",
     "intro_marquee_BPDmRL",
     "studio_carousel_nKLLVi",
-    "product_split_layout_PeaYde",
-    "text_columns"
+    "text_columns",
+    "product_split_layout_yeMJzL"
   ]
 }
