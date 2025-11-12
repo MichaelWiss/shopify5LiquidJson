@@ -432,6 +432,7 @@
         },
         "content_block_wWXe9E": {
           "type": "content_block",
+          "disabled": true,
           "settings": {
             "heading": "Details",
             "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
@@ -439,6 +440,7 @@
         },
         "content_block_KwaT9F": {
           "type": "content_block",
+          "disabled": true,
           "settings": {
             "heading": "Care Instructions",
             "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
