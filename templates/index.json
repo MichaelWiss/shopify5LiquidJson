@@ -439,6 +439,7 @@
         },
         "content_block_zHXPyX": {
           "type": "content_block",
+          "disabled": true,
           "settings": {
             "heading": "Care Instructions",
             "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
