@@ -378,67 +378,68 @@
         "divider_color": "#c4bfb5"
       }
     },
-    "product_split_layout_7fePYA": {
+    "product_split_layout_aVAmdY": {
       "type": "product-split-layout",
       "blocks": {
-        "specification_CprDUh": {
+        "specification_a3tfAQ": {
           "type": "specification",
           "settings": {
             "spec_label": "Diameter",
             "spec_value": "4 inches"
           }
         },
-        "specification_4TDMna": {
+        "specification_RebHDf": {
           "type": "specification",
           "settings": {
             "spec_label": "Height",
             "spec_value": "4.5 inches"
           }
         },
-        "specification_BUkRyq": {
+        "specification_RPhqzr": {
           "type": "specification",
           "settings": {
             "spec_label": "Weight",
             "spec_value": "1.2 lbs"
           }
         },
-        "specification_grfrcp": {
+        "specification_CJ8Jkx": {
           "type": "specification",
           "settings": {
             "spec_label": "Material",
             "spec_value": "Hand-blown glass, brass"
           }
         },
-        "specification_kmEV7F": {
+        "specification_Q6xkw8": {
           "type": "specification",
           "settings": {
             "spec_label": "Bulb Type",
             "spec_value": "E26 LED (included)"
           }
         },
-        "specification_EcqqgG": {
+        "specification_zMGKLT": {
           "type": "specification",
           "settings": {
             "spec_label": "Wattage",
             "spec_value": "40W max"
           }
         },
-        "specification_6NFmFh": {
+        "specification_QerXGg": {
           "type": "specification",
           "settings": {
             "spec_label": "Dimming",
             "spec_value": "Compatible"
           }
         },
-        "content_block_fgtJTz": {
+        "content_block_GDfigk": {
           "type": "content_block",
           "settings": {
             "heading": "Details",
             "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
           }
         },
-        "content_block_GDemgE": {
+        "content_block_ce8aPy": {
           "type": "content_block",
+          "disabled": true,
           "settings": {
             "heading": "Care Instructions",
             "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
@@ -446,19 +447,19 @@
         }
       },
       "block_order": [
-        "specification_CprDUh",
-        "specification_4TDMna",
-        "specification_BUkRyq",
-        "specification_grfrcp",
-        "specification_kmEV7F",
-        "specification_EcqqgG",
-        "specification_6NFmFh",
-        "content_block_fgtJTz",
-        "content_block_GDemgE"
+        "specification_a3tfAQ",
+        "specification_RebHDf",
+        "specification_RPhqzr",
+        "specification_CJ8Jkx",
+        "specification_Q6xkw8",
+        "specification_zMGKLT",
+        "specification_QerXGg",
+        "content_block_GDfigk",
+        "content_block_ce8aPy"
       ],
       "name": "Product Split Layout",
       "settings": {
-        "hero_image": "shopify://shop_images/nicola-harding-homing-instinct-excerpt-tuscan-villa-domino-05_d43cac.webp",
+        "hero_image": "shopify://shop_images/tbo-architecture-philadelphia-renovation-domino-10.webp",
         "show_label": true,
         "label_text": "Orb 4 Surface Mount",
         "description": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale, Orb lights are available in a range of sizes and finishes, and can be mounted to either walls or ceilings.",
@@ -518,7 +519,7 @@
     "split_feature_WYJAeH",
     "intro_marquee_BPDmRL",
     "studio_carousel_nKLLVi",
-    "product_split_layout_7fePYA",
+    "product_split_layout_aVAmdY",
     "text_columns"
   ]
 }
