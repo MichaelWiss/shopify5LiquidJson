@@ -378,38 +378,6 @@
         "divider_color": "#c4bfb5"
       }
     },
-    "text_columns": {
-      "type": "text-columns",
-      "blocks": {
-        "text_column_1": {
-          "type": "column",
-          "settings": {
-            "heading": "Services",
-            "body": "Consultations by appointment.\nTrade support.\nProject coordination."
-          }
-        },
-        "text_column_2": {
-          "type": "column",
-          "settings": {
-            "heading": "Materials",
-            "body": "Stone, glass, metal finishes.\nCustom shades.\nArchival research."
-          }
-        },
-        "text_column_3": {
-          "type": "column",
-          "settings": {
-            "heading": "Contact",
-            "body": "studio@refinements.com\n917-555-2034\nBrooklyn, New York"
-          }
-        }
-      },
-      "block_order": [
-        "text_column_1",
-        "text_column_2",
-        "text_column_3"
-      ],
-      "settings": {}
-    },
     "product_split_layout_yeMJzL": {
       "type": "product-split-layout",
       "blocks": {
@@ -512,6 +480,38 @@
         "divider_color": "#dddddd",
         "spec_divider_color": "#eeeeee"
       }
+    },
+    "text_columns": {
+      "type": "text-columns",
+      "blocks": {
+        "text_column_1": {
+          "type": "column",
+          "settings": {
+            "heading": "Services",
+            "body": "Consultations by appointment.\nTrade support.\nProject coordination."
+          }
+        },
+        "text_column_2": {
+          "type": "column",
+          "settings": {
+            "heading": "Materials",
+            "body": "Stone, glass, metal finishes.\nCustom shades.\nArchival research."
+          }
+        },
+        "text_column_3": {
+          "type": "column",
+          "settings": {
+            "heading": "Contact",
+            "body": "studio@refinements.com\n917-555-2034\nBrooklyn, New York"
+          }
+        }
+      },
+      "block_order": [
+        "text_column_1",
+        "text_column_2",
+        "text_column_3"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -527,7 +527,7 @@
     "split_feature_WYJAeH",
     "intro_marquee_BPDmRL",
     "studio_carousel_nKLLVi",
-    "text_columns",
-    "product_split_layout_yeMJzL"
+    "product_split_layout_yeMJzL",
+    "text_columns"
   ]
 }
