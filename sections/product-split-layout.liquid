@@ -22,7 +22,7 @@
   .product-split-{{ section.id }} .image-container {
     position: sticky;
     top: calc(var(--header-height, 70px) + 12px);
-    height: 100vh;
+    height: calc(100vh - (var(--header-height, 70px) + 12px));
     overflow: hidden;
     background-color: #f5f5f5;
     background-size: cover;
@@ -31,11 +31,10 @@
 
   .product-split-{{ section.id }} .hero-image {
     width: 100%;
+    display: block;
     height: auto;
-    min-height: 100%;
     object-fit: cover;
     object-position: center top;
-    display: block;
     will-change: transform;
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -353,6 +352,7 @@
   var stickyContent = document.getElementById('stickyContent' + sectionId);
   var scrollBound = false;
   var resizeTimeout;
+  var stickyOffset = 0;
   
   if (!heroImage || !leftColumn || !imageContainer || !stickyContent) {
     console.log('Elements not found:', {
@@ -374,6 +374,8 @@
     heroImage.addEventListener('load', markLoaded, { once: true });
   }
 
+  stickyOffset = parseFloat(window.getComputedStyle(imageContainer).top) || 0;
+
   var ticking = false;
 
   function updateParallax() {
@@ -382,24 +384,28 @@
     var sectionTop = leftColumn.offsetTop;
     var sectionHeight = leftColumn.offsetHeight;
     var sectionBottom = sectionTop + sectionHeight;
+    var containerHeight = imageContainer.offsetHeight;
+    var imageHeight = heroImage.offsetHeight;
+    var maxTranslate = Math.max(0, imageHeight - containerHeight);
 
     if (scrollY + viewportHeight <= sectionTop || scrollY >= sectionBottom) {
       return;
     }
-
-    var maxScrollWithin = Math.max(1, sectionHeight - viewportHeight);
-    var currentWithin = Math.min(maxScrollWithin, Math.max(0, scrollY - sectionTop));
-
-    var containerHeight = imageContainer.offsetHeight;
-    var imageHeight = heroImage.offsetHeight;
-    var maxTranslate = Math.max(0, imageHeight - containerHeight);
 
     if (maxTranslate === 0) {
       heroImage.style.transform = 'translate3d(0, 0, 0)';
       return;
     }
 
-    var progress = currentWithin / maxScrollWithin;
+    var startScroll = sectionTop - stickyOffset;
+    var endScroll = sectionBottom - containerHeight - stickyOffset;
+    if (endScroll <= startScroll) {
+      heroImage.style.transform = 'translate3d(0, 0, 0)';
+      return;
+    }
+
+    var clampedScroll = Math.min(endScroll, Math.max(startScroll, scrollY));
+    var progress = (clampedScroll - startScroll) / (endScroll - startScroll);
     var parallax = progress * maxTranslate;
     heroImage.style.transform = 'translate3d(0, ' + (-parallax) + 'px, 0)';
     ticking = false;
@@ -447,6 +453,7 @@
 
   if (window.innerWidth > 968) {
     bindScroll();
+    stickyOffset = parseFloat(window.getComputedStyle(imageContainer).top) || 0;
     updateParallax();
     updateStickyRelease();
   } else {
@@ -458,11 +465,12 @@
     resizeTimeout = setTimeout(function() {
       if (window.innerWidth > 968) {
         bindScroll();
+        stickyOffset = parseFloat(window.getComputedStyle(imageContainer).top) || 0;
         updateParallax();
         updateStickyRelease();
       } else {
         unbindScroll();
-        heroImage.style.transform = 'translateY(0)';
+        heroImage.style.transform = 'translate3d(0, 0, 0)';
         stickyContent.classList.remove('release');
       }
     }, 200);
