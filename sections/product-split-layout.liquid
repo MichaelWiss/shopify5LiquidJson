@@ -335,17 +335,32 @@
           if (hasTransform) {
             node.style.transform = 'none';
           }
-          blockingSelectors.push(node);
+          blockingSelectors.push({
+            node,
+            overflow: hasOverflow ? overflowCandidates.join('/') : null,
+            transform: hasTransform ? computed.transform : null
+          });
         }
       }
 
-      if (blockingSelectors.length && window.console && window.console.debug) {
-        const selectorList = blockingSelectors.map((node) => {
+      if (blockingSelectors.length) {
+        const selectorList = blockingSelectors.map(({ node }) => {
           const classes = node.className ? `.${node.className.trim().replace(/\s+/g, '.')}` : '';
           const id = node.id ? `#${node.id}` : '';
           return `${node.tagName.toLowerCase()}${id}${classes}`;
         });
-        console.debug('Product Split Layout: cleared overflow/transform on', selectorList);
+        if (window.console && window.console.debug) {
+          console.debug('Product Split Layout: cleared overflow/transform on', selectorList);
+        }
+
+        const note = document.createElement('div');
+        note.className = 'product-split-layout__sticky-debug-note';
+        note.style.fontSize = '10px';
+        note.style.color = '#a0584f';
+        note.style.marginTop = '16px';
+        note.style.lineHeight = '1.4';
+        note.textContent = `Debug: cleared ${selectorList.join(' → ')}`;
+        sticky.appendChild(note);
       }
     });
   })();
