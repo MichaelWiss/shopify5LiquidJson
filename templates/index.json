@@ -378,67 +378,68 @@
         "divider_color": "#c4bfb5"
       }
     },
-    "product_split_layout_YEEYxB": {
+    "product_split_layout_zEj6pH": {
       "type": "product-split-layout",
       "blocks": {
-        "specification_Km6cqh": {
+        "specification_zQDnPw": {
           "type": "specification",
           "settings": {
             "spec_label": "Diameter",
             "spec_value": "4 inches"
           }
         },
-        "specification_dn7F8z": {
+        "specification_aBETMP": {
           "type": "specification",
           "settings": {
             "spec_label": "Height",
             "spec_value": "4.5 inches"
           }
         },
-        "specification_6aqmVN": {
+        "specification_kJTypd": {
           "type": "specification",
           "settings": {
             "spec_label": "Weight",
             "spec_value": "1.2 lbs"
           }
         },
-        "specification_pFC6bU": {
+        "specification_3ACUfQ": {
           "type": "specification",
           "settings": {
             "spec_label": "Material",
             "spec_value": "Hand-blown glass, brass"
           }
         },
-        "specification_WUABtB": {
+        "specification_Renqcc": {
           "type": "specification",
           "settings": {
             "spec_label": "Bulb Type",
             "spec_value": "E26 LED (included)"
           }
         },
-        "specification_M7y6MP": {
+        "specification_i4MktQ": {
           "type": "specification",
           "settings": {
             "spec_label": "Wattage",
             "spec_value": "40W max"
           }
         },
-        "specification_MWREPE": {
+        "specification_yTEnW3": {
           "type": "specification",
           "settings": {
             "spec_label": "Dimming",
             "spec_value": "Compatible"
           }
         },
-        "content_block_AkYmzQ": {
+        "content_block_GB4HAL": {
           "type": "content_block",
           "settings": {
             "heading": "Details",
             "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
           }
         },
-        "content_block_izrXCU": {
+        "content_block_zgc9eR": {
           "type": "content_block",
+          "disabled": true,
           "settings": {
             "heading": "Care Instructions",
             "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
@@ -446,15 +447,15 @@
         }
       },
       "block_order": [
-        "specification_Km6cqh",
-        "specification_dn7F8z",
-        "specification_6aqmVN",
-        "specification_pFC6bU",
-        "specification_WUABtB",
-        "specification_M7y6MP",
-        "specification_MWREPE",
-        "content_block_AkYmzQ",
-        "content_block_izrXCU"
+        "specification_zQDnPw",
+        "specification_aBETMP",
+        "specification_kJTypd",
+        "specification_3ACUfQ",
+        "specification_Renqcc",
+        "specification_i4MktQ",
+        "specification_yTEnW3",
+        "content_block_GB4HAL",
+        "content_block_zgc9eR"
       ],
       "name": "Product Split Layout",
       "settings": {
@@ -518,7 +519,7 @@
     "split_feature_WYJAeH",
     "intro_marquee_BPDmRL",
     "studio_carousel_nKLLVi",
-    "product_split_layout_YEEYxB",
+    "product_split_layout_zEj6pH",
     "text_columns"
   ]
 }
