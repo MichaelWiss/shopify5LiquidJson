@@ -3,25 +3,210 @@
   Save this as: sections/product-split-layout.liquid
 {% endcomment %}
 
-{% assign spec_blocks = section.blocks | where: "type", "specification" %}
-{% assign content_blocks = section.blocks | where: "type", "content_block" %}
+<style>
+  .product-split-{{ section.id }} {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
 
-{% capture product_split_style %}
-  --product-split-sidebar-bg: {{ section.settings.sidebar_bg | default: '#fafafa' }};
-  --product-split-text: {{ section.settings.text_color | default: '#1a1a1a' }};
-  --product-split-text-muted: {{ section.settings.secondary_text_color | default: '#666666' }};
-  --product-split-label: {{ section.settings.label_color | default: '#ffffff' }};
-  --product-split-product-bg: {{ section.settings.product_box_bg | default: '#e8e4df' }};
-  --product-split-divider: {{ section.settings.divider_color | default: '#dddddd' }};
-  --product-split-spec-divider: {{ section.settings.spec_divider_color | default: '#eeeeee' }};
-{% endcapture %}
-{% assign product_split_style = product_split_style | strip_newlines | strip %}
+  .product-split-{{ section.id }} .page-wrapper {
+    display: flex;
+  }
 
-<section class="product-split-section product-split-section--{{ section.id }}" {% if product_split_style != blank %}style="{{ product_split_style }}"{% endif %}>
-  <div class="product-split__wrapper">
-    <div class="product-split__media">
+  .product-split-{{ section.id }} .left-column {
+    flex: 1;
+    min-height: 300vh;
+    background-color: {{ section.settings.sidebar_bg }};
+    position: relative;
+  }
+
+  .product-split-{{ section.id }} .left-column img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .product-split-{{ section.id }} .label {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: {{ section.settings.label_color }};
+    font-size: 14px;
+    z-index: 10;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+
+  .product-split-{{ section.id }} .label-dot {
+    width: 10px;
+    height: 10px;
+    background-color: {{ section.settings.label_color }};
+    border-radius: 50%;
+  }
+
+  .product-split-{{ section.id }} .right-column {
+    width: 340px;
+    background-color: {{ section.settings.sidebar_bg }};
+    flex-shrink: 0;
+  }
+
+  .product-split-{{ section.id }} .sidebar {
+    padding: 40px 32px;
+  }
+
+  .product-split-{{ section.id }} .sticky-content {
+    position: sticky;
+    top: 0;
+    padding-top: 20px;
+  }
+
+  .product-split-{{ section.id }} .description {
+    font-size: 14px;
+    line-height: 1.7;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 60px;
+  }
+
+  .product-split-{{ section.id }} .product-image-container {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: {{ section.settings.product_box_bg }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .product-split-{{ section.id }} .product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 20px;
+  }
+
+  .product-split-{{ section.id }} .product-orb {
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+
+  .product-split-{{ section.id }} .orb-main {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #f5f0ea);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .product-split-{{ section.id }} .orb-ring {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 32px;
+    height: 32px;
+    border: 3px solid #8b4513;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+
+  .product-split-{{ section.id }} .product-title {
+    font-size: 13px;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+
+  .product-split-{{ section.id }} .product-price {
+    font-size: 13px;
+    color: {{ section.settings.secondary_text_color }};
+    margin-bottom: 16px;
+  }
+
+  .product-split-{{ section.id }} .shop-link {
+    display: inline-block;
+    font-size: 13px;
+    color: {{ section.settings.text_color }};
+    text-decoration: underline;
+  }
+
+  .product-split-{{ section.id }} .shop-link:hover {
+    color: {{ section.settings.secondary_text_color }};
+  }
+
+  .product-split-{{ section.id }} .extra-content {
+    margin-top: 60px;
+    padding-top: 60px;
+    border-top: 1px solid {{ section.settings.divider_color }};
+  }
+
+  .product-split-{{ section.id }} .extra-content h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: {{ section.settings.text_color }};
+  }
+
+  .product-split-{{ section.id }} .extra-content p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: {{ section.settings.secondary_text_color }};
+    margin-bottom: 20px;
+  }
+
+  .product-split-{{ section.id }} .spec-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 12px 0;
+    border-bottom: 1px solid {{ section.settings.spec_divider_color }};
+  }
+
+  .product-split-{{ section.id }} .spec-label {
+    color: {{ section.settings.secondary_text_color }};
+  }
+
+  .product-split-{{ section.id }} .spec-value {
+    color: {{ section.settings.text_color }};
+  }
+
+  .product-split-{{ section.id }} .non-sticky-content {
+    margin-top: 60px;
+  }
+
+  @media (max-width: 968px) {
+    .product-split-{{ section.id }} .page-wrapper {
+      flex-direction: column;
+    }
+
+    .product-split-{{ section.id }} .left-column {
+      min-height: 60vh;
+    }
+
+    .product-split-{{ section.id }} .label {
+      position: absolute;
+    }
+
+    .product-split-{{ section.id }} .right-column {
+      width: 100%;
+    }
+
+    .product-split-{{ section.id }} .sidebar {
+      padding: 32px 20px;
+    }
+
+    .product-split-{{ section.id }} .sticky-content {
+      position: relative;
+    }
+  }
+</style>
+
+<div class="product-split-{{ section.id }}">
+  <div class="page-wrapper">
+    <div class="left-column">
       {% if section.settings.hero_image %}
-        <img
+        <img 
           src="{{ section.settings.hero_image | img_url: '1600x' }}"
           srcset="{{ section.settings.hero_image | img_url: '400x' }} 400w,
                   {{ section.settings.hero_image | img_url: '800x' }} 800w,
@@ -32,87 +217,90 @@
           alt="{{ section.settings.product_title | default: 'Product' | escape }}"
         >
       {% else %}
-        <div class="product-split__media-placeholder">
+        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #e8e4dc 0%, #d0cbc1 100%); display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">
           Add Hero Image
         </div>
       {% endif %}
 
       {% if section.settings.show_label and section.settings.label_text != blank %}
-        <div class="product-split__label">
-          <span class="product-split__label-dot"></span>
+        <div class="label">
+          <div class="label-dot"></div>
           <span>{{ section.settings.label_text }}</span>
         </div>
       {% endif %}
     </div>
 
-    <div class="product-split__details">
-      <div class="product-split__panel">
-        <div class="product-split__sticky">
+    <div class="right-column">
+      <div class="sidebar">
+        <div class="sticky-content">
           {% if section.settings.description != blank %}
-            <p class="product-split__description">{{ section.settings.description }}</p>
+            <p class="description">{{ section.settings.description }}</p>
           {% endif %}
 
           {% if section.settings.show_product_visual %}
-            <div class="product-split__image-box">
+            <div class="product-image-container">
               {% if section.settings.product_image %}
-                <img
+                <img 
                   src="{{ section.settings.product_image | img_url: '600x' }}"
                   alt="{{ section.settings.product_title | default: 'Product' | escape }}"
                 >
               {% else %}
-                <div class="product-split__orb">
-                  <div class="product-split__orb-main"></div>
-                  <div class="product-split__orb-ring"></div>
+                <div class="product-orb">
+                  <div class="orb-main"></div>
+                  <div class="orb-ring"></div>
                 </div>
               {% endif %}
             </div>
           {% endif %}
 
           {% if section.settings.product_title != blank %}
-            <div class="product-split__title">{{ section.settings.product_title }}</div>
+            <div class="product-title">{{ section.settings.product_title }}</div>
           {% endif %}
 
           {% if section.settings.product_price != blank %}
-            <div class="product-split__price">{{ section.settings.product_price }}</div>
+            <div class="product-price">{{ section.settings.product_price }}</div>
           {% endif %}
 
           {% if section.settings.shop_link_url != blank %}
-            <a href="{{ section.settings.shop_link_url }}" class="product-split__link">
+            <a href="{{ section.settings.shop_link_url }}" class="shop-link">
               {{ section.settings.shop_link_text | default: "Shop" }}
             </a>
           {% endif %}
 
-          {% if section.settings.show_specs and spec_blocks.size > 0 %}
-            <div class="product-split__extra">
-              <h3>{{ section.settings.specs_title | default: "Specifications" }}</h3>
-              {% for block in spec_blocks %}
-                <div class="product-split__spec" {{ block.shopify_attributes }}>
-                  <span class="product-split__spec-label">{{ block.settings.spec_label }}</span>
-                  <span class="product-split__spec-value">{{ block.settings.spec_value }}</span>
-                </div>
-              {% endfor %}
-            </div>
+          {% if section.settings.show_specs %}
+            {% assign spec_blocks = section.blocks | where: "type", "specification" %}
+            {% if spec_blocks.size > 0 %}
+              <div class="extra-content">
+                <h3>{{ section.settings.specs_title | default: "Specifications" }}</h3>
+                {% for block in spec_blocks %}
+                  <div class="spec-item" {{ block.shopify_attributes }}>
+                    <span class="spec-label">{{ block.settings.spec_label }}</span>
+                    <span class="spec-value">{{ block.settings.spec_value }}</span>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
           {% endif %}
         </div>
 
-        {% if content_blocks.size > 0 %}
-          <div class="product-split__additional">
-            {% for block in content_blocks %}
-              <article class="product-split__extra" {{ block.shopify_attributes }}>
+        <div class="non-sticky-content">
+          {% for block in section.blocks %}
+            {% if block.type == 'content_block' %}
+              <div class="extra-content" {{ block.shopify_attributes }}>
                 {% if block.settings.heading != blank %}
                   <h3>{{ block.settings.heading }}</h3>
                 {% endif %}
                 {% if block.settings.content != blank %}
                   {{ block.settings.content }}
                 {% endif %}
-              </article>
-            {% endfor %}
-          </div>
-        {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {% schema %}
 {
