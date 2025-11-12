@@ -15,14 +15,14 @@
 
   .product-split-{{ section.id }} .left-column {
     flex: 1;
-    min-height: calc(100vh + var(--hero-parallax-extra, 600px));
+    min-height: calc(140vh + var(--hero-parallax-extra, 400px));
     position: relative;
   }
 
   .product-split-{{ section.id }} .image-container {
     position: sticky;
     top: calc(var(--header-height, 70px) + 12px);
-    height: calc(100vh - (var(--header-height, 70px) + 12px));
+    height: calc(120vh - (var(--header-height, 70px) + 12px));
     overflow: hidden;
     background-color: #f5f5f5;
     background-size: cover;
@@ -353,6 +353,11 @@
   var scrollBound = false;
   var resizeTimeout;
   var stickyOffset = 0;
+  var parallaxMetrics = {
+    containerHeight: 0,
+    imageHeight: 0,
+    maxTranslate: 0
+  };
   
   if (!heroImage || !leftColumn || !imageContainer || !stickyContent) {
     console.log('Elements not found:', {
@@ -366,6 +371,7 @@
 
   function markLoaded() {
     heroImage.classList.add('is-loaded');
+    refreshParallaxMetrics();
   }
 
   if (heroImage.complete && heroImage.naturalWidth > 0) {
@@ -375,8 +381,20 @@
   }
 
   stickyOffset = parseFloat(window.getComputedStyle(imageContainer).top) || 0;
+  refreshParallaxMetrics();
 
   var ticking = false;
+
+  function refreshParallaxMetrics() {
+    parallaxMetrics.containerHeight = imageContainer.offsetHeight;
+    parallaxMetrics.imageHeight = heroImage.offsetHeight;
+    parallaxMetrics.maxTranslate = Math.max(0, parallaxMetrics.imageHeight - parallaxMetrics.containerHeight);
+
+    var requiredHeight = parallaxMetrics.containerHeight + parallaxMetrics.maxTranslate + 1;
+    if (requiredHeight > 0) {
+      leftColumn.style.minHeight = requiredHeight + 'px';
+    }
+  }
 
   function updateParallax() {
     var viewportHeight = window.innerHeight;
@@ -384,9 +402,8 @@
     var sectionTop = leftColumn.offsetTop;
     var sectionHeight = leftColumn.offsetHeight;
     var sectionBottom = sectionTop + sectionHeight;
-    var containerHeight = imageContainer.offsetHeight;
-    var imageHeight = heroImage.offsetHeight;
-    var maxTranslate = Math.max(0, imageHeight - containerHeight);
+    var containerHeight = parallaxMetrics.containerHeight;
+    var maxTranslate = parallaxMetrics.maxTranslate;
 
     if (scrollY + viewportHeight <= sectionTop || scrollY >= sectionBottom) {
       return;
@@ -454,6 +471,7 @@
   if (window.innerWidth > 968) {
     bindScroll();
     stickyOffset = parseFloat(window.getComputedStyle(imageContainer).top) || 0;
+    refreshParallaxMetrics();
     updateParallax();
     updateStickyRelease();
   } else {
@@ -466,6 +484,7 @@
       if (window.innerWidth > 968) {
         bindScroll();
         stickyOffset = parseFloat(window.getComputedStyle(imageContainer).top) || 0;
+        refreshParallaxMetrics();
         updateParallax();
         updateStickyRelease();
       } else {
