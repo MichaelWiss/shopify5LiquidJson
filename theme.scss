@@ -263,13 +263,13 @@ body {
   
   // Dynamic header color mode
   &[data-color-mode="dynamic"] {
-    background: var(--dynamic-header-bg, var(--ink));
-    color: var(--dynamic-header-text, var(--paper));
+    background: var(--dynamic-header-bg, #1a1a1a);
+    color: var(--dynamic-header-text, #ffffff);
     
     .site-logo,
     .header-nav a,
     .header-icon {
-      color: var(--dynamic-header-text, var(--paper));
+      color: var(--dynamic-header-text, #ffffff);
     }
   }
 }
@@ -976,11 +976,13 @@ body.cart-drawer-open {
 /* Homepage — Refinements */
 // Override section padding for hero to make it flush with header
 #shopify-section-hero_full_bleed {
-  padding-top: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .hero {
-  margin-top: 0;
+  margin: 0;
+  padding: 0;
   height: 120vh;
   position: relative;
   overflow: hidden;

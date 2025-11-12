@@ -37,6 +37,7 @@
   endif
 %}
 
+<style>
 {% if heading_font != blank %}
   {{ heading_font | font_face: font_display: 'swap' }}
 {% endif %}
@@ -46,7 +47,6 @@
   {% endif %}
 {% endif %}
 
-<style>
   :root {
     --bg: {{ bg }};
     --paper: {{ paper }};

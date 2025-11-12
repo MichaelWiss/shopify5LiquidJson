@@ -1047,6 +1047,7 @@ body.cart-drawer-open {
 
 .hero {
   margin-top: 0;
+  padding-top: 0;
   height: 120vh;
   position: relative;
   overflow: hidden;

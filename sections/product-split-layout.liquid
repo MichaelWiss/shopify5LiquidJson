@@ -25,6 +25,8 @@
     height: 100vh;
     overflow: hidden;
     background-color: #f5f5f5;
+    background-size: cover;
+    background-position: center;
   }
 
   .product-split-{{ section.id }} .hero-image {
@@ -34,6 +36,12 @@
     object-position: center top;
     display: block;
     will-change: transform;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .product-split-{{ section.id }} .hero-image.is-loaded {
+    opacity: 1;
   }
 
   .product-split-{{ section.id }} .label {
@@ -203,18 +211,16 @@
       min-height: auto;
     }
 
-    .product-split-{{ section.id }} .left-column {
-      height: 60vh;
-      min-height: 400px;
-    }
-
     .product-split-{{ section.id }} .image-container {
       position: relative;
-      height: 100%;
+      height: auto;
+      min-height: 400px;
+      aspect-ratio: 3 / 4;
     }
 
     .product-split-{{ section.id }} .hero-image {
       height: 100%;
+      min-height: 100%;
     }
 
     .product-split-{{ section.id }} .right-column {
@@ -234,21 +240,28 @@
 <div class="product-split-{{ section.id }}">
   <div class="page-wrapper">
     <div class="left-column">
-      <div class="image-container">
+      {% if section.settings.hero_image %}
+        {% assign hero_placeholder = section.settings.hero_image | image_url: width: 40 %}
+      {% endif %}
+      <div 
+        class="image-container{% if section.settings.hero_image %} has-placeholder{% endif %}"
+        {% if section.settings.hero_image %}
+          style="background-image: url('{{ hero_placeholder }}'); background-size: cover; background-position: center;"
+        {% endif %}
+      >
         {% if section.settings.hero_image %}
           <img 
             class="hero-image"
             id="heroImage{{ section.id }}"
-            src="{{ section.settings.hero_image | img_url: '1600x' }}"
-            srcset="{{ section.settings.hero_image | img_url: '400x' }} 400w,
-                    {{ section.settings.hero_image | img_url: '800x' }} 800w,
-                    {{ section.settings.hero_image | img_url: '1200x' }} 1200w,
-                    {{ section.settings.hero_image | img_url: '1600x' }} 1600w,
-                    {{ section.settings.hero_image | img_url: '2000x' }} 2000w"
+            src="{{ section.settings.hero_image | image_url: width: 1600 }}"
+            srcset="{{ section.settings.hero_image | image_url: width: 400 }} 400w,
+                    {{ section.settings.hero_image | image_url: width: 800 }} 800w,
+                    {{ section.settings.hero_image | image_url: width: 1200 }} 1200w,
+                    {{ section.settings.hero_image | image_url: width: 1600 }} 1600w"
             sizes="(max-width: 968px) 100vw, 66vw"
             alt="{{ section.settings.product_title | default: 'Product' | escape }}"
-            onload="console.log('Hero image loaded successfully')"
-            onerror="console.error('Hero image failed to load:', this.src)"
+            decoding="async"
+            fetchpriority="high"
           >
         {% else %}
           <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #e8e4dc 0%, #d0cbc1 100%); display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">
@@ -351,6 +364,16 @@
     return;
   }
 
+  function markLoaded() {
+    heroImage.classList.add('is-loaded');
+  }
+
+  if (heroImage.complete && heroImage.naturalWidth > 0) {
+    markLoaded();
+  } else {
+    heroImage.addEventListener('load', markLoaded, { once: true });
+  }
+
   var ticking = false;
 
   function updateParallax() {
@@ -365,7 +388,7 @@
     var leftColumnRect = leftColumn.getBoundingClientRect();
     var leftColumnBottom = leftColumnRect.top + scrollY + leftColumn.offsetHeight;
     var scrollBottom = scrollY + window.innerHeight;
-    
+  
     if (scrollBottom >= leftColumnBottom - 100) {
       stickyContent.classList.add('release');
     } else {
