@@ -3618,3 +3618,211 @@ body.cart-drawer-open {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: var(--s3);
 }
+
+/* Product Split Layout */
+.product-split-section {
+  padding: var(--s6) var(--s4);
+}
+
+.product-split__wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(320px, 30vw, 420px);
+  gap: var(--s5);
+  align-items: stretch;
+  min-height: clamp(120vh, 80vw, 240vh);
+  position: relative;
+}
+
+.product-split__media {
+  min-height: clamp(60vh, 55vw, 120vh);
+  background: var(--product-split-sidebar-bg, var(--paper));
+}
+
+.product-split__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-split__media-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e8e4dc 0%, #d0cbc1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+.product-split__label {
+  position: sticky;
+  top: clamp(32px, 5vh, 72px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: var(--s3) 0 0 var(--s3);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--product-split-label, var(--paper));
+  text-transform: uppercase;
+}
+
+.product-split__label-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.product-split__details {
+  display: flex;
+  flex-direction: column;
+  background: var(--product-split-sidebar-bg, var(--paper));
+}
+
+.product-split__sidebar {
+  padding: var(--s5) var(--s4);
+}
+
+.product-split__sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: clamp(64px, 8vh, 120px);
+}
+
+.product-split__description {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--product-split-text, var(--ink));
+  margin-bottom: var(--s4);
+}
+
+.product-split__image-box {
+  background: var(--product-split-product-bg, var(--veil));
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--s3);
+}
+
+.product-split__image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 24px;
+}
+
+.product-split__orb {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.product-split__orb-main {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #f5f0ea);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product-split__orb-ring {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid var(--walnut);
+  top: -4px;
+  right: -4px;
+}
+
+.product-split__title {
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: var(--product-split-text, var(--ink));
+  margin-bottom: 6px;
+}
+
+.product-split__price {
+  font-size: 14px;
+  color: var(--product-split-text-muted, var(--ink-2));
+  margin-bottom: var(--s3);
+}
+
+.product-split__link {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--product-split-text, var(--ink));
+}
+
+.product-split__link:hover {
+  opacity: 0.7;
+}
+
+.product-split__extra {
+  margin-top: var(--s4);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--product-split-divider, var(--hair));
+}
+
+.product-split__additional .product-split__extra:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.product-split__extra h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: var(--s2);
+}
+
+.product-split__extra p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--product-split-text-muted, var(--ink-2));
+}
+
+.product-split__spec {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--product-split-spec-divider, var(--hair));
+}
+
+.product-split__spec-label {
+  color: var(--product-split-text-muted, var(--ink-2));
+}
+
+.product-split__spec-value {
+  color: var(--product-split-text, var(--ink));
+}
+
+.product-split__additional {
+  padding: 0 var(--s4) var(--s5);
+}
+
+@media (max-width: 968px) {
+  .product-split__wrapper {
+    grid-template-columns: 1fr;
+    gap: var(--s4);
+    min-height: auto;
+  }
+  .product-split__sidebar,
+  .product-split__additional {
+    padding: var(--s4) var(--s3);
+  }
+  .product-split__sticky {
+    position: static;
+  }
+  .product-split__label {
+    margin-left: 0;
+    position: static;
+  }
+}
