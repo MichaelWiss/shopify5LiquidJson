@@ -450,6 +450,7 @@
         },
         "specification_itF9t9": {
           "type": "specification",
+          "disabled": true,
           "settings": {
             "spec_label": "Wattage",
             "spec_value": "40W max"
@@ -457,6 +458,7 @@
         },
         "specification_UmT7hp": {
           "type": "specification",
+          "disabled": true,
           "settings": {
             "spec_label": "Dimming",
             "spec_value": "Compatible"
