@@ -20,6 +20,7 @@
     flex: 1;
     min-height: 300vh;
     background-color: var(--veil);
+    position: relative;
   }
 
   .product-split-layout__left img {
@@ -30,12 +31,12 @@
   }
 
   .product-split-layout__label {
-    position: fixed;
-    top: calc(var(--header-height, 48px) + var(--s3, 20px));
-    left: var(--s3, 20px);
+    position: absolute;
+    top: calc(var(--header-height) + var(--s3));
+    left: var(--s3);
     display: flex;
     align-items: center;
-    gap: var(--s1, 6px);
+    gap: var(--s1);
     color: var(--paper);
     font-size: 11px;
     letter-spacing: 0.02em;
@@ -54,17 +55,22 @@
     width: 340px;
     background-color: var(--paper, #fafafa);
     flex-shrink: 0;
+    align-self: flex-start;
   }
 
   .product-split-layout__sidebar {
-    padding: 40px 32px;
+    padding: var(--s5) var(--s4);
   }
 
   .product-split-layout__sticky {
-    position: -webkit-sticky !important;
-    position: sticky !important;
-    top: 0 !important;
-    padding-top: 20px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 80px;
+  }
+
+  /* Ensure the Shopify section wrapper doesn't block sticky */
+  .shopify-section.product-split-section {
+    overflow: visible;
   }
 
   .product-split-layout__description {
