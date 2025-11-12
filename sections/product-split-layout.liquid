@@ -375,7 +375,18 @@
 
   function updateParallax() {
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    var parallax = scrollY * 0.4;
+    var sectionTop = leftColumn.offsetTop;
+    var sectionHeight = leftColumn.offsetHeight;
+    var sectionBottom = sectionTop + sectionHeight;
+    var viewportHeight = window.innerHeight;
+    var scrollBottom = scrollY + viewportHeight;
+
+    if (scrollBottom <= sectionTop || scrollY >= sectionBottom) {
+      return;
+    }
+
+    var relativeScroll = Math.min(sectionHeight, Math.max(0, scrollBottom - sectionTop));
+    var parallax = relativeScroll * 0.4;
     heroImage.style.transform = 'translateY(' + parallax + 'px)';
     ticking = false;
   }
@@ -406,6 +417,10 @@
   }
 
   function onScroll() {
+    if (window.innerWidth <= 968) {
+      return;
+    }
+
     if (!ticking) {
       window.requestAnimationFrame(function() {
         updateParallax();
