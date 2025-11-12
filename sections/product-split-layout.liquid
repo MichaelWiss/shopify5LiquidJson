@@ -10,31 +10,28 @@
 
   .product-split-layout__wrapper {
     display: flex;
-    min-height: 100vh;
   }
 
   .product-split-layout__left {
     flex: 1;
-    min-height: 250vh;
+    min-height: 300vh;
     background-color: var(--veil);
-    position: relative;
   }
 
   .product-split-layout__left img {
     width: 100%;
     height: 100%;
-    min-height: 250vh;
     object-fit: cover;
     display: block;
   }
 
   .product-split-layout__label {
     position: fixed;
-    top: calc(var(--header-height) + var(--s3));
-    left: var(--s3);
+    top: calc(var(--header-height, 48px) + var(--s3, 20px));
+    left: var(--s3, 20px);
     display: flex;
     align-items: center;
-    gap: var(--s1);
+    gap: var(--s1, 6px);
     color: var(--paper);
     font-size: 11px;
     letter-spacing: 0.02em;
@@ -51,46 +48,44 @@
 
   .product-split-layout__right {
     width: 340px;
-    background-color: var(--paper);
+    background-color: var(--paper, #fafafa);
     flex-shrink: 0;
-    position: relative;
   }
 
   .product-split-layout__sidebar {
-    padding: var(--s5) var(--s4);
-    position: relative;
+    padding: 40px 32px;
   }
 
   .product-split-layout__sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: var(--s3);
-    padding-top: var(--s2);
+    top: 0;
+    padding-top: 20px;
   }
 
   .product-split-layout__description {
     font-size: 14px;
     line-height: 1.7;
-    color: var(--ink);
-    margin-bottom: var(--s5);
+    color: var(--ink, #1a1a1a);
+    margin-bottom: 60px;
   }
 
   .product-split-layout__visual {
     width: 100%;
     aspect-ratio: 1;
-    background-color: var(--veil);
+    background-color: var(--veil, #e8e4df);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: var(--s3);
-    border: 1px solid var(--hair);
+    margin-bottom: 20px;
+    border: 1px solid var(--hair, rgba(108, 100, 88, 0.18));
   }
 
   .product-split-layout__visual img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: var(--s3);
+    padding: 20px;
   }
 
   .product-split-layout__orb {
@@ -102,7 +97,7 @@
   .product-split-layout__orb-main {
     width: 80px;
     height: 80px;
-    background: radial-gradient(circle at 30% 30%, var(--paper), var(--veil));
+    background: radial-gradient(circle at 30% 30%, #ffffff, #f5f0ea);
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
@@ -113,62 +108,62 @@
     right: -4px;
     width: 32px;
     height: 32px;
-    border: 3px solid var(--walnut);
+    border: 3px solid var(--walnut, #8b4513);
     border-radius: 50%;
     background-color: transparent;
   }
 
   .product-split-layout__title {
     font-size: 13px;
-    color: var(--ink);
+    color: var(--ink, #1a1a1a);
     margin-bottom: 4px;
     font-weight: 400;
   }
 
   .product-split-layout__price {
     font-size: 13px;
-    color: var(--ink-2);
-    margin-bottom: var(--s2);
+    color: var(--ink-2, #666);
+    margin-bottom: 16px;
   }
 
   .product-split-layout__link {
     display: inline-block;
     font-size: 13px;
-    color: var(--ink);
+    color: var(--ink, #1a1a1a);
     text-decoration: underline;
     transition: color 200ms ease;
   }
 
   .product-split-layout__link:hover {
-    color: var(--ink-2);
+    color: var(--ink-2, #666);
   }
 
   .product-split-layout__section {
-    margin-top: var(--s5);
-    padding-top: var(--s5);
-    border-top: 1px solid var(--hair);
+    margin-top: 60px;
+    padding-top: 60px;
+    border-top: 1px solid var(--hair, #ddd);
   }
 
   .product-split-layout__section-title {
     font-size: 14px;
     font-weight: 500;
-    margin-bottom: var(--s3);
-    color: var(--ink);
+    margin-bottom: 20px;
+    color: var(--ink, #1a1a1a);
   }
 
   .product-split-layout__section p {
     font-size: 13px;
     line-height: 1.6;
-    color: var(--ink-2);
-    margin-bottom: var(--s3);
+    color: var(--ink-2, #666);
+    margin-bottom: 20px;
   }
 
   .product-split-layout__spec-item {
     display: flex;
     justify-content: space-between;
     font-size: 13px;
-    padding: var(--s2) 0;
-    border-bottom: 1px solid var(--hair);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--hair, #eee);
   }
 
   .product-split-layout__spec-item:first-child {
@@ -176,15 +171,15 @@
   }
 
   .product-split-layout__spec-label {
-    color: var(--ink-2);
+    color: var(--ink-2, #666);
   }
 
   .product-split-layout__spec-value {
-    color: var(--ink);
+    color: var(--ink, #1a1a1a);
   }
 
   .product-split-layout__non-sticky {
-    margin-top: var(--s5);
+    margin-top: 60px;
   }
 
   @media (max-width: 968px) {
@@ -198,7 +193,8 @@
 
     .product-split-layout__label {
       position: absolute;
-      top: var(--s3);
+      top: 20px;
+      left: 20px;
     }
 
     .product-split-layout__right {
@@ -206,7 +202,7 @@
     }
 
     .product-split-layout__sidebar {
-      padding: var(--s4) var(--s3);
+      padding: 32px 20px;
     }
 
     .product-split-layout__sticky {
@@ -231,18 +227,18 @@
           alt="{{ section.settings.product_title | default: 'Product' | escape }}"
         >
       {% else %}
-        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--veil) 0%, var(--hair) 100%); display: flex; align-items: center; justify-content: center; color: var(--ink-2); font-size: 14px;">
+        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #e8e4dc 0%, #d0cbc1 100%); display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">
           Add Hero Image
         </div>
       {% endif %}
+      
+      {% if section.settings.show_label and section.settings.label_text != blank %}
+        <div class="product-split-layout__label">
+          <div class="product-split-layout__label-dot"></div>
+          <span>{{ section.settings.label_text }}</span>
+        </div>
+      {% endif %}
     </div>
-    
-    {% if section.settings.show_label and section.settings.label_text != blank %}
-      <div class="product-split-layout__label">
-        <div class="product-split-layout__label-dot"></div>
-        <span>{{ section.settings.label_text }}</span>
-      </div>
-    {% endif %}
     
     <div class="product-split-layout__right">
       <div class="product-split-layout__sidebar">
