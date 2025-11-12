@@ -220,14 +220,14 @@
           Add Hero Image
         </div>
       {% endif %}
-      
-      {% if section.settings.show_label and section.settings.label_text != blank %}
-        <div class="product-split-layout__label">
-          <div class="product-split-layout__label-dot"></div>
-          <span>{{ section.settings.label_text }}</span>
-        </div>
-      {% endif %}
     </div>
+    
+    {% if section.settings.show_label and section.settings.label_text != blank %}
+      <div class="product-split-layout__label">
+        <div class="product-split-layout__label-dot"></div>
+        <span>{{ section.settings.label_text }}</span>
+      </div>
+    {% endif %}
     
     <div class="product-split-layout__right">
       <div class="product-split-layout__sidebar">
