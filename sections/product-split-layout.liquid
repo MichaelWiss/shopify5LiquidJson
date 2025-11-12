@@ -50,10 +50,15 @@
     width: 340px;
     background-color: {{ section.settings.sidebar_bg }};
     flex-shrink: 0;
+    min-height: 300vh;
+    display: flex;
   }
 
   .product-split-{{ section.id }} .sidebar {
     padding: 40px 32px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .product-split-{{ section.id }} .sticky-content {
@@ -190,10 +195,13 @@
 
     .product-split-{{ section.id }} .right-column {
       width: 100%;
+      min-height: auto;
+      display: block;
     }
 
     .product-split-{{ section.id }} .sidebar {
       padding: 32px 20px;
+      display: block;
     }
 
     .product-split-{{ section.id }} .sticky-content {
