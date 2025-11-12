@@ -374,18 +374,16 @@
   var ticking = false;
 
   function updateParallax() {
-    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    var sectionTop = leftColumn.offsetTop;
-    var sectionHeight = leftColumn.offsetHeight;
-    var sectionBottom = sectionTop + sectionHeight;
+    var rect = leftColumn.getBoundingClientRect();
     var viewportHeight = window.innerHeight;
-    var scrollBottom = scrollY + viewportHeight;
+    var sectionHeight = leftColumn.offsetHeight;
 
-    if (scrollBottom <= sectionTop || scrollY >= sectionBottom) {
+    if (rect.bottom <= 0 || rect.top >= viewportHeight) {
       return;
     }
 
-    var relativeScroll = Math.min(sectionHeight, Math.max(0, scrollBottom - sectionTop));
+    var offset = Math.max(0, -rect.top);
+    var relativeScroll = Math.min(sectionHeight, offset);
     var parallax = relativeScroll * 0.4;
     heroImage.style.transform = 'translateY(' + parallax + 'px)';
     ticking = false;
