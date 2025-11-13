@@ -378,6 +378,101 @@
         "divider_color": "#c4bfb5"
       }
     },
+    "product_split_layout_mXUPCU": {
+      "type": "product-split-layout",
+      "blocks": {
+        "specification_NiLwHh": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Diameter",
+            "spec_value": "4 inches"
+          }
+        },
+        "specification_FAaDRK": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Height",
+            "spec_value": "4.5 inches"
+          }
+        },
+        "specification_WcqtWn": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Weight",
+            "spec_value": "1.2 lbs"
+          }
+        },
+        "specification_Vmb83W": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Material",
+            "spec_value": "Hand-blown glass, brass"
+          }
+        },
+        "specification_9WTwzB": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Bulb Type",
+            "spec_value": "E26 LED (included)"
+          }
+        },
+        "specification_TT3HyG": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Wattage",
+            "spec_value": "40W max"
+          }
+        },
+        "specification_CtBWza": {
+          "type": "specification",
+          "settings": {
+            "spec_label": "Dimming",
+            "spec_value": "Compatible"
+          }
+        },
+        "content_block_9DMReX": {
+          "type": "content_block",
+          "settings": {
+            "heading": "Details",
+            "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
+          }
+        },
+        "content_block_zm8pLk": {
+          "type": "content_block",
+          "disabled": true,
+          "settings": {
+            "heading": "Care Instructions",
+            "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "specification_NiLwHh",
+        "specification_FAaDRK",
+        "specification_WcqtWn",
+        "specification_Vmb83W",
+        "specification_9WTwzB",
+        "specification_TT3HyG",
+        "specification_CtBWza",
+        "content_block_9DMReX",
+        "content_block_zm8pLk"
+      ],
+      "name": "Product Split Layout",
+      "settings": {
+        "hero_image": "shopify://shop_images/00-FEATURE-nicola-harding-homing-instinct-excerpt-tuscan-villa-domino-01.webp",
+        "show_label": true,
+        "label_text": "Orb 4 Surface Mount",
+        "description": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale, Orb lights are available in a range of sizes and finishes, and can be mounted to either walls or ceilings.",
+        "show_product_visual": true,
+        "product_image": "shopify://shop_images/Casa-Yamagoya-domino-5.webp",
+        "product_title": "Orb 4 Surface Mount",
+        "product_price": "From $300.00",
+        "shop_link_text": "Shop",
+        "shop_link_url": "",
+        "show_specs": false,
+        "specs_title": "Specifications"
+      }
+    },
     "text_columns": {
       "type": "text-columns",
       "blocks": {
@@ -424,6 +519,7 @@
     "split_feature_WYJAeH",
     "intro_marquee_BPDmRL",
     "studio_carousel_nKLLVi",
+    "product_split_layout_mXUPCU",
     "text_columns"
   ]
 }
