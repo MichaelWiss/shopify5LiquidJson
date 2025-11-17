@@ -10,19 +10,16 @@
   }
 
   .product-split-layout__wrapper {
-    display: block;
+    display: flex;
     position: relative;
     min-height: 200vh;
   }
 
   .product-split-layout__left {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: calc(100% - 340px);
+    flex: 1 1 auto;
     min-height: 200vh;
     background-color: var(--veil);
+    position: relative;
   }
 
   .product-split-layout__left img {
@@ -30,7 +27,7 @@
     height: 100vh;
     object-fit: cover;
     display: block;
-    position: sticky;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -59,15 +56,11 @@
 
   .product-split-layout__right {
     width: 340px;
-    min-height: 200vh;
-    background-color: var(--paper, #fafafa);
-    margin-left: auto;
+    flex-shrink: 0;
     position: relative;
-    padding: 0;
   }
 
   .product-split-layout__sticky {
-    position: static;
     padding: 60px 32px 40px;
   }
 
@@ -75,13 +68,12 @@
     .product-split-layout__sticky {
       position: -webkit-sticky;
       position: sticky;
-      top: 80px;
+      top: calc(var(--header-height, 60px) + 12px);
     }
   }
 
   .product-split-layout__non-sticky {
     padding: 0 32px 60px;
-    min-height: 100vh;
   }
 
   .product-split-layout__description {
@@ -202,13 +194,11 @@
 
   @media (max-width: 968px) {
     .product-split-layout__wrapper {
-      display: block;
+      flex-direction: column;
       min-height: auto;
     }
 
     .product-split-layout__left {
-      position: relative;
-      width: 100%;
       min-height: 60vh;
     }
 
@@ -219,14 +209,11 @@
 
     .product-split-layout__right {
       width: 100%;
-      padding: 32px 20px;
-      min-height: auto;
-      margin-left: 0;
     }
 
     .product-split-layout__sticky {
       position: static;
-      padding: 0 0 40px;
+      padding: 32px 20px 40px;
     }
 
     .product-split-layout__description {
@@ -234,9 +221,7 @@
     }
 
     .product-split-layout__non-sticky {
-      margin-top: 60px;
-      min-height: auto;
-      padding: 0;
+      padding: 0 20px 60px;
     }
   }
 </style>
