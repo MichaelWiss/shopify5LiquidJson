@@ -20,14 +20,16 @@
     min-height: 200vh;
     background-color: var(--veil);
     position: relative;
+    overflow: hidden;
   }
 
   .product-split-layout__left img {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    min-height: 100vh;
     object-fit: cover;
     display: block;
-    position: absolute;
+    position: sticky;
     top: 0;
     left: 0;
   }
@@ -58,31 +60,22 @@
     background-color: var(--paper, #fafafa);
     flex-shrink: 0;
     flex-grow: 0;
-    position: relative;
-    align-self: flex-start;
     overflow: visible;
-  }
-
-  .product-split-layout__sidebar {
-    padding: 40px 32px;
-    position: relative;
-    overflow: visible;
-    height: auto;
+    padding: 60px 32px 40px;
   }
 
   .product-split-layout__sticky {
     position: static;
     padding-top: 20px;
-    overflow: visible;
   }
 
   @media (min-width: 1024px) {
     .product-split-layout__sticky {
       position: -webkit-sticky;
       position: sticky;
-      top: 80px;
-      align-self: flex-start;
+      top: 60px;
       will-change: transform;
+      padding-top: 0;
     }
   }
 
@@ -91,6 +84,7 @@
     line-height: 1.7;
     color: var(--ink, #1a1a1a);
     margin-bottom: 60px;
+    padding-top: 20px;
   }
 
   .product-split-layout__visual {
@@ -214,19 +208,26 @@
 
     .product-split-layout__left {
       min-height: 60vh;
+      overflow: visible;
+    }
+
+    .product-split-layout__left img {
+      position: relative;
+      height: 100%;
     }
 
     .product-split-layout__right {
       width: 100%;
-      align-self: auto;
-    }
-
-    .product-split-layout__sidebar {
       padding: 32px 20px;
     }
 
     .product-split-layout__sticky {
       position: static;
+      padding-top: 0;
+    }
+
+    .product-split-layout__description {
+      padding-top: 0;
     }
 
     .product-split-layout__non-sticky {
@@ -259,72 +260,70 @@
     </div>
     
     <div class="product-split-layout__right">
-      <div class="product-split-layout__sidebar">
-        <div class="product-split-layout__sticky">
-          {% if section.settings.description != blank %}
-            <div class="product-split-layout__description">{{ section.settings.description }}</div>
-          {% endif %}
-          
-          {% if section.settings.show_product_visual %}
-            <div class="product-split-layout__visual">
-              {% if section.settings.product_image %}
-                {{ section.settings.product_image | image_url: width: 600 | image_tag:
-                  loading: 'lazy',
-                  alt: section.settings.product_title | default: 'Product'
-                }}
-              {% else %}
-                <div class="product-split-layout__orb">
-                  <div class="product-split-layout__orb-main"></div>
-                  <div class="product-split-layout__orb-ring"></div>
+      <div class="product-split-layout__sticky">
+        {% if section.settings.description != blank %}
+          <div class="product-split-layout__description">{{ section.settings.description }}</div>
+        {% endif %}
+        
+        {% if section.settings.show_product_visual %}
+          <div class="product-split-layout__visual">
+            {% if section.settings.product_image %}
+              {{ section.settings.product_image | image_url: width: 600 | image_tag:
+                loading: 'lazy',
+                alt: section.settings.product_title | default: 'Product'
+              }}
+            {% else %}
+              <div class="product-split-layout__orb">
+                <div class="product-split-layout__orb-main"></div>
+                <div class="product-split-layout__orb-ring"></div>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        
+        {% if section.settings.product_title != blank %}
+          <div class="product-split-layout__title">{{ section.settings.product_title }}</div>
+        {% endif %}
+        
+        {% if section.settings.product_price != blank %}
+          <div class="product-split-layout__price">{{ section.settings.product_price }}</div>
+        {% endif %}
+        
+        {% if section.settings.shop_link_url != blank %}
+          <a href="{{ section.settings.shop_link_url }}" class="product-split-layout__link">
+            {{ section.settings.shop_link_text | default: "Shop" }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.show_specs %}
+          {% assign spec_blocks = section.blocks | where: "type", "specification" %}
+          {% if spec_blocks.size > 0 %}
+            <div class="product-split-layout__section">
+              <h3 class="product-split-layout__section-title">{{ section.settings.specs_title | default: "Specifications" }}</h3>
+              {% for block in spec_blocks %}
+                <div class="product-split-layout__spec-item" {{ block.shopify_attributes }}>
+                  <span class="product-split-layout__spec-label">{{ block.settings.spec_label }}</span>
+                  <span class="product-split-layout__spec-value">{{ block.settings.spec_value }}</span>
                 </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      <div class="product-split-layout__non-sticky">
+        {% for block in section.blocks %}
+          {% if block.type == 'content_block' %}
+            <div class="product-split-layout__section" {{ block.shopify_attributes }}>
+              {% if block.settings.heading != blank %}
+                <h3 class="product-split-layout__section-title">{{ block.settings.heading }}</h3>
+              {% endif %}
+              {% if block.settings.content != blank %}
+                {{ block.settings.content }}
               {% endif %}
             </div>
           {% endif %}
-          
-          {% if section.settings.product_title != blank %}
-            <div class="product-split-layout__title">{{ section.settings.product_title }}</div>
-          {% endif %}
-          
-          {% if section.settings.product_price != blank %}
-            <div class="product-split-layout__price">{{ section.settings.product_price }}</div>
-          {% endif %}
-          
-          {% if section.settings.shop_link_url != blank %}
-            <a href="{{ section.settings.shop_link_url }}" class="product-split-layout__link">
-              {{ section.settings.shop_link_text | default: "Shop" }}
-            </a>
-          {% endif %}
-
-          {% if section.settings.show_specs %}
-            {% assign spec_blocks = section.blocks | where: "type", "specification" %}
-            {% if spec_blocks.size > 0 %}
-              <div class="product-split-layout__section">
-                <h3 class="product-split-layout__section-title">{{ section.settings.specs_title | default: "Specifications" }}</h3>
-                {% for block in spec_blocks %}
-                  <div class="product-split-layout__spec-item" {{ block.shopify_attributes }}>
-                    <span class="product-split-layout__spec-label">{{ block.settings.spec_label }}</span>
-                    <span class="product-split-layout__spec-value">{{ block.settings.spec_value }}</span>
-                  </div>
-                {% endfor %}
-              </div>
-            {% endif %}
-          {% endif %}
-        </div>
-
-        <div class="product-split-layout__non-sticky">
-          {% for block in section.blocks %}
-            {% if block.type == 'content_block' %}
-              <div class="product-split-layout__section" {{ block.shopify_attributes }}>
-                {% if block.settings.heading != blank %}
-                  <h3 class="product-split-layout__section-title">{{ block.settings.heading }}</h3>
-                {% endif %}
-                {% if block.settings.content != blank %}
-                  {{ block.settings.content }}
-                {% endif %}
-              </div>
-            {% endif %}
-          {% endfor %}
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
