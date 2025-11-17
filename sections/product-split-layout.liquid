@@ -10,11 +10,12 @@
 
   .product-split-layout__wrapper {
     display: flex;
+    min-height: 100vh;
   }
 
   .product-split-layout__left {
     flex: 1;
-    min-height: 300vh;
+    min-height: 100vh;
     background-color: var(--veil);
     position: relative;
   }
@@ -28,7 +29,7 @@
 
   .product-split-layout__label {
     position: absolute;
-    top: calc(var(--header-height) + var(--s3));
+    top: calc(var(--header-height, 60px) + var(--s3));
     left: var(--s3);
     display: flex;
     align-items: center;
@@ -51,17 +52,28 @@
     width: 340px;
     background-color: var(--paper, #fafafa);
     flex-shrink: 0;
+    position: relative;
   }
 
   .product-split-layout__sidebar {
     padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: static;
   }
 
   .product-split-layout__sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 80px;
+    position: static;
     padding-top: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    .product-split-layout__sticky {
+      position: -webkit-sticky;
+      position: sticky;
+      top: clamp(72px, calc(var(--header-height, 60px) + 20px), 120px);
+      align-self: flex-start;
+    }
   }
 
   .product-split-layout__description {
@@ -199,6 +211,10 @@
     .product-split-layout__sidebar {
       padding: 32px 20px;
     }
+
+    .product-split-layout__sticky {
+      position: static;
+    }
   }
 </style>
 
@@ -206,16 +222,12 @@
   <div class="product-split-layout__wrapper">
     <div class="product-split-layout__left">
       {% if section.settings.hero_image %}
-        <img 
-          src="{{ section.settings.hero_image | img_url: '1600x' }}"
-          srcset="{{ section.settings.hero_image | img_url: '400x' }} 400w,
-                  {{ section.settings.hero_image | img_url: '800x' }} 800w,
-                  {{ section.settings.hero_image | img_url: '1200x' }} 1200w,
-                  {{ section.settings.hero_image | img_url: '1600x' }} 1600w,
-                  {{ section.settings.hero_image | img_url: '2000x' }} 2000w"
-          sizes="(max-width: 968px) 100vw, 66vw"
-          alt="{{ section.settings.product_title | default: 'Product' | escape }}"
-        >
+        {{ section.settings.hero_image | image_url: width: 1600 | image_tag:
+          loading: 'lazy',
+          widths: '400, 800, 1200, 1600, 2000',
+          sizes: '(max-width: 968px) 100vw, 66vw',
+          alt: section.settings.product_title | default: 'Product'
+        }}
       {% else %}
         <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #e8e4dc 0%, #d0cbc1 100%); display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">
           Add Hero Image
@@ -239,10 +251,10 @@
           {% if section.settings.show_product_visual %}
             <div class="product-split-layout__visual">
               {% if section.settings.product_image %}
-                <img 
-                  src="{{ section.settings.product_image | img_url: '600x' }}"
-                  alt="{{ section.settings.product_title | default: 'Product' | escape }}"
-                >
+                {{ section.settings.product_image | image_url: width: 600 | image_tag:
+                  loading: 'lazy',
+                  alt: section.settings.product_title | default: 'Product'
+                }}
               {% else %}
                 <div class="product-split-layout__orb">
                   <div class="product-split-layout__orb-main"></div>
@@ -300,60 +312,6 @@
     </div>
   </div>
 </div>
-
-<script>
-  (function () {
-    if (typeof document === 'undefined') return;
-    const sections = document.querySelectorAll('.product-split-layout');
-    sections.forEach((section) => {
-      if (section.dataset.productSplitStickyReset === 'true') return;
-      section.dataset.productSplitStickyReset = 'true';
-      const sticky = section.querySelector('.product-split-layout__sticky');
-      if (!sticky) return;
-
-      const blockingSelectors = [];
-      for (let node = sticky.parentElement; node && node !== document.body; node = node.parentElement) {
-        const computed = window.getComputedStyle(node);
-        const overflowCandidates = [computed.overflow, computed.overflowX, computed.overflowY];
-        const hasOverflow = overflowCandidates.some((value) => value && value !== 'visible' && value !== 'inherit' && value !== 'initial' && value !== 'unset');
-        const hasTransform = computed.transform && computed.transform !== 'none';
-        if (hasOverflow || hasTransform) {
-          if (hasOverflow) {
-            node.style.overflow = 'visible';
-          }
-          if (hasTransform) {
-            node.style.transform = 'none';
-          }
-          blockingSelectors.push({
-            node,
-            overflow: hasOverflow ? overflowCandidates.join('/') : null,
-            transform: hasTransform ? computed.transform : null
-          });
-        }
-      }
-
-      if (blockingSelectors.length) {
-        const selectorList = blockingSelectors.map(({ node }) => {
-          const classes = node.className ? `.${node.className.trim().replace(/\s+/g, '.')}` : '';
-          const id = node.id ? `#${node.id}` : '';
-          return `${node.tagName.toLowerCase()}${id}${classes}`;
-        });
-        if (window.console && window.console.debug) {
-          console.debug('Product Split Layout: cleared overflow/transform on', selectorList);
-        }
-
-        const note = document.createElement('div');
-        note.className = 'product-split-layout__sticky-debug-note';
-        note.style.fontSize = '10px';
-        note.style.color = '#a0584f';
-        note.style.marginTop = '16px';
-        note.style.lineHeight = '1.4';
-        note.textContent = `Debug: cleared ${selectorList.join(' → ')}`;
-        sticky.appendChild(note);
-      }
-    });
-  })();
-</script>
 
 {% schema %}
 {
