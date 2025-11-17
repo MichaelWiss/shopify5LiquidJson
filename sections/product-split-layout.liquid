@@ -27,10 +27,9 @@
     height: 100vh;
     object-fit: cover;
     display: block;
-    position: absolute;
+    position: -webkit-sticky;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
   }
 
   .product-split-layout__label {
@@ -66,7 +65,7 @@
 
   @media (min-width: 969px) {
     .product-split-layout__right {
-      padding-top: 30vh;
+      min-height: 200vh;
     }
 
     .product-split-layout__sticky {
@@ -213,7 +212,7 @@
 
     .product-split-layout__right {
       width: 100%;
-      padding-top: 0;
+      min-height: auto;
     }
 
     .product-split-layout__sticky {
