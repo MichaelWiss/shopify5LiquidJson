@@ -439,6 +439,7 @@
         },
         "content_block_V4MYtP": {
           "type": "content_block",
+          "disabled": true,
           "settings": {
             "heading": "Care Instructions",
             "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
@@ -468,7 +469,7 @@
         "product_price": "From $300.00",
         "shop_link_text": "Shop",
         "shop_link_url": "",
-        "show_specs": true,
+        "show_specs": false,
         "specs_title": "Specifications"
       }
     },
