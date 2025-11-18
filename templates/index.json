@@ -414,6 +414,7 @@
         },
         "section_header_rYbDfD": {
           "type": "section_header",
+          "disabled": true,
           "settings": {
             "heading": "Specifications"
           }
