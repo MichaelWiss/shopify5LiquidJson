@@ -378,130 +378,82 @@
         "divider_color": "#c4bfb5"
       }
     },
-    "product_split_layout_b8LpJ9": {
+    "product_split_layout_pQXTHm": {
       "type": "product-split-layout",
       "blocks": {
-        "description_block": {
+        "description_eRqa8i": {
           "type": "description",
           "settings": {
-            "text": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale, Orb lights are available in a range of sizes and finishes, and can be mounted to either walls or ceilings."
+            "text": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore."
           }
         },
-        "visual_block": {
+        "visual_8jgCRU": {
           "type": "visual",
           "settings": {
             "image": "shopify://shop_images/Casa-Yamagoya-domino-5.webp"
           }
         },
-        "title_block": {
+        "title_zUmkaw": {
           "type": "title",
           "settings": {
             "title": "Orb 4 Surface Mount"
           }
         },
-        "price_block": {
+        "price_DapyJK": {
           "type": "price",
           "settings": {
             "price": "From $300.00"
           }
         },
-        "link_block": {
+        "link_ViMTD9": {
           "type": "link",
           "settings": {
             "text": "Shop",
             "url": ""
           }
         },
-        "specs_header_block": {
+        "section_header_rYbDfD": {
           "type": "section_header",
           "settings": {
             "heading": "Specifications"
           }
         },
-        "specification_pWpwVX": {
+        "spec_item_VG39n7": {
           "type": "spec_item",
           "settings": {
             "label": "Diameter",
             "value": "4 inches"
           }
         },
-        "specification_CCgAbF": {
-          "type": "spec_item",
-          "settings": {
-            "label": "Height",
-            "value": "4.5 inches"
-          }
-        },
-        "specification_6tgQVY": {
-          "type": "spec_item",
-          "settings": {
-            "label": "Weight",
-            "value": "1.2 lbs"
-          }
-        },
-        "specification_KywhcU": {
+        "spec_item_MM9phM": {
           "type": "spec_item",
           "settings": {
             "label": "Material",
-            "value": "Hand-blown glass, brass"
+            "value": "Glass"
           }
         },
-        "specification_4nCCRP": {
-          "type": "spec_item",
-          "settings": {
-            "label": "Bulb Type",
-            "value": "E26 LED (included)"
-          }
-        },
-        "specification_Epa377": {
-          "type": "spec_item",
-          "settings": {
-            "label": "Wattage",
-            "value": "40W max"
-          }
-        },
-        "specification_RAifPU": {
-          "type": "spec_item",
-          "settings": {
-            "label": "Dimming",
-            "value": "Compatible"
-          }
-        },
-        "content_block_7NJJD7": {
+        "content_eeQ3pX": {
           "type": "content",
           "settings": {
             "heading": "Details",
-            "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
-          }
-        },
-        "content_block_jMfBCy": {
-          "type": "content",
-          "settings": {
-            "heading": "Care Instructions",
-            "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
+            "content": "<p>Made to order.</p>"
           }
         }
       },
       "block_order": [
-        "description_block",
-        "visual_block",
-        "title_block",
-        "price_block",
-        "link_block",
-        "specs_header_block",
-        "specification_pWpwVX",
-        "specification_CCgAbF",
-        "specification_6tgQVY",
-        "specification_KywhcU",
-        "specification_4nCCRP",
-        "specification_Epa377",
-        "specification_RAifPU",
-        "content_block_7NJJD7",
-        "content_block_jMfBCy"
+        "description_eRqa8i",
+        "visual_8jgCRU",
+        "title_zUmkaw",
+        "price_DapyJK",
+        "link_ViMTD9",
+        "section_header_rYbDfD",
+        "spec_item_VG39n7",
+        "spec_item_MM9phM",
+        "content_eeQ3pX"
       ],
       "name": "Product Split Layout",
       "settings": {
-        "hero_image": "shopify://shop_images/Alyse-Borkan-Home-Tour-Domino-30.webp",
+        "hero_image": "shopify://shop_images/20.webp",
         "show_label": true,
         "label_text": "Orb 4 Surface Mount"
       }
@@ -552,7 +504,7 @@
     "split_feature_WYJAeH",
     "intro_marquee_BPDmRL",
     "studio_carousel_nKLLVi",
-    "product_split_layout_b8LpJ9",
+    "product_split_layout_pQXTHm",
     "text_columns"
   ]
 }
