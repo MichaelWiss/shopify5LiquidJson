@@ -18,6 +18,7 @@
     flex: 1 1 auto;
     background-color: var(--veil);
     position: relative;
+    z-index: 1;
   }
 
   .product-split-layout__left img {
@@ -52,15 +53,19 @@
     width: 340px;
     flex-shrink: 0;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    max-height: 100vh;
-    overflow-y: auto;
+    display: block;
+    z-index: 2;
   }
 
   .product-split-layout__sticky {
     padding: 60px 32px 40px;
     flex-shrink: 0;
+    position: sticky;
+    top: calc(var(--header-height, 60px) + 12px);
+    z-index: 1;
+    margin-top: 32px;
+    background: var(--paper, #fff);
+    border-bottom: 1px solid var(--hair, #ddd);
   }
 
   .product-split-layout__non-sticky {
@@ -315,6 +320,31 @@
     </div>
   </div>
 </div>
+
+<script>
+  (function() {
+    var script = document.currentScript;
+    if (!script) return;
+    var root = script.previousElementSibling; // the .product-split-layout wrapper
+    if (!root || !root.classList.contains('product-split-layout')) return;
+    var right = root.querySelector('.product-split-layout__right');
+    var sticky = right && right.querySelector('.product-split-layout__sticky');
+    if (!right || !sticky) return;
+
+    function pxToNumber(px) { return parseFloat(px) || 0; }
+
+    function updateSpacer() {
+      var styles = getComputedStyle(sticky);
+      var gap = styles.getPropertyValue('--sidebar-prestick-gap') || '16px';
+      var spacer = sticky.offsetHeight + pxToNumber(gap);
+      right.style.setProperty('--sticky-spacer', spacer + 'px');
+    }
+
+    updateSpacer();
+    window.addEventListener('resize', updateSpacer, { passive: true });
+    document.addEventListener('shopify:section:load', updateSpacer);
+  })();
+  </script>
 
 {% schema %}
 {
