@@ -8,7 +8,7 @@
 .product-split-layout__wrapper {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  /* Align items stretch is default, which we want for the sidebar column to be full height */
   /* Gap compensation */
   margin-left: calc(var(--gap) * -1);
   width: calc(100% + var(--gap));
@@ -61,21 +61,22 @@
   /* Sidebar logic */
   flex-grow: 1;
   flex-basis: 340px; /* Keep this as a sensible default basis */
-  
-  position: sticky;
-  top: calc(var(--header-height, 48px) + var(--s3));
-  z-index: 10;
   background: var(--paper);
-  
-  /* Internal scrolling */
-  max-height: calc(100vh - var(--header-height, 48px) - var(--s4));
-  overflow-y: auto;
   
   /* Gap */
   margin-left: var(--gap);
   margin-bottom: var(--gap);
   
+  /* Padding moved to sticky content or kept here? 
+     If we keep it here, the sticky content will stick inside the padding. 
+     Let's keep it here for the column gutter. */
   padding: var(--s3) var(--s4) var(--s5);
+}
+
+.product-split-layout__sticky-content {
+  position: sticky;
+  top: calc(var(--header-height, 48px) + var(--s3));
+  z-index: 10;
 }
 
 /* Block Styles */

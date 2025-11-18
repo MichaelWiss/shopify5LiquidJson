@@ -24,7 +24,8 @@
     </div>
     
     <div class="product-split-layout__right">
-      {% for block in section.blocks %}
+      <div class="product-split-layout__sticky-content">
+        {% for block in section.blocks %}
         {% case block.type %}
           {% when 'title' %}
             <div class="product-split-layout__title" {{ block.shopify_attributes }}>
@@ -82,6 +83,7 @@
 
         {% endcase %}
       {% endfor %}
+      </div>
     </div>
   </div>
 </div>
