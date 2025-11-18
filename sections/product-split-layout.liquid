@@ -1,250 +1,4 @@
-{% comment %}
-  Product Split Layout Section (Theme CSS Compatible)
-  Save this as: sections/product-split-layout.liquid
-{% endcomment %}
-
-<style>
-  .product-split-layout {
-    font-family: var(--sans);
-    position: relative;
-    --space-md: 40px;
-  }
-
-  .product-split-layout__wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    /* Gap compensation */
-    margin-left: calc(var(--space-md) * -1);
-    width: calc(100% + var(--space-md));
-  }
-
-  .product-split-layout__left {
-    /* Flexbox Albatross: Grow to fill, but wrap if needed */
-    flex-grow: 999;
-    flex-basis: 0;
-    min-width: 50%;
-    
-    background-color: var(--veil);
-    position: relative;
-    z-index: 1;
-    
-    /* Gap */
-    margin-left: var(--space-md);
-    margin-bottom: var(--space-md);
-  }
-
-  .product-split-layout__left img {
-    width: 100%;
-    height: 100%;
-    min-height: 80vh;
-    object-fit: cover;
-    display: block;
-  }
-
-  .product-split-layout__label {
-    position: absolute;
-    top: calc(var(--header-height, 60px) + var(--s3));
-    left: var(--s3);
-    display: flex;
-    align-items: center;
-    gap: var(--s1);
-    color: var(--paper);
-    font-size: 11px;
-    letter-spacing: 0.02em;
-    z-index: 10;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  }
-
-  .product-split-layout__label-dot {
-    width: 10px;
-    height: 10px;
-    background-color: var(--paper);
-    border-radius: 50%;
-  }
-
-  .product-split-layout__right {
-    /* Sidebar logic */
-    flex-grow: 1;
-    flex-basis: 340px;
-    
-    position: sticky;
-    top: calc(var(--header-height, 60px) + 20px);
-    z-index: 100;
-    background: var(--paper, #fff);
-    
-    /* Internal scrolling */
-    max-height: calc(100vh - var(--header-height, 60px) - 40px);
-    overflow-y: auto;
-    
-    /* Gap */
-    margin-left: var(--space-md);
-    margin-bottom: var(--space-md);
-  }
-
-  /* Reset previous sticky container logic */
-  .product-split-layout__sticky {
-    padding: 60px 32px 20px;
-    position: static; /* No longer sticky itself */
-    margin-top: 0;
-    background: transparent;
-    border-bottom: 1px solid var(--hair, #ddd);
-  }
-
-  .product-split-layout__non-sticky {
-    padding: 20px 32px 60px;
-  }
-
-  .product-split-layout__description {
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--ink, #1a1a1a);
-    margin-bottom: 40px;
-    padding-top: 0;
-  }
-
-  .product-split-layout__visual {
-    width: 100%;
-    aspect-ratio: 1;
-    background-color: var(--veil, #e8e4df);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    border: 1px solid var(--hair, rgba(108, 100, 88, 0.18));
-  }
-
-  .product-split-layout__visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 20px;
-  }
-
-  .product-split-layout__orb {
-    position: relative;
-    width: 80px;
-    height: 80px;
-  }
-
-  .product-split-layout__orb-main {
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle at 30% 30%, #ffffff, #f5f0ea);
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .product-split-layout__orb-ring {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    width: 32px;
-    height: 32px;
-    border: 3px solid var(--walnut, #8b4513);
-    border-radius: 50%;
-    background-color: transparent;
-  }
-
-  .product-split-layout__title {
-    font-size: 13px;
-    color: var(--ink, #1a1a1a);
-    margin-bottom: 4px;
-    font-weight: 400;
-  }
-
-  .product-split-layout__price {
-    font-size: 13px;
-    color: var(--ink-2, #666);
-    margin-bottom: 16px;
-  }
-
-  .product-split-layout__link {
-    display: inline-block;
-    font-size: 13px;
-    color: var(--ink, #1a1a1a);
-    text-decoration: underline;
-    transition: color 200ms ease;
-  }
-
-  .product-split-layout__link:hover {
-    color: var(--ink-2, #666);
-  }
-
-  .product-split-layout__section {
-    margin-top: 40px;
-    padding-top: 40px;
-    border-top: 1px solid var(--hair, #ddd);
-  }
-
-  .product-split-layout__section-title {
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: var(--ink, #1a1a1a);
-  }
-
-  .product-split-layout__section p {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--ink-2, #666);
-    margin-bottom: 20px;
-  }
-
-  .product-split-layout__spec-item {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--hair, #eee);
-  }
-
-  .product-split-layout__spec-item:first-child {
-    padding-top: 0;
-  }
-
-  .product-split-layout__spec-label {
-    color: var(--ink-2, #666);
-  }
-
-  .product-split-layout__spec-value {
-    color: var(--ink, #1a1a1a);
-  }
-
-  @media (max-width: 968px) {
-    .product-split-layout__wrapper {
-      flex-direction: column;
-      margin-left: 0;
-      width: 100%;
-    }
-    
-    .product-split-layout__left,
-    .product-split-layout__right {
-      margin-left: 0;
-      margin-bottom: 0;
-    }
-
-    .product-split-layout__left {
-      min-height: 60vh;
-    }
-
-    .product-split-layout__right {
-      position: static;
-      width: 100%;
-      height: auto;
-      max-height: none;
-      overflow-y: visible;
-    }
-
-    .product-split-layout__sticky {
-      padding: 32px 20px 20px;
-    }
-
-    .product-split-layout__non-sticky {
-      padding: 0 20px 60px;
-    }
-  }
-</style>
+{{ 'section-product-split-layout.css' | asset_url | stylesheet_tag }}
 
 <div class="product-split-layout">
   <div class="product-split-layout__wrapper">
@@ -254,7 +8,7 @@
           loading: 'lazy',
           widths: '400, 800, 1200, 1600, 2000',
           sizes: '(max-width: 968px) 100vw, 66vw',
-          alt: section.settings.product_title | default: 'Product'
+          alt: section.settings.hero_image.alt | default: 'Product'
         }}
       {% else %}
         <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #e8e4dc 0%, #d0cbc1 100%); display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">
@@ -270,76 +24,67 @@
     </div>
     
     <div class="product-split-layout__right">
-      <div class="product-split-layout__sticky">
-        {% if section.settings.description != blank %}
-          <div class="product-split-layout__description">{{ section.settings.description }}</div>
-        {% endif %}
-        
-        {% if section.settings.show_product_visual %}
-          <div class="product-split-layout__visual">
-            {% if section.settings.product_image %}
-              {{ section.settings.product_image | image_url: width: 600 | image_tag:
-                loading: 'lazy',
-                alt: section.settings.product_title | default: 'Product'
-              }}
-            {% else %}
-              <div class="product-split-layout__orb">
-                <div class="product-split-layout__orb-main"></div>
-                <div class="product-split-layout__orb-ring"></div>
-              </div>
-            {% endif %}
-          </div>
-        {% endif %}
-        
-        {% if section.settings.product_title != blank %}
-          <div class="product-split-layout__title">{{ section.settings.product_title }}</div>
-        {% endif %}
-        
-        {% if section.settings.product_price != blank %}
-          <div class="product-split-layout__price">{{ section.settings.product_price }}</div>
-        {% endif %}
-        
-        {% if section.settings.shop_link_url != blank %}
-          <a href="{{ section.settings.shop_link_url }}" class="product-split-layout__link">
-            {{ section.settings.shop_link_text | default: "Shop" }}
-          </a>
-        {% endif %}
-
-        {% if section.settings.show_specs %}
-          {% assign spec_blocks = section.blocks | where: "type", "specification" %}
-          {% if spec_blocks.size > 0 %}
-            <div class="product-split-layout__section">
-              <h3 class="product-split-layout__section-title">{{ section.settings.specs_title | default: "Specifications" }}</h3>
-              {% for block in spec_blocks %}
-                <div class="product-split-layout__spec-item" {{ block.shopify_attributes }}>
-                  <span class="product-split-layout__spec-label">{{ block.settings.spec_label }}</span>
-                  <span class="product-split-layout__spec-value">{{ block.settings.spec_value }}</span>
-                </div>
-              {% endfor %}
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'title' %}
+            <div class="product-split-layout__title" {{ block.shopify_attributes }}>
+              {{ block.settings.title }}
             </div>
-          {% endif %}
-        {% endif %}
-      </div>
 
-      <div class="product-split-layout__non-sticky">
-        {% for block in section.blocks %}
-          {% if block.type == 'content_block' %}
+          {% when 'price' %}
+            <div class="product-split-layout__price" {{ block.shopify_attributes }}>
+              {{ block.settings.price }}
+            </div>
+
+          {% when 'description' %}
+            <div class="product-split-layout__description" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </div>
+
+          {% when 'visual' %}
+            <div class="product-split-layout__visual" {{ block.shopify_attributes }}>
+              {% if block.settings.image %}
+                {{ block.settings.image | image_url: width: 600 | image_tag:
+                  loading: 'lazy',
+                  alt: block.settings.image.alt | default: 'Product Visual'
+                }}
+              {% else %}
+                <div class="product-split-layout__orb">
+                  <div class="product-split-layout__orb-main"></div>
+                  <div class="product-split-layout__orb-ring"></div>
+                </div>
+              {% endif %}
+            </div>
+
+          {% when 'link' %}
+            <a href="{{ block.settings.url }}" class="product-split-layout__link" {{ block.shopify_attributes }}>
+              {{ block.settings.text | default: "Shop" }}
+            </a>
+
+          {% when 'section_header' %}
+             <div class="product-split-layout__section" {{ block.shopify_attributes }}>
+                <h3 class="product-split-layout__section-title">{{ block.settings.heading }}</h3>
+             </div>
+
+          {% when 'spec_item' %}
+            <div class="product-split-layout__spec-item" {{ block.shopify_attributes }}>
+              <span class="product-split-layout__spec-label">{{ block.settings.label }}</span>
+              <span class="product-split-layout__spec-value">{{ block.settings.value }}</span>
+            </div>
+
+          {% when 'content' %}
             <div class="product-split-layout__section" {{ block.shopify_attributes }}>
               {% if block.settings.heading != blank %}
                 <h3 class="product-split-layout__section-title">{{ block.settings.heading }}</h3>
               {% endif %}
-              {% if block.settings.content != blank %}
-                {{ block.settings.content }}
-              {% endif %}
+              {{ block.settings.content }}
             </div>
-          {% endif %}
-        {% endfor %}
-      </div>
+
+        {% endcase %}
+      {% endfor %}
     </div>
   </div>
 </div>
-
-
 
 {% schema %}
 {
@@ -349,7 +94,7 @@
   "settings": [
     {
       "type": "header",
-      "content": "Hero Image"
+      "content": "Left Column (Hero)"
     },
     {
       "type": "image_picker",
@@ -368,103 +113,122 @@
       "id": "label_text",
       "label": "Label text",
       "default": "Orb 4 Surface Mount"
-    },
-    {
-      "type": "header",
-      "content": "Product Information"
-    },
-    {
-      "type": "textarea",
-      "id": "description",
-      "label": "Product description",
-      "default": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale, Orb lights are available in a range of sizes and finishes, and can be mounted to either walls or ceilings."
-    },
-    {
-      "type": "checkbox",
-      "id": "show_product_visual",
-      "label": "Show product visual",
-      "default": true
-    },
-    {
-      "type": "image_picker",
-      "id": "product_image",
-      "label": "Product image",
-      "info": "Leave empty to show decorative orb graphic"
-    },
-    {
-      "type": "text",
-      "id": "product_title",
-      "label": "Product title",
-      "default": "Orb 4 Surface Mount"
-    },
-    {
-      "type": "text",
-      "id": "product_price",
-      "label": "Product price",
-      "default": "From $300.00"
-    },
-    {
-      "type": "text",
-      "id": "shop_link_text",
-      "label": "Shop button text",
-      "default": "Shop"
-    },
-    {
-      "type": "url",
-      "id": "shop_link_url",
-      "label": "Shop button link"
-    },
-    {
-      "type": "header",
-      "content": "Specifications"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_specs",
-      "label": "Show specifications section",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "specs_title",
-      "label": "Specifications heading",
-      "default": "Specifications"
     }
   ],
   "blocks": [
     {
-      "type": "specification",
-      "name": "Specification",
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
       "settings": [
         {
           "type": "text",
-          "id": "spec_label",
+          "id": "title",
+          "label": "Product Title",
+          "default": "Orb 4 Surface Mount"
+        }
+      ]
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price Text",
+          "default": "From $300.00"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore."
+        }
+      ]
+    },
+    {
+      "type": "visual",
+      "name": "Product Visual",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Leave empty for default orb graphic"
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "Link / Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Link Text",
+          "default": "Shop"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "section_header",
+      "name": "Section Header",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Specifications"
+        }
+      ]
+    },
+    {
+      "type": "spec_item",
+      "name": "Spec Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
           "label": "Label",
           "default": "Diameter"
         },
         {
           "type": "text",
-          "id": "spec_value",
+          "id": "value",
           "label": "Value",
           "default": "4 inches"
         }
       ]
     },
     {
-      "type": "content_block",
-      "name": "Content Block",
+      "type": "content",
+      "name": "Rich Text Content",
       "settings": [
         {
           "type": "text",
           "id": "heading",
-          "label": "Heading",
-          "default": "Details"
+          "label": "Heading (Optional)"
         },
         {
           "type": "richtext",
           "id": "content",
           "label": "Content",
-          "default": "<p>Add your content here. You can include multiple paragraphs and format text as needed.</p>"
+          "default": "<p>Add details here.</p>"
         }
       ]
     }
@@ -474,66 +238,45 @@
       "name": "Product Split Layout",
       "blocks": [
         {
-          "type": "specification",
+          "type": "description"
+        },
+        {
+          "type": "visual"
+        },
+        {
+          "type": "title"
+        },
+        {
+          "type": "price"
+        },
+        {
+          "type": "link"
+        },
+        {
+          "type": "section_header",
           "settings": {
-            "spec_label": "Diameter",
-            "spec_value": "4 inches"
+            "heading": "Specifications"
           }
         },
         {
-          "type": "specification",
+          "type": "spec_item",
           "settings": {
-            "spec_label": "Height",
-            "spec_value": "4.5 inches"
+            "label": "Diameter",
+            "value": "4 inches"
           }
         },
         {
-          "type": "specification",
+          "type": "spec_item",
           "settings": {
-            "spec_label": "Weight",
-            "spec_value": "1.2 lbs"
+            "label": "Material",
+            "value": "Glass"
           }
         },
         {
-          "type": "specification",
-          "settings": {
-            "spec_label": "Material",
-            "spec_value": "Hand-blown glass, brass"
-          }
-        },
-        {
-          "type": "specification",
-          "settings": {
-            "spec_label": "Bulb Type",
-            "spec_value": "E26 LED (included)"
-          }
-        },
-        {
-          "type": "specification",
-          "settings": {
-            "spec_label": "Wattage",
-            "spec_value": "40W max"
-          }
-        },
-        {
-          "type": "specification",
-          "settings": {
-            "spec_label": "Dimming",
-            "spec_value": "Compatible"
-          }
-        },
-        {
-          "type": "content_block",
+          "type": "content",
           "settings": {
             "heading": "Details",
-            "content": "<p>Each Orb fixture features a hand-blown glass sphere that diffuses light evenly in all directions. The spherical shade is suspended from a minimal mounting plate available in a variety of finishes.</p><p>Suitable for damp locations. Pairs beautifully with other fixtures in the Orb collection for a cohesive lighting design throughout your space.</p><p>Made to order. Lead time is approximately 6-8 weeks.</p>"
-          }
-        },
-        {
-          "type": "content_block",
-          "settings": {
-            "heading": "Care Instructions",
-            "content": "<p>Wipe clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials that may damage the finish.</p><p>For glass shade cleaning, use a mild glass cleaner and soft cloth. Ensure power is off before cleaning.</p>"
+            "content": "<p>Made to order.</p>"
           }
         }
       ]
