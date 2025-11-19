@@ -3,6 +3,7 @@
   position: relative;
   /* Local override or mapping if needed, otherwise use s4/s5 */
   --gap: var(--s4); 
+  --breakpoint: 968px;
 }
 
 .product-split-layout__wrapper {
@@ -14,7 +15,8 @@
 }
 
 .product-split-layout__left {
-  flex: 1 1 600px; /* Grow, Shrink, Basis */
+  flex-grow: 600;
+  flex-basis: calc((var(--breakpoint) - 100%) * 999);
   background-color: var(--veil);
   position: relative;
   margin-left: var(--gap);
@@ -30,21 +32,20 @@
 }
 
 .product-split-layout__right {
-  flex: 1 1 340px; /* Grow, Shrink, Basis */
+  flex-grow: 340;
+  flex-basis: calc((var(--breakpoint) - 100%) * 999);
   background: var(--bg);
   margin-left: var(--gap);
   margin-bottom: var(--gap);
   padding: var(--s3) var(--s4) var(--s5);
+  position: relative; /* Matches portableFeatures.md pattern */
 }
 
 .product-split-layout__sticky-content {
-  position: -webkit-sticky; /* Safari */
+  position: -webkit-sticky;
   position: sticky;
-  top: 20px; /* Simplified top offset */
+  top: calc(var(--header-height, 48px) + var(--s3));
   z-index: 10;
-  max-height: 90vh;
-  overflow-y: auto;
-  scrollbar-width: none;
 }
 
 .product-split-layout__sticky-content::-webkit-scrollbar {
@@ -170,28 +171,11 @@
 }
 
 @media (max-width: 968px) {
-  .product-split-layout__wrapper {
-    flex-direction: column;
-    margin-left: 0;
-    width: 100%;
-  }
-  
-  .product-split-layout__left,
-  .product-split-layout__right {
-    margin-left: 0;
-    margin-bottom: 0;
-  }
-
   .product-split-layout__left {
     min-height: 60vh;
   }
-
-  .product-split-layout__right {
-    position: static;
-    width: 100%;
-    height: auto;
-    max-height: none;
-    overflow-y: visible;
-    padding: var(--s4) var(--s3) var(--s5);
+  
+  .product-split-layout__left img {
+    min-height: 60vh;
   }
 }
