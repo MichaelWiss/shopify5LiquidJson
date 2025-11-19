@@ -9,19 +9,19 @@
  */
 {
   "sections": {
-    "product_split_feature_new": {
-      "type": "product-split-feature",
-      "settings": {
-        "custom_label": "New Feature",
-        "description": "<p>Check out this new product feature section.</p>"
-      }
-    },
     "hero_full_bleed": {
       "type": "hero-full-bleed",
       "settings": {
         "image": "shopify://shop_images/00-FEATURE-Stellah-DeVille-Mexico-City-Home-Tour-Domino.webp",
         "heading": "Refinements",
         "enable_scroll_fade": true
+      }
+    },
+    "product_split_feature": {
+      "type": "product-split-feature",
+      "settings": {
+        "custom_label": "New Feature",
+        "description": "<p>Check out this new product feature section.</p>"
       }
     },
     "intro_marquee": {
@@ -501,7 +501,7 @@
   },
   "order": [
     "hero_full_bleed",
-    "product_split_feature_new",
+    "product_split_feature",
     "intro_marquee",
     "feature_overlay",
     "split_feature",

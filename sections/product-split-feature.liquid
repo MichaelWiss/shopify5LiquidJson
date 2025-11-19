@@ -307,11 +307,7 @@
       {{ hero_img | image_url: width: 2000 | image_tag: class: 'psf-hero-img', id: 'psfParallaxImg', loading: 'lazy' }}
     {%- else -%}
       <!-- Fallback for Demo -->
-      <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=2000&auto=format&fit=crop" 
-           class="psf-hero-img" 
-           id="psfParallaxImg" 
-           alt="Demo Hero"
-           loading="lazy">
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'psf-hero-img' }}
     {%- endif -%}
   </div>
 
