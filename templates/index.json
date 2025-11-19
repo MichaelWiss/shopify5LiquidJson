@@ -490,11 +490,23 @@
         "text_column_3"
       ],
       "settings": {}
+    },
+    "product_split_feature_TYjep6": {
+      "type": "product-split-feature",
+      "name": "Product Split Feature",
+      "settings": {
+        "product": "lobber-floor-lamp",
+        "custom_label": "Orb 4 Surface Mount",
+        "description": "<p>A no-frills fixture that brings its spherical, hand-blown glass diffuser to the fore. Designed for spaces of every style and scale.</p>",
+        "hero_image": "shopify://shop_images/tbo-architecture-philadelphia-renovation-domino-10.webp",
+        "detail_image": "shopify://shop_images/Casa-Yamagoya-domino-5.webp",
+        "bg_color": "#F6F2EA",
+        "text_color": "#29241E"
+      }
     }
   },
   "order": [
     "hero_full_bleed",
-    "product_split_feature",
     "intro_marquee",
     "feature_overlay",
     "split_feature",
@@ -507,6 +519,7 @@
     "intro_marquee_BPDmRL",
     "studio_carousel_nKLLVi",
     "product_split_layout_pQXTHm",
-    "text_columns"
+    "text_columns",
+    "product_split_feature_TYjep6"
   ]
 }
