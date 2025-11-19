@@ -452,6 +452,7 @@
         "spec_item_MM9phM",
         "content_eeQ3pX"
       ],
+      "disabled": true,
       "name": "Product Split Layout",
       "settings": {
         "hero_image": "shopify://shop_images/20.webp",
