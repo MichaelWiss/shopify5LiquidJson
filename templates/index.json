@@ -9,6 +9,13 @@
  */
 {
   "sections": {
+    "product_split_feature_new": {
+      "type": "product-split-feature",
+      "settings": {
+        "custom_label": "New Feature",
+        "description": "<p>Check out this new product feature section.</p>"
+      }
+    },
     "hero_full_bleed": {
       "type": "hero-full-bleed",
       "settings": {
@@ -494,6 +501,7 @@
   },
   "order": [
     "hero_full_bleed",
+    "product_split_feature_new",
     "intro_marquee",
     "feature_overlay",
     "split_feature",
