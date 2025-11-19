@@ -17,13 +17,6 @@
         "enable_scroll_fade": true
       }
     },
-    "product_split_feature": {
-      "type": "product-split-feature",
-      "settings": {
-        "custom_label": "New Feature",
-        "description": "<p>Check out this new product feature section.</p>"
-      }
-    },
     "intro_marquee": {
       "type": "intro-marquee",
       "blocks": {
