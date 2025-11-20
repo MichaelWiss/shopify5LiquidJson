@@ -30,9 +30,9 @@
   }
 }
 .collection-page__menu-title {
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.045em;
   color: var(--ink-2);
 }
 

@@ -2803,16 +2803,6 @@ body.cart-drawer-open {
   color: var(--ink-2);
 }
 
-@media (min-width: 768px) {
-  .editorial-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .editorial-item.large {
-    grid-column: span 2;
-  }
-}
-
 .newsletter-section {
   @include section-padding;
   background-color: var(--paper);
@@ -3423,5 +3413,3 @@ body.cart-drawer-open {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: var(--s3);
 }
-
-/* Product Split Layout styles were removed to restore the original, inline-scoped section styles. */
