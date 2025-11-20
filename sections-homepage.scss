@@ -173,8 +173,9 @@
 // ========================================
 
 .intro-section {
-  padding: 88px 24px 60px;
-  @include container(1200px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 88px 36px 60px;
 }
 
 .intro-label {
@@ -192,8 +193,9 @@
 }
 
 .products-section {
-  padding: 0 24px 88px;
-  @include container(1600px);
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 36px 88px;
 }
 
 .products-marquee-wrapper {
