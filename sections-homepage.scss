@@ -266,7 +266,8 @@
 
 .product-thumb-title {
   font-size: 11px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
+  font-weight: 400;
 }
 
 .product-thumb-price {
@@ -292,26 +293,27 @@
 
 .feature-caption {
   position: absolute;
-  bottom: 40px;
-  left: 40px;
+  bottom: 32px;
+  left: 24px;
   background: rgba(254, 253, 251, 0.97);
-  backdrop-filter: blur(8px);
   padding: 16px 20px;
   max-width: 280px;
+  font-size: 11px;
+  line-height: 1.7;
   color: var(--ink);
-  z-index: 2;
+  backdrop-filter: blur(8px);
 
   @media (min-width: 768px) {
-    bottom: 48px;
     left: 48px;
-    padding: 20px 24px;
+    bottom: 48px;
     max-width: 320px;
+    padding: 20px 24px;
   }
 }
 
 .caption-label {
   @include eyebrow;
-  font-size: 9px;
+  font-size: 8px;
   margin-bottom: 6px;
 }
 
@@ -320,35 +322,37 @@
 // ========================================
 
 .side-by-side {
-  @include section-padding;
-  @include container(1400px);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-  
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 80px;
-  }
+  @include grid-2-col(0, 1024px);
+  margin-bottom: 1px;
 }
 
 .side-image {
-  @include image-container;
-  min-height: 320px;
+  @include media-wrapper;
+  height: 65vh;
+
+  @media (min-width: 1024px) {
+    height: auto;
+  }
 }
 
 .side-content {
+  padding: 56px 24px;
+  background: var(--paper);
   display: flex;
   align-items: center;
+
+  @media (min-width: 1024px) {
+    padding: 80px 64px;
+  }
 }
 
 .side-content-inner {
-  max-width: 480px;
+  max-width: 420px;
 }
 
 .side-eyebrow {
   @include eyebrow;
-  color: var(--ink-2);
+  font-size: 9px;
   margin-bottom: 16px;
 }
 
