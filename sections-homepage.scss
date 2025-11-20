@@ -1,0 +1,12 @@
+// ========================================
+// HOMEPAGE SECTIONS BUNDLE
+// Loaded only on index template
+// ========================================
+
+@use "tokens" as *;
+@use "mixins" as *;
+
+// TODO: Extract homepage section CSS from theme.scss
+// Sections: hero-full-bleed, intro-marquee, feature-overlay,
+// split-feature, statement-banner, gallery-grid, product-split-feature,
+// product-split-layout, quarters-spotlight, studio-carousel, newsletter, text-columns

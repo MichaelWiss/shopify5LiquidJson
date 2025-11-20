@@ -1,0 +1,10 @@
+// ========================================
+// PRODUCT SECTIONS BUNDLE
+// Loaded only on product template
+// ========================================
+
+@use "tokens" as *;
+@use "mixins" as *;
+
+// TODO: Extract product section CSS from theme.scss
+// Sections: product-detail, finish-swatches, related-products, specs-table, intro-text
