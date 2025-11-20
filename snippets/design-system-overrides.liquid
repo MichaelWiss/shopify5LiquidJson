@@ -1,0 +1,16 @@
+{% comment %}
+  Overrides and missing tokens for the design system.
+  This file ensures consistency across all sections and fixes missing variables.
+{% endcomment %}
+
+<style>
+  :root {
+    /* Missing border token mapped to settings */
+    --border: {{ settings.color_border | default: '#6C6458' }};
+
+    /* Static color tokens from _tokens.scss that were missing in Liquid */
+    --walnut: #7A5E3D;
+    --oak: #C7A878;
+    --espresso: #3C2A1F;
+  }
+</style>

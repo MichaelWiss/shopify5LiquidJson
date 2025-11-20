@@ -23,6 +23,7 @@
     {{ content_for_header }}
 
     {% render 'theme-style-variables' %}
+    {% render 'design-system-overrides' %}
 
     {%- comment -%} Core theme CSS - always loaded {%- endcomment -%}
     <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">

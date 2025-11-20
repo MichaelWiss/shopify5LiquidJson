@@ -50,9 +50,7 @@
 }
 
 .product-title {
-  font-family: var(--serif);
-  font-size: 28px;
-  font-weight: 400;
+  @include serif-heading(28px);
   margin-bottom: var(--s2);
 }
 
@@ -66,12 +64,10 @@
 }
 
 .option-label {
-  font-size: 11px;
+  @include label;
   font-weight: 500;
   margin-bottom: var(--s2);
   display: block;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .option-row {
@@ -91,13 +87,8 @@
 }
 
 .form-select {
-  width: 100%;
-  border: 1px solid var(--border);
-  padding: 10px 12px;
-  font-size: 12px;
-  font-family: var(--sans);
-  background: var(--paper);
-  color: var(--ink);
+  @include form-select;
+
   appearance: none;
 }
 

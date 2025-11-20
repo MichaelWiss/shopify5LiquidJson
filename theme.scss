@@ -408,10 +408,8 @@ body {
 }
 
 .hero-split__heading {
-  font-family: var(--font-serif);
-  font-size: 48px;
+  @include serif-heading(48px);
   font-weight: 300;
-  line-height: 1.1;
   letter-spacing: -0.02em;
   margin-bottom: 24px;
 }
@@ -3266,7 +3264,7 @@ body.cart-drawer-open {
 .product-detail__gallery {
   @include grid-2-col(var(--s2), 768px);
   
-  @media (min-width: 1024px) {
+  @media (min-width:  1024px) {
     gap: var(--s3);
   }
   

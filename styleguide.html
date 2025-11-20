@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System Style Guide</title>
+    
+    <!-- Load all project styles -->
+    <link rel="stylesheet" href="assets/theme.css">
+    <link rel="stylesheet" href="assets/sections-layout.css">
+    <link rel="stylesheet" href="assets/sections-homepage.css">
+    <link rel="stylesheet" href="assets/sections-product.css">
+    <link rel="stylesheet" href="assets/sections-collection.css">
+    <link rel="stylesheet" href="assets/sections-content.css">
+    <link rel="stylesheet" href="assets/sections-cart.css">
+
+    <style>
+        /* Style Guide Specific Styles */
+        :root {
+            --border: var(--hair);
+            --walnut: #7A5E3D;
+            --oak: #C7A878;
+            --espresso: #3C2A1F;
+        }
+
+        body {
+            padding-bottom: 100px;
+        }
+        
+        .sg-section {
+            padding: var(--s5) var(--s4);
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--hair);
+        }
+
+        .sg-title {
+            font-family: var(--serif);
+            font-size: 32px;
+            margin-bottom: var(--s4);
+            color: var(--ink);
+        }
+
+        .sg-subtitle {
+            font-family: var(--sans);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-2);
+            margin-bottom: var(--s3);
+            display: block;
+        }
+
+        /* Color Grid */
+        .sg-color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: var(--s3);
+        }
+
+        .sg-swatch {
+            border: 1px solid var(--hair);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .sg-swatch-color {
+            height: 100px;
+            width: 100%;
+        }
+
+        .sg-swatch-info {
+            padding: var(--s2);
+            background: var(--paper);
+            font-size: 11px;
+        }
+
+        .sg-swatch-name {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .sg-swatch-hex {
+            color: var(--ink-2);
+            font-family: monospace;
+        }
+
+        /* Typography */
+        .sg-type-row {
+            margin-bottom: var(--s3);
+            padding-bottom: var(--s3);
+            border-bottom: 1px dashed var(--hair);
+            display: flex;
+            align-items: baseline;
+            gap: var(--s4);
+        }
+
+        .sg-type-label {
+            width: 150px;
+            font-size: 11px;
+            color: var(--ink-2);
+            flex-shrink: 0;
+        }
+
+        /* Spacing */
+        .sg-spacing-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--s2);
+            gap: var(--s3);
+        }
+
+        .sg-spacing-box {
+            background: var(--accent);
+            height: 20px;
+            opacity: 0.5;
+        }
+
+        /* Components */
+        .sg-component-grid {
+            display: grid;
+            gap: var(--s4);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .sg-component-card {
+            padding: var(--s4);
+            border: 1px solid var(--hair);
+            background: var(--paper);
+        }
+
+        /* Icons */
+        .sg-icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: var(--s3);
+        }
+        
+        .sg-icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--s2);
+            padding: var(--s3);
+            border: 1px solid var(--hair);
+            background: var(--paper);
+        }
+        
+        .sg-icon-label {
+            font-size: 10px;
+            color: var(--ink-2);
+            font-family: monospace;
+        }
+
+        /* Borders */
+        .sg-border-example {
+            padding: var(--s3);
+            background: var(--paper);
+            margin-bottom: var(--s2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="site-header" style="position: sticky;">
+        <div class="header-container">
+            <a href="#" class="site-logo">STYLE GUIDE</a>
+            <nav class="header-nav">
+                <a href="#colors">Colors</a>
+                <a href="#typography">Typography</a>
+                <a href="#icons">Icons</a>
+                <a href="#elements">UI Elements</a>
+                <a href="#borders">Borders</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Colors -->
+    <section id="colors" class="sg-section">
+        <h2 class="sg-title">Colors</h2>
+        
+        <span class="sg-subtitle">Surface</span>
+        <div class="sg-color-grid" style="margin-bottom: var(--s4);">
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--bg);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--bg</span></div>
+            </div>
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--paper);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--paper</span></div>
+            </div>
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--veil);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--veil</span></div>
+            </div>
+        </div>
+
+        <span class="sg-subtitle">Text & Borders</span>
+        <div class="sg-color-grid" style="margin-bottom: var(--s4);">
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--ink);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--ink</span></div>
+            </div>
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--ink-2);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--ink-2</span></div>
+            </div>
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--hair);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--hair</span></div>
+            </div>
+        </div>
+
+        <span class="sg-subtitle">Accents</span>
+        <div class="sg-color-grid">
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--accent);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--accent</span></div>
+            </div>
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--walnut);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--walnut</span></div>
+            </div>
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--oak);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--oak</span></div>
+            </div>
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--terracotta);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--terracotta</span></div>
+            </div>
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--moss);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--moss</span></div>
+            </div>
+            <div class="sg-swatch">
+                <div class="sg-swatch-color" style="background: var(--espresso);"></div>
+                <div class="sg-swatch-info"><span class="sg-swatch-name">--espresso</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typography -->
+    <section id="typography" class="sg-section">
+        <h2 class="sg-title">Typography</h2>
+        
+        <div class="sg-type-row">
+            <div class="sg-type-label">Serif Heading (36px)</div>
+            <div style="font-family: var(--serif); font-size: 36px;">The Quick Brown Fox Jumps Over The Lazy Dog</div>
+        </div>
+        <div class="sg-type-row">
+            <div class="sg-type-label">Serif Heading (28px)</div>
+            <div style="font-family: var(--serif); font-size: 28px;">The Quick Brown Fox Jumps Over The Lazy Dog</div>
+        </div>
+        <div class="sg-type-row">
+            <div class="sg-type-label">Body (12px)</div>
+            <div style="font-family: var(--sans); font-size: 12px; line-height: 1.7;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </div>
+        </div>
+        <div class="sg-type-row">
+            <div class="sg-type-label">Eyebrow / Label</div>
+            <div style="font-family: var(--sans); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;">
+                Featured Collection
+            </div>
+        </div>
+    </section>
+
+    <!-- Icons -->
+    <section id="icons" class="sg-section">
+        <h2 class="sg-title">Icons</h2>
+        <div class="sg-icon-grid">
+            <div class="sg-icon-item">
+                <svg class="icon icon--search" viewBox="0 0 20 20" aria-hidden="true" style="width: 24px; height: 24px;">
+                    <circle cx="9" cy="9" r="7" fill="none" stroke="currentColor" stroke-width="1.5" />
+                    <path d="m14 14 4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                <span class="sg-icon-label">search</span>
+            </div>
+            <div class="sg-icon-item">
+                <svg class="icon icon--cart" viewBox="0 0 24 24" aria-hidden="true" style="width: 24px; height: 24px;">
+                    <path d="M3 4h2l2 11h11l2-8H6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="9" cy="19" r="1.5" fill="currentColor" />
+                    <circle cx="18" cy="19" r="1.5" fill="currentColor" />
+                </svg>
+                <span class="sg-icon-label">cart</span>
+            </div>
+            <div class="sg-icon-item">
+                <svg class="icon icon--arrow-right" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width: 24px; height: 24px;">
+                    <polyline points="44 40 52 32 44 24" stroke="currentColor" stroke-width="2" fill="none"></polyline>
+                    <line x1="52" y1="32" x2="12" y2="32" stroke="currentColor" stroke-width="2"></line>
+                </svg>
+                <span class="sg-icon-label">arrow-right</span>
+            </div>
+            <div class="sg-icon-item">
+                <svg class="icon icon--arrow-left" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width: 24px; height: 24px;">
+                    <polyline points="20 24 12 32 20 40" stroke="currentColor" stroke-width="2" fill="none"></polyline>
+                    <line x1="52" y1="32" x2="12" y2="32" stroke="currentColor" stroke-width="2"></line>
+                </svg>
+                <span class="sg-icon-label">arrow-left</span>
+            </div>
+            <div class="sg-icon-item">
+                <svg class="icon icon--arrow-right-wide" viewBox="0 0 64 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width: 29px; height: 17px;">
+                    <line x1="2" y1="20" x2="53" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <polyline points="45 12 53 20 45 28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span class="sg-icon-label">arrow-right-wide</span>
+            </div>
+            <div class="sg-icon-item">
+                <svg class="icon icon--arrow-up" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width: 24px; height: 24px;">
+                    <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="sg-icon-label">arrow-up</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- UI Elements -->
+    <section id="elements" class="sg-section">
+        <h2 class="sg-title">UI Elements</h2>
+        
+        <div class="sg-component-grid">
+            <!-- Navigation Elements -->
+            <div class="sg-component-card">
+                <span class="sg-subtitle">Breadcrumbs</span>
+                <nav class="breadcrumbs" aria-label="Breadcrumbs">
+                    <ol class="breadcrumbs-list">
+                        <li class="breadcrumbs-item"><a href="#">Home</a></li>
+                        <li class="breadcrumbs-separator" aria-hidden="true">
+                            <svg class="icon icon--arrow-right breadcrumbs-arrow" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <polyline points="44 40 52 32 44 24" stroke="currentColor" stroke-width="2" fill="none"></polyline>
+                                <line x1="52" y1="32" x2="12" y2="32" stroke="currentColor" stroke-width="2"></line>
+                            </svg>
+                        </li>
+                        <li class="breadcrumbs-item"><a href="#">Collection</a></li>
+                        <li class="breadcrumbs-separator" aria-hidden="true">
+                            <svg class="icon icon--arrow-right breadcrumbs-arrow" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <polyline points="44 40 52 32 44 24" stroke="currentColor" stroke-width="2" fill="none"></polyline>
+                                <line x1="52" y1="32" x2="12" y2="32" stroke="currentColor" stroke-width="2"></line>
+                            </svg>
+                        </li>
+                        <li class="breadcrumbs-item current">
+                            <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
+                            <span class="breadcrumbs-current-label">Current Page</span>
+                        </li>
+                    </ol>
+                </nav>
+
+                <span class="sg-subtitle">Pagination</span>
+                <nav class="pagination" role="navigation" aria-label="Pagination">
+                    <ul class="pagination-list">
+                        <li class="pagination-item pagination-item--prev">
+                            <a href="#" class="pagination-link">
+                                <svg class="icon icon--arrow-left pagination-arrow pagination-arrow--prev" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <polyline points="20 24 12 32 20 40" stroke="currentColor" stroke-width="2" fill="none"></polyline>
+                                    <line x1="52" y1="32" x2="12" y2="32" stroke="currentColor" stroke-width="2"></line>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="pagination-item"><a href="#" class="pagination-link">1</a></li>
+                        <li class="pagination-item pagination-item--current"><span class="pagination-current">2</span></li>
+                        <li class="pagination-item"><a href="#" class="pagination-link">3</a></li>
+                        <li class="pagination-item pagination-item--next">
+                            <a href="#" class="pagination-link">
+                                <span class="pagination-next-text">Next</span>
+                                <svg class="icon icon--arrow-right pagination-arrow pagination-arrow--next" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <polyline points="44 40 52 32 44 24" stroke="currentColor" stroke-width="2" fill="none"></polyline>
+                                    <line x1="52" y1="32" x2="12" y2="32" stroke="currentColor" stroke-width="2"></line>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Interactive Elements -->
+            <div class="sg-component-card">
+                <span class="sg-subtitle">Arrow Link</span>
+                <a href="#" class="arrow-link">
+                    Shop Collection
+                    <span class="arrow-link__icon" style="width: 29px; height: 17px; display: inline-block;">
+                        <svg class="icon icon--arrow-right-wide" viewBox="0 0 64 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <line x1="2" y1="20" x2="53" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            <polyline points="45 12 53 20 45 28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+
+                <span class="sg-subtitle">Quantity Selector</span>
+                <div class="cart-item__quantity" style="width: 100px;">
+                    <button class="cart-item__qty-btn">−</button>
+                    <span class="cart-item__qty-value">1</span>
+                    <button class="cart-item__qty-btn">+</button>
+                </div>
+            </div>
+
+            <!-- Form & Product Elements -->
+            <div class="sg-component-card">
+                <span class="sg-subtitle">Color Swatches</span>
+                <div class="product-option">
+                    <div class="option-label">Color</div>
+                    <div class="color-dots" style="display: flex; gap: 8px;">
+                        <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--walnut); border: 1px solid var(--hair); cursor: pointer;"></div>
+                        <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--oak); border: 1px solid var(--hair); cursor: pointer;"></div>
+                        <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--terracotta); border: 1px solid var(--hair); cursor: pointer; box-shadow: 0 0 0 1px var(--paper), 0 0 0 2px var(--ink);"></div>
+                    </div>
+                </div>
+
+                <span class="sg-subtitle">Inputs</span>
+                <div style="display: grid; gap: var(--s2);">
+                    <input type="text" class="form-select" placeholder="Text Input">
+                    <select class="form-select">
+                        <option>Select Option</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Borders & Lines -->
+    <section id="borders" class="sg-section">
+        <h2 class="sg-title">Borders & Lines</h2>
+        
+        <div class="sg-border-example" style="border: 1px solid var(--hair);">
+            <code style="font-size: 10px; color: var(--ink-2);">border: 1px solid var(--hair)</code>
+        </div>
+        
+        <div class="sg-border-example" style="border: 1px solid var(--ink);">
+            <code style="font-size: 10px; color: var(--ink-2);">border: 1px solid var(--ink)</code>
+        </div>
+
+        <div class="sg-border-example" style="border-bottom: 1px solid var(--hair);">
+            <code style="font-size: 10px; color: var(--ink-2);">border-bottom: 1px solid var(--hair)</code>
+        </div>
+
+        <div class="sg-border-example" style="border: 1px dashed var(--hair);">
+            <code style="font-size: 10px; color: var(--ink-2);">border: 1px dashed var(--hair)</code>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -104,10 +104,8 @@
 }
 
 .hero-split__heading {
-  font-family: var(--font-serif);
-  font-size: 48px;
+  @include serif-heading(48px);
   font-weight: 300;
-  line-height: 1.1;
   letter-spacing: -0.02em;
   margin-bottom: 24px;
 }
@@ -127,10 +125,6 @@
 
 .hero-split__cta {
   @include arrow-link;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  gap: 8px;
 }
 
 // ========================================
