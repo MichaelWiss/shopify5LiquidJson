@@ -678,3 +678,12 @@
   color: var(--ink-2);
 }
 
+.arrow-link {
+  transition: gap 200ms, color 200ms;
+}
+
+.arrow-link:hover {
+  gap: 16px;
+  color: var(--accent);
+}
+
