@@ -6,5 +6,324 @@
 @use "tokens" as *;
 @use "mixins" as *;
 
-// TODO: Extract product section CSS from theme.scss
-// Sections: product-detail, finish-swatches, related-products, specs-table, intro-text
+// ========================================
+// PRODUCT DETAIL SECTION
+// ========================================
+
+.product-detail {
+  @include container(1400px);
+  @include section-padding;
+}
+
+.product-detail__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s5);
+  align-items: start;
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: minmax(320px, 380px) minmax(0, 1fr);
+    gap: var(--s6);
+  }
+  
+  @media (min-width: 1280px) {
+    grid-template-columns: minmax(360px, 420px) minmax(0, 1fr);
+  }
+}
+
+.product-detail__sidebar {
+  position: sticky;
+  top: calc(var(--header-height) + var(--s3));
+}
+
+.product-detail__gallery {
+  display: grid;
+  gap: var(--s3);
+}
+
+.product-summary {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: var(--s3) 0;
+  display: grid;
+  gap: var(--s2);
+}
+
+.product-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: var(--s2);
+}
+
+.product-price {
+  font-size: 16px;
+  margin-bottom: var(--s3);
+}
+
+.product-option {
+  margin-bottom: var(--s3);
+}
+
+.option-label {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: var(--s2);
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.option-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--s1) 0;
+  font-size: 12px;
+}
+
+.option-row-label {
+  color: var(--ink-2);
+}
+
+.option-row-value {
+  color: var(--ink);
+}
+
+.form-select {
+  width: 100%;
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  font-size: 12px;
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  appearance: none;
+}
+
+// ========================================
+// FINISH SWATCHES SECTION
+// ========================================
+
+.finish-swatches {
+  @include section-padding;
+  border-top: 1px solid var(--hair);
+  background: var(--bg);
+}
+
+.finish-swatches__inner {
+  @include container(1400px);
+}
+
+.finish-swatches__heading {
+  @include serif-heading(24px);
+  margin-bottom: 32px;
+}
+
+.finish-swatches__grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+
+.finish-swatches__swatch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 100%;
+  border: 1px solid var(--hair);
+  background: var(--paper);
+  position: relative;
+  transition: border-color 200ms ease;
+}
+
+.finish-swatches__swatch img {
+  position: absolute;
+  inset: 12%;
+  width: 76%;
+  height: 76%;
+  object-fit: cover;
+}
+
+.finish-swatches__item:hover .finish-swatches__swatch {
+  border-color: var(--ink);
+}
+
+.finish-swatches__label {
+  margin-top: 8px;
+  font-size: 10px;
+  color: var(--ink-2);
+  text-align: center;
+}
+
+// ========================================
+// RELATED PRODUCTS SECTION
+// ========================================
+
+.related-products {
+  @include section-padding;
+  border-top: 1px solid var(--hair);
+  background: var(--bg);
+}
+
+.related-products__inner {
+  @include container(1400px);
+}
+
+.related-products__heading {
+  @include serif-heading(24px);
+  margin-bottom: 32px;
+}
+
+.related-products__grid {
+  @include grid-4-col(24px);
+}
+
+.product-card {
+  color: inherit;
+}
+
+.product-card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-card__media {
+  @include image-container(0.75);
+  border: 1px solid var(--border);
+  margin-bottom: var(--s2);
+}
+
+.product-card__image,
+.product-card__placeholder {
+  @include image-hover-scale;
+}
+
+.product-card__meta {
+  display: grid;
+  gap: var(--s2);
+}
+
+.product-card__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+}
+
+.product-card__title {
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 400;
+  margin: 0;
+}
+
+.product-card__badge {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.product-card__price {
+  font-size: 12px;
+  color: var(--ink-2);
+  margin: 0;
+  display: flex;
+  gap: var(--s1);
+}
+
+.product-card__price--compare {
+  text-decoration: line-through;
+}
+
+.product-card__price--sale {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.product-card__designer {
+  font-size: 11px;
+  color: var(--ink-2);
+}
+
+// ========================================
+// SPECS TABLE SECTION
+// ========================================
+
+.specs-section {
+  padding: var(--s6) var(--s4);
+  border-top: 1px solid var(--border);
+}
+
+.specs-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.specs-title {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: var(--s4);
+}
+
+.specs-table {
+  display: grid;
+  gap: var(--s2);
+}
+
+.spec-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--s3);
+  padding-bottom: var(--s2);
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.spec-label {
+  color: var(--ink-2);
+}
+
+.spec-value {
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+// ========================================
+// INTRO TEXT SECTION (shared with product)
+// ========================================
+
+.intro-text {
+  @include section-padding;
+  text-align: center;
+}
+
+.intro-text__inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.intro-text__eyebrow {
+  @include eyebrow;
+  color: var(--ink-2);
+  margin-bottom: 16px;
+}
+
+.intro-text__heading {
+  @include serif-heading(36px);
+  margin-bottom: 24px;
+}
+
+.intro-text__body {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink-2);
+}
+
+.intro-text--left {
+  text-align: left;
+}
+
