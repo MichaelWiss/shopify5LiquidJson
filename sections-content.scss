@@ -23,16 +23,16 @@
 .intro-text__eyebrow {
   @include eyebrow;
   color: var(--ink-2);
-  margin-bottom: 16px;
+  margin-bottom: $s2;
 }
 
 .intro-text__heading {
-  @include serif-heading(36px);
-  margin-bottom: 24px;
+  @include serif-heading($text-6xl);
+  margin-bottom: $s3;
 }
 
 .intro-text__body {
-  font-size: 14px;
+  font-size: $text-lg;
   line-height: 1.8;
   color: var(--ink-2);
 }

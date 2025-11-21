@@ -25,19 +25,19 @@
 }
 
 .hero-title {
-  @include serif-heading(28px);
+  @include serif-heading($text-5xl);
   position: absolute;
-  top: 48px;
-  left: 24px;
+  top: $s8;
+  left: $s3;
   color: var(--paper);
   max-width: 320px;
   z-index: 2;
   font-weight: 300;
 
   @media (min-width: 768px) {
-    font-size: 42px;
-    left: 48px;
-    top: 64px;
+    font-size: $text-7xl;
+    left: $s8;
+    top: $s10;
     max-width: 480px;
   }
 }
@@ -75,13 +75,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 64px 32px;
+  padding: $s10 $s4;
   background: var(--paper);
 }
 
 @media (min-width: 1024px) {
   .hero-split__body {
-    padding: 64px 48px;
+    padding: $s10 $s8;
   }
 }
 
@@ -104,23 +104,23 @@
 }
 
 .hero-split__heading {
-  @include serif-heading(48px);
+  @include serif-heading($text-8xl);
   font-weight: 300;
   letter-spacing: -0.02em;
-  margin-bottom: 24px;
+  margin-bottom: $s3;
 }
 
 @media (min-width: 1024px) {
   .hero-split__heading {
-    font-size: 72px;
+    font-size: $text-9xl;
   }
 }
 
 .hero-split__text {
-  font-size: 16px;
+  font-size: $text-xl;
   line-height: 1.8;
   color: var(--ink-2);
-  margin-bottom: 32px;
+  margin-bottom: $s4;
 }
 
 .hero-split__cta {
@@ -144,16 +144,16 @@
 .intro-text__eyebrow {
   @include eyebrow;
   color: var(--ink-2);
-  margin-bottom: 16px;
+  margin-bottom: $s2;
 }
 
 .intro-text__heading {
-  @include serif-heading(36px);
-  margin-bottom: 24px;
+  @include serif-heading($text-6xl);
+  margin-bottom: $s3;
 }
 
 .intro-text__body {
-  font-size: 14px;
+  font-size: $text-lg;
   line-height: 1.8;
   color: var(--ink-2);
 }
@@ -169,17 +169,17 @@
 .intro-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 88px 36px 60px;
+  padding: $s6 $s4 $s5;
 }
 
 .intro-label {
   @include eyebrow;
   font-size: 9px;
-  margin-bottom: 24px;
+  margin-bottom: $s3;
 }
 
 .intro-text {
-  font-size: 13px;
+  font-size: $text-md;
   line-height: 1.85;
   color: var(--ink-2);
   max-width: 720px;
@@ -189,7 +189,7 @@
 .products-section {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0 36px 88px;
+  padding: 0 $s4 $s6;
 }
 
 .products-marquee-wrapper {
@@ -212,7 +212,7 @@
 
 .products-scroll {
   display: flex;
-  gap: 12px;
+  gap: $s2;
   animation: marquee 40s linear infinite;
   will-change: transform;
 }
@@ -261,13 +261,13 @@
 }
 
 .product-thumb-title {
-  font-size: 11px;
+  font-size: $text-sm;
   margin-bottom: 2px;
   font-weight: 400;
 }
 
 .product-thumb-price {
-  font-size: 10px;
+  font-size: $text-xs;
   color: var(--ink-2);
 }
 
@@ -289,28 +289,28 @@
 
 .feature-caption {
   position: absolute;
-  bottom: 32px;
-  left: 24px;
+  bottom: $s7;
+  left: $s3;
   background: rgba(254, 253, 251, 0.97);
-  padding: 16px 20px;
+  padding: $s2 20px;
   max-width: 280px;
-  font-size: 11px;
+  font-size: $text-sm;
   line-height: 1.7;
   color: var(--ink);
   backdrop-filter: blur(8px);
 
   @media (min-width: 768px) {
-    left: 48px;
-    bottom: 48px;
+    left: $s8;
+    bottom: $s8;
     max-width: 320px;
-    padding: 20px 24px;
+    padding: 20px $s3;
   }
 }
 
 .caption-label {
   @include eyebrow;
   font-size: 8px;
-  margin-bottom: 6px;
+  margin-bottom: $s1;
 }
 
 // ========================================
@@ -332,13 +332,13 @@
 }
 
 .side-content {
-  padding: 56px 24px;
+  padding: $s9 $s3;
   background: var(--paper);
   display: flex;
   align-items: center;
 
   @media (min-width: 1024px) {
-    padding: 80px 64px;
+    padding: $s12 $s10;
   }
 }
 
@@ -349,19 +349,19 @@
 .side-eyebrow {
   @include eyebrow;
   font-size: 9px;
-  margin-bottom: 16px;
+  margin-bottom: $s2;
 }
 
 .side-heading {
-  @include serif-heading(26px);
-  margin-bottom: 16px;
+  @include serif-heading($text-4xl);
+  margin-bottom: $s2;
 }
 
 .side-text {
-  font-size: 12px;
+  font-size: $text-base;
   line-height: 1.8;
   color: var(--ink-2);
-  margin-bottom: 24px;
+  margin-bottom: $s3;
 }
 
 .side-link {
@@ -386,8 +386,8 @@
 
 .statement-section {
   background: #9BA88F;
-  padding: 72px 24px;
-  margin: 80px 0;
+  padding: $s11 $s3;
+  margin: $s12 0;
 }
 
 .statement-container {
@@ -399,7 +399,7 @@
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 180px;
-    gap: 64px;
+    gap: $s10;
   }
 }
 
@@ -407,22 +407,22 @@
   color: var(--paper);
 
   h2 {
-    @include serif-heading(26px);
+    @include serif-heading($text-4xl);
     color: var(--paper);
-    margin-bottom: 16px;
+    margin-bottom: $s2;
   }
 
   p {
-    font-size: 12px;
+    font-size: $text-base;
     line-height: 1.85;
     opacity: 0.95;
-    margin-bottom: 24px;
+    margin-bottom: $s3;
   }
 }
 
 .statement-link {
   display: inline-block;
-  font-size: 10px;
+  font-size: $text-xs;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--paper);
@@ -454,10 +454,10 @@
 
 .gallery-grid__inner {
   display: grid;
-  gap: 24px;
+  gap: $s3;
   
   @media (min-width: 1024px) {
-    gap: 32px;
+    gap: $s7;
   }
 }
 
@@ -518,35 +518,35 @@
 }
 
 .quarters-heading {
-  @include serif-heading(32px);
-  margin-bottom: 56px;
+  @include serif-heading($s7);
+  margin-bottom: $s9;
 }
 
 .quarters-layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 48px;
+  gap: $s8;
 
   @media (min-width: 1024px) {
     grid-template-columns: 380px 1fr;
-    gap: 80px;
+    gap: $s12;
   }
 }
 
 .quarters-text {
-  font-size: 12px;
+  font-size: $text-base;
   line-height: 1.8;
   color: var(--ink-2);
   max-width: 460px;
 
   p {
-    margin-bottom: 16px;
+    margin-bottom: $s2;
   }
 }
 
 .quarters-images {
-  @include grid-2-col(24px, 1024px);
-  gap: 16px;
+  @include grid-2-col($s3, 1024px);
+  gap: $s2;
 }
 
 .quarters-image {
@@ -566,7 +566,7 @@
 // ========================================
 
 .newsletter {
-  padding: 80px 24px;
+  padding: $s12 $s3;
   text-align: center;
 }
 
@@ -577,10 +577,10 @@
 
 .newsletter h2 {
   font-family: var(--serif);
-  font-size: 22px;
+  font-size: $text-2xl;
   font-weight: 400;
   line-height: 1.45;
-  margin-bottom: 32px;
+  margin-bottom: $s7;
   letter-spacing: -0.01em;
 }
 
@@ -594,7 +594,7 @@
   padding: 11px 14px;
   border: 1px solid var(--border);
   background: var(--paper);
-  font-size: 12px;
+  font-size: $text-base;
   font-family: var(--sans);
   color: var(--ink);
 }
@@ -614,7 +614,7 @@
   background: var(--ink);
   color: var(--paper);
   border: none;
-  font-size: 10px;
+  font-size: $text-xs;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   cursor: pointer;
@@ -628,8 +628,8 @@
 
 .newsletter-success,
 .newsletter-error {
-  font-size: 12px;
-  margin-top: 16px;
+  font-size: $text-base;
+  margin-top: $s2;
   color: var(--ink-2);
 }
 
@@ -664,16 +664,16 @@
 
 .footer-column {
   h3 {
-    font-size: 11px;
+    font-size: $text-sm;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 16px;
+    margin-bottom: $s2;
   }
 }
 
 .footer-text {
-  font-size: 12px;
+  font-size: $text-base;
   line-height: 1.8;
   color: var(--ink-2);
 }
@@ -683,7 +683,7 @@
 }
 
 .arrow-link:hover {
-  gap: 16px;
+  gap: $s2;
   color: var(--accent);
 }
 

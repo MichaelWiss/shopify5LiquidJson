@@ -50,12 +50,12 @@
 }
 
 .product-title {
-  @include serif-heading(28px);
+  @include serif-heading($text-5xl);
   margin-bottom: var(--s2);
 }
 
 .product-price {
-  font-size: 16px;
+  font-size: $text-xl;
   margin-bottom: var(--s3);
 }
 
@@ -75,7 +75,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--s1) 0;
-  font-size: 12px;
+  font-size: $text-base;
 }
 
 .option-row-label {
@@ -107,13 +107,13 @@
 }
 
 .finish-swatches__heading {
-  @include serif-heading(24px);
-  margin-bottom: 32px;
+  @include serif-heading($text-3xl);
+  margin-bottom: $s7;
 }
 
 .finish-swatches__grid {
   display: grid;
-  gap: 16px;
+  gap: $s2;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
 }
 
@@ -143,7 +143,7 @@
 
 .finish-swatches__label {
   margin-top: 8px;
-  font-size: 10px;
+  font-size: $text-xs;
   color: var(--ink-2);
   text-align: center;
 }
@@ -163,12 +163,12 @@
 }
 
 .related-products__heading {
-  @include serif-heading(24px);
-  margin-bottom: 32px;
+  @include serif-heading($text-3xl);
+  margin-bottom: $s7;
 }
 
 .related-products__grid {
-  @include grid-4-col(24px);
+  @include grid-4-col($s3);
 }
 
 .product-card {
@@ -204,21 +204,21 @@
 }
 
 .product-card__title {
-  font-size: 13px;
+  font-size: $text-md;
   line-height: 1.4;
   font-weight: 400;
   margin: 0;
 }
 
 .product-card__badge {
-  font-size: 10px;
+  font-size: $text-xs;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-2);
 }
 
 .product-card__price {
-  font-size: 12px;
+  font-size: $text-base;
   color: var(--ink-2);
   margin: 0;
   display: flex;
@@ -235,7 +235,7 @@
 }
 
 .product-card__designer {
-  font-size: 11px;
+  font-size: $text-sm;
   color: var(--ink-2);
 }
 
@@ -255,7 +255,7 @@
 
 .specs-title {
   font-family: var(--serif);
-  font-size: 24px;
+  font-size: $text-3xl;
   font-weight: 400;
   margin-bottom: var(--s4);
 }
@@ -271,7 +271,7 @@
   gap: var(--s3);
   padding-bottom: var(--s2);
   border-bottom: 1px solid var(--border);
-  font-size: 12px;
+  font-size: $text-base;
 }
 
 .spec-label {
@@ -300,16 +300,16 @@
 .intro-text__eyebrow {
   @include eyebrow;
   color: var(--ink-2);
-  margin-bottom: 16px;
+  margin-bottom: $s2;
 }
 
 .intro-text__heading {
-  @include serif-heading(36px);
-  margin-bottom: 24px;
+  @include serif-heading($text-6xl);
+  margin-bottom: $s3;
 }
 
 .intro-text__body {
-  font-size: 14px;
+  font-size: $text-lg;
   line-height: 1.8;
   color: var(--ink-2);
 }
@@ -375,7 +375,7 @@
 }
 
 .product-split-layout__description {
-  font-size: 14px;
+  font-size: $text-lg;
   line-height: 1.7;
   color: var(--ink);
   margin-bottom: var(--s4);
@@ -425,21 +425,21 @@
 }
 
 .product-split-layout__title {
-  font-size: 13px;
+  font-size: $text-md;
   color: var(--ink);
   margin-bottom: 4px;
   font-weight: 400;
 }
 
 .product-split-layout__price {
-  font-size: 13px;
+  font-size: $text-md;
   color: var(--ink-2);
   margin-bottom: var(--s3);
 }
 
 .product-split-layout__link {
   display: inline-block;
-  font-size: 13px;
+  font-size: $text-md;
   color: var(--ink);
   text-decoration: underline;
   transition: color 200ms ease;
@@ -457,14 +457,14 @@
 }
 
 .product-split-layout__section-title {
-  font-size: 14px;
+  font-size: $text-lg;
   font-weight: 500;
   margin-bottom: var(--s3);
   color: var(--ink);
 }
 
 .product-split-layout__section p {
-  font-size: 13px;
+  font-size: $text-md;
   line-height: 1.6;
   color: var(--ink-2);
   margin-bottom: var(--s3);
@@ -473,7 +473,7 @@
 .product-split-layout__spec-item {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: $text-md;
   padding: var(--s2) 0;
   border-bottom: 1px solid var(--hair);
   

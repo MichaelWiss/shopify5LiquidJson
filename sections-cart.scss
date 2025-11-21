@@ -16,7 +16,7 @@
 }
 
 .cart-page__header {
-  @include serif-heading(36px);
+  @include serif-heading($text-6xl);
   margin-bottom: var(--s5);
   text-align: center;
 }
@@ -26,7 +26,7 @@
   padding: var(--s6) var(--s4);
   
   p {
-    font-size: 14px;
+    font-size: $text-lg;
     color: var(--ink-2);
     margin-bottom: var(--s4);
   }
@@ -51,7 +51,7 @@
 .cart-page__subtotal {
   display: flex;
   justify-content: space-between;
-  font-size: 16px;
+  font-size: $text-xl;
   padding-bottom: var(--s3);
   border-bottom: 1px solid var(--hair);
 }

@@ -30,7 +30,7 @@
 .collection-page__sidebar {
   display: grid;
   gap: var(--s3);
-  font-size: 12px;
+  font-size: $text-base;
   line-height: 1.6;
   color: var(--ink-2);
 }
@@ -96,14 +96,14 @@
 
 .collection-page__title {
   font-family: var(--serif);
-  font-size: 42px;
+  font-size: $text-7xl;
   font-weight: 400;
   color: var(--ink);
   line-height: 1.1;
 }
 
 .collection-page__title-count {
-  font-size: 22px;
+  font-size: $text-2xl;
   vertical-align: super;
   margin-left: 2px;
 }
@@ -112,7 +112,7 @@
   display: flex;
   align-items: center;
   gap: var(--s6);
-  font-size: 16px;
+  font-size: $text-xl;
 }
 
 .collection-page__filter-toggle {
@@ -120,7 +120,7 @@
   border: none;
   padding: 0;
   font-family: inherit;
-  font-size: 16px;
+  font-size: $text-xl;
   color: var(--ink);
   cursor: pointer;
   display: flex;
@@ -144,7 +144,7 @@
 }
 
 .collection-page__view-label {
-  font-size: 16px;
+  font-size: $text-xl;
   color: var(--ink);
 }
 
@@ -199,7 +199,7 @@
 }
 
 .collection-page__filter-label {
-  font-size: 16px;
+  font-size: $text-xl;
   color: #999;
   margin: 0;
 }
@@ -214,7 +214,7 @@
 }
 
 .collection-page__filter-item {
-  font-size: 16px;
+  font-size: $text-xl;
   line-height: 1.6;
 }
 
@@ -244,7 +244,7 @@
   display: flex;
   align-items: center;
   gap: var(--s1);
-  font-size: 14px;
+  font-size: $text-lg;
 }
 
 .collection-page__filter-price input {
@@ -252,7 +252,7 @@
   padding: var(--s1);
   border: 1px solid var(--hair);
   font-family: inherit;
-  font-size: 14px;
+  font-size: $text-lg;
 }
 
 .collection-page__filter-price button {
@@ -261,7 +261,7 @@
   color: var(--paper);
   border: none;
   font-family: inherit;
-  font-size: 14px;
+  font-size: $text-lg;
   cursor: pointer;
   transition: opacity 200ms ease;
 }
@@ -276,7 +276,7 @@
 }
 
 .collection-page__filter-clear {
-  font-size: 14px;
+  font-size: $text-lg;
   color: var(--ink);
   text-decoration: underline;
   transition: opacity 200ms ease;
@@ -342,7 +342,7 @@
 }
 
 .collection-demo-card__eyebrow {
-  font-size: 10px;
+  font-size: $text-xs;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.85;
@@ -350,7 +350,7 @@
 
 .collection-demo-card__title {
   font-family: var(--serif);
-  font-size: 24px;
+  font-size: $text-3xl;
   font-weight: 400;
   margin: 0;
 }
@@ -359,7 +359,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--s1);
-  font-size: 11px;
+  font-size: $text-sm;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: inherit;
