@@ -126,7 +126,7 @@
 
 .finish-swatches__grid {
   display: grid;
-  gap: 16px;
+  gap: 12px;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
 }
 
@@ -184,7 +184,7 @@
 
 .related-products__grid {
   display: grid;
-  gap: 24px;
+  gap: 20px;
   grid-template-columns: 1fr;
 }
 @media (min-width: 768px) {
@@ -330,7 +330,7 @@
   letter-spacing: 0.045em;
   color: var(--ink-2);
   color: var(--ink-2);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .intro-text__heading {
@@ -339,7 +339,7 @@
   font-weight: 400;
   letter-spacing: -0.015em;
   line-height: 1.1;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .intro-text__body {
