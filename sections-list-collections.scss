@@ -119,12 +119,15 @@
     gap: 12px;
   }
   
-  // Hide the rendered icon since the demo uses pseudo-element arrow
+  // Show the rendered icon (long tail arrow)
   svg {
-    display: none;
+    display: block;
+    width: 24px; // $icon-arrow-size
+    height: auto;
+    transition: transform 200ms ease;
   }
   
   &::after {
-    content: '→';
+    content: none;
   }
 }

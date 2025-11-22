@@ -25,6 +25,11 @@
     {% render 'theme-style-variables' %}
     {% render 'design-system-overrides' %}
 
+    {% if request.design_mode %}
+      <link rel="stylesheet" href="{{ 'sections-list-collections.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}">
+    {% endif %}
+
     {%- comment -%} Core theme CSS - always loaded {%- endcomment -%}
     <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
     
@@ -57,7 +62,7 @@
     <main role="main">
       {% if settings.show_global_breadcrumbs %}
         {% unless request.page_type == 'index' or request.page_type == 'cart' %}
-          <div class=\"breadcrumbs-container\">
+          <div class="breadcrumbs-container">
             {% render 'breadcrumbs-bar' %}
           </div>
         {% endunless %}
