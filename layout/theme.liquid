@@ -43,7 +43,7 @@
         <link rel="stylesheet" href="{{ 'sections-cart.css' | asset_url }}">
       {% when 'page' %}
         <link rel="stylesheet" href="{{ 'sections-content.css' | asset_url }}">
-        {% if template.suffix == 'showrooms' %}
+        {% if template.suffix == 'showrooms' or page.handle == 'showrooms' or page.handle == 'showroom' %}
           <link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}">
         {% endif %}
     {% endcase %}
@@ -60,7 +60,12 @@
           </div>
         {% endunless %}
       {% endif %}
-      {{ content_for_layout }}
+      
+      {% if page.handle == 'showrooms' %}
+        {% section 'showroom' %}
+      {% else %}
+        {{ content_for_layout }}
+      {% endif %}
     </main>
 
     {% section 'footer' %}
