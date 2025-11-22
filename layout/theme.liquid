@@ -39,6 +39,8 @@
         <link rel="stylesheet" href="{{ 'sections-product.css' | asset_url }}">
       {% when 'collection' %}
         <link rel="stylesheet" href="{{ 'sections-collection.css' | asset_url }}">
+      {% when 'list-collections' %}
+        <link rel="stylesheet" href="{{ 'sections-list-collections.css' | asset_url }}">
       {% when 'cart' %}
         <link rel="stylesheet" href="{{ 'sections-cart.css' | asset_url }}">
       {% when 'page' %}
@@ -55,17 +57,13 @@
     <main role="main">
       {% if settings.show_global_breadcrumbs %}
         {% unless request.page_type == 'index' or request.page_type == 'cart' %}
-          <div class="breadcrumbs-container">
+          <div class=\"breadcrumbs-container\">
             {% render 'breadcrumbs-bar' %}
           </div>
         {% endunless %}
       {% endif %}
       
-      {% if page.handle == 'showrooms' %}
-        {% section 'showroom' %}
-      {% else %}
-        {{ content_for_layout }}
-      {% endif %}
+      {{ content_for_layout }}
     </main>
 
     {% section 'footer' %}
