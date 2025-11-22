@@ -1,0 +1,45 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "blocks": {
+        "block_1": {
+          "type": "collection_item",
+          "settings": {
+            "title": "Lighting",
+            "description": "Wall and ceiling-mounted lamps that embody timeless craftsmanship.",
+            "link": "/collections/lighting"
+          }
+        },
+        "block_2": {
+          "type": "collection_item",
+          "settings": {
+            "title": "Furniture",
+            "description": "Pieces designed to elevate the spaces we inhabit.",
+            "link": "/collections/furniture"
+          }
+        },
+        "block_3": {
+          "type": "collection_item",
+          "settings": {
+            "title": "Objects",
+            "description": "Curated accessories for the modern home.",
+            "link": "/collections/objects"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3"
+      ],
+      "settings": {
+        "title": "Collections",
+        "description": "<p>Explore our range of handcrafted pieces.</p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

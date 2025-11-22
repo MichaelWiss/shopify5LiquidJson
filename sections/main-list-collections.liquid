@@ -1,0 +1,88 @@
+<div class="collections-section">
+  <div class="collections-container">
+    <div class="collections-page-header">
+      {% if section.settings.title != blank %}
+        <h1 class="intro-heading" style="text-align: center; margin-bottom: 24px;">{{ section.settings.title }}</h1>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        <div class="intro-text" style="text-align: center; max-width: 600px; margin: 0 auto 48px;">{{ section.settings.description }}</div>
+      {% endif %}
+    </div>
+
+    <div class="collections-grid">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link | default: '#' }}" class="collection-card" {{ block.shopify_attributes }}>
+          <div class="collection-image">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'collection-image-inner' }}
+            {% else %}
+              {{ 'collection-1' | placeholder_svg_tag: 'collection-image-inner' }}
+            {% endif %}
+          </div>
+          <h3 class="collection-title">{{ block.settings.title | default: 'Collection Title' }}</h3>
+          {% if block.settings.description != blank %}
+            <p class="collection-description" style="font-size: 12px; color: var(--text-secondary); text-align: center; margin-top: 8px;">{{ block.settings.description }}</p>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collections List",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Collections"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Page Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Collection Name"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections List",
+      "blocks": [
+        { "type": "collection_item" },
+        { "type": "collection_item" },
+        { "type": "collection_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}
