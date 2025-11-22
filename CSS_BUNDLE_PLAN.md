@@ -47,7 +47,7 @@
 - Any other utility sections
 
 ### sections-showroom.scss → sections-showroom.css
-**Loaded only on page.showroom template**
+**Loaded only on page.showrooms template**
 - showroom section
 
 ## Implementation Steps
