@@ -26,72 +26,61 @@
 
 - Update `templates/index.json` to follow the required section order (hero split → intro text → featured collections → image-with-text → editorial grid → newsletter).
 
-### 1. Variant Selection JavaScript (BLOCKING)- Revisit `templates/page.json`, `templates/collection.json`, and `templates/product.json` to confirm they reference the sections promised in `requirements.md`, adjusting block defaults where necessary.
+### 1. Variant Selection JavaScript ✅ COMPLETE
 
-**Severity:** 🔴 **CRITICAL**  
+**Severity:** ✅ **COMPLETE** (Previously 🔴 CRITICAL)  
 
-**Files:** `sections/product-detail.liquid`, `assets/theme.js`## 4. Modularize Product Detail Rendering
+**Files:** `sections/product-detail.liquid`, `assets/theme.js`
 
-- Break `sections/product-detail.liquid` into smaller snippets (e.g., summary rows, swatch picker, gallery item) to avoid the current monolithic structure.
+**Status:**  
+Fully implemented and tested. See `VARIANT_SELECTION_TEST.md` for complete documentation.
 
-**Problem:**  - Replace the initial `{% capture %}` for summary rows with per-block renders so output order stays intuitive.
+**Implementation Details:**
+- ✅ Product variants JSON embedded in DOM via `<script data-product-json>`
+- ✅ Event listeners attached to all option selects and swatch radio inputs
+- ✅ `findMatchingVariant()` function matches selected options against variants array
+- ✅ Hidden input value, price display, SKU, and availability updated on option change
+- ✅ Unavailable variants handled (button disabled, "Sold Out" text)
+- ✅ Works with both SELECT dropdowns and radio input swatches
+- ✅ Error handling with ErrorHandler utility
 
-Product form has hidden `<input name="id" value="{{ product.selected_or_first_available_variant.id }}">` but no JavaScript updates it when users change options. Multi-variant products are broken — always adds first variant regardless of selection.- Store swatch color/value pairs in structured settings (arrays/metafields) to eliminate repeated string splitting inside Liquid loops.
+**Code Location:**
+- JavaScript: `assets/theme.js` lines 361-491
+- Liquid: `sections/product-detail.liquid` lines 32-77, 178-180
+- Snippet: `snippets/product-swatch-picker.liquid` line 49
 
-
-
-**Solution:**## 5. Standardize Arrow CTA Links
-
-- Embed product variants JSON in DOM: `<script type="application/json" data-product-json>{{ product | json }}</script>`- Use `snippets/arrow-link.liquid` everywhere the arrow CTA appears (`hero-split`, `image-with-text`, `split-feature`, `collection-grid`, etc.) instead of duplicating the SVG markup inline.
-
-- Add event listeners to all option selects and swatch radio inputs- Extend the snippet with optional modifier parameters if alternate styles are required, keeping the SVG, aria labels, and transitions centralized.
-
-- Implement `findMatchingVariant()` function to match selected options against variants array
-
-- Update hidden input value, price display, availability state, and SKU on option change## 6. Harden Homepage Style Linting
-
-- Handle unavailable variants (disable add-to-cart, show "Sold Out")- Improve `scripts/check-homepage-styles.js` so it can parse multi-line and grouped selectors (simple tokenizer or a lightweight CSS parser) to avoid false positives as the stylesheet grows.
-
-- Consider limiting the lint to a curated selector allowlist rather than scraping every line from the demo CSS.
-
-**Estimated Impact:** ~150 lines of JavaScript, 10 lines Liquid
+**Estimated Impact:** ~130 lines JavaScript (already implemented), ~10 lines Liquid (already implemented)
 
 ---
 
-### 2. Fix Duplicate Comment Tags in newsletter-form.liquid
-**Severity:** 🔴 **CRITICAL**  
-**Files:** `snippets/newsletter-form.liquid`
+### 2. Fix Duplicate Comment Tags in newsletter-form.liquid ✅ COMPLETE
+**Severity:** ✅ **COMPLETE** (Previously 🔴 CRITICAL)
+**Files:** `snippets/newsletter-form.liquid`, `sections/newsletter.liquid`
 
-**Problem:**  
-Lines 1-30 have doubled comment tags causing invalid Liquid syntax:
-```liquid
-{% comment %}{% comment %}
-  Renders a newsletter signup form...
-{% endcomment %}{% endcomment %}
-```
+**Status:**
+Fixed by creating the missing `snippets/newsletter-form.liquid` file (which was referenced but didn't exist) and refactoring `sections/newsletter.liquid` to use it. This resolved both the missing file issue and the DRY requirement while ensuring no duplicate comment tags were introduced.
 
-**Solution:**  
-Remove duplicate tags — keep only one set of `{% comment %}...{% endcomment %}`.
+**Code Location:**
+- Snippet: `snippets/newsletter-form.liquid`
+- Usage: `sections/newsletter.liquid` lines 11-16
 
-**Estimated Impact:** 1 minute fix, critical for rendering stability
+**Estimated Impact:** Critical fix for rendering stability + architectural improvement (DRY)
 
 ---
 
-### 3. Metafield Integration for Product Details
-**Severity:** 🔴 **CRITICAL**  
-**Files:** `sections/product-detail.liquid`, `sections/specs-table.liquid`
+### 3. Metafield Integration for Product Details ✅ COMPLETE
+**Severity:** ✅ **COMPLETE** (Previously 🔴 CRITICAL)
+**Files:** `sections/product-detail.liquid`, `sections/specs-table.liquid`, `snippets/product-summary-row.liquid`
 
-**Problem:**  
-Theme has zero metafield support. Product summary rows are hardcoded in template JSON. Can't leverage OS 2.0 dynamic sources.
+**Status:**
+Completed. Updated schemas to accept a `metafield_key` setting which automatically reads from `product.metafields.custom`. Added logic to fallback to static values. Created `METAFIELDS.md` documentation.
 
-**Solution:**
-- Refactor summary rows to read from `product.metafields.custom` namespace
-- Add schema dynamic source settings for specifications
-- Update `specs-table.liquid` to loop through metafield values
-- Create example metafield definitions (Size, Orientation, Mounting, Material)
-- Document metafield structure in README
+**Code Location:**
+- Product Detail: `sections/product-detail.liquid` (Schema)
+- Specs Table: `sections/specs-table.liquid` (Schema & Logic)
+- Snippet: `snippets/product-summary-row.liquid` (Logic)
 
-**Estimated Impact:** ~100 lines refactored, major UX improvement for merchants
+**Estimated Impact:** Merchant flexibility unlocked for product attributes
 
 ---
 
@@ -570,12 +559,44 @@ Either add custom scrollbar styles or document as intentional omission:
 
 ---
 
+### 29. Cleanup Demo Assets
+**Severity:** 🟢 **LOW**
+**Files:** `assets/`
+
+**Problem:**
+Multiple demo CSS files exist (`homepage-demo-styles.css`, `homepage-demo.css`) that should be consolidated into `theme.css` or removed.
+
+**Solution:**
+Audit and remove/merge:
+- `homepage-demo-styles.css`
+- `homepage-demo.css`
+- `sections-homepage.css`
+
+**Estimated Impact:** Reduced file count, cleaner asset directory
+
+---
+
+## PORTABLE FEATURES INTEGRATION (From portableFeatures.md)
+
+### 30. Critical Architectural Features
+- [ ] **Dynamic Header Color Switching** (Logic: `assets/theme.js`, Schema: `sections/header.liquid`)
+- [ ] **Scroll-Aware Logo Fade** (Logic: `assets/theme.js`)
+- [ ] **Internal Section Navigation** (Snippet: `internal-navigation.liquid`)
+
+### 31. High Value Components
+- [ ] **Offset Carousel Component** (New Section: `sections/offset-carousel.liquid`)
+- [ ] **Product Card Multi-State Images** (Update: `snippets/product-card.liquid`)
+- [ ] **Popup Modal System** (New Snippet: `snippets/popup-modal.liquid`)
+- [ ] **Cookie Consent Banner** (New Section: `sections/cookie-consent.liquid`)
+
+---
+
 ## IMPLEMENTATION ROADMAP
 
 ### Phase 1: Critical Fixes (Week 1)
-- [ ] Issue #1: Variant selection JavaScript
-- [ ] Issue #2: Fix newsletter-form duplicate comments
-- [ ] Issue #3: Metafield integration
+- [x] Issue #1: Variant selection JavaScript ✅ COMPLETE
+- [x] Issue #2: Fix newsletter-form duplicate comments ✅ COMPLETE
+- [x] Issue #3: Metafield integration ✅ COMPLETE
 - [ ] Issue #7: README.md
 - [ ] Issue #8: .gitignore
 
@@ -595,23 +616,28 @@ Either add custom scrollbar styles or document as intentional omission:
 ### Phase 4: Polish (Week 4)
 - [ ] Issue #15: CSS minification
 - [ ] Issue #17-28: Low priority optimizations
+- [ ] Issue #29: Cleanup Demo Assets
 - [ ] Final testing and QA
 - [ ] Theme check validation
+
+### Phase 5: Portable Features (Post-Launch)
+- [ ] Issue #30: Architectural Features (Header, Scroll, Nav)
+- [ ] Issue #31: High Value Components (Carousel, Modals, Multi-state Cards)
 
 ---
 
 ## TECHNICAL DEBT SUMMARY
 
 **Lines of Code Impact:**
-- Critical fixes: ~260 lines added/refactored
+- Critical fixes: ~130 lines remaining (~130 already complete)
 - High priority: ~340 lines added/refactored  
 - Medium priority: ~300 lines added/refactored
 - Low priority: ~100 lines polished
 
-**Total Estimated Effort:** 3-4 weeks for complete implementation
+**Total Estimated Effort:** 2-3 weeks for remaining implementation
 
 **Risk Mitigation:**
-- Variant selection is blocking — prioritize above all else
+- ✅ Variant selection COMPLETE — was blocking, now resolved
 - Focus trap and loading states are accessibility requirements
 - Metafields unlock merchant autonomy
 - Documentation enables team handoff

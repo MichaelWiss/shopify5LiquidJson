@@ -8,11 +8,19 @@
       <div class="specs-table">
         {% for block in section.blocks %}
           <div class="spec-row" {{ block.shopify_attributes }}>
+            {% assign spec_value = block.settings.value %}
+            {% if block.settings.metafield_key != blank %}
+              {% assign meta_value = product.metafields.custom[block.settings.metafield_key] %}
+              {% if meta_value != blank %}
+                {% assign spec_value = meta_value %}
+              {% endif %}
+            {% endif %}
+
             {% if block.settings.label != blank %}
               <div class="spec-label">{{ block.settings.label }}</div>
             {% endif %}
-            {% if block.settings.value != blank %}
-              <div class="spec-value">{{ block.settings.value | newline_to_br }}</div>
+            {% if spec_value != blank %}
+              <div class="spec-value">{{ spec_value | newline_to_br }}</div>
             {% endif %}
           </div>
         {% endfor %}
@@ -42,6 +50,12 @@
           "id": "label",
           "label": "Label",
           "default": "Dimensions"
+        },
+        {
+          "type": "text",
+          "id": "metafield_key",
+          "label": "Metafield key",
+          "info": "e.g. 'dimensions' (assumes 'custom' namespace). Overrides value if present."
         },
         {
           "type": "textarea",

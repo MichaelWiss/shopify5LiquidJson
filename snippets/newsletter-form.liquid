@@ -1,0 +1,40 @@
+{% comment %}
+  Renders a newsletter signup form.
+
+  Accepts:
+  - section_id: {String} The ID of the section rendering the form (required)
+  - placeholder: {String} Placeholder text for input
+  - button_label: {String} Text for the submit button
+  - success_message: {String} Message to show on success
+{% endcomment %}
+
+{% assign newsletter_form_id = 'NewsletterForm-' | append: section_id %}
+{% form 'customer', id: newsletter_form_id, class: 'newsletter-signup__form' %}
+  {% if form.posted_successfully? %}
+    <div class="newsletter-signup__success">
+      {{ success_message | default: 'Thank you for subscribing!' }}
+    </div>
+  {% else %}
+    <div class="newsletter-signup__form-wrapper">
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input
+        id="newsletter-email-{{ section_id }}"
+        class="newsletter-signup__input"
+        type="email"
+        name="contact[email]"
+        value="{{ form.email | escape }}"
+        placeholder="{{ placeholder | default: 'Your email' }}"
+        required
+        aria-label="Email address"
+      >
+      <button class="newsletter-signup__button" type="submit">
+        <span class="newsletter-signup__text">{{ button_label | default: 'Sign Up' }}</span>
+      </button>
+    </div>
+    {% if form.errors %}
+      <div class="newsletter-signup__error">
+        {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+      </div>
+    {% endif %}
+  {% endif %}
+{% endform %}

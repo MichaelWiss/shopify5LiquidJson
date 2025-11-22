@@ -2,11 +2,19 @@
   Renders a single summary row within the product detail info stack.
 {% endcomment %}
 
+{% assign row_value = block.settings.value %}
+{% if block.settings.metafield_key != blank %}
+  {% assign meta_value = product.metafields.custom[block.settings.metafield_key] %}
+  {% if meta_value != blank %}
+    {% assign row_value = meta_value %}
+  {% endif %}
+{% endif %}
+
 <div class="option-row" {{ block.shopify_attributes }}>
   {% if block.settings.label != blank %}
     <span class="option-row-label">{{ block.settings.label }}</span>
   {% endif %}
-  {% if block.settings.value != blank %}
-    <span class="option-row-value">{{ block.settings.value }}</span>
+  {% if row_value != blank %}
+    <span class="option-row-value">{{ row_value }}</span>
   {% endif %}
 </div>
