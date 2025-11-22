@@ -50,7 +50,7 @@
         <link rel="stylesheet" href="{{ 'sections-cart.css' | asset_url }}">
       {% when 'page' %}
         <link rel="stylesheet" href="{{ 'sections-content.css' | asset_url }}">
-        {% if template.suffix == 'showrooms' or page.handle == 'showrooms' or page.handle == 'showroom' %}
+        {% if template.suffix == 'showrooms' or page.handle == 'showrooms' or page.handle == 'showroom' or page.handle == 'collections' %}
           <link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}">
         {% endif %}
     {% endcase %}

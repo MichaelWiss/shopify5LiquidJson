@@ -64,6 +64,14 @@
         <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
         <span class="breadcrumbs-current-label">{{ product.title }}</span>
       </li>
+    {% elsif page_type == 'list-collections' %}
+      <li class="breadcrumbs-separator" aria-hidden="true">
+        {% render 'icon', name: 'arrow-right', class: 'breadcrumbs-arrow' %}
+      </li>
+      <li class="breadcrumbs-item current">
+        <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
+        <span class="breadcrumbs-current-label">Collections</span>
+      </li>
     {% elsif page_type == 'page' %}
       <li class="breadcrumbs-separator" aria-hidden="true">
         {% render 'icon', name: 'arrow-right', class: 'breadcrumbs-arrow' %}
