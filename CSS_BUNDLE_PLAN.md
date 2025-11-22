@@ -46,6 +46,10 @@
 - editorial-grid
 - Any other utility sections
 
+### sections-showroom.scss → sections-showroom.css
+**Loaded only on page.showroom template**
+- showroom section
+
 ## Implementation Steps
 1. Create bundle SCSS files
 2. Extract CSS from theme.scss

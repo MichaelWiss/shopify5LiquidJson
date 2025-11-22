@@ -1,0 +1,141 @@
+<section class="showroom-page">
+  <div class="showroom-hero">
+    <h1 class="showroom-hero__title">{{ section.settings.title | default: 'The Showroom Experience' }}</h1>
+    <p class="showroom-hero__description">
+      {{ section.settings.description | default: "The entirety of the In Common With collection is available to view and shop at Quarters, our concept shop and community hub about the Quarry, Cincinnati. Come by for a hands-free experience, let our team of independent works help peers and fellow designers. Designed to inspire and continually evolve, it's a living talk on community, design, and craft." }}
+    </p>
+    
+    <div class="showroom-hero__image">
+      {% if section.settings.hero_image %}
+        {{ section.settings.hero_image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'hero-image' }}
+      {% else %}
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&h=600&fit=crop" alt="Showroom Interior">
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="showroom-section">
+    <h2 class="showroom-section__title">In Common With Visit</h2>
+    
+    <div class="showroom-booking">
+      <div class="showroom-visit-info">
+        <div class="showroom-info-item">
+          <h4>SHOWROOM HOURS & ADDRESS</h4>
+          <p>38 Commerce Park, Suite 200 Milford, Ohio<br>Mon-Fri 9am-5pm EST</p>
+        </div>
+        
+        <div class="showroom-info-item">
+          <h4>TOURS & PRIVATE APPOINTMENTS</h4>
+          <p>Schedule a guided tour of our complete collection with our design team. Perfect for designers, architects, and design enthusiasts.</p>
+        </div>
+        
+        <div class="showroom-info-item">
+          <h4>WHAT TO EXPECT</h4>
+          <p>Explore our full furniture line, meet with our craftspeople, and discover the story behind each piece. Light refreshments provided.</p>
+        </div>
+        
+        <div class="showroom-info-item">
+          <h4>PARKING & ACCESSIBILITY</h4>
+          <p>Free parking available on-site. Our showroom is fully accessible with elevator access to all floors.</p>
+        </div>
+      </div>
+
+      <div class="showroom-calendar">
+        <div class="showroom-calendar__header">
+          <span>←</span>
+          <span class="showroom-calendar__month">November 2025</span>
+          <span>→</span>
+        </div>
+        <div class="showroom-calendar__grid">
+          <div class="showroom-calendar__day">S</div>
+          <div class="showroom-calendar__day">M</div>
+          <div class="showroom-calendar__day">T</div>
+          <div class="showroom-calendar__day">W</div>
+          <div class="showroom-calendar__day">T</div>
+          <div class="showroom-calendar__day">F</div>
+          <div class="showroom-calendar__day">S</div>
+          <div class="showroom-calendar__day">1</div>
+          <div class="showroom-calendar__day">2</div>
+          <div class="showroom-calendar__day">3</div>
+          <div class="showroom-calendar__day">4</div>
+          <div class="showroom-calendar__day">5</div>
+          <div class="showroom-calendar__day">6</div>
+          <div class="showroom-calendar__day">7</div>
+          <div class="showroom-calendar__day">8</div>
+          <div class="showroom-calendar__day">9</div>
+          <div class="showroom-calendar__day">10</div>
+          <div class="showroom-calendar__day">11</div>
+          <div class="showroom-calendar__day">12</div>
+          <div class="showroom-calendar__day">13</div>
+          <div class="showroom-calendar__day">14</div>
+        </div>
+        <button class="showroom-calendar__button">BOOK A TOUR</button>
+      </div>
+    </div>
+
+    <div class="showroom-showcase">
+      <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1400&h=650&fit=crop" alt="Main Showroom" class="showroom-showcase__large">
+      
+      <div class="showroom-showcase__grid">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&h=500&fit=crop" alt="Furniture Detail" class="showroom-showcase__medium">
+        <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=700&h=500&fit=crop" alt="Living Space" class="showroom-showcase__medium">
+      </div>
+
+      <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1400&h=650&fit=crop" alt="Showroom View" class="showroom-showcase__large">
+    </div>
+
+    <div class="showroom-feature">
+      <img src="https://images.unsplash.com/photo-1615875474908-c7455fdc7a5f?w=300&h=400&fit=crop" alt="Chair Detail" class="showroom-feature__image">
+      
+      <div class="showroom-feature__content">
+        <h3>Thoughtfully designed spaces showcasing our complete collection</h3>
+        <p>Our showroom features carefully curated vignettes that demonstrate how our pieces work together in real living spaces. From intimate dining areas to expansive living rooms, each setting is designed to inspire and inform your own design decisions. Our team is available to discuss customization options, materials, and finishes to ensure each piece perfectly suits your space.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="showroom-production">
+    <div class="showroom-production__inner">
+      <h2 class="showroom-production__title">Our Production Space</h2>
+      <p class="showroom-production__description">We opened our first production space in Brooklyn with the same characteristic finery that we use in all of our furniture—natural wood, thoughtful design, and artisan craft. It's a place where you can watch our craftspeople at work and see the dedication that goes into every piece.</p>
+      
+      <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1400&h=550&fit=crop" alt="Production Workshop" class="showroom-production__image">
+    </div>
+  </div>
+
+  <div class="showroom-section">
+    <div class="showroom-details">
+      <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=300&h=500&fit=crop" alt="Decor Detail" class="showroom-details__small">
+      <img src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1000&h=500&fit=crop" alt="Dining Setup" class="showroom-details__large">
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Showroom",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Hero Title",
+      "default": "The Showroom Experience"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Hero Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Showroom Page"
+    }
+  ]
+}
+{% endschema %}

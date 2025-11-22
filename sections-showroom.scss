@@ -1,0 +1,286 @@
+// ========================================
+// SHOWROOM SECTION
+// ========================================
+
+@use "tokens" as *;
+@use "mixins" as *;
+
+.showroom-page {
+  background: $bg;
+  color: $ink;
+}
+
+.showroom-hero {
+  padding: $s12 $s5 $s5;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @media (max-width: 1024px) {
+    padding: $s4 $s7; // 40px 30px approx
+  }
+}
+
+.showroom-hero__title {
+  @include serif-heading($text-7xl);
+  margin-bottom: $s7; // 30px
+  color: $ink;
+
+  @media (max-width: 1024px) {
+    font-size: $text-6xl; // 32px -> 36px close match
+  }
+}
+
+.showroom-hero__description {
+  font-size: 15px; // Custom size
+  line-height: 1.9;
+  color: $ink-2;
+  max-width: 900px;
+  margin-bottom: $s5; // 50px
+  letter-spacing: 0.3px;
+}
+
+.showroom-hero__image {
+  @include image-container(math.div(1400, 600)); // approx ratio
+  width: 100%;
+  height: 600px;
+  margin-bottom: $s4; // 40px
+
+  img {
+    @include image-container-inner;
+  }
+}
+
+// Content Sections
+.showroom-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: $s5; // 60px
+
+  @media (max-width: 1024px) {
+    padding: $s4 $s7;
+  }
+}
+
+.showroom-section__title {
+  @include serif-heading($text-5xl); // 28px
+  margin-bottom: $s4; // 40px
+  color: $ink;
+}
+
+// Booking / Visit Info
+.showroom-booking {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: $s12; // 80px
+  margin-bottom: $s12;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.showroom-visit-info {
+  h3 {
+    font-size: $text-2xl; // 20px approx
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+  }
+}
+
+.showroom-info-item {
+  margin-bottom: $s7; // 30px
+  padding-bottom: $s3; // 20px
+  border-bottom: 1px solid $hair;
+
+  h4 {
+    @include label;
+    font-size: $text-md; // 13px
+    letter-spacing: 1.5px;
+    margin-bottom: $s1; // 8px
+    color: $ink;
+    font-weight: 400;
+  }
+
+  p {
+    font-size: $text-lg; // 14px
+    color: $ink-2;
+    line-height: 1.7;
+  }
+}
+
+// Calendar Widget
+.showroom-calendar {
+  background: #fff; // Keep white for contrast on paper/bg
+  padding: $s7; // 30px
+  border: 1px solid $hair;
+}
+
+.showroom-calendar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.showroom-calendar__month {
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.showroom-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.showroom-calendar__day {
+  padding: 10px;
+  font-size: $text-md; // 13px
+  color: $ink-2;
+}
+
+.showroom-calendar__button {
+  width: 100%;
+  padding: 15px;
+  background: $ink;
+  color: #fff;
+  border: none;
+  font-size: $text-md;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-top: $s3; // 20px
+  transition: background 0.3s;
+  text-transform: uppercase;
+
+  &:hover {
+    background: lighten($ink, 10%);
+  }
+}
+
+// Image Showcase
+.showroom-showcase {
+  display: grid;
+  gap: $s4; // 40px
+  margin: $s12 0; // 80px
+}
+
+.showroom-showcase__large {
+  width: 100%;
+  height: 650px;
+  object-fit: cover;
+}
+
+.showroom-showcase__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $s7; // 30px
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.showroom-showcase__medium {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+// Text with Sidebar
+.showroom-feature {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: $s5; // 60px
+  margin: $s12 0;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.showroom-feature__image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.showroom-feature__content {
+  padding-top: $s3;
+
+  h3 {
+    @include serif-heading($text-3xl); // 24px
+    margin-bottom: $s3;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: $text-lg; // 14px
+    line-height: 1.9;
+    color: $ink-2;
+    letter-spacing: 0.3px;
+  }
+}
+
+// Production Section
+.showroom-production {
+  background: $ink;
+  color: $paper;
+  padding: $s12 $s5;
+  margin: $s12 0;
+
+  @media (max-width: 1024px) {
+    padding: $s4 $s7;
+  }
+}
+
+.showroom-production__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.showroom-production__title {
+  @include serif-heading($text-5xl); // 28px
+  margin-bottom: $s7; // 30px
+  color: inherit;
+}
+
+.showroom-production__description {
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba($paper, 0.8);
+  max-width: 900px;
+  margin-bottom: $s5;
+}
+
+.showroom-production__image {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+}
+
+// Detail Grid
+.showroom-details {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: $s4; // 40px
+  margin: $s12 0;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.showroom-details__small {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 500px;
+}
+
+.showroom-details__large {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}

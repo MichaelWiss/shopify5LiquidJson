@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections</title>
+    <style>
+        :root {
+            --bg: #F6F2EA;
+            --paper: #FBF8F3;
+            --ink: #29241E;
+            --ink-2: #655E53;
+            --hair: rgba(108, 100, 88, 0.18);
+            --serif: Times New Roman, Georgia, serif;
+            --sans: -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--ink);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .header {
+            padding: 88px 36px 60px;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-family: var(--serif);
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: var(--ink-2);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .collections-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 36px 88px;
+            display: grid;
+            gap: 60px;
+        }
+
+        .collection-item {
+            display: grid;
+            gap: 36px;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .collection-item {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .collection-item:nth-child(even) .collection-image {
+                order: 2;
+            }
+            
+            .collection-item:nth-child(even) .collection-content {
+                order: 1;
+            }
+        }
+
+        .collection-image {
+            position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            background: var(--paper);
+            border: 1px solid var(--hair);
+        }
+
+        .collection-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 600ms ease;
+        }
+
+        .collection-item:hover .collection-image img {
+            transform: scale(1.05);
+        }
+
+        .collection-content {
+            max-width: 500px;
+        }
+
+        .collection-eyebrow {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-2);
+            margin-bottom: 16px;
+        }
+
+        .collection-title {
+            font-family: var(--serif);
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.015em;
+        }
+
+        .collection-description {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--ink-2);
+            margin-bottom: 32px;
+        }
+
+        .collection-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink);
+            text-decoration: none;
+            transition: gap 200ms ease;
+        }
+
+        .collection-link:hover {
+            gap: 12px;
+        }
+
+        .collection-link::after {
+            content: '→';
+        }
+
+        @media (max-width: 1023px) {
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .collection-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Collections</h1>
+        <p>Thoughtfully curated collections of lighting, furniture, and objects for every room. Each piece is selected for its quality, craftsmanship, and timeless design.</p>
+    </div>
+
+    <div class="collections-grid">
+        <div class="collection-item">
+            <div class="collection-image">
+                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&h=1000&fit=crop&q=80" alt="Residential Lighting">
+            </div>
+            <div class="collection-content">
+                <div class="collection-eyebrow">Collection</div>
+                <h2 class="collection-title">Residential Lighting</h2>
+                <p class="collection-description">A curated selection of pendant lights, sconces, and chandeliers designed to illuminate living spaces with warmth and intention. Each fixture balances form and function.</p>
+                <a href="#" class="collection-link">View Collection</a>
+            </div>
+        </div>
+
+        <div class="collection-item">
+            <div class="collection-image">
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=1000&fit=crop&q=80" alt="Furniture">
+            </div>
+            <div class="collection-content">
+                <div class="collection-eyebrow">Collection</div>
+                <h2 class="collection-title">Furniture</h2>
+                <p class="collection-description">Handcrafted tables, seating, and storage pieces made from sustainably sourced wood and natural materials. Designed to age gracefully and become part of your home's story.</p>
+                <a href="#" class="collection-link">View Collection</a>
+            </div>
+        </div>
+
+        <div class="collection-item">
+            <div class="collection-image">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=1000&fit=crop&q=80" alt="Objects & Accessories">
+            </div>
+            <div class="collection-content">
+                <div class="collection-eyebrow">Collection</div>
+                <h2 class="collection-title">Objects & Accessories</h2>
+                <p class="collection-description">Thoughtful objects for daily living. From hand-thrown ceramics to woven textiles, each piece brings texture and character to your interior spaces.</p>
+                <a href="#" class="collection-link">View Collection</a>
+            </div>
+        </div>
+
+        <div class="collection-item">
+            <div class="collection-image">
+                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&h=1000&fit=crop&q=80" alt="Outdoor">
+            </div>
+            <div class="collection-content">
+                <div class="collection-eyebrow">Collection</div>
+                <h2 class="collection-title">Outdoor</h2>
+                <p class="collection-description">Weather-resistant lighting and furniture designed for exterior spaces. Bring the same level of detail and craftsmanship to patios, gardens, and terraces.</p>
+                <a href="#" class="collection-link">View Collection</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

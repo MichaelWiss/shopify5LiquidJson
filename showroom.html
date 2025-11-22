@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showroom Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #2c2c2c;
+            line-height: 1.6;
+            background: #faf8f5;
+        }
+
+        .showroom-hero {
+            padding: 80px 60px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            color: #2c2c2c;
+        }
+
+        .hero-description {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #6b6b6b;
+            max-width: 900px;
+            margin-bottom: 50px;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-image-large {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            margin-bottom: 40px;
+        }
+
+        .content-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 60px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            color: #2c2c2c;
+        }
+
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 80px;
+            margin-bottom: 80px;
+        }
+
+        .visit-info h3 {
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e8e5df;
+        }
+
+        .info-item h4 {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            color: #2c2c2c;
+        }
+
+        .info-item p {
+            font-size: 14px;
+            color: #6b6b6b;
+            line-height: 1.7;
+        }
+
+        .calendar-widget {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #e8e5df;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .calendar-month {
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+
+        .calendar-day {
+            padding: 10px;
+            font-size: 13px;
+            color: #6b6b6b;
+        }
+
+        .book-button {
+            width: 100%;
+            padding: 15px;
+            background: #2c2c2c;
+            color: #fff;
+            border: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .book-button:hover {
+            background: #4a4a4a;
+        }
+
+        .image-showcase {
+            display: grid;
+            gap: 40px;
+            margin: 80px 0;
+        }
+
+        .showcase-large {
+            width: 100%;
+            height: 650px;
+            object-fit: cover;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .showcase-medium {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .text-with-sidebar {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            margin: 80px 0;
+        }
+
+        .sidebar-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .text-content {
+            padding-top: 20px;
+        }
+
+        .text-content h3 {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .text-content p {
+            font-size: 14px;
+            line-height: 1.9;
+            color: #6b6b6b;
+            letter-spacing: 0.3px;
+        }
+
+        .production-section {
+            background: #2c2c2c;
+            color: #fff;
+            padding: 80px 60px;
+            margin: 80px 0;
+        }
+
+        .production-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .production-title {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        .production-description {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #d4d4d4;
+            max-width: 900px;
+            margin-bottom: 50px;
+        }
+
+        .production-image {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin: 80px 0;
+        }
+
+        .detail-small {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-large {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 1024px) {
+            .booking-container,
+            .showcase-grid,
+            .text-with-sidebar,
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .showroom-hero,
+            .content-section,
+            .production-section {
+                padding: 40px 30px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="showroom-hero">
+            <h1 class="hero-title">The Showroom Experience</h1>
+            <p class="hero-description">The entirety of the In Common With collection is available to view and shop at Quarters, our concept shop and community hub about the Quarry, Cincinnati. Come by for a hands-free experience, let our team of independent works help peers and fellow designers. Designed to inspire and continually evolve, it's a living talk on community, design, and craft.</p>
+            
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&h=600&fit=crop" alt="Showroom Interior" class="hero-image-large">
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">In Common With Visit</h2>
+            
+            <div class="booking-container">
+                <div class="visit-info">
+                    <div class="info-item">
+                        <h4>SHOWROOM HOURS & ADDRESS</h4>
+                        <p>38 Commerce Park, Suite 200 Milford, Ohio<br>Mon-Fri 9am-5pm EST</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4>TOURS & PRIVATE APPOINTMENTS</h4>
+                        <p>Schedule a guided tour of our complete collection with our design team. Perfect for designers, architects, and design enthusiasts.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4>WHAT TO EXPECT</h4>
+                        <p>Explore our full furniture line, meet with our craftspeople, and discover the story behind each piece. Light refreshments provided.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4>PARKING & ACCESSIBILITY</h4>
+                        <p>Free parking available on-site. Our showroom is fully accessible with elevator access to all floors.</p>
+                    </div>
+                </div>
+
+                <div class="calendar-widget">
+                    <div class="calendar-header">
+                        <span>←</span>
+                        <span class="calendar-month">November 2025</span>
+                        <span>→</span>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day">S</div>
+                        <div class="calendar-day">M</div>
+                        <div class="calendar-day">T</div>
+                        <div class="calendar-day">W</div>
+                        <div class="calendar-day">T</div>
+                        <div class="calendar-day">F</div>
+                        <div class="calendar-day">S</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                    </div>
+                    <button class="book-button">BOOK A TOUR</button>
+                </div>
+            </div>
+
+            <div class="image-showcase">
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1400&h=650&fit=crop" alt="Main Showroom" class="showcase-large">
+                
+                <div class="showcase-grid">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&h=500&fit=crop" alt="Furniture Detail" class="showcase-medium">
+                    <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=700&h=500&fit=crop" alt="Living Space" class="showcase-medium">
+                </div>
+
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1400&h=650&fit=crop" alt="Showroom View" class="showcase-large">
+            </div>
+
+            <div class="text-with-sidebar">
+                <img src="https://images.unsplash.com/photo-1615875474908-c7455fdc7a5f?w=300&h=400&fit=crop" alt="Chair Detail" class="sidebar-image">
+                
+                <div class="text-content">
+                    <h3>Thoughtfully designed spaces showcasing our complete collection</h3>
+                    <p>Our showroom features carefully curated vignettes that demonstrate how our pieces work together in real living spaces. From intimate dining areas to expansive living rooms, each setting is designed to inspire and inform your own design decisions. Our team is available to discuss customization options, materials, and finishes to ensure each piece perfectly suits your space.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="production-section">
+            <div class="production-content">
+                <h2 class="production-title">Our Production Space</h2>
+                <p class="production-description">We opened our first production space in Brooklyn with the same characteristic finery that we use in all of our furniture—natural wood, thoughtful design, and artisan craft. It's a place where you can watch our craftspeople at work and see the dedication that goes into every piece.</p>
+                
+                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1400&h=550&fit=crop" alt="Production Workshop" class="production-image">
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="detail-grid">
+                <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=300&h=500&fit=crop" alt="Decor Detail" class="detail-small">
+                <img src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1000&h=500&fit=crop" alt="Dining Setup" class="detail-large">
+            </div>
+        </section>
+    </main>
+</body>
+</html>

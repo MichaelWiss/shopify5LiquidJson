@@ -6,36 +6,53 @@
         "block_1": {
           "type": "collection_item",
           "settings": {
-            "title": "Lighting",
-            "description": "Wall and ceiling-mounted lamps that embody timeless craftsmanship.",
-            "link": "/collections/lighting"
+            "eyebrow": "Collection",
+            "title": "Residential Lighting",
+            "description": "A curated selection of pendant lights, sconces, and chandeliers designed to illuminate living spaces with warmth and intention. Each fixture balances form and function.",
+            "link": "/collections/lighting",
+            "link_text": "View Collection"
           }
         },
         "block_2": {
           "type": "collection_item",
           "settings": {
+            "eyebrow": "Collection",
             "title": "Furniture",
-            "description": "Pieces designed to elevate the spaces we inhabit.",
-            "link": "/collections/furniture"
+            "description": "Handcrafted tables, seating, and storage pieces made from sustainably sourced wood and natural materials. Designed to age gracefully and become part of your home's story.",
+            "link": "/collections/furniture",
+            "link_text": "View Collection"
           }
         },
         "block_3": {
           "type": "collection_item",
           "settings": {
-            "title": "Objects",
-            "description": "Curated accessories for the modern home.",
-            "link": "/collections/objects"
+            "eyebrow": "Collection",
+            "title": "Objects & Accessories",
+            "description": "Thoughtful objects for daily living. From hand-thrown ceramics to woven textiles, each piece brings texture and character to your interior spaces.",
+            "link": "/collections/objects",
+            "link_text": "View Collection"
+          }
+        },
+        "block_4": {
+          "type": "collection_item",
+          "settings": {
+            "eyebrow": "Collection",
+            "title": "Outdoor",
+            "description": "Weather-resistant lighting and furniture designed for exterior spaces. Bring the same level of detail and craftsmanship to patios, gardens, and terraces.",
+            "link": "/collections/outdoor",
+            "link_text": "View Collection"
           }
         }
       },
       "block_order": [
         "block_1",
         "block_2",
-        "block_3"
+        "block_3",
+        "block_4"
       ],
       "settings": {
         "title": "Collections",
-        "description": "<p>Explore our range of handcrafted pieces.</p>"
+        "description": "Thoughtfully curated collections of lighting, furniture, and objects for every room. Each piece is selected for its quality, craftsmanship, and timeless design."
       }
     }
   },
