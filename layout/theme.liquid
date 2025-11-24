@@ -82,7 +82,7 @@
     {% endcase %}
   </head>
 
-  <body class="template-{{ template.name }}">
+  <body class="template-{{ template.name }}" data-template="{{ template.name }}">
     <script>document.documentElement.classList.remove('no-js');</script>
     {% section 'header' %}
 
