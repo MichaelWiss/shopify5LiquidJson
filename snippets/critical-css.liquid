@@ -1,0 +1,253 @@
+{% comment %}
+  Critical CSS - Inline above-fold styles
+  Eliminates render-blocking for initial paint (FCP/LCP optimization)
+  
+  Includes:
+  - CSS reset
+  - CSS custom properties (spacing, typography)
+  - Header styles
+  - Hero section base styles
+  - Body/html setup
+{% endcomment %}
+
+<style>
+  /* ========================================
+     CSS RESET (Critical)
+     ======================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  body, h1, h2, h3, p { margin: 0; }
+  img { max-width: 100%; height: auto; display: block; }
+  html, body { overflow-x: hidden; width: 100%; }
+
+  /* ========================================
+     SPACING & TYPOGRAPHY TOKENS
+     ======================================== */
+  :root {
+    /* Spacing scale */
+    --s1: 6px;
+    --s2: 12px;
+    --s3: 20px;
+    --s4: 36px;
+    --s5: 60px;
+    --s6: 88px;
+    --s7: 32px;
+    --s8: 48px;
+    --s9: 56px;
+    --s10: 64px;
+    
+    /* Typography scale */
+    --text-xs: 10px;
+    --text-sm: 11px;
+    --text-base: 12px;
+    --text-md: 13px;
+    --text-lg: 14px;
+    --text-xl: 16px;
+    --text-2xl: 22px;
+    --text-3xl: 24px;
+    --text-4xl: 26px;
+    --text-5xl: 28px;
+    --text-6xl: 36px;
+    --text-7xl: 42px;
+  }
+
+  /* ========================================
+     BASE STYLES
+     ======================================== */
+  html {
+    font-size: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--sans);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink);
+    background: var(--bg);
+    min-height: 100vh;
+    padding-top: 44px; /* Header height */
+  }
+
+  /* ========================================
+     HEADER (Always above fold)
+     ======================================== */
+  .site-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: var(--s2) var(--s4);
+    font-size: var(--text-sm);
+    letter-spacing: 0.02em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  .site-header[data-color-mode="dynamic"] {
+    background: var(--dynamic-header-bg, #1a1a1a);
+    color: var(--dynamic-header-text, #ffffff);
+  }
+
+  .header-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .site-logo {
+    font-size: var(--text-sm);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--paper);
+    text-decoration: none;
+  }
+
+  .header-nav {
+    display: none;
+    gap: var(--s3);
+  }
+
+  @media (min-width: 768px) {
+    .header-nav { display: flex; }
+  }
+
+  .header-nav a {
+    color: currentColor;
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  .header-icons {
+    display: flex;
+    gap: var(--s2);
+  }
+
+  .header-icon {
+    color: var(--paper);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    opacity: 0.85;
+  }
+
+  .header-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .cart-count {
+    font-size: 9px;
+    background: var(--terracotta);
+    width: var(--s2);
+    height: var(--s2);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    color: var(--paper);
+  }
+
+  /* ========================================
+     HERO BASE STYLES (First visible section)
+     ======================================== */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: var(--text-5xl);
+    font-weight: 300;
+    line-height: 1.15;
+    position: absolute;
+    top: var(--s8);
+    left: var(--s3);
+    color: var(--paper);
+    max-width: 320px;
+    z-index: 2;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: var(--text-7xl);
+      left: var(--s8);
+      top: var(--s10);
+      max-width: 480px;
+    }
+  }
+
+  /* Hero split variant */
+  .hero-split {
+    display: grid;
+    min-height: 80vh;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-split { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  .hero-split__media {
+    position: relative;
+    min-height: 320px;
+    background: linear-gradient(135deg, #d4c8b8 0%, #8b7e6a 100%);
+  }
+
+  .hero-split__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .hero-split__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--s10) var(--s4);
+    background: var(--paper);
+  }
+
+  /* ========================================
+     VISUALLY HIDDEN UTILITY
+     ======================================== */
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  /* ========================================
+     PREVENT FOUC
+     ======================================== */
+  .no-js .deferred-media { display: none; }
+</style>

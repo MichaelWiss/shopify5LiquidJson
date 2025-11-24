@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
+<html lang="{{ request.locale.iso_code }}" class="no-js">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,43 +20,70 @@
 
     <link rel="canonical" href="{{ canonical_url }}">
 
+    {%- comment -%} Preconnect to Shopify CDN for faster asset loading {%- endcomment -%}
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.shopify.com">
+
     {{ content_for_header }}
 
+    {%- comment -%} Theme CSS custom properties (colors, fonts from settings) {%- endcomment -%}
     {% render 'theme-style-variables' %}
     {% render 'design-system-overrides' %}
+
+    {%- comment -%} 
+      CRITICAL CSS - Inlined for instant first paint
+      Contains: reset, tokens, header, hero base styles
+    {%- endcomment -%}
+    {% render 'critical-css' %}
+
+    {%- comment -%} Preload primary stylesheet for faster parsing {%- endcomment -%}
+    {{ 'theme.css' | asset_url | preload_tag: as: 'style' }}
+    {{ 'sections-layout.css' | asset_url | preload_tag: as: 'style' }}
 
     {% if request.design_mode %}
       <link rel="stylesheet" href="{{ 'sections-list-collections.css' | asset_url }}">
       <link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}">
     {% endif %}
 
-    {%- comment -%} Core theme CSS - always loaded {%- endcomment -%}
-    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+    {%- comment -%} 
+      NON-CRITICAL CSS - Deferred loading pattern
+      Uses media="print" with onload swap to prevent render-blocking
+    {%- endcomment -%}
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ 'theme.css' | asset_url }}"></noscript>
     
-    {%- comment -%} Layout sections - always loaded {%- endcomment -%}
-    <link rel="stylesheet" href="{{ 'sections-layout.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'sections-layout.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ 'sections-layout.css' | asset_url }}"></noscript>
 
-    {%- comment -%} Template-specific CSS bundles {%- endcomment -%}
+    {%- comment -%} Template-specific CSS bundles - deferred {%- endcomment -%}
     {% case template.name %}
       {% when 'index' %}
-        <link rel="stylesheet" href="{{ 'sections-homepage.css' | asset_url }}">
+        <link rel="stylesheet" href="{{ 'sections-homepage.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="{{ 'sections-homepage.css' | asset_url }}"></noscript>
       {% when 'product' %}
-        <link rel="stylesheet" href="{{ 'sections-product.css' | asset_url }}">
+        <link rel="stylesheet" href="{{ 'sections-product.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="{{ 'sections-product.css' | asset_url }}"></noscript>
       {% when 'collection' %}
-        <link rel="stylesheet" href="{{ 'sections-collection.css' | asset_url }}">
+        <link rel="stylesheet" href="{{ 'sections-collection.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="{{ 'sections-collection.css' | asset_url }}"></noscript>
       {% when 'list-collections' %}
-        <link rel="stylesheet" href="{{ 'sections-list-collections.css' | asset_url }}">
+        <link rel="stylesheet" href="{{ 'sections-list-collections.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="{{ 'sections-list-collections.css' | asset_url }}"></noscript>
       {% when 'cart' %}
-        <link rel="stylesheet" href="{{ 'sections-cart.css' | asset_url }}">
+        <link rel="stylesheet" href="{{ 'sections-cart.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="{{ 'sections-cart.css' | asset_url }}"></noscript>
       {% when 'page' %}
-        <link rel="stylesheet" href="{{ 'sections-content.css' | asset_url }}">
+        <link rel="stylesheet" href="{{ 'sections-content.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="{{ 'sections-content.css' | asset_url }}"></noscript>
         {% if template.suffix == 'showrooms' or page.handle == 'showrooms' or page.handle == 'showroom' or page.handle == 'collections' %}
-          <link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}">
+          <link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}" media="print" onload="this.media='all'">
+          <noscript><link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}"></noscript>
         {% endif %}
     {% endcase %}
   </head>
 
   <body class="template-{{ template.name }}">
+    <script>document.documentElement.classList.remove('no-js');</script>
     {% section 'header' %}
 
     <main role="main">

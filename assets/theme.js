@@ -1,4 +1,4 @@
-document.documentElement.classList.remove('no-js');
+// Theme JS initialized - no-js class already removed inline for FOUC prevention
 
 // ========================================
 // UNIFIED ERROR HANDLER
