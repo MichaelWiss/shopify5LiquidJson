@@ -110,29 +110,5 @@
 }
 
 .collections-list-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: $text-sm;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: $ink;
-  text-decoration: none;
-  transition: gap 200ms ease;
-  
-  &:hover {
-    gap: 12px;
-  }
-  
-  // Show the rendered icon (long tail arrow)
-  svg {
-    display: block;
-    width: 24px; // $icon-arrow-size
-    height: auto;
-    transition: transform 200ms ease;
-  }
-  
-  &::after {
-    content: none;
-  }
+  @include arrow-link;
 }

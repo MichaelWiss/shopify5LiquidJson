@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "error-message": {
+      "type": "intro-text",
+      "settings": {
+        "alignment": "center"
+      }
+    },
+    "error-collections": {
+      "type": "featured-collections",
+      "settings": {
+        "heading": "Explore Our Collections"
+      }
+    }
+  },
+  "order": [
+    "error-message",
+    "error-collections"
+  ]
+}

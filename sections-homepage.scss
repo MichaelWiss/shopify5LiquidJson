@@ -679,11 +679,6 @@
 }
 
 .arrow-link {
-  transition: gap 200ms, color 200ms;
-}
-
-.arrow-link:hover {
-  gap: $s2;
-  color: var(--accent);
+  @include arrow-link;
 }
 

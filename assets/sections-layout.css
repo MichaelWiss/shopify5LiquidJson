@@ -323,15 +323,15 @@ body.cart-drawer-open {
 }
 
 .breadcrumbs-separator {
-  color: var(--ink-2);
+  color: var(--ink);
   font-size: 10px;
 }
 
 .breadcrumbs-arrow,
 .breadcrumbs-separator .icon--arrow-right {
-  width: var(--breadcrumb-arrow-width);
-  height: var(--breadcrumb-arrow-height);
-  stroke-width: var(--breadcrumb-arrow-stroke);
+  width: 24px;
+  height: auto;
+  color: var(--ink);
 }
 
 .breadcrumbs-item.current {

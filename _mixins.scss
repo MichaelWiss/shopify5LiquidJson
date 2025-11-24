@@ -122,10 +122,21 @@
   gap: 8px;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.045em;
+  letter-spacing: 0.08em;
   color: var(--ink);
   text-decoration: none;
   transition: gap 200ms ease;
+  
+  &:hover {
+    gap: 12px;
+  }
+  
+  svg {
+    display: block;
+    width: 24px;
+    height: auto;
+    transition: transform 200ms ease;
+  }
 }
 
 // ========================================

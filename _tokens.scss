@@ -64,9 +64,9 @@ $espresso: #3C2A1F;     // Dark brown
 $icon-arrow-size: 24px;
 $icon-arrow-back-size: 24px;
 
-// Breadcrumb arrow tokens
-$breadcrumb-arrow-width: 29px;
-$breadcrumb-arrow-height: 17px;
+// Breadcrumb arrow tokens (same size as other arrows, no hover)
+$breadcrumb-arrow-width: 24px;
+$breadcrumb-arrow-height: auto;
 $breadcrumb-arrow-stroke: 1.2;
 
 // Arrow link tokens

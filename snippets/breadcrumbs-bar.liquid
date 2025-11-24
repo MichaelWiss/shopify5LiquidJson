@@ -44,6 +44,12 @@
       <li class="breadcrumbs-separator" aria-hidden="true">
         {% render 'icon', name: 'arrow-right', class: 'breadcrumbs-arrow' %}
       </li>
+      <li class="breadcrumbs-item">
+        <a href="{{ routes.collections_url }}">Collections</a>
+      </li>
+      <li class="breadcrumbs-separator" aria-hidden="true">
+        {% render 'icon', name: 'arrow-right', class: 'breadcrumbs-arrow' %}
+      </li>
       <li class="breadcrumbs-item current">
         <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
         <span class="breadcrumbs-current-label">{{ collection.title }}</span>

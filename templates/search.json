@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "search-header": {
+      "type": "intro-text",
+      "settings": {
+        "alignment": "center"
+      }
+    },
+    "search-results": {
+      "type": "collection-grid",
+      "settings": {
+        "demo_content": false,
+        "demo_heading": "Search Results",
+        "demo_count": ""
+      }
+    }
+  },
+  "order": [
+    "search-header",
+    "search-results"
+  ]
+}

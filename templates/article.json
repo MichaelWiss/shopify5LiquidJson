@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "article-hero": {
+      "type": "hero-split",
+      "settings": {
+        "image_position": "left",
+        "content_alignment": "left"
+      }
+    },
+    "article-content": {
+      "type": "intro-text",
+      "settings": {
+        "alignment": "left"
+      }
+    },
+    "article-related": {
+      "type": "editorial-grid",
+      "settings": {
+        "grid_layout": "two-column"
+      }
+    }
+  },
+  "order": [
+    "article-hero",
+    "article-content",
+    "article-related"
+  ]
+}

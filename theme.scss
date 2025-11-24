@@ -2180,10 +2180,19 @@ body.cart-drawer-open {
 }
 
 .pagination-arrow {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: auto;
   display: block;
   flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+
+.pagination-link:hover .pagination-arrow {
+  transform: translateX(4px);
+}
+
+.pagination-link:hover .pagination-arrow--prev {
+  transform: translateX(-4px);
 }
 
 .pagination-arrow--prev {
