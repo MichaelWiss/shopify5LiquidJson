@@ -13,9 +13,12 @@
     "build:list-collections": "sass --no-source-map sections-list-collections.scss assets/sections-list-collections.css",
     "build:css": "npm run build:theme && npm run build:layout && npm run build:homepage && npm run build:product && npm run build:collection && npm run build:cart && npm run build:content && npm run build:showroom && npm run build:list-collections",
     "watch:css": "sass --watch theme.scss:assets/theme.css sections-layout.scss:assets/sections-layout.css sections-homepage.scss:assets/sections-homepage.css sections-product.scss:assets/sections-product.css sections-collection.scss:assets/sections-collection.css sections-cart.scss:assets/sections-cart.css sections-content.scss:assets/sections-content.css sections-showroom.scss:assets/sections-showroom.css sections-list-collections.scss:assets/sections-list-collections.css",
-    "lint:homepage": "node scripts/check-homepage-styles.js"
+    "lint:homepage": "node scripts/check-homepage-styles.js",
+    "lighthouse": "lhci autorun",
+    "lighthouse:ci": "lhci autorun --collect.settings.chromeFlags='--no-sandbox --disable-gpu --headless'"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.13.0",
     "sass": "^1.72.0"
   }
 }

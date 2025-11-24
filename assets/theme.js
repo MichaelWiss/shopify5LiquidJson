@@ -11,6 +11,11 @@
  * - Product: Variant selection, price updates
  * - Header: Scroll behavior, dynamic colors
  * - Collection: Filter/view toggles
+ * 
+ * NOTE: The assets/modules/*.js files contain the same functionality as ES modules.
+ * These are provided for future bundler integration (Vite, Rollup, esbuild).
+ * Currently, Shopify's CDN doesn't support ES module imports, so modules are
+ * inlined here. When migrating to a build tool, import from assets/modules/ instead.
  */
 
 (function ThemeApp() {
