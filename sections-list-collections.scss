@@ -1,8 +1,13 @@
 @use "tokens" as *;
 @use "mixins" as *;
 
+.collections-list-page {
+  background: $bg;
+  color: $ink;
+}
+
 .collections-list-header {
-  padding: $s8 $s4 $s5;
+  padding: $s6 $s4 $s5;
   text-align: center;
   max-width: 1400px;
   margin: 0 auto;
@@ -30,7 +35,7 @@
 .collections-list-grid {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 $s4 $s8;
+  padding: 0 $s4 $s6;
   display: grid;
   gap: $s5; // 60px
 }
