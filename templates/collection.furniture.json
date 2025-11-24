@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "collection-header": {
+      "type": "intro-text",
+      "settings": {
+        "alignment": "center"
+      }
+    },
+    "product-grid": {
+      "type": "collection-grid",
+      "settings": {
+        "demo_content": false,
+        "demo_heading": "Furniture",
+        "demo_count": ""
+      }
+    }
+  },
+  "order": [
+    "collection-header",
+    "product-grid"
+  ]
+}
