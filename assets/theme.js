@@ -197,6 +197,44 @@
       this.state.count.classList.toggle('visually-hidden', parsed === 0);
     },
 
+    async addBundle(button) {
+      const productsString = button.dataset.products;
+      if (!productsString) return;
+
+      const variantIds = productsString.split(',').filter(id => id.trim());
+      if (!variantIds.length) return;
+
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Adding...';
+
+      try {
+        // Add all variants to cart in sequence
+        const items = variantIds.map(id => ({ id: parseInt(id, 10), quantity: 1 }));
+        
+        const response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items })
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.description || 'Failed to add bundle to cart');
+        }
+
+        const cartResponse = await fetch('/cart.js');
+        const cart = await cartResponse.json();
+        this.updateCountDisplay(cart.item_count);
+        await this.refresh();
+      } catch (error) {
+        Utils.ErrorHandler.handle(error, 'Add Bundle', 'Unable to add bundle to cart.');
+      } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    },
+
     bindEvents() {
       // Click delegation for cart actions
       document.addEventListener('click', async (e) => {
@@ -222,6 +260,9 @@
         } else if (action === 'cart-remove') {
           e.preventDefault();
           await this.updateItem(target.dataset.line, 0);
+        } else if (action === 'add-bundle') {
+          e.preventDefault();
+          await this.addBundle(target);
         }
       });
 

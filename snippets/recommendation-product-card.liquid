@@ -1,0 +1,66 @@
+{% comment %}
+  Recommendation Product Card
+  Shared component for cart upsell and bundle recommendation displays
+  
+  Accepts:
+  - product: {Object} Product object (required)
+  - show_badge: {Boolean} Show discount badge (default: false)
+  - show_add_button: {Boolean} Show add to cart button (default: false)
+  - card_class: {String} Additional CSS class for the card (default: '')
+  
+  Usage:
+  {% render 'recommendation-product-card', product: product, show_add_button: true %}
+  {% render 'recommendation-product-card', product: product, show_badge: true, card_class: 'cart-bundle__item' %}
+{% endcomment %}
+
+{% assign show_discount_badge = show_badge | default: false %}
+{% assign show_add_btn = show_add_button | default: false %}
+{% assign extra_class = card_class | default: '' %}
+
+<div class="cart-rec__item {{ extra_class }}">
+  <a href="{{ product.url }}" class="cart-rec__link">
+    <div class="cart-rec__image">
+      {% if product.featured_image %}
+        <img 
+          src="{{ product.featured_image | image_url: width: 200 }}" 
+          alt="{{ product.title | escape }}"
+          width="100"
+          height="125"
+          loading="lazy">
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'cart-rec__placeholder' }}
+      {% endif %}
+      
+      {% if show_discount_badge and product.compare_at_price and product.compare_at_price > product.price %}
+        {% assign discount_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+        <span class="cart-rec__badge">-{{ discount_percent }}%</span>
+      {% endif %}
+    </div>
+    
+    <div class="cart-rec__details">
+      <p class="cart-rec__title">{{ product.title }}</p>
+      <div class="cart-rec__price-group">
+        {% if product.compare_at_price and product.compare_at_price > product.price %}
+          <span class="cart-rec__compare-price">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+        <span class="cart-rec__price">{{ product.price | money }}</span>
+      </div>
+    </div>
+  </a>
+  
+  {% if show_add_btn %}
+    <form action="{{ routes.cart_add_url }}" method="post" class="cart-rec__form">
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button 
+        type="submit" 
+        class="cart-rec__add-btn"
+        {% unless product.available %}disabled{% endunless %}>
+        {% if product.available %}
+          Add
+        {% else %}
+          Sold Out
+        {% endif %}
+      </button>
+    </form>
+  {% endif %}
+</div>

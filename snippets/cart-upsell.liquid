@@ -12,23 +12,6 @@
 
 {% assign upsell_limit = limit | default: 3 %}
 {% assign upsell_products = '' | split: '' %}
-
-{% comment %}
-  Strategy 1: Use Shopify Recommendations API if available
-  Strategy 2: Fall back to tag-based matching
-{% endcomment %}
-
-{% comment %} Collect tags from cart items for matching {% endcomment %}
-{% assign cart_tags = '' | split: '' %}
-{% for item in cart.items %}
-  {% for tag in item.product.tags %}
-    {% unless cart_tags contains tag %}
-      {% assign cart_tags = cart_tags | push: tag %}
-    {% endunless %}
-  {% endfor %}
-{% endfor %}
-
-{% comment %} Find products with matching tags (excluding cart items) {% endcomment %}
 {% assign cart_product_ids = cart.items | map: 'product_id' %}
 
 {% comment %}
@@ -73,45 +56,11 @@
 
 {% comment %} Only render if we have recommendations {% endcomment %}
 {% if upsell_products.size > 0 %}
-  <div class="cart-upsell">
-    <h3 class="cart-upsell__heading">Frequently Bought Together</h3>
-    <div class="cart-upsell__grid">
+  <div class="cart-upsell cart-rec">
+    <h3 class="cart-rec__heading">Frequently Bought Together</h3>
+    <div class="cart-rec__grid cart-rec__grid--cols-3">
       {% for product in upsell_products limit: upsell_limit %}
-        <div class="cart-upsell__item">
-          <a href="{{ product.url }}" class="cart-upsell__link">
-            <div class="cart-upsell__image">
-              {% if product.featured_image %}
-                <img 
-                  src="{{ product.featured_image | image_url: width: 200 }}" 
-                  alt="{{ product.title }}"
-                  width="100"
-                  height="125"
-                  loading="lazy">
-              {% else %}
-                {{ 'product-1' | placeholder_svg_tag: 'cart-upsell__placeholder' }}
-              {% endif %}
-            </div>
-            
-            <div class="cart-upsell__details">
-              <p class="cart-upsell__title">{{ product.title }}</p>
-              <p class="cart-upsell__price">{{ product.price | money }}</p>
-            </div>
-          </a>
-          
-          <form action="/cart/add" method="post" class="cart-upsell__form">
-            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-            <button 
-              type="submit" 
-              class="cart-upsell__add-btn"
-              {% unless product.available %}disabled{% endunless %}>
-              {% if product.available %}
-                Add to Cart
-              {% else %}
-                Sold Out
-              {% endif %}
-            </button>
-          </form>
-        </div>
+        {% render 'recommendation-product-card', product: product, show_add_button: true %}
       {% endfor %}
     </div>
   </div>
