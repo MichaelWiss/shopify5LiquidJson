@@ -1,0 +1,124 @@
+{% comment %}
+  Main article section - displays single blog article
+  Used in templates/article.json
+{% endcomment %}
+
+<article class="article-section">
+  <div class="article-container">
+    {% if article.image and section.settings.show_featured_image %}
+      <div class="article-hero">
+        {{ article.image | image_url: width: 1400 | image_tag: loading: 'eager', alt: article.title }}
+      </div>
+    {% endif %}
+
+    <div class="article-content">
+      <header class="article-header">
+        {% if section.settings.show_date %}
+          <time class="article-date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+            {{ article.published_at | date: '%B %d, %Y' }}
+          </time>
+        {% endif %}
+
+        <h1 class="article-title">{{ article.title }}</h1>
+
+        {% if section.settings.show_author and article.author %}
+          <p class="article-author">By {{ article.author }}</p>
+        {% endif %}
+      </header>
+
+      <div class="article-body">
+        {{ article.content }}
+      </div>
+
+      {% if section.settings.show_tags and article.tags.size > 0 %}
+        <div class="article-tags">
+          <span class="article-tags__label">Tagged:</span>
+          {% for tag in article.tags %}
+            <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-tag">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_share %}
+        <div class="article-share">
+          <span class="article-share__label">Share</span>
+          <a href="https://twitter.com/intent/tweet?url={{ article.url | url_encode }}&text={{ article.title | url_encode }}" 
+             target="_blank" 
+             rel="noopener"
+             class="article-share__link">
+            Twitter
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ article.url | url_encode }}" 
+             target="_blank" 
+             rel="noopener"
+             class="article-share__link">
+            Facebook
+          </a>
+        </div>
+      {% endif %}
+
+      <div class="article-navigation">
+        {% if blog.previous_article %}
+          <a href="{{ blog.previous_article.url }}" class="article-nav-link article-nav-link--prev">
+            <span class="article-nav-label">&larr; Previous</span>
+            <span class="article-nav-title">{{ blog.previous_article.title | truncate: 40 }}</span>
+          </a>
+        {% endif %}
+
+        <a href="{{ blog.url }}" class="article-nav-link article-nav-link--index">
+          Back to {{ blog.title }}
+        </a>
+
+        {% if blog.next_article %}
+          <a href="{{ blog.next_article.url }}" class="article-nav-link article-nav-link--next">
+            <span class="article-nav-label">Next &rarr;</span>
+            <span class="article-nav-title">{{ blog.next_article.title | truncate: 40 }}</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Main article",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_featured_image",
+      "label": "Show featured image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show publication date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share",
+      "label": "Show share buttons",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main article"
+    }
+  ]
+}
+{% endschema %}

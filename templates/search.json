@@ -1,22 +1,21 @@
 {
   "sections": {
-    "search-header": {
-      "type": "intro-text",
+    "main": {
+      "type": "main-search",
       "settings": {
-        "alignment": "center"
+        "results_per_page": 12
       }
     },
-    "search-results": {
-      "type": "collection-grid",
+    "featured-collections": {
+      "type": "featured-collections",
       "settings": {
-        "demo_content": false,
-        "demo_heading": "Search Results",
-        "demo_count": ""
+        "heading": "Browse Collections",
+        "subheading": "Discover our curated selection"
       }
     }
   },
   "order": [
-    "search-header",
-    "search-results"
+    "main",
+    "featured-collections"
   ]
 }

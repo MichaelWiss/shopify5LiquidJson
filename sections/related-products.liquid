@@ -16,7 +16,8 @@
       {% else %}
         {% assign fallback_collection = collections[section.settings.fallback_collection] | default: product.collections.first %}
         {% if fallback_collection %}
-          {% for item in fallback_collection.products limit: limit %}
+          {% assign actual_limit = limit | plus: 1 %}
+          {% for item in fallback_collection.products limit: actual_limit %}
             {% unless item.id == product.id %}
               <article>
                 {% render 'product-card', product: item %}

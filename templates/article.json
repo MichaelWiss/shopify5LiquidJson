@@ -1,28 +1,29 @@
 {
   "sections": {
-    "article-hero": {
-      "type": "hero-split",
+    "breadcrumbs": {
+      "type": "breadcrumbs"
+    },
+    "main": {
+      "type": "main-article",
       "settings": {
-        "image_position": "left",
-        "content_alignment": "left"
+        "show_featured_image": true,
+        "show_date": true,
+        "show_author": true,
+        "show_tags": true,
+        "show_share": true
       }
     },
-    "article-content": {
-      "type": "intro-text",
+    "newsletter": {
+      "type": "newsletter",
       "settings": {
-        "alignment": "left"
-      }
-    },
-    "article-related": {
-      "type": "editorial-grid",
-      "settings": {
-        "grid_layout": "two-column"
+        "heading": "Stay in the studio loop",
+        "subheading": "Stories, product launches, and a view into the creative process."
       }
     }
   },
   "order": [
-    "article-hero",
-    "article-content",
-    "article-related"
+    "breadcrumbs",
+    "main",
+    "newsletter"
   ]
 }

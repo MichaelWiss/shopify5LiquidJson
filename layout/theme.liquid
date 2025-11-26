@@ -79,6 +79,15 @@
           <link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}" media="print" onload="this.media='all'">
           <noscript><link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}"></noscript>
         {% endif %}
+      {% when 'blog', 'article' %}
+        <link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}"></noscript>
+      {% when 'search' %}
+        <link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}"></noscript>
+      {% when '404' %}
+        <link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}"></noscript>
     {% endcase %}
   </head>
 

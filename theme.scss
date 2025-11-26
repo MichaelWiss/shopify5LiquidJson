@@ -2508,6 +2508,13 @@ body.cart-drawer-open {
   border-radius: 50%;
 }
 
+/* Focus indicators for keyboard navigation (WCAG 2.1 Level A) */
+.color-dot:has(input:focus-visible),
+input.visually-hidden:focus-visible + .color-dot {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
 .btn {
   width: 100%;
   padding: 12px 24px;

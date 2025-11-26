@@ -1,20 +1,23 @@
 {
   "sections": {
-    "error-message": {
-      "type": "intro-text",
+    "main": {
+      "type": "main-404",
       "settings": {
-        "alignment": "center"
+        "heading": "Page not found",
+        "subheading": "The page you were looking for does not exist.",
+        "button_label": "Continue shopping"
       }
     },
-    "error-collections": {
+    "featured-collections": {
       "type": "featured-collections",
       "settings": {
-        "heading": "Explore Our Collections"
+        "heading": "Explore our collections",
+        "subheading": "Find what you're looking for"
       }
     }
   },
   "order": [
-    "error-message",
-    "error-collections"
+    "main",
+    "featured-collections"
   ]
 }

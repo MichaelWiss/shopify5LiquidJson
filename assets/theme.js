@@ -244,8 +244,15 @@
         const submitBtn = form.querySelector('[type="submit"]');
         const originalText = submitBtn?.textContent || '';
 
+        // Add loading class and disable all form inputs
+        form.classList.add('form-loading');
+        const formFields = form.querySelectorAll('input, select, button, textarea');
+        formFields.forEach(field => {
+          field.dataset.wasDisabled = field.disabled;
+          field.disabled = true;
+        });
+
         if (submitBtn) {
-          submitBtn.disabled = true;
           submitBtn.textContent = 'Adding...';
         }
 
@@ -268,8 +275,14 @@
         } catch (error) {
           Utils.ErrorHandler.handle(error, 'Add to Cart', 'Unable to add item.');
         } finally {
+          // Remove loading class and restore form fields
+          form.classList.remove('form-loading');
+          formFields.forEach(field => {
+            field.disabled = field.dataset.wasDisabled === 'true';
+            delete field.dataset.wasDisabled;
+          });
+
           if (submitBtn) {
-            submitBtn.disabled = false;
             submitBtn.textContent = originalText;
           }
         }
