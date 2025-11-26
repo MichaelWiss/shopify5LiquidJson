@@ -1,21 +1,19 @@
 /**
  * Theme.js - Modular Architecture
  * 
- * This file serves as the main entry point but functionality is organized
- * into logical modules. For Shopify CDN compatibility, modules are inlined
- * but structured for easy extraction to separate files when using a bundler.
+ * This file serves as the main entry point with functionality organized
+ * into logical modules (Utils, Cart, Product, Header, Collection).
+ * 
+ * For Shopify CDN compatibility, all modules are inlined in this file.
+ * The architecture supports easy extraction to separate ES modules
+ * when migrating to a build tool (Vite, Rollup, esbuild).
  * 
  * Module Structure:
  * - Utils: Error handling, money formatting
- * - Cart: Cart drawer, AJAX cart, focus trapping  
+ * - Cart: Cart drawer, AJAX cart, focus trapping, bundle handling
  * - Product: Variant selection, price updates
  * - Header: Scroll behavior, dynamic colors
  * - Collection: Filter/view toggles
- * 
- * NOTE: The assets/modules/*.js files contain the same functionality as ES modules.
- * These are provided for future bundler integration (Vite, Rollup, esbuild).
- * Currently, Shopify's CDN doesn't support ES module imports, so modules are
- * inlined here. When migrating to a build tool, import from assets/modules/ instead.
  */
 
 (function ThemeApp() {
