@@ -1,0 +1,118 @@
+{% comment %}
+  Cart Upsell Recommendations
+  Displays "Frequently Bought Together" products based on cart contents
+  
+  Accepts:
+  - cart: {Object} Shopify cart object (required)
+  - limit: {Number} Max products to show (default: 3)
+  
+  Usage:
+  {% render 'cart-upsell', cart: cart, limit: 3 %}
+{% endcomment %}
+
+{% assign upsell_limit = limit | default: 3 %}
+{% assign upsell_products = '' | split: '' %}
+
+{% comment %}
+  Strategy 1: Use Shopify Recommendations API if available
+  Strategy 2: Fall back to tag-based matching
+{% endcomment %}
+
+{% comment %} Collect tags from cart items for matching {% endcomment %}
+{% assign cart_tags = '' | split: '' %}
+{% for item in cart.items %}
+  {% for tag in item.product.tags %}
+    {% unless cart_tags contains tag %}
+      {% assign cart_tags = cart_tags | push: tag %}
+    {% endunless %}
+  {% endfor %}
+{% endfor %}
+
+{% comment %} Find products with matching tags (excluding cart items) {% endcomment %}
+{% assign cart_product_ids = cart.items | map: 'product_id' %}
+
+{% comment %}
+  Get recommendations from Shopify's built-in API
+  Use the first product in cart as recommendation seed
+{% endcomment %}
+{% if cart.items.size > 0 %}
+  {% assign seed_product = cart.items.first.product %}
+  
+  {% comment %} Check if metafield for related products exists {% endcomment %}
+  {% if seed_product.metafields.custom.bundle_products %}
+    {% for related_product in seed_product.metafields.custom.bundle_products.value limit: upsell_limit %}
+      {% unless cart_product_ids contains related_product.id %}
+        {% assign upsell_products = upsell_products | push: related_product %}
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+  
+  {% comment %} If still need more, check related_products metafield {% endcomment %}
+  {% if upsell_products.size < upsell_limit and seed_product.metafields.custom.related_products %}
+    {% for related_product in seed_product.metafields.custom.related_products.value %}
+      {% unless cart_product_ids contains related_product.id %}
+        {% if upsell_products.size < upsell_limit %}
+          {% assign upsell_products = upsell_products | push: related_product %}
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+  
+  {% comment %} Fallback: Use products from same collection {% endcomment %}
+  {% if upsell_products.size < upsell_limit and seed_product.collections.size > 0 %}
+    {% assign seed_collection = seed_product.collections.first %}
+    {% for collection_product in seed_collection.products limit: 20 %}
+      {% unless cart_product_ids contains collection_product.id %}
+        {% if upsell_products.size < upsell_limit and collection_product.id != seed_product.id %}
+          {% assign upsell_products = upsell_products | push: collection_product %}
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
+{% comment %} Only render if we have recommendations {% endcomment %}
+{% if upsell_products.size > 0 %}
+  <div class="cart-upsell">
+    <h3 class="cart-upsell__heading">Frequently Bought Together</h3>
+    <div class="cart-upsell__grid">
+      {% for product in upsell_products limit: upsell_limit %}
+        <div class="cart-upsell__item">
+          <a href="{{ product.url }}" class="cart-upsell__link">
+            <div class="cart-upsell__image">
+              {% if product.featured_image %}
+                <img 
+                  src="{{ product.featured_image | image_url: width: 200 }}" 
+                  alt="{{ product.title }}"
+                  width="100"
+                  height="125"
+                  loading="lazy">
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'cart-upsell__placeholder' }}
+              {% endif %}
+            </div>
+            
+            <div class="cart-upsell__details">
+              <p class="cart-upsell__title">{{ product.title }}</p>
+              <p class="cart-upsell__price">{{ product.price | money }}</p>
+            </div>
+          </a>
+          
+          <form action="/cart/add" method="post" class="cart-upsell__form">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <button 
+              type="submit" 
+              class="cart-upsell__add-btn"
+              {% unless product.available %}disabled{% endunless %}>
+              {% if product.available %}
+                Add to Cart
+              {% else %}
+                Sold Out
+              {% endif %}
+            </button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

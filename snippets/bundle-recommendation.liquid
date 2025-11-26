@@ -1,0 +1,118 @@
+{% comment %}
+  Bundle Recommendations - "Complete the Look"
+  Displays curated product bundles with total savings
+  
+  Accepts:
+  - cart: {Object} Shopify cart object (required)
+  - heading: {String} Section heading (default: "Complete the Look")
+  
+  Usage:
+  {% render 'bundle-recommendation', cart: cart %}
+  {% render 'bundle-recommendation', cart: cart, heading: "Build Your Set" %}
+{% endcomment %}
+
+{% assign bundle_heading = heading | default: 'Complete the Look' %}
+{% assign bundle_products = '' | split: '' %}
+{% assign bundle_found = false %}
+
+{% comment %}
+  Check if any cart items have bundle_products metafield
+  Use the first product with bundles as the seed
+{% endcomment %}
+{% for item in cart.items %}
+  {% if item.product.metafields.custom.bundle_products and bundle_found == false %}
+    {% assign bundle_found = true %}
+    {% assign cart_product_ids = cart.items | map: 'product_id' %}
+    
+    {% comment %} Get bundle products excluding items already in cart {% endcomment %}
+    {% for bundle_product in item.product.metafields.custom.bundle_products.value %}
+      {% unless cart_product_ids contains bundle_product.id %}
+        {% assign bundle_products = bundle_products | push: bundle_product %}
+      {% endunless %}
+    {% endfor %}
+    
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% comment %} Calculate bundle total and savings {% endcomment %}
+{% if bundle_products.size > 0 %}
+  {% assign bundle_total = 0 %}
+  {% assign bundle_compare_total = 0 %}
+  
+  {% for product in bundle_products %}
+    {% assign bundle_total = bundle_total | plus: product.price %}
+    {% if product.compare_at_price %}
+      {% assign bundle_compare_total = bundle_compare_total | plus: product.compare_at_price %}
+    {% else %}
+      {% assign bundle_compare_total = bundle_compare_total | plus: product.price %}
+    {% endif %}
+  {% endfor %}
+  
+  {% assign bundle_savings = bundle_compare_total | minus: bundle_total %}
+  
+  <div class="cart-bundle">
+    <div class="cart-bundle__header">
+      <h3 class="cart-bundle__heading">{{ bundle_heading }}</h3>
+      {% if bundle_savings > 0 %}
+        <span class="cart-bundle__savings">Save {{ bundle_savings | money }}</span>
+      {% endif %}
+    </div>
+    
+    <div class="cart-bundle__grid">
+      {% for product in bundle_products %}
+        <div class="cart-bundle__item">
+          <a href="{{ product.url }}" class="cart-bundle__link">
+            <div class="cart-bundle__image">
+              {% if product.featured_image %}
+                <img 
+                  src="{{ product.featured_image | image_url: width: 200 }}" 
+                  alt="{{ product.title }}"
+                  width="100"
+                  height="125"
+                  loading="lazy">
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'cart-bundle__placeholder' }}
+              {% endif %}
+              
+              {% if product.compare_at_price and product.compare_at_price > product.price %}
+                {% assign discount_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+                <span class="cart-bundle__badge">-{{ discount_percent }}%</span>
+              {% endif %}
+            </div>
+            
+            <div class="cart-bundle__details">
+              <p class="cart-bundle__title">{{ product.title }}</p>
+              <div class="cart-bundle__price-group">
+                {% if product.compare_at_price and product.compare_at_price > product.price %}
+                  <span class="cart-bundle__compare-price">{{ product.compare_at_price | money }}</span>
+                {% endif %}
+                <span class="cart-bundle__price">{{ product.price | money }}</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    
+    <div class="cart-bundle__footer">
+      <div class="cart-bundle__total">
+        <span class="cart-bundle__total-label">Bundle Total:</span>
+        <div class="cart-bundle__total-prices">
+          {% if bundle_compare_total > bundle_total %}
+            <span class="cart-bundle__total-compare">{{ bundle_compare_total | money }}</span>
+          {% endif %}
+          <span class="cart-bundle__total-value">{{ bundle_total | money }}</span>
+        </div>
+      </div>
+      
+      <button 
+        type="button" 
+        class="cart-bundle__add-all"
+        data-action="add-bundle"
+        data-products="{{ bundle_products | map: 'selected_or_first_available_variant' | map: 'id' | join: ',' }}">
+        Add All to Cart
+      </button>
+    </div>
+  </div>
+{% endif %}

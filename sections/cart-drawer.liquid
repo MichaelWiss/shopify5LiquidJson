@@ -16,6 +16,12 @@
         {% endfor %}
       </div>
 
+      {% comment %} Cart Upsells - Frequently Bought Together {% endcomment %}
+      {% render 'cart-upsell', cart: cart, limit: 3 %}
+      
+      {% comment %} Bundle Recommendations - Complete the Look {% endcomment %}
+      {% render 'bundle-recommendation', cart: cart %}
+
       {% render 'cart-footer', cart: cart, context: 'drawer' %}
     {% else %}
       <div class="cart-empty">

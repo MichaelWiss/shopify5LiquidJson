@@ -111,7 +111,21 @@
 
     {% section 'cart-drawer' %}
 
-    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    {%- comment -%} Code-split JavaScript - Load only what's needed {%- endcomment -%}
+    <script src="{{ 'header.js' | asset_url }}" defer></script>
+    <script src="{{ 'cart-drawer.js' | asset_url }}" defer></script>
+    
+    {% if template.name == 'product' %}
+      <script src="{{ 'product-form.js' | asset_url }}" defer></script>
+    {% endif %}
+    
+    {% if template.name == 'collection' or template.name == 'list-collections' or template.name == 'search' %}
+      <script src="{{ 'collection-filters.js' | asset_url }}" defer></script>
+    {% endif %}
+    
+    {%- comment -%} Legacy theme.js kept for backward compatibility {%- endcomment -%}
+    {%- comment -%} <script src="{{ 'theme.js' | asset_url }}" defer></script> {%- endcomment -%}
+    
     {{ content_for_footer }}
   </body>
 </html>
