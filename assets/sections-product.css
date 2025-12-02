@@ -1,8 +1,49 @@
+:root {
+  --space-unit: 8px;
+  --space-1: calc(var(--space-unit) * 1);
+  --space-2: calc(var(--space-unit) * 2);
+  --space-3: calc(var(--space-unit) * 3);
+  --space-4: calc(var(--space-unit) * 4);
+  --space-5: calc(var(--space-unit) * 5);
+  --space-6: calc(var(--space-unit) * 6);
+  --space-7: calc(var(--space-unit) * 7);
+  --space-8: calc(var(--space-unit) * 8);
+  --space-9: calc(var(--space-unit) * 9);
+  --space-10: calc(var(--space-unit) * 10);
+  --space-12: calc(var(--space-unit) * 12);
+  --container-max: 1400px;
+  --container-pad: 20px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-pad: 36px;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --container-pad: 60px;
+  }
+}
 .product-detail {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 36px;
-  padding: 88px 36px 60px;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+  padding: 88px 36px 88px;
+}
+@media (min-width: 768px) {
+  .product-detail {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+}
+@media (min-width: 1024px) {
+  .product-detail {
+    padding-top: 104px;
+    padding-bottom: 104px;
+  }
 }
 
 .product-detail__inner {
@@ -119,15 +160,31 @@
 }
 
 .finish-swatches {
-  padding: 88px 36px 60px;
+  padding: 88px 36px 88px;
+}
+@media (min-width: 768px) {
+  .finish-swatches {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+}
+@media (min-width: 1024px) {
+  .finish-swatches {
+    padding-top: 104px;
+    padding-bottom: 104px;
+  }
+}
+.finish-swatches {
   border-top: 1px solid var(--hair);
   background: var(--bg);
 }
 
 .finish-swatches__inner {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 36px;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
 }
 
 .finish-swatches__heading {
@@ -178,6 +235,20 @@
 
 .related-products {
   padding: 88px 36px 60px;
+}
+@media (min-width: 768px) {
+  .related-products {
+    padding-top: 96px;
+    padding-bottom: 68px;
+  }
+}
+@media (min-width: 1024px) {
+  .related-products {
+    padding-top: 104px;
+    padding-bottom: 76px;
+  }
+}
+.related-products {
   border-top: 1px solid var(--hair);
   background: var(--bg);
 }
@@ -331,6 +402,20 @@
 
 .intro-text {
   padding: 88px 36px 60px;
+}
+@media (min-width: 768px) {
+  .intro-text {
+    padding-top: 96px;
+    padding-bottom: 68px;
+  }
+}
+@media (min-width: 1024px) {
+  .intro-text {
+    padding-top: 104px;
+    padding-bottom: 76px;
+  }
+}
+.intro-text {
   text-align: center;
 }
 

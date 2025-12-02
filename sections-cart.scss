@@ -11,8 +11,8 @@
 // ========================================
 
 .cart-page {
-  @include section-padding;
-  @include container(1200px);
+  @include section-padding($s6, $s6);
+  @include container-rails();
 }
 
 .cart-page__header {
@@ -23,7 +23,7 @@
 
 .cart-page__empty {
   text-align: center;
-  padding: var(--s6) var(--s4);
+  @include section-padding($s6, $s6);
   
   p {
     font-size: $text-lg;

@@ -64,6 +64,21 @@ npm run lint:homepage
 
 **Compiled output:** `assets/theme.css`
 
+## Layout & Spacing System
+
+- Main wrapper: `layout/theme.liquid` wraps `{{ content_for_layout }}` in `<main class="main-content">`.
+- Rails utility: Use `.section-container` or `@include container-rails()` for consistent max-width and side padding.
+- Vertical rhythm: Use `@include section-padding($top, $bottom)` with tokens (e.g., `$s6`, `$s9`, `$s12`).
+- Tokens: CSS custom properties `--space-*` and SCSS `$s*` live in `_tokens.scss`; rails use `--container-max` and `--container-pad`.
+- Full-bleed: For edge-to-edge media, skip `.section-container` on the media wrapper, but keep text blocks within rails.
+
+### Examples
+- Liquid:
+   - `<div class="section-container hero-content">...</div>`
+- SCSS:
+   - `.editorial-grid { @include section-padding($s6, $s6); }`
+   - `.editorial-grid__inner { @include container-rails(); }`
+
 ### Shopify Development
 
 ```bash

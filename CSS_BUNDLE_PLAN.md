@@ -56,3 +56,10 @@
 3. Update package.json
 4. Compile bundles
 5. Test each template
+
+## Layout & Spacing Guidelines
+- Use `.main-content` around `{{ content_for_layout }}` to establish page-level vertical rhythm.
+- For inner width control, prefer `.section-container` or `@include container-rails()` over manual `max-width`/`margin`.
+- For vertical spacing, use `@include section-padding($top, $bottom)` with `$s*` tokens, not hardcoded pixel values.
+- Tokens and rails are defined in `_tokens.scss`; mixins live in `_mixins.scss`.
+- Full-bleed sections: apply rails to text blocks only; allow media wrappers to span edge-to-edge.

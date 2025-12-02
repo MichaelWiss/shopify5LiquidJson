@@ -153,12 +153,13 @@
   padding: $s6 $s4 $s5;
 }
 
-// Apply vertical paddings using token scale
-// Usage: @include section-padding($top, $bottom);
-// Example: @include section-padding($s6, $s6);
-@mixin section-padding($top, $bottom) {
-  padding-top: $top;
-  padding-bottom: $bottom;
+// Token-based section padding with backward-compatible defaults
+// Usage:
+// - @include section-padding();                   // defaults: top $s6, x $s4, bottom $s5
+// - @include section-padding($s6, $s6);           // top/bottom, horizontal defaults to $s4
+// - @include section-padding($s10, $s7, $s5);     // explicit top, bottom, horizontal
+@mixin section-padding($top: $s6, $bottom: $s5, $x: $s4) {
+  padding: $top $x $bottom;
 
   @media (min-width: 768px) {
     padding-top: $top + 8px;

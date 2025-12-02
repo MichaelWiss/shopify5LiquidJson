@@ -11,12 +11,11 @@
 // ========================================
 
 .collection-page {
-  padding: var(--s6) var(--s4);
+  @include section-padding($s6, $s6);
 }
 
 .collection-page__inner {
-  max-width: 1400px;
-  margin: 0 auto;
+  @include container-rails();
   display: grid;
   gap: var(--s4);
 }

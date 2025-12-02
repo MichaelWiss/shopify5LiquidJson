@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <div class="section-container hero-image">
+  <div class="hero-image">
     {% if section.settings.image != blank %}
       {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'eager' }}
     {% else %}

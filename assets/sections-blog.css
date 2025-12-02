@@ -1,5 +1,46 @@
+:root {
+  --space-unit: 8px;
+  --space-1: calc(var(--space-unit) * 1);
+  --space-2: calc(var(--space-unit) * 2);
+  --space-3: calc(var(--space-unit) * 3);
+  --space-4: calc(var(--space-unit) * 4);
+  --space-5: calc(var(--space-unit) * 5);
+  --space-6: calc(var(--space-unit) * 6);
+  --space-7: calc(var(--space-unit) * 7);
+  --space-8: calc(var(--space-unit) * 8);
+  --space-9: calc(var(--space-unit) * 9);
+  --space-10: calc(var(--space-unit) * 10);
+  --space-12: calc(var(--space-unit) * 12);
+  --container-max: 1400px;
+  --container-pad: 20px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-pad: 36px;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --container-pad: 60px;
+  }
+}
 .blog-section {
   padding: 88px 36px 60px;
+}
+@media (min-width: 768px) {
+  .blog-section {
+    padding-top: 96px;
+    padding-bottom: 68px;
+  }
+}
+@media (min-width: 1024px) {
+  .blog-section {
+    padding-top: 104px;
+    padding-bottom: 76px;
+  }
+}
+.blog-section {
   background: var(--bg);
 }
 
@@ -130,6 +171,20 @@
 
 .article-section {
   padding: 88px 36px 60px;
+}
+@media (min-width: 768px) {
+  .article-section {
+    padding-top: 96px;
+    padding-bottom: 68px;
+  }
+}
+@media (min-width: 1024px) {
+  .article-section {
+    padding-top: 104px;
+    padding-bottom: 76px;
+  }
+}
+.article-section {
   background: var(--bg);
 }
 
@@ -334,6 +389,20 @@
 
 .search-section {
   padding: 88px 36px 60px;
+}
+@media (min-width: 768px) {
+  .search-section {
+    padding-top: 96px;
+    padding-bottom: 68px;
+  }
+}
+@media (min-width: 1024px) {
+  .search-section {
+    padding-top: 104px;
+    padding-bottom: 76px;
+  }
+}
+.search-section {
   background: var(--bg);
 }
 
@@ -512,6 +581,20 @@
 
 .error-section {
   padding: 88px 36px 60px;
+}
+@media (min-width: 768px) {
+  .error-section {
+    padding-top: 96px;
+    padding-bottom: 68px;
+  }
+}
+@media (min-width: 1024px) {
+  .error-section {
+    padding-top: 104px;
+    padding-bottom: 76px;
+  }
+}
+.error-section {
   background: var(--bg);
   min-height: 60vh;
   display: flex;

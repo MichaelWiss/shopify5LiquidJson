@@ -1,16 +1,61 @@
+:root {
+  --space-unit: 8px;
+  --space-1: calc(var(--space-unit) * 1);
+  --space-2: calc(var(--space-unit) * 2);
+  --space-3: calc(var(--space-unit) * 3);
+  --space-4: calc(var(--space-unit) * 4);
+  --space-5: calc(var(--space-unit) * 5);
+  --space-6: calc(var(--space-unit) * 6);
+  --space-7: calc(var(--space-unit) * 7);
+  --space-8: calc(var(--space-unit) * 8);
+  --space-9: calc(var(--space-unit) * 9);
+  --space-10: calc(var(--space-unit) * 10);
+  --space-12: calc(var(--space-unit) * 12);
+  --container-max: 1400px;
+  --container-pad: 20px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-pad: 36px;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --container-pad: 60px;
+  }
+}
 .showroom-page {
   background: #F6F2EA;
   color: #29241E;
 }
 
 .showroom-hero {
-  padding: 80px 60px 60px;
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+  padding: 80px 36px 60px;
+}
+@media (min-width: 768px) {
+  .showroom-hero {
+    padding-top: 88px;
+    padding-bottom: 68px;
+  }
+}
+@media (min-width: 1024px) {
+  .showroom-hero {
+    padding-top: 96px;
+    padding-bottom: 76px;
+  }
 }
 @media (max-width: 1024px) {
   .showroom-hero {
-    padding: 36px 32px;
+    padding-left: var(--container-pad);
+    padding-right: var(--container-pad);
+    padding-top: 36px;
+    padding-bottom: 32px;
   }
 }
 
@@ -56,13 +101,31 @@
 }
 
 .showroom-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 60px;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+  padding: 60px 36px 60px;
+}
+@media (min-width: 768px) {
+  .showroom-section {
+    padding-top: 68px;
+    padding-bottom: 68px;
+  }
+}
+@media (min-width: 1024px) {
+  .showroom-section {
+    padding-top: 76px;
+    padding-bottom: 76px;
+  }
 }
 @media (max-width: 1024px) {
   .showroom-section {
-    padding: 36px 32px;
+    padding-left: var(--container-pad);
+    padding-right: var(--container-pad);
+    padding-top: 36px;
+    padding-bottom: 32px;
   }
 }
 
