@@ -153,6 +153,34 @@
   padding: $s6 $s4 $s5;
 }
 
+// Apply vertical paddings using token scale
+// Usage: @include section-padding($top, $bottom);
+// Example: @include section-padding($s6, $s6);
+@mixin section-padding($top, $bottom) {
+  padding-top: $top;
+  padding-bottom: $bottom;
+
+  @media (min-width: 768px) {
+    padding-top: $top + 8px;
+    padding-bottom: $bottom + 8px;
+  }
+
+  @media (min-width: 1024px) {
+    padding-top: $top + 16px;
+    padding-bottom: $bottom + 16px;
+  }
+}
+
+// Constrain inner content to rails with max-width and side padding
+// Applies responsive container padding via CSS variables
+@mixin container-rails() {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
 @mixin media-wrapper {
   position: relative;
   overflow: hidden;

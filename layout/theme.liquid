@@ -104,7 +104,9 @@
         {% endunless %}
       {% endif %}
       
-      {{ content_for_layout }}
+      <main class="main-content">
+        {{ content_for_layout }}
+      </main>
     </main>
 
     {% section 'footer' %}
