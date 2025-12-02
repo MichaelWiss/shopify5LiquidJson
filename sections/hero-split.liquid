@@ -1,5 +1,5 @@
 <section class="hero-split{% if section.settings.text_position == 'right' %} hero-split--reverse{% endif %}">
-  <div class="hero-content">
+  <div class="section-container hero-content">
     <div class="hero-text">
       {% if section.settings.eyebrow != blank %}
         <p class="hero-eyebrow">{{ section.settings.eyebrow }}</p>
@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <div class="hero-image">
+  <div class="section-container hero-image">
     {% if section.settings.image != blank %}
       {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'eager' }}
     {% else %}

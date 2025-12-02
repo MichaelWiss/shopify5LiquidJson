@@ -126,6 +126,11 @@ body {
   overflow: hidden;
 }
 
+// Section container rails utility for consistent inner width
+.section-container {
+  @include container-rails();
+}
+
 // Stack utilities
 .stack > * + * {
   margin-top: var(--s3);

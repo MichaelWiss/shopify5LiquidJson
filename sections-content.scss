@@ -11,7 +11,7 @@
 // ========================================
 
 .intro-text {
-  @include section-padding;
+  @include section-padding($s6, $s6);
   text-align: center;
 }
 
@@ -46,12 +46,12 @@
 // ========================================
 
 .editorial-grid {
-  @include section-padding;
+  @include section-padding($s6, $s6);
   background: var(--paper);
 }
 
 .editorial-grid__inner {
-  @include container(1400px);
+  @include container-rails();
 }
 
 .editorial-grid__layout {
