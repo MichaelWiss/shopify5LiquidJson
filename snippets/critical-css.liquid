@@ -260,4 +260,26 @@
      PREVENT FOUC
      ======================================== */
   .no-js .deferred-media { display: none; }
+
+  /* ========================================
+     CART DRAWER & OVERLAY - HIDDEN BY DEFAULT
+     Prevents flash before deferred CSS loads
+     ======================================== */
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+  }
+  
+  .cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    z-index: 1000;
+  }
 </style>
