@@ -12,14 +12,12 @@
 }
 
 .showroom-hero {
-  @include container-rails();
-  @include section-padding($s12, $s5);
+  padding: $s12 $s5 $s5;
+  max-width: 1400px;
+  margin: 0 auto;
 
   @media (max-width: 1024px) {
-    padding-left: var(--container-pad);
-    padding-right: var(--container-pad);
-    padding-top: $s4;
-    padding-bottom: $s7; // approx
+    padding: $s4 $s7; // 40px 30px approx
   }
 }
 
@@ -55,14 +53,12 @@
 
 // Content Sections
 .showroom-section {
-  @include container-rails();
-  @include section-padding($s5, $s5); // 60px
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: $s5; // 60px
 
   @media (max-width: 1024px) {
-    padding-left: var(--container-pad);
-    padding-right: var(--container-pad);
-    padding-top: $s4;
-    padding-bottom: $s7;
+    padding: $s4 $s7;
   }
 }
 

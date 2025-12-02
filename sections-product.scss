@@ -11,8 +11,8 @@
 // ========================================
 
 .product-detail {
-  @include container-rails();
-  @include section-padding($s6, $s6);
+  @include container(1400px);
+  @include section-padding;
 }
 
 .product-detail__inner {
@@ -113,13 +113,13 @@
 // ========================================
 
 .finish-swatches {
-  @include section-padding($s6, $s6);
+  @include section-padding;
   border-top: 1px solid var(--hair);
   background: var(--bg);
 }
 
 .finish-swatches__inner {
-  @include container-rails();
+  @include container(1400px);
 }
 
 .finish-swatches__heading {

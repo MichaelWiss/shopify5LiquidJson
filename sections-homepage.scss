@@ -132,7 +132,7 @@
 // ========================================
 
 .intro-text {
-  @include section-padding($s6, $s6);
+  @include section-padding;
   text-align: center;
 }
 
@@ -167,8 +167,9 @@
 // ========================================
 
 .intro-section {
-  @include container-rails();
-  @include section-padding($s6, $s5);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $s6 $s4 $s5;
 }
 
 .intro-label {
@@ -186,10 +187,9 @@
 }
 
 .products-section {
-  @include container-rails();
-  padding-left: var(--container-pad);
-  padding-right: var(--container-pad);
-  padding-bottom: $s6;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 $s4 $s6;
 }
 
 .products-marquee-wrapper {

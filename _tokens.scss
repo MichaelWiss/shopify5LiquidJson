@@ -42,38 +42,7 @@ $s10: 64px;
 $s11: 72px;
 $s12: 80px;
 
-// Container rails
-$container-max: 1400px;
-$container-pad-mobile: $s3;
-$container-pad-tablet: $s4;
-$container-pad-desktop: $s5;
 
-// CSS custom properties bridge for runtime control
-:root {
-	--space-unit: 8px;
-	--space-1: calc(var(--space-unit) * 1);
-	--space-2: calc(var(--space-unit) * 2);
-	--space-3: calc(var(--space-unit) * 3);
-	--space-4: calc(var(--space-unit) * 4);
-	--space-5: calc(var(--space-unit) * 5);
-	--space-6: calc(var(--space-unit) * 6);
-	--space-7: calc(var(--space-unit) * 7);
-	--space-8: calc(var(--space-unit) * 8);
-	--space-9: calc(var(--space-unit) * 9);
-	--space-10: calc(var(--space-unit) * 10);
-	--space-12: calc(var(--space-unit) * 12);
-
-	--container-max: #{$container-max};
-	--container-pad: #{$container-pad-mobile};
-}
-
-@media (min-width: 768px) {
-	:root { --container-pad: #{$container-pad-tablet}; }
-}
-
-@media (min-width: 1024px) {
-	:root { --container-pad: #{$container-pad-desktop}; }
-}
 
 // Surface colors (material metaphor)
 $bg: #F6F2EA;           // Background - warm linen

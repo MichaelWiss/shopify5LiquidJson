@@ -44,7 +44,7 @@
 }
 
 .header-container {
-  @include container-rails();
+  @include container(1600px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -120,11 +120,11 @@
 
 .footer {
   border-top: 1px solid var(--hair);
-  @include section-padding($s10, $s7);
+  padding: $s10 $s7;
 }
 
 .footer__inner {
-  @include container-rails();
+  @include container(1400px);
 }
 
 .footer__grid {

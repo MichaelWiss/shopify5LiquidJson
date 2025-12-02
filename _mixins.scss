@@ -153,35 +153,6 @@
   padding: $s6 $s4 $s5;
 }
 
-// Token-based section padding with backward-compatible defaults
-// Usage:
-// - @include section-padding();                   // defaults: top $s6, x $s4, bottom $s5
-// - @include section-padding($s6, $s6);           // top/bottom, horizontal defaults to $s4
-// - @include section-padding($s10, $s7, $s5);     // explicit top, bottom, horizontal
-@mixin section-padding($top: $s6, $bottom: $s5, $x: $s4) {
-  padding: $top $x $bottom;
-
-  @media (min-width: 768px) {
-    padding-top: $top + 8px;
-    padding-bottom: $bottom + 8px;
-  }
-
-  @media (min-width: 1024px) {
-    padding-top: $top + 16px;
-    padding-bottom: $bottom + 16px;
-  }
-}
-
-// Constrain inner content to rails with max-width and side padding
-// Applies responsive container padding via CSS variables
-@mixin container-rails() {
-  max-width: var(--container-max);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--container-pad);
-  padding-right: var(--container-pad);
-}
-
 @mixin media-wrapper {
   position: relative;
   overflow: hidden;
