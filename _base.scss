@@ -1,9 +1,3 @@
 @use "tokens" as *;
 
-body {
-  background: $bg;
-  color: $ink;
-  font-family: $font-sans;
-  font-size: $font-size-body;
-  line-height: $line-height-body;
-}
+/* Body styles consolidated in theme.scss to prevent FOUC */

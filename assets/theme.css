@@ -18,14 +18,7 @@ html, body {
   width: 100%;
 }
 
-body {
-  background: #F6F2EA;
-  color: #29241E;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 12px;
-  line-height: 1.7;
-}
-
+/* Body styles consolidated in theme.scss to prevent FOUC */
 :root {
   --bg: #F6F2EA;
   --paper: #FBF8F3;
@@ -81,6 +74,8 @@ body {
 
 body {
   margin: 0;
+  padding-top: 44px; /* Fixed header height - must match critical-css.liquid */
+  min-height: 100vh;
   background: var(--bg);
   color: var(--ink);
   font: 12px/1.7 var(--sans);
