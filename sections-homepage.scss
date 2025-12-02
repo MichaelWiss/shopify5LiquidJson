@@ -10,6 +10,10 @@
 // HERO FULL BLEED SECTION
 // ========================================
 
+.hero {
+  margin-top: -44px; /* Pull hero up behind fixed header */
+}
+
 .hero-image {
   width: 100%;
   height: 100%;
