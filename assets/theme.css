@@ -130,6 +130,12 @@ body {
   }
 }
 
+.main-content:has(> .hero-split:first-child),
+.main-content:has(> .hero-full-bleed:first-child),
+.main-content:has(> .hero:first-child) {
+  padding-top: 0;
+}
+
 .section {
   padding: var(--s6) var(--s4) var(--s5);
 }
