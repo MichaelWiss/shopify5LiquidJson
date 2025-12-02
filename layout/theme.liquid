@@ -46,14 +46,11 @@
     {% endif %}
 
     {%- comment -%} 
-      NON-CRITICAL CSS - Deferred loading pattern
-      Uses media="print" with onload swap to prevent render-blocking
+      CORE CSS - Loaded synchronously to prevent FOUC
+      theme.css and sections-layout.css contain essential base styles
     {%- endcomment -%}
-    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="{{ 'theme.css' | asset_url }}"></noscript>
-    
-    <link rel="stylesheet" href="{{ 'sections-layout.css' | asset_url }}" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="{{ 'sections-layout.css' | asset_url }}"></noscript>
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'sections-layout.css' | asset_url }}">
 
     {%- comment -%} Template-specific CSS bundles - deferred {%- endcomment -%}
     {% case template.name %}
