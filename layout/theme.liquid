@@ -36,10 +36,6 @@
     {%- endcomment -%}
     {% render 'critical-css' %}
 
-    {%- comment -%} Preload primary stylesheet for faster parsing {%- endcomment -%}
-    {{ 'theme.css' | asset_url | preload_tag: as: 'style' }}
-    {{ 'sections-layout.css' | asset_url | preload_tag: as: 'style' }}
-
     {% if request.design_mode %}
       <link rel="stylesheet" href="{{ 'sections-list-collections.css' | asset_url }}">
       <link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}">
