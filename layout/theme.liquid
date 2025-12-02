@@ -52,39 +52,29 @@
     <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
     <link rel="stylesheet" href="{{ 'sections-layout.css' | asset_url }}">
 
-    {%- comment -%} Template-specific CSS bundles - deferred {%- endcomment -%}
+    {%- comment -%} Template-specific CSS bundles - loaded synchronously {%- endcomment -%}
     {% case template.name %}
       {% when 'index' %}
-        <link rel="stylesheet" href="{{ 'sections-homepage.css' | asset_url }}" media="print" onload="this.media='all'">
-        <noscript><link rel="stylesheet" href="{{ 'sections-homepage.css' | asset_url }}"></noscript>
+        <link rel="stylesheet" href="{{ 'sections-homepage.css' | asset_url }}">
       {% when 'product' %}
-        <link rel="stylesheet" href="{{ 'sections-product.css' | asset_url }}" media="print" onload="this.media='all'">
-        <noscript><link rel="stylesheet" href="{{ 'sections-product.css' | asset_url }}"></noscript>
+        <link rel="stylesheet" href="{{ 'sections-product.css' | asset_url }}">
       {% when 'collection' %}
-        <link rel="stylesheet" href="{{ 'sections-collection.css' | asset_url }}" media="print" onload="this.media='all'">
-        <noscript><link rel="stylesheet" href="{{ 'sections-collection.css' | asset_url }}"></noscript>
+        <link rel="stylesheet" href="{{ 'sections-collection.css' | asset_url }}">
       {% when 'list-collections' %}
-        <link rel="stylesheet" href="{{ 'sections-list-collections.css' | asset_url }}" media="print" onload="this.media='all'">
-        <noscript><link rel="stylesheet" href="{{ 'sections-list-collections.css' | asset_url }}"></noscript>
+        <link rel="stylesheet" href="{{ 'sections-list-collections.css' | asset_url }}">
       {% when 'cart' %}
-        <link rel="stylesheet" href="{{ 'sections-cart.css' | asset_url }}" media="print" onload="this.media='all'">
-        <noscript><link rel="stylesheet" href="{{ 'sections-cart.css' | asset_url }}"></noscript>
+        <link rel="stylesheet" href="{{ 'sections-cart.css' | asset_url }}">
       {% when 'page' %}
-        <link rel="stylesheet" href="{{ 'sections-content.css' | asset_url }}" media="print" onload="this.media='all'">
-        <noscript><link rel="stylesheet" href="{{ 'sections-content.css' | asset_url }}"></noscript>
+        <link rel="stylesheet" href="{{ 'sections-content.css' | asset_url }}">
         {% if template.suffix == 'showrooms' or page.handle == 'showrooms' or page.handle == 'showroom' or page.handle == 'collections' %}
-          <link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}" media="print" onload="this.media='all'">
-          <noscript><link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}"></noscript>
+          <link rel="stylesheet" href="{{ 'sections-showroom.css' | asset_url }}">
         {% endif %}
       {% when 'blog', 'article' %}
-        <link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}" media="print" onload="this.media='all'">
-        <noscript><link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}"></noscript>
+        <link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}">
       {% when 'search' %}
-        <link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}" media="print" onload="this.media='all'">
-        <noscript><link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}"></noscript>
+        <link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}">
       {% when '404' %}
-        <link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}" media="print" onload="this.media='all'">
-        <noscript><link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}"></noscript>
+        <link rel="stylesheet" href="{{ 'sections-blog.css' | asset_url }}">
     {% endcase %}
   </head>
 
