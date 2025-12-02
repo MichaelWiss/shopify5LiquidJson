@@ -49,13 +49,21 @@
   --text-8xl: #{$text-8xl};
   --text-9xl: #{$text-9xl};
   
-  // Spacing scale
+  // Spacing scale (primary)
   --s1: #{$s1};
   --s2: #{$s2};
   --s3: #{$s3};
   --s4: #{$s4};
   --s5: #{$s5};
   --s6: #{$s6};
+  
+  // Spacing scale (extended)
+  --s7: #{$s7};
+  --s8: #{$s8};
+  --s9: #{$s9};
+  --s10: #{$s10};
+  --s11: #{$s11};
+  --s12: #{$s12};
   
   // Header dimensions
   --header-height: 48px;
