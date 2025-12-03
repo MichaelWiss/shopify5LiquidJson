@@ -333,10 +333,10 @@ body.cart-drawer-open {
 }
 
 .breadcrumbs-arrow,
-.breadcrumbs-separator .icon--arrow-right {
+.breadcrumbs-separator .icon--arrow-right-wide {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 15px;
   color: var(--ink);
 }
 

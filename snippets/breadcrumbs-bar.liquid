@@ -29,7 +29,7 @@
 
     {% if page_type == 'product' and classification_title != blank %}
       <li class="breadcrumbs-separator" aria-hidden="true">
-        {% render 'icon', name: 'arrow-right', class: 'breadcrumbs-arrow' %}
+        {% render 'icon', name: 'arrow-right-wide', class: 'breadcrumbs-arrow' %}
       </li>
       <li class="breadcrumbs-item breadcrumbs-item--classification">
         {% if classification_url != blank %}
@@ -42,13 +42,13 @@
 
     {% if page_type == 'collection' and collection %}
       <li class="breadcrumbs-separator" aria-hidden="true">
-        {% render 'icon', name: 'arrow-right', class: 'breadcrumbs-arrow' %}
+        {% render 'icon', name: 'arrow-right-wide', class: 'breadcrumbs-arrow' %}
       </li>
       <li class="breadcrumbs-item">
         <a href="{{ routes.collections_url }}">Collections</a>
       </li>
       <li class="breadcrumbs-separator" aria-hidden="true">
-        {% render 'icon', name: 'arrow-right', class: 'breadcrumbs-arrow' %}
+        {% render 'icon', name: 'arrow-right-wide', class: 'breadcrumbs-arrow' %}
       </li>
       <li class="breadcrumbs-item current">
         <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
@@ -57,14 +57,14 @@
     {% elsif page_type == 'product' %}
       {% if collection %}
         <li class="breadcrumbs-separator" aria-hidden="true">
-          {% render 'icon', name: 'arrow-right', class: 'breadcrumbs-arrow' %}
+          {% render 'icon', name: 'arrow-right-wide', class: 'breadcrumbs-arrow' %}
         </li>
         <li class="breadcrumbs-item">
           <a href="{{ collection.url }}">{{ collection.title }}</a>
         </li>
       {% endif %}
       <li class="breadcrumbs-separator" aria-hidden="true">
-        {% render 'icon', name: 'arrow-right', class: 'breadcrumbs-arrow' %}
+        {% render 'icon', name: 'arrow-right-wide', class: 'breadcrumbs-arrow' %}
       </li>
       <li class="breadcrumbs-item current">
         <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
@@ -72,7 +72,7 @@
       </li>
     {% elsif page_type == 'list-collections' %}
       <li class="breadcrumbs-separator" aria-hidden="true">
-        {% render 'icon', name: 'arrow-right', class: 'breadcrumbs-arrow' %}
+        {% render 'icon', name: 'arrow-right-wide', class: 'breadcrumbs-arrow' %}
       </li>
       <li class="breadcrumbs-item current">
         <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
@@ -80,7 +80,7 @@
       </li>
     {% elsif page_type == 'page' %}
       <li class="breadcrumbs-separator" aria-hidden="true">
-        {% render 'icon', name: 'arrow-right', class: 'breadcrumbs-arrow' %}
+        {% render 'icon', name: 'arrow-right-wide', class: 'breadcrumbs-arrow' %}
       </li>
       <li class="breadcrumbs-item current">
         <span class="breadcrumbs-current-dot" aria-hidden="true"></span>
