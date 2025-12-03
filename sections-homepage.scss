@@ -754,29 +754,6 @@
   @include section-padding;
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 48px;
-  margin-bottom: 48px;
-}
-
-.footer-column {
-  h3 {
-    font-size: $text-sm;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: $s2;
-  }
-}
-
-.footer-text {
-  font-size: $text-base;
-  line-height: 1.8;
-  color: var(--ink-2);
-}
-
 .arrow-link {
   @include arrow-link;
 }

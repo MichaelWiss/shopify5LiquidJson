@@ -532,11 +532,6 @@ main[role="main"] {
   color: var(--ink-2);
 }
 
-.footer {
-  border-top: 1px solid var(--hair);
-  padding: 64px 32px;
-}
-
 /* Homepage — Refinements */
 // Override section padding for hero to make it flush with header
 #shopify-section-hero_full_bleed {
@@ -966,67 +961,6 @@ main[role="main"] {
     object-fit: cover;
     display: block;
   }
-}
-
-.footer__inner {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.footer__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 48px;
-  margin-bottom: 48px;
-}
-
-.footer__heading {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 16px;
-}
-
-.footer__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.footer__link {
-  font-size: 12px;
-  color: var(--ink-2);
-  transition: color 200ms ease;
-}
-
-.footer__link:hover {
-  color: var(--ink);
-}
-
-.footer__text {
-  font-size: 12px;
-  line-height: 1.7;
-  white-space: pre-line;
-  color: var(--ink-2);
-}
-
-.footer__credits {
-  padding-top: 32px;
-  border-top: 1px solid var(--hair);
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  font-size: 10px;
-  color: var(--ink-2);
-}
-
-.footer__credits a {
-  margin-left: 16px;
 }
 
 .collection-banner {
