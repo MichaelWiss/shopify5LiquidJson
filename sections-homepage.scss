@@ -57,6 +57,7 @@
   display: grid;
   min-height: 80vh;
   margin-top: -48px; /* Pull up to sit flush under fixed header */
+  padding-top: 48px; /* Compensate for body padding */
 }
 
 @media (min-width: 1024px) {
