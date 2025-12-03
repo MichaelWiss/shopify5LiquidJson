@@ -456,7 +456,7 @@ main[role=main] {
   font-size: 48px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   font-weight: 300;
   letter-spacing: -0.02em;
   margin-bottom: 24px;
@@ -525,7 +525,7 @@ main[role=main] {
   font-size: 36px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: 24px;
 }
 
@@ -651,7 +651,7 @@ main[role=main] {
   font-size: 32px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: 24px;
 }
 
@@ -794,7 +794,7 @@ body.cart-drawer-open {
   font-size: 24px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 .cart-drawer__close {
@@ -1125,7 +1125,7 @@ body.cart-drawer-open {
   font-size: 28px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   position: absolute;
   top: 48px;
   left: 24px;
@@ -1352,7 +1352,7 @@ body.cart-drawer-open {
   font-size: 26px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: 16px;
 }
 
@@ -1424,7 +1424,7 @@ body.cart-drawer-open {
   font-size: 26px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   color: var(--paper);
   margin-bottom: 16px;
 }
@@ -1480,7 +1480,7 @@ body.cart-drawer-open {
   font-size: 32px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: 56px;
 }
 
@@ -2450,7 +2450,7 @@ body.cart-drawer-open {
   font-size: 24px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: 32px;
 }
 
@@ -2508,7 +2508,7 @@ body.cart-drawer-open {
   font-size: 24px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: 32px;
 }
 
@@ -2825,7 +2825,7 @@ input.visually-hidden:focus-visible + .color-dot {
   font-size: 48px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: var(--s3);
 }
 @media (min-width: 1024px) {
@@ -3069,7 +3069,7 @@ input.visually-hidden:focus-visible + .color-dot {
   font-size: 22px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: var(--s3);
 }
 

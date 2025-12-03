@@ -21,7 +21,7 @@
   font-size: 28px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   position: absolute;
   top: 48px;
   left: 20px;
@@ -102,7 +102,7 @@
   font-size: 48px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   font-weight: 300;
   letter-spacing: -0.02em;
   margin-bottom: 20px;
@@ -165,7 +165,7 @@
   font-size: 36px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: 20px;
 }
 
@@ -383,7 +383,7 @@
   font-size: 26px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: 12px;
 }
 
@@ -454,7 +454,7 @@
   font-size: 26px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   color: var(--paper);
   margin-bottom: 12px;
 }
@@ -577,7 +577,7 @@
   font-size: 32px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: 56px;
 }
 
