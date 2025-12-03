@@ -3,6 +3,8 @@
   Usage: {% render 'pagination', paginate: paginate %}
 {% endcomment %}
 
+{{ 'component-pagination.css' | asset_url | stylesheet_tag }}
+
 {% if paginate.pages > 1 %}
   <nav class="pagination" role="navigation" aria-label="Pagination">
     <ul class="pagination-list">

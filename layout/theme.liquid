@@ -42,6 +42,12 @@
     {% endif %}
 
     {%- comment -%} 
+      BASE CSS - Dawn-style foundation (global styles, utilities, reset)
+      Loaded first as the foundation for all other styles
+    {%- endcomment -%}
+    {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+
+    {%- comment -%} 
       CORE CSS - theme.css loaded with high priority (preload)
       Contains essential base styles needed for first paint
     {%- endcomment -%}

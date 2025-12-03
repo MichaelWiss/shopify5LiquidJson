@@ -7,6 +7,111 @@
 @use "mixins" as *;
 
 // ========================================
+// BREADCRUMBS SECTION
+// ========================================
+
+.breadcrumbs-container,
+.breadcrumbs-section {
+  padding-top: var(--header-height);
+}
+
+.breadcrumbs {
+  padding: var(--s2) var(--s4);
+  font-size: $text-sm;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+}
+
+.breadcrumbs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs-item {
+  display: inline;
+}
+
+.breadcrumbs-item a {
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.breadcrumbs-item a:hover {
+  color: var(--ink);
+}
+
+.breadcrumbs-separator {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.6rem;
+}
+
+.breadcrumbs-arrow,
+.breadcrumbs-separator .icon--arrow-right {
+  display: inline-block;
+  width: $breadcrumb-arrow-width;
+  height: $breadcrumb-arrow-height;
+  stroke-width: $breadcrumb-arrow-stroke;
+}
+
+.breadcrumbs-item.current {
+  color: var(--ink);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumbs-current-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  margin-right: 6px;
+  position: relative;
+  top: -1px;
+}
+
+.breadcrumbs-current-label {
+  border-bottom: 1px solid var(--accent);
+}
+
+.breadcrumbs-item--classification {
+  color: var(--ink-2);
+}
+
+@media (max-width: 767px) {
+  .breadcrumbs {
+    padding: var(--s2) var(--s3);
+  }
+}
+
+// ========================================
+// COLLECTION BANNER SECTION
+// ========================================
+
+.collection-banner {
+  padding: var(--s6) var(--s4) var(--s5);
+}
+
+.collection-banner__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.collection-banner__description {
+  max-width: 720px;
+  margin: var(--s3) auto 0;
+  font-size: $text-lg;
+  line-height: 1.8;
+  color: var(--ink-2);
+}
+
+// ========================================
 // COLLECTION GRID SECTION
 // ========================================
 
