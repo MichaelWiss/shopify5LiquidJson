@@ -37,14 +37,6 @@
   endif
 %}
 
-{%- comment -%} 
-  FONT PRELOADING (Phase 4 - Critical for LCP)
-  Preload heading font first since it's used in hero titles (above-fold)
-{%- endcomment -%}
-{% if heading_font != blank %}
-  {{ heading_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
-{% endif %}
-
 <style>
 {% if heading_font != blank %}
   {{ heading_font | font_face: font_display: 'swap' }}
