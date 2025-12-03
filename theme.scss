@@ -1,6 +1,7 @@
 // ========================================
 // REFINED THEME - Material Metaphor Design System
-// Eliminating 48 redundant variables
+// Core variables are in critical-css.liquid (inline)
+// Only extended/unique variables defined here
 // ========================================
 
 @use "tokens" as *;
@@ -9,61 +10,20 @@
 @use "base";
 
 // ========================================
-// CSS CUSTOM PROPERTIES (Clean, no duplication)
+// EXTENDED CSS CUSTOM PROPERTIES
+// (Core variables already in critical-css.liquid)
 // ========================================
 
 :root {
-  // Surface colors (material metaphor)
-  --bg: #{$bg};
-  --paper: #{$paper};
-  --veil: #{$veil};
-  
-  // Text colors
-  --ink: #{$ink};
-  --ink-2: #{$ink-2};
-  --hair: #{$hair};
-  
-  // Accent & material colors
-  --accent: #{$accent};
+  // Extended material colors (not in critical CSS)
   --walnut: #{$walnut};
   --oak: #{$oak};
-  --terracotta: #{$terracotta};
   --moss: #{$moss};
   --espresso: #{$espresso};
   
-  // Typography
-  --serif: #{$font-serif};
-  --sans: #{$font-sans};
-  --text-xs: #{$text-xs};
-  --text-sm: #{$text-sm};
-  --text-base: #{$text-base};
-  --text-md: #{$text-md};
-  --text-lg: #{$text-lg};
-  --text-xl: #{$text-xl};
-  --text-2xl: #{$text-2xl};
-  --text-3xl: #{$text-3xl};
-  --text-4xl: #{$text-4xl};
-  --text-5xl: #{$text-5xl};
-  --text-6xl: #{$text-6xl};
-  --text-7xl: #{$text-7xl};
+  // Extended typography (not in critical CSS)
   --text-8xl: #{$text-8xl};
   --text-9xl: #{$text-9xl};
-  
-  // Spacing scale (primary)
-  --s1: #{$s1};
-  --s2: #{$s2};
-  --s3: #{$s3};
-  --s4: #{$s4};
-  --s5: #{$s5};
-  --s6: #{$s6};
-  
-  // Spacing scale (extended)
-  --s7: #{$s7};
-  --s8: #{$s8};
-  --s9: #{$s9};
-  --s10: #{$s10};
-  --s11: #{$s11};
-  --s12: #{$s12};
   
   // Header dimensions
   --header-height: 48px;
