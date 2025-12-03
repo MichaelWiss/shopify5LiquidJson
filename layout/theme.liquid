@@ -25,12 +25,18 @@
     <link rel="dns-prefetch" href="https://cdn.shopify.com">
 
     {%- comment -%} Preload critical fonts for faster LCP {%- endcomment -%}
-    {%- if settings.heading_font -%}
-      {{ settings.heading_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+    {%- if settings.heading_font != blank -%}
+      {%- assign heading_font_url = settings.heading_font | font_url -%}
+      {%- if heading_font_url != blank and heading_font_url contains 'cdn.shopify.com' -%}
+        {{ heading_font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+      {%- endif -%}
     {%- endif -%}
-    {%- if settings.body_font -%}
-      {%- unless settings.heading_font and settings.body_font.family == settings.heading_font.family -%}
-        {{ settings.body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+    {%- if settings.body_font != blank -%}
+      {%- unless settings.heading_font != blank and settings.body_font.family == settings.heading_font.family -%}
+        {%- assign body_font_url = settings.body_font | font_url -%}
+        {%- if body_font_url != blank and body_font_url contains 'cdn.shopify.com' -%}
+          {{ body_font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+        {%- endif -%}
       {%- endunless -%}
     {%- endif -%}
 

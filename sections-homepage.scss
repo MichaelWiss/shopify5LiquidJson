@@ -56,6 +56,7 @@
 .hero-split {
   display: grid;
   min-height: 80vh;
+  margin-top: -44px; /* Pull up to sit flush under fixed header */
 }
 
 @media (min-width: 1024px) {
