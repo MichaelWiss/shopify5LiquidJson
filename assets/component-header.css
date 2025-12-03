@@ -6,7 +6,7 @@
 .site-header {
   background: var(--ink);
   color: var(--paper);
-  padding: var(--s2) var(--s4);
+  padding: 17px var(--s4);
   font-size: 11px;
   letter-spacing: 0.02em;
   position: fixed;

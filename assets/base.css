@@ -81,7 +81,7 @@ html, body {
   --s12: 16rem;
   
   /* Header dimensions */
-  --header-height: 48px;
+  --header-height: 52px;
   
   /* Icon dimensions */
   --icon-arrow-size: 14px;
@@ -97,7 +97,7 @@ html, body {
 
 body {
   margin: 0;
-  padding-top: 44px;
+  padding-top: 52px;
   min-height: 100vh;
   background: var(--bg);
   color: var(--ink);
