@@ -6,53 +6,11 @@
 
 @use "tokens" as *;
 @use "mixins" as *;
-@use "reset";
-@use "base";
-
-// ========================================
-// EXTENDED CSS CUSTOM PROPERTIES
-// (Core variables already in critical-css.liquid)
-// ========================================
-
-:root {
-  // Extended material colors (not in critical CSS)
-  --walnut: #{$walnut};
-  --oak: #{$oak};
-  --moss: #{$moss};
-  --espresso: #{$espresso};
-  
-  // Extended typography (not in critical CSS)
-  --text-8xl: #{$text-8xl};
-  --text-9xl: #{$text-9xl};
-  
-  // Header dimensions
-  --header-height: 52px;
-  
-  // Icon & arrow dimensions
-  --icon-arrow-size: #{$icon-arrow-size};
-  --icon-arrow-back-size: #{$icon-arrow-back-size};
-  --breadcrumb-arrow-width: #{$breadcrumb-arrow-width};
-  --breadcrumb-arrow-height: #{$breadcrumb-arrow-height};
-  --breadcrumb-arrow-stroke: #{$breadcrumb-arrow-stroke};
-}
 
 // ========================================
 // BASE STYLES
+// (Reset, Variables, and Body styles are in assets/base.css)
 // ========================================
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding-top: 48px; /* Fixed header height - must match critical-css.liquid */
-  min-height: 100vh;
-  background: var(--bg);
-  color: var(--ink);
-  font: #{$font-size-body}/#{$line-height-body} var(--sans);
-  -webkit-font-smoothing: antialiased;
-}
 
 main[role="main"] {
   margin: 0;
@@ -77,14 +35,7 @@ main[role="main"] {
   @include container(1400px);
 }
 
-.visually-hidden {
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-}
+
 
 // Stack utilities
 .stack > * + * {
