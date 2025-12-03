@@ -24,6 +24,16 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.shopify.com">
 
+    {%- comment -%} Preload critical fonts for faster LCP {%- endcomment -%}
+    {%- if settings.heading_font -%}
+      {{ settings.heading_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+    {%- endif -%}
+    {%- if settings.body_font -%}
+      {%- unless settings.heading_font and settings.body_font.family == settings.heading_font.family -%}
+        {{ settings.body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+      {%- endunless -%}
+    {%- endif -%}
+
     {{ content_for_header }}
 
     {%- comment -%} Theme CSS custom properties (colors, fonts from settings) {%- endcomment -%}
