@@ -89,7 +89,11 @@
     color: var(--ink);
     background: var(--bg);
     min-height: 100vh;
-    padding-top: 48px; /* Header height */
+    padding-top: var(--header-height, 48px);
+  }
+
+  .template-index body {
+    padding-top: 0;
   }
 
   /* ========================================
@@ -184,8 +188,8 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    margin-top: -44px; /* Pull hero up behind fixed header */
-    padding-top: 44px; /* Compensate so content stays in same position */
+    margin: 0;
+    padding: 0;
   }
 
   .hero-image {
@@ -229,6 +233,20 @@
   .hero-split {
     display: grid;
     min-height: 80vh;
+  }
+
+  .template-index .hero,
+  .template-index .hero-split {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .template-index main,
+  .template-index #MainContent,
+  .template-index main > .shopify-section:first-child,
+  .template-index main > div.shopify-section:first-child {
+    margin-top: 0;
+    padding-top: 0;
   }
 
   @media (min-width: 1024px) {

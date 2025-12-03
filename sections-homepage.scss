@@ -11,7 +11,7 @@
 // ========================================
 
 .hero {
-  margin-top: -44px; /* Pull hero up behind fixed header */
+  margin-top: 0; /* Body padding removed on homepage, sits flush */
 }
 
 .hero-image {
@@ -50,14 +50,32 @@
 }
 
 // ========================================
+// HOMEPAGE: Remove body padding for flush hero
+// ========================================
+
+.template-index body {
+  padding-top: 0;
+}
+
+.template-index main,
+.template-index #MainContent {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.template-index main > .shopify-section:first-child,
+.template-index main > div.shopify-section:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+// ========================================
 // HERO SPLIT SECTION
 // ========================================
 
 .hero-split {
   display: grid;
   min-height: 80vh;
-  margin-top: -48px; /* Pull up to sit flush under fixed header */
-  padding-top: 48px; /* Compensate for body padding */
 }
 
 @media (min-width: 1024px) {
