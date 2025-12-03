@@ -1,0 +1,114 @@
+/* ========================================
+   HEADER COMPONENT
+   Loaded via sections/header.liquid
+   ======================================== */
+
+.site-header {
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--s2) var(--s4);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: background-color 300ms ease, color 300ms ease;
+  border: none;
+  box-shadow: none;
+}
+
+/* Dynamic header color mode */
+.site-header[data-color-mode="dynamic"] {
+  background: var(--dynamic-header-bg, #1a1a1a);
+  color: var(--dynamic-header-text, #ffffff);
+}
+
+.site-header[data-color-mode="dynamic"] .site-logo,
+.site-header[data-color-mode="dynamic"] .header-nav a,
+.site-header[data-color-mode="dynamic"] .header-icon {
+  color: var(--dynamic-header-text, #ffffff);
+}
+
+#shopify-section-header {
+  position: static;
+  z-index: inherit;
+}
+
+.header-container {
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--s4);
+  padding-right: var(--s4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.header-nav {
+  display: none;
+  gap: var(--s3);
+}
+
+@media (min-width: 768px) {
+  .header-nav {
+    display: flex;
+  }
+}
+
+.header-nav a {
+  color: currentColor;
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 200ms ease;
+}
+
+.header-nav a:hover {
+  opacity: 0.65;
+}
+
+.header-icons {
+  display: flex;
+  gap: var(--s2);
+}
+
+.header-icon {
+  color: var(--paper);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.85;
+  transition: opacity 200ms ease;
+}
+
+.header-icon:hover {
+  opacity: 1;
+}
+
+.header-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.cart-count {
+  font-size: 9px;
+  background: var(--terracotta);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: var(--paper);
+}

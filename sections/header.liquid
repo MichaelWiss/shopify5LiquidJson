@@ -1,3 +1,5 @@
+{{ 'component-header.css' | asset_url | stylesheet_tag }}
+
 <header class="site-header" {% if section.settings.enable_dynamic_color %}data-color-mode="dynamic"{% endif %}>
   <div class="header-container">
     <a href="/" class="site-logo">{{ section.settings.logo_text | default: shop.name }}</a>

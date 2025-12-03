@@ -505,3 +505,120 @@
 .product-split-layout__spec-value {
   color: var(--ink);
 }
+
+// ========================================
+// BUTTONS (PRODUCT FORMS)
+// ========================================
+
+.btn {
+  width: 100%;
+  padding: 12px 24px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 200ms ease;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background: var(--accent);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--ink);
+  background: transparent;
+}
+
+// ========================================
+// COLOR DOTS (PRODUCT VARIANTS)
+// ========================================
+
+.color-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.color-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: transform 150ms ease;
+  position: relative;
+}
+
+.color-dot:hover {
+  transform: scale(1.15);
+}
+
+.color-dot.selected::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+
+/* Focus indicators for keyboard navigation (WCAG 2.1 Level A) */
+.color-dot:has(input:focus-visible),
+input.visually-hidden:focus-visible + .color-dot {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+// ========================================
+// PRODUCT FORM & META
+// ========================================
+
+.product-form-block {
+  margin: var(--s3) 0;
+}
+
+.product-description {
+  margin-top: var(--s4);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--ink-2);
+}
+
+.product-form {
+  display: grid;
+  gap: var(--s3);
+  border-top: 1px solid var(--border);
+  padding-top: var(--s3);
+}
+
+.product-meta {
+  border-top: 1px solid var(--border);
+  margin-top: var(--s4);
+  padding-top: var(--s3);
+  display: grid;
+  gap: var(--s2);
+}
+
+.product-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.product-meta-key {
+  color: var(--ink-2);
+}
+
+.product-meta-value {
+  color: var(--ink);
+}
