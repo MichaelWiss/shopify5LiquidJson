@@ -222,6 +222,8 @@ body.cart-drawer-open {
 
 .cart-drawer.is-open {
   transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
 }
 
 .cart-drawer__header {
