@@ -21,7 +21,7 @@
   font-size: 28px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.2;
+  line-height: 1.15;
   position: absolute;
   top: 48px;
   left: 20px;
@@ -29,6 +29,8 @@
   max-width: 320px;
   z-index: 2;
   font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: 0;
 }
 @media (min-width: 768px) {
   .hero-title {
@@ -102,7 +104,7 @@
   font-size: 48px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.2;
+  line-height: 1.15;
   font-weight: 300;
   letter-spacing: -0.02em;
   margin-bottom: 20px;
@@ -165,7 +167,7 @@
   font-size: 36px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: 20px;
 }
 
@@ -383,7 +385,7 @@
   font-size: 26px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: 12px;
 }
 
@@ -454,7 +456,7 @@
   font-size: 26px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.2;
+  line-height: 1.15;
   color: var(--paper);
   margin-bottom: 12px;
 }
@@ -577,7 +579,7 @@
   font-size: 32px;
   font-weight: 400;
   letter-spacing: -0.015em;
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: 56px;
 }
 

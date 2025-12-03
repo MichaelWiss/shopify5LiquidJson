@@ -37,6 +37,9 @@
   max-width: 320px;
   z-index: 2;
   font-weight: 300;
+  // Override mixin for hero specifically
+  line-height: 1.25;
+  letter-spacing: 0;
 
   @media (min-width: 768px) {
     font-size: $text-7xl;
