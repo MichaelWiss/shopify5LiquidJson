@@ -29,6 +29,14 @@
     <svg class="icon icon--arrow-up" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
+  {% when 'hamburger' %}
+    <svg class="icon icon--hamburger" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M3 5h14M3 10h14M3 15h14" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  {% when 'close' %}
+    <svg class="icon icon--close" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M5 5l10 10M15 5L5 15" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   {% else %}
     <svg class="icon" viewBox="0 0 12 12" aria-hidden="true">
       <circle cx="6" cy="6" r="5" fill="currentColor" />

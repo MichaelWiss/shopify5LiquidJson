@@ -41,6 +41,19 @@
   gap: var(--s3);
 }
 
+.product-detail__gallery-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--hair);
+  
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
 .product-summary {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);

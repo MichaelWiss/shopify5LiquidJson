@@ -9,8 +9,43 @@
   const Header = {
     init() {
       this.initScroll();
+      this.initMobileMenu();
       this.initDynamicColor();
       this.initScrollFade();
+    },
+
+    initMobileMenu() {
+      const toggle = document.querySelector('.header-mobile-toggle');
+      const drawer = document.getElementById('MobileMenu');
+      if (!toggle || !drawer) return;
+
+      const closeBtn = drawer.querySelector('.mobile-menu-close');
+      const backdrop = drawer;
+
+      const openMenu = () => {
+        drawer.classList.add('is-open');
+        drawer.setAttribute('aria-hidden', 'false');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeMenu = () => {
+        drawer.classList.remove('is-open');
+        drawer.setAttribute('aria-hidden', 'true');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      };
+
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openMenu();
+      });
+
+      closeBtn?.addEventListener('click', closeMenu);
+      
+      backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) closeMenu();
+      });
     },
 
     initScroll() {

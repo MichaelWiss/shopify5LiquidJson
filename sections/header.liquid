@@ -2,6 +2,10 @@
 
 <header class="site-header" {% if section.settings.enable_dynamic_color %}data-color-mode="dynamic"{% endif %}>
   <div class="header-container">
+    <button type="button" class="header-mobile-toggle hide-desktop" aria-label="Menu" aria-controls="MobileMenu" aria-expanded="false">
+      {% render 'icon', name: 'hamburger' %}
+    </button>
+
     <a href="/" class="site-logo">{{ section.settings.logo_text | default: shop.name }}</a>
 
     {% liquid
@@ -11,7 +15,7 @@
       endif
     %}
 
-    <nav class="header-nav" aria-label="{{ 'general.navigation' | t }}">
+    <nav class="header-nav hide-mobile" aria-label="{{ 'general.navigation' | t }}">
       {% if has_menu %}
         {% for link in linklists[section.settings.menu].links %}
           <a href="{{ link.url }}">{{ link.title }}</a>
@@ -31,6 +35,29 @@
       <a href="/cart" class="header-icon" data-action="open-cart">{% render 'icon', name: 'cart' %}
         <span class="cart-count {% if cart.item_count == 0 %}visually-hidden{% endif %}" aria-live="polite">{{ cart.item_count }}</span>
       </a>
+    </div>
+
+    <div id="MobileMenu" class="mobile-menu-drawer" aria-hidden="true">
+      <div class="mobile-menu-inner">
+        <div class="mobile-menu-header">
+          <span class="mobile-menu-title">Menu</span>
+          <button type="button" class="mobile-menu-close" aria-label="Close">
+            {% render 'icon', name: 'close' %}
+          </button>
+        </div>
+        <nav class="mobile-menu-nav">
+          {% if has_menu %}
+            {% for link in linklists[section.settings.menu].links %}
+              <a href="{{ link.url }}" class="mobile-menu-link">{{ link.title }}</a>
+            {% endfor %}
+          {% else %}
+            {% for item in fallback_items %}
+              {% assign parts = item | split: "|" %}
+              <a href="{{ parts[1] | default: '#' }}" class="mobile-menu-link">{{ parts[0] | default: 'Link' }}</a>
+            {% endfor %}
+          {% endif %}
+        </nav>
+      </div>
     </div>
   </div>
 </header>
