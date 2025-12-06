@@ -18,9 +18,19 @@
 {% endcomment %}
 
 <div class="product-gallery-item">
-  <div class="product-image"{% if placeholder_style %} style="background: {{ placeholder_style }};"{% endif %}>
-    {% if media %}
-      {{ media | media_tag }}
+  <div class="product-image product-detail__gallery-image"{% if placeholder_style %} style="background: {{ placeholder_style }};"{% endif %}>
+    {% if media.media_type == 'image' %}
+      {% liquid
+        assign loading_val = 'lazy'
+        assign fetch_p = 'auto'
+        if lazy_load == false
+          assign loading_val = 'eager'
+          assign fetch_p = 'high'
+        endif
+      %}
+      {{ media | image_url: width: 1400 | image_tag: loading: loading_val, fetchpriority: fetch_p, sizes: '(min-width: 1200px) 50vw, 100vw' }}
+    {% elsif media %}
+      {{ media | media_tag: class: 'product-detail__media-item' }}
     {% endif %}
   </div>
   {% if media and media.alt != blank %}

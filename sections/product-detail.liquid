@@ -152,7 +152,11 @@
       {% assign media_count = product.media.size %}
       {% if media_count > 0 %}
         {% for media in product.media %}
-          {% render 'product-gallery-item', media: media %}
+          {% assign lazy_load = true %}
+          {% if forloop.first %}
+            {% assign lazy_load = false %}
+          {% endif %}
+          {% render 'product-gallery-item', media: media, lazy_load: lazy_load %}
         {% endfor %}
       {% endif %}
 
