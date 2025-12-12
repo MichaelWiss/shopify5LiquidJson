@@ -151,7 +151,13 @@
 
           <div class="collection-page__grid" data-view="medium">
             {% for product in collection.products %}
-              {% render 'product-card', product: product %}
+              {% liquid
+                assign lazy_load = true
+                if forloop.index <= 3
+                  assign lazy_load = false
+                endif
+              %}
+              {% render 'product-card', product: product, lazy_load: lazy_load %}
             {% endfor %}
           </div>
 

@@ -51,6 +51,7 @@
       Contains: reset, tokens, header, hero base styles
     {%- endcomment -%}
     {% render 'critical-css' %}
+    {% render 'speculation-rules' %}
 
     {% if request.design_mode %}
       <link rel="stylesheet" href="{{ 'sections-list-collections.css' | asset_url }}">
@@ -63,11 +64,7 @@
     {%- endcomment -%}
     {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
 
-    {%- comment -%} 
-      CORE CSS - theme.css loaded with high priority (preload)
-      Contains essential base styles needed for first paint
-    {%- endcomment -%}
-    {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+
 
     {%- comment -%} 
       LAYOUT CSS - Loaded synchronously (header/footer on every page)

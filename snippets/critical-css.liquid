@@ -318,4 +318,13 @@
     transform: translateX(100%);
     z-index: 1000;
   }
+  /* ========================================
+     CONTENT VISIBILITY OPTIMIZATION
+     Improves rendering performance for long pages by
+     skipping layout calculations for off-screen sections.
+     ======================================== */
+  .shopify-section:nth-child(n+4) {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+  }
 </style>

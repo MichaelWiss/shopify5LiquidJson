@@ -2,7 +2,13 @@
   <a class="product-card__link" href="{{ product.url }}">
     <div class="product-card__media">
       {% if product.featured_media %}
-        {{ product.featured_media | image_url: width: 700 | image_tag: loading: 'lazy', class: 'product-card__image', sizes: '(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw' }}
+        {% liquid
+          assign loading = 'lazy'
+          if lazy_load == false
+            assign loading = 'eager'
+          endif
+        %}
+        {{ product.featured_media | image_url: width: 700 | image_tag: loading: loading, class: 'product-card__image', sizes: '(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw' }}
       {% else %}
         {{ 'product-1' | placeholder_svg_tag: 'product-card__placeholder' }}
       {% endif %}

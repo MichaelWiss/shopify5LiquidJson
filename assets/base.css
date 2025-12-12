@@ -512,3 +512,8 @@ textarea {
     scroll-behavior: auto !important;
   }
 }
+
+/* ======================================== */
+/* MERGED THEME.CSS STYLES */
+/* ======================================== */
+.image-text-section{padding:var(--s6) var(--s4)}.image-text-container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:var(--s5);align-items:center}.image-text-container.reverse{direction:rtl}.image-text-container.reverse>*{direction:ltr}.image-text-media{border:1px solid var(--border);overflow:hidden}.image-text-media-inner{width:100%;aspect-ratio:4/5;background:linear-gradient(135deg, #7a8450 0%, #a4b08c 100%)}.image-text-content{max-width:500px}.image-text-eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2);margin-bottom:var(--s2)}.image-text-heading{font-family:var(--serif);font-size:32px;font-weight:400;line-height:1.2;margin-bottom:var(--s3)}.image-text-body{font-size:13px;line-height:1.8;color:var(--ink-2);margin-bottom:var(--s4)}.image-text-link{display:inline-flex;align-items:center;gap:var(--s1);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);text-decoration:none;transition:gap 200ms ease}.image-text-link:hover{gap:var(--s2)}@media(min-width: 1024px){.image-text-container{grid-template-columns:1fr 1fr}}
