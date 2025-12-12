@@ -16,9 +16,19 @@
         "demo_heading": "Products",
         "demo_count": "13 items"
       }
+    },
+    "split_feature": {
+      "type": "split-feature",
+      "settings": {
+        "layout": "image-left",
+        "eyebrow": "Example Feature",
+        "heading": "Collection Highlight",
+        "body": "<p>You can now add narrative content to your collections.</p>"
+      }
     }
   },
   "order": [
+    "split_feature",
     "product-grid"
   ]
 }

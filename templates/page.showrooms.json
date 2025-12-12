@@ -1,11 +1,112 @@
 {
   "sections": {
-    "main": {
-      "type": "showroom",
+    "hero": {
+      "type": "showroom-hero",
+      "settings": {
+        "title": "The Showroom Experience",
+        "description": "The entirety of the In Common With collection is available to view and shop at Quarters, our concept shop and community hub about the Quarry, Cincinnati. Come by for a hands-free experience, let our team of independent works help peers and fellow designers. Designed to inspire and continually evolve, it's a living talk on community, design, and craft."
+      }
+    },
+    "visit": {
+      "type": "showroom-booking",
+      "settings": {
+        "title": "In Common With Visit",
+        "show_calendar": true
+      },
+      "blocks": {
+        "info_1": {
+          "type": "info_item",
+          "settings": {
+            "title": "SHOWROOM HOURS & ADDRESS",
+            "text": "38 Commerce Park, Suite 200 Milford, Ohio\nMon-Fri 9am-5pm EST"
+          }
+        },
+        "info_2": {
+          "type": "info_item",
+          "settings": {
+            "title": "TOURS & PRIVATE APPOINTMENTS",
+            "text": "Schedule a guided tour of our complete collection with our design team. Perfect for designers, architects, and design enthusiasts."
+          }
+        },
+        "info_3": {
+          "type": "info_item",
+          "settings": {
+            "title": "WHAT TO EXPECT",
+            "text": "Explore our full furniture line, meet with our craftspeople, and discover the story behind each piece. Light refreshments provided."
+          }
+        },
+        "info_4": {
+          "type": "info_item",
+          "settings": {
+            "title": "PARKING & ACCESSIBILITY",
+            "text": "Free parking available on-site. Our showroom is fully accessible with elevator access to all floors."
+          }
+        }
+      },
+      "block_order": [
+        "info_1",
+        "info_2",
+        "info_3",
+        "info_4"
+      ]
+    },
+    "showcase": {
+      "type": "showroom-showcase",
       "settings": {}
+    },
+    "feature_1": {
+      "type": "split-feature",
+      "settings": {
+        "layout": "image-left",
+        "heading": "Thoughtfully designed spaces showcasing our complete collection",
+        "body": "<p>Our showroom features carefully curated vignettes that demonstrate how our pieces work together in real living spaces. From intimate dining areas to expansive living rooms, each setting is designed to inspire and inform your own design decisions. Our team is available to discuss customization options, materials, and finishes to ensure each piece perfectly suits your space.</p>",
+        "eyebrow": "Curated Vignettes",
+        "link_label": "",
+        "link_url": ""
+      }
+    },
+    "feature_2": {
+      "type": "split-feature",
+      "settings": {
+        "layout": "image-right",
+        "heading": "Our Production Space",
+        "body": "<p>We opened our first production space in Brooklyn with the same characteristic finery that we use in all of our furniture—natural wood, thoughtful design, and artisan craft. It's a place where you can watch our craftspeople at work and see the dedication that goes into every piece.</p>",
+        "eyebrow": "Craftsmanship",
+        "link_label": "",
+        "link_url": ""
+      }
+    },
+    "details": {
+      "type": "gallery-grid",
+      "settings": {
+        "columns": 2
+      },
+      "blocks": {
+        "img_1": {
+          "type": "image",
+          "settings": {
+            "caption": "Decor Detail"
+          }
+        },
+        "img_2": {
+          "type": "image",
+          "settings": {
+            "caption": "Dining Setup"
+          }
+        }
+      },
+      "block_order": [
+        "img_1",
+        "img_2"
+      ]
     }
   },
   "order": [
-    "main"
+    "hero",
+    "visit",
+    "showcase",
+    "feature_1",
+    "feature_2",
+    "details"
   ]
 }

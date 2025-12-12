@@ -1,0 +1,46 @@
+<section class="showroom-page">
+  <div class="showroom-hero">
+    <h1 class="showroom-hero__title">{{ section.settings.title | default: 'The Showroom Experience' }}</h1>
+    <p class="showroom-hero__description">
+      {{ section.settings.description | default: "The entirety of the In Common With collection is available to view and shop at Quarters, our concept shop and community hub about the Quarry, Cincinnati. Come by for a hands-free experience, let our team of independent works help peers and fellow designers. Designed to inspire and continually evolve, it's a living talk on community, design, and craft." }}
+    </p>
+    
+    <div class="showroom-hero__image">
+      {% if section.settings.hero_image %}
+        {{ section.settings.hero_image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'hero-image' }}
+      {% else %}
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&h=600&fit=crop" alt="Showroom Interior">
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Showroom Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Hero Title",
+      "default": "The Showroom Experience"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Hero Description",
+      "default": "The entirety of the In Common With collection is available to view and shop at Quarters..."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Showroom Hero"
+    }
+  ]
+}
+{% endschema %}

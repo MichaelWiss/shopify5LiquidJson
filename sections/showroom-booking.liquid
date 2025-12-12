@@ -1,0 +1,123 @@
+<section class="showroom-section">
+  <h2 class="showroom-section__title">{{ section.settings.title | default: 'In Common With Visit' }}</h2>
+  
+  <div class="showroom-booking">
+    <div class="showroom-visit-info">
+      {% for block in section.blocks %}
+        <div class="showroom-info-item" {{ block.shopify_attributes }}>
+          <h4>{{ block.settings.title }}</h4>
+          <p>{{ block.settings.text | newline_to_br }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_calendar %}
+    <div class="showroom-calendar">
+      <div class="showroom-calendar__header">
+        <span>←</span>
+        <span class="showroom-calendar__month">November 2025</span>
+        <span>→</span>
+      </div>
+      <div class="showroom-calendar__grid">
+        <div class="showroom-calendar__day">S</div>
+        <div class="showroom-calendar__day">M</div>
+        <div class="showroom-calendar__day">T</div>
+        <div class="showroom-calendar__day">W</div>
+        <div class="showroom-calendar__day">T</div>
+        <div class="showroom-calendar__day">F</div>
+        <div class="showroom-calendar__day">S</div>
+        <div class="showroom-calendar__day">1</div>
+        <div class="showroom-calendar__day">2</div>
+        <div class="showroom-calendar__day">3</div>
+        <div class="showroom-calendar__day">4</div>
+        <div class="showroom-calendar__day">5</div>
+        <div class="showroom-calendar__day">6</div>
+        <div class="showroom-calendar__day">7</div>
+        <div class="showroom-calendar__day">8</div>
+        <div class="showroom-calendar__day">9</div>
+        <div class="showroom-calendar__day">10</div>
+        <div class="showroom-calendar__day">11</div>
+        <div class="showroom-calendar__day">12</div>
+        <div class="showroom-calendar__day">13</div>
+        <div class="showroom-calendar__day">14</div>
+      </div>
+      <button class="showroom-calendar__button">BOOK A TOUR</button>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Showroom Booking",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "In Common With Visit"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_calendar",
+      "label": "Show Calendar",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "info_item",
+      "name": "Info Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Details go here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Showroom Booking",
+      "blocks": [
+        {
+          "type": "info_item",
+          "settings": {
+            "title": "SHOWROOM HOURS & ADDRESS",
+            "text": "38 Commerce Park, Suite 200 Milford, Ohio\nMon-Fri 9am-5pm EST"
+          }
+        },
+        {
+          "type": "info_item",
+          "settings": {
+            "title": "TOURS & PRIVATE APPOINTMENTS",
+            "text": "Schedule a guided tour of our complete collection with our design team. Perfect for designers, architects, and design enthusiasts."
+          }
+        },
+        {
+          "type": "info_item",
+          "settings": {
+            "title": "WHAT TO EXPECT",
+            "text": "Explore our full furniture line, meet with our craftspeople, and discover the story behind each piece. Light refreshments provided."
+          }
+        },
+        {
+          "type": "info_item",
+          "settings": {
+            "title": "PARKING & ACCESSIBILITY",
+            "text": "Free parking available on-site. Our showroom is fully accessible with elevator access to all floors."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

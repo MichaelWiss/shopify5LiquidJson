@@ -1,0 +1,90 @@
+<div class="showroom-section">
+  <div class="showroom-showcase">
+    {% assign fallback_large_1 = "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1400&h=650&fit=crop" %}
+    {% assign fallback_medium_1 = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&h=500&fit=crop" %}
+    {% assign fallback_medium_2 = "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=700&h=500&fit=crop" %}
+    {% assign fallback_large_2 = "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1400&h=650&fit=crop" %}
+
+    <div class="showroom-showcase__large">
+      {% if section.settings.image_1 != blank %}
+        {{ section.settings.image_1 | image_url: width: 1400 | image_tag: loading: 'lazy' }}
+      {% else %}
+        <img src="{{ fallback_large_1 }}" alt="Main Showroom">
+      {% endif %}
+    </div>
+    
+    <div class="showroom-showcase__grid">
+      <div class="showroom-showcase__medium">
+        {% if section.settings.image_2 != blank %}
+          {{ section.settings.image_2 | image_url: width: 700 | image_tag: loading: 'lazy' }}
+        {% else %}
+          <img src="{{ fallback_medium_1 }}" alt="Furniture Detail">
+        {% endif %}
+      </div>
+      <div class="showroom-showcase__medium">
+        {% if section.settings.image_3 != blank %}
+          {{ section.settings.image_3 | image_url: width: 700 | image_tag: loading: 'lazy' }}
+        {% else %}
+          <img src="{{ fallback_medium_2 }}" alt="Living Space">
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="showroom-showcase__large">
+      {% if section.settings.image_4 != blank %}
+        {{ section.settings.image_4 | image_url: width: 1400 | image_tag: loading: 'lazy' }}
+      {% else %}
+        <img src="{{ fallback_large_2 }}" alt="Showroom View">
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Showroom Showcase",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image 1 (Large Top)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "header",
+      "content": "Image 2 (Medium Left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "header",
+      "content": "Image 3 (Medium Right)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "header",
+      "content": "Image 4 (Large Bottom)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Showroom Showcase"
+    }
+  ]
+}
+{% endschema %}
