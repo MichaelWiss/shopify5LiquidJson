@@ -1,4 +1,4 @@
-<section class="statement-section" style="background-color: {{ section.settings.background_color }};">
+<section class="statement-section" style="background-color: {{ section.settings.background_color | escape }};">
   <div class="statement-container">
     <div class="statement-text">
       {% if section.settings.heading != blank %}
@@ -8,7 +8,7 @@
         <p>{{ section.settings.body | escape | newline_to_br }}</p>
       {% endif %}
       {% if section.settings.link_label != blank and section.settings.link_url != blank %}
-        <a class="statement-link" href="{{ section.settings.link_url }}">{{ section.settings.link_label }}</a>
+        <a class="statement-link" href="{{ section.settings.link_url | escape }}">{{ section.settings.link_label }}</a>
       {% endif %}
     </div>
     {% if section.settings.image != blank %}

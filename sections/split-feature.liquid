@@ -25,7 +25,7 @@
         <div class="side-text">{{ section.settings.body }}</div>
       {% endif %}
       {% if section.settings.link_label != blank and section.settings.link_url != blank %}
-        <a href="{{ section.settings.link_url }}" class="side-link">
+        <a href="{{ section.settings.link_url | escape }}" class="side-link">
           {{ section.settings.link_label }}
           {% render 'icon', name: 'arrow-right' %}
         </a>

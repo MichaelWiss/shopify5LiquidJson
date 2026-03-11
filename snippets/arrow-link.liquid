@@ -18,7 +18,7 @@
   {% assign height = icon_size | times: 0.625 | round %}
 {% endif %}
 
-<a href="{{ url }}" class="{% if class %}{{ class }}{% else %}arrow-link{% endif %}">
+<a href="{{ url | escape }}" class="{% if class %}{{ class }}{% else %}arrow-link{% endif %}">
   {{ text }}
   <span class="arrow-link__icon" style="width: {{ width }}px; height: {{ height }}px; display: inline-block;">
     {% render 'icon', name: 'arrow-right-wide' %}

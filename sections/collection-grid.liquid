@@ -11,7 +11,7 @@
 
         <div class="collection-page__grid collection-page__grid--demo">
           {% for block in section.blocks %}
-            <article class="collection-demo-card" style="background: linear-gradient(135deg, {{ block.settings.gradient_start }} 0%, {{ block.settings.gradient_end }} 100%);" {{ block.shopify_attributes }}>
+            <article class="collection-demo-card" style="background: linear-gradient(135deg, {{ block.settings.gradient_start | escape }} 0%, {{ block.settings.gradient_end | escape }} 100%);" {{ block.shopify_attributes }}>
               <div class="collection-demo-card__meta">
                 {% if block.settings.eyebrow != blank %}
                   <p class="collection-demo-card__eyebrow">{{ block.settings.eyebrow }}</p>
@@ -58,7 +58,7 @@
                 {% for item in quick_links %}
                   {% assign parts = item | strip | split: '|' %}
                   {% if parts[0] != blank %}
-                    <li><a href="{{ parts[1] | default: '#' }}">{{ parts[0] }}</a></li>
+                    <li><a href="{{ parts[1] | default: '#' | escape }}">{{ parts[0] }}</a></li>
                   {% endif %}
                 {% endfor %}
               </ul>

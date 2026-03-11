@@ -30,7 +30,7 @@
           <div class="collections-list-description">{{ block.settings.description }}</div>
         {% endif %}
         
-        <a href="{{ block.settings.link | default: '#' }}" class="collections-list-link">
+        <a href="{{ block.settings.link | default: '#' | escape }}" class="collections-list-link">
           {{ block.settings.link_text | default: 'View Collection' }}
           {% render 'icon', name: 'arrow-right' %}
         </a>

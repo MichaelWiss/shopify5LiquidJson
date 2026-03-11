@@ -25,7 +25,7 @@
         {% assign fallback_items = fallback_links | split: "," %}
         {% for item in fallback_items %}
           {% assign parts = item | split: "|" %}
-          <a href="{{ parts[1] | default: '#' }}">{{ parts[0] | default: 'Link' }}</a>
+          <a href="{{ parts[1] | default: '#' | escape }}">{{ parts[0] | default: 'Link' }}</a>
         {% endfor %}
       {% endif %}
     </nav>
@@ -53,7 +53,7 @@
           {% else %}
             {% for item in fallback_items %}
               {% assign parts = item | split: "|" %}
-              <a href="{{ parts[1] | default: '#' }}" class="mobile-menu-link">{{ parts[0] | default: 'Link' }}</a>
+              <a href="{{ parts[1] | default: '#' | escape }}" class="mobile-menu-link">{{ parts[0] | default: 'Link' }}</a>
             {% endfor %}
           {% endif %}
         </nav>

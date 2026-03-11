@@ -15,7 +15,7 @@
           {% comment %}First set of products{% endcomment %}
           {% for block in section.blocks %}
             {% assign fallback_src = fallback_products[forloop.index0] %}
-            <a class="product-thumb" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }} role="listitem">
+            <a class="product-thumb" href="{{ block.settings.link | default: '#' | escape }}" {{ block.shopify_attributes }} role="listitem">
               <div class="product-thumb-image">
                 {% if block.settings.image != blank %}
                   {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '140px', alt: block.settings.title }}
@@ -34,7 +34,7 @@
           {% comment %}Duplicate products for seamless loop{% endcomment %}
           {% for block in section.blocks %}
             {% assign fallback_src = fallback_products[forloop.index0] %}
-            <a class="product-thumb" href="{{ block.settings.link | default: '#' }}" aria-hidden="true" role="listitem">
+            <a class="product-thumb" href="{{ block.settings.link | default: '#' | escape }}" aria-hidden="true" role="listitem">
               <div class="product-thumb-image">
                 {% if block.settings.image != blank %}
                   {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', sizes: '140px', alt: block.settings.title }}

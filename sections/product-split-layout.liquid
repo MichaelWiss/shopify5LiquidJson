@@ -58,7 +58,7 @@
             </div>
 
           {% when 'link' %}
-            <a href="{{ block.settings.url }}" class="product-split-layout__link" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.url | escape }}" class="product-split-layout__link" {{ block.shopify_attributes }}>
               {{ block.settings.text | default: "Shop" }}
             </a>
 

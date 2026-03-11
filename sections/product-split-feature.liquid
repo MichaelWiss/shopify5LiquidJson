@@ -78,8 +78,8 @@
      theme-level defaults that might break sticky scrolling.
   */
   #shopify-section-{{ section.id }} {
-    background-color: {{ section.settings.bg_color }};
-    color: {{ section.settings.text_color }};
+    background-color: {{ section.settings.bg_color | escape }};
+    color: {{ section.settings.text_color | escape }};
     /* 
        Sticky Logic:
        The parent of a sticky element cannot have overflow: hidden.
@@ -346,7 +346,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  var sectionId = '{{ section.id }}';
+  var sectionId = {{ section.id | json }};
   var container = document.getElementById('shopify-section-' + sectionId);
   var parallaxImg = container.querySelector('#psfParallaxImg');
   var stickyContent = container.querySelector('#psfStickyContent');

@@ -150,7 +150,11 @@
           const cartResponse = await fetch(`${getCartBaseURL()}cart?sections=cart`);
           if (cartResponse.ok) {
             const cartHTML = await cartResponse.json();
-            if (cartHTML.cart) cartSection.innerHTML = cartHTML.cart;
+            if (cartHTML.cart) {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(cartHTML.cart, 'text/html');
+              cartSection.replaceChildren(...doc.body.childNodes);
+            }
           }
         }
       } catch (error) {
@@ -160,10 +164,10 @@
 
     updateFromHTML(sectionHTML) {
       if (!this.state.content || !sectionHTML) return;
-      const temp = document.createElement('div');
-      temp.innerHTML = sectionHTML;
-      const updated = temp.querySelector('#cartDrawerContent');
-      if (updated) this.state.content.innerHTML = updated.innerHTML;
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(sectionHTML, 'text/html');
+      const updated = doc.querySelector('#cartDrawerContent');
+      if (updated) this.state.content.replaceChildren(...updated.childNodes);
     },
 
     updateCountDisplay(count) {
@@ -189,7 +193,8 @@
           this.close();
         } else if (action === 'cart-qty-increase' || action === 'cart-qty-decrease') {
           e.preventDefault();
-          const line = target.dataset.line;
+          const line = parseInt(target.dataset.line, 10);
+          if (!Number.isFinite(line) || line < 1) return;
           const item = target.closest('.cart-item');
           const qtyEl = item?.querySelector('.cart-item__qty-value');
           let qty = parseInt(qtyEl?.textContent || 0);
@@ -197,7 +202,9 @@
           await this.updateItem(line, qty);
         } else if (action === 'cart-remove') {
           e.preventDefault();
-          await this.updateItem(target.dataset.line, 0);
+          const removeLine = parseInt(target.dataset.line, 10);
+          if (!Number.isFinite(removeLine) || removeLine < 1) return;
+          await this.updateItem(removeLine, 0);
         }
       });
 

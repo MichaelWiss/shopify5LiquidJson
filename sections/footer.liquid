@@ -27,7 +27,7 @@
                 {% for line in lines %}
                   {% assign parts = line | strip | split: '|' %}
                   {% if parts[0] != blank %}
-                    <a href="{{ parts[1] | default: '#' }}">{{ parts[0] }}</a>
+                    <a href="{{ parts[1] | default: '#' | escape }}">{{ parts[0] }}</a>
                   {% endif %}
                 {% endfor %}
               </nav>
@@ -57,10 +57,10 @@
     {% if section.settings.privacy_link != blank or section.settings.terms_link != blank %}
       <div>
         {% if section.settings.privacy_link != blank %}
-          <a href="{{ section.settings.privacy_link }}">Privacy Policy</a>
+          <a href="{{ section.settings.privacy_link | escape }}">Privacy Policy</a>
         {% endif %}
         {% if section.settings.terms_link != blank %}
-          <a href="{{ section.settings.terms_link }}">Terms of Service</a>
+          <a href="{{ section.settings.terms_link | escape }}">Terms of Service</a>
         {% endif %}
       </div>
     {% endif %}

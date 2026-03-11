@@ -35,7 +35,7 @@
 
     initForm(form) {
       const sectionId = form.dataset.sectionId;
-      const script = document.querySelector(`script[data-product-json="${sectionId}"]`);
+      const script = document.querySelector(`script[data-product-json="${CSS.escape(sectionId)}"]`);
       if (!script) return;
 
       let productData;

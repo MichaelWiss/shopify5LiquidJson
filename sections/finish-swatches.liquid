@@ -33,9 +33,9 @@
             {% if block.settings.image != blank %}
               {{ block.settings.image | image_url: width: 280 | image_tag: loading: 'lazy', class: 'finish-sample', sizes: '(min-width: 1024px) 140px, 33vw' }}
             {% elsif block.settings.swatch_background != blank %}
-              <div class="finish-sample" style="background: {{ block.settings.swatch_background }};"></div>
+              <div class="finish-sample" style="background: {{ block.settings.swatch_background | escape }};"></div>
             {% elsif block.settings.swatch_color != blank %}
-              <div class="finish-sample" style="background-color: {{ block.settings.swatch_color }};"></div>
+              <div class="finish-sample" style="background-color: {{ block.settings.swatch_color | escape }};"></div>
             {% else %}
               <div class="finish-sample">
                 {{ 'image' | placeholder_svg_tag }}

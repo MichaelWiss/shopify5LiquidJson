@@ -174,7 +174,7 @@
               {% endif %}
               
               {% if block.settings.link_text != blank and block.settings.link_url != blank %}
-                <a href="{{ block.settings.link_url }}" class="read-more">{{ block.settings.link_text }}</a>
+                <a href="{{ block.settings.link_url | escape }}" class="read-more">{{ block.settings.link_text }}</a>
               {% endif %}
             </div>
           </div>

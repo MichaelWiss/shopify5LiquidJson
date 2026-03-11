@@ -58,7 +58,7 @@
       <label 
         class="color-dot{% if option.selected_value == value %} selected{% endif %}" 
         for="{{ input_id }}"
-        {% if swatch_style != '' %} style="{{ swatch_style }}"{% endif %} 
+        {% if swatch_style != '' %} style="{{ swatch_style | escape }}"{% endif %} 
         title="{{ value }}">
         <span class="visually-hidden">{{ value }}</span>
       </label>
