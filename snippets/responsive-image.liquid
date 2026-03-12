@@ -1,0 +1,45 @@
+{% comment %}
+  Responsive Image Snippet
+  Replaces 14+ duplicated image-loading patterns across sections.
+
+  Accepts:
+  - image:            {Object}  Shopify image object (required)
+  - width:            {Number}  Max width for image_url (default: 800)
+  - loading:          {String}  'lazy' | 'eager' (default: 'lazy')
+  - fetchpriority:    {String}  'high' | 'low' | 'auto' (optional)
+  - sizes:            {String}  sizes attribute (optional)
+  - class:            {String}  CSS class for the img tag (optional)
+  - alt:              {String}  Alt text override (default: image.alt)
+  - id:               {String}  id attribute (optional)
+  - placeholder_type: {String}  Shopify placeholder name e.g. 'product-1', 'collection-1', 'image', 'lifestyle-1' (default: 'image')
+  - placeholder_class:{String}  CSS class for the placeholder SVG (optional)
+  - fallback_src:     {String}  External fallback URL if no image AND no SVG placeholder wanted (optional)
+  - fallback_alt:     {String}  Alt text for fallback image (optional)
+
+  Usage:
+  {% render 'responsive-image', image: product.featured_media, width: 700, class: 'product-card__image', sizes: '(min-width: 1200px) 33vw, 50vw' %}
+  {% render 'responsive-image', image: section.settings.image, width: 1400, loading: 'eager', fetchpriority: 'high', sizes: '100vw' %}
+{% endcomment %}
+
+{%- liquid
+  assign img_width = width | default: 800
+  assign img_loading = loading | default: 'lazy'
+  assign img_alt = alt | default: image.alt | default: ''
+  assign img_class = class | default: ''
+  assign img_id = id | default: ''
+  assign ph_type = placeholder_type | default: 'image'
+  assign ph_class = placeholder_class | default: ''
+-%}
+
+{%- if image != blank -%}
+  {{ image | image_url: width: img_width | image_tag: loading: img_loading, class: img_class, alt: img_alt, sizes: sizes, fetchpriority: fetchpriority, id: img_id }}
+{%- elsif fallback_src != blank -%}
+  <img
+    src="{{ fallback_src }}"
+    alt="{{ fallback_alt | default: '' | escape }}"
+    {% if img_class != blank %}class="{{ img_class }}"{% endif %}
+    loading="{{ img_loading }}"
+  >
+{%- else -%}
+  {{ ph_type | placeholder_svg_tag: ph_class }}
+{%- endif -%}

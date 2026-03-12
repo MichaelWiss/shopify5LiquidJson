@@ -20,11 +20,7 @@
           {% assign fallback_alt = quarters_alt[forloop.index0] | default: 'Quarters image' %}
           {% assign image_alt = block.settings.alt_text | default: fallback_alt %}
           <div class="quarters-image" {{ block.shopify_attributes }}>
-            {% if block.settings.image != blank %}
-              {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 50vw, 100vw', alt: image_alt }}
-            {% else %}
-              <img src="{{ fallback_src }}" alt="{{ image_alt }}" loading="lazy">
-            {% endif %}
+            {% render 'responsive-image', image: block.settings.image, width: 1200, sizes: '(min-width: 1024px) 50vw, 100vw', alt: image_alt, fallback_src: fallback_src, fallback_alt: image_alt %}
           </div>
         {% endfor %}
       </div>

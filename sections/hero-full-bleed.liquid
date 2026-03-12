@@ -1,9 +1,5 @@
 <section class="hero">
-  {% if section.settings.image != blank %}
-    {{ section.settings.image | image_url: width: 3200 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'hero-image', sizes: '100vw' }}
-  {% else %}
-    {{ 'lifestyle-1' | placeholder_svg_tag: 'hero-image placeholder-svg' }}
-  {% endif %}
+  {% render 'responsive-image', image: section.settings.image, width: 3200, loading: 'eager', fetchpriority: 'high', class: 'hero-image', sizes: '100vw', placeholder_type: 'lifestyle-1', placeholder_class: 'hero-image placeholder-svg' %}
   <div class="hero-overlay"></div>
   {% if section.settings.heading != blank %}
     <h1 class="hero-title" {% if section.settings.enable_scroll_fade %}data-scroll-fade{% endif %}>{{ section.settings.heading }}</h1>

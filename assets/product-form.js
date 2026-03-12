@@ -1,31 +1,14 @@
 /**
  * Product Form Module
  * Handles variant selection, price updates, and availability
+ *
+ * Depends on utils.js (window.ThemeUtils)
  */
 
 (function ProductFormModule() {
   'use strict';
 
-  // Shared utility - minimal inline version
-  const formatMoney = (cents) => {
-    if (typeof window.Shopify !== 'undefined' && typeof window.Shopify.formatMoney === 'function') {
-      const format = window.Shopify.money_format ||
-        window.Shopify.currency?.active_format ||
-        window.Shopify.currency?.money_format ||
-        '${{amount}}';
-      return window.Shopify.formatMoney(cents, format);
-    }
-    return `$${(cents / 100).toFixed(2)}`;
-  };
-
-  const ErrorHandler = {
-    log(error, context = '') {
-      console.error(`[Product Error${context ? ` - ${context}` : ''}]:`, error);
-    },
-    handle(error, context = '') {
-      this.log(error, context);
-    }
-  };
+  const { formatMoney, ErrorHandler, onReady } = window.ThemeUtils;
 
   const Product = {
     init() {
@@ -129,17 +112,11 @@
   };
 
   // Auto-initialize on product pages
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      const template = document.body.dataset.template ||
-        document.body.className.match(/template-(\w+)/)?.[1];
-      if (template === 'product') Product.init();
-    });
-  } else {
+  onReady(() => {
     const template = document.body.dataset.template ||
       document.body.className.match(/template-(\w+)/)?.[1];
     if (template === 'product') Product.init();
-  }
+  });
 
   // Expose for external access
   window.ProductForm = Product;

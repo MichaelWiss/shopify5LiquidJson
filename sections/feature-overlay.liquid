@@ -1,10 +1,6 @@
 <section class="feature-large">
   {% assign fallback_feature = 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=90' %}
-  {% if section.settings.image != blank %}
-    {{ section.settings.image | image_url: width: 3200 | image_tag: loading: 'lazy', class: 'feature-image', sizes: '100vw' }}
-  {% else %}
-    <img src="{{ fallback_feature }}" alt="{{ section.settings.caption_label | default: 'Feature image' }}" class="feature-image" loading="lazy">
-  {% endif %}
+  {% render 'responsive-image', image: section.settings.image, width: 3200, class: 'feature-image', sizes: '100vw', fallback_src: fallback_feature, fallback_alt: section.settings.caption_label %}
   {% if section.settings.caption_label != blank or section.settings.caption_body != blank or section.settings.caption_link_label != blank %}
     <div class="feature-caption">
       {% if section.settings.caption_label != blank %}

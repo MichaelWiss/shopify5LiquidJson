@@ -1,39 +1,16 @@
 /**
  * Cart Drawer Module
  * Handles cart drawer UI, AJAX cart operations, and focus management
+ *
+ * Depends on utils.js (window.ThemeUtils)
  */
 
 (function CartDrawerModule() {
   'use strict';
 
-  // Shared utility - minimal inline version
-  const formatMoney = (cents) => {
-    if (typeof window.Shopify !== 'undefined' && typeof window.Shopify.formatMoney === 'function') {
-      const format = window.Shopify.money_format ||
-        window.Shopify.currency?.active_format ||
-        window.Shopify.currency?.money_format ||
-        '${{amount}}';
-      return window.Shopify.formatMoney(cents, format);
-    }
-    return `$${(cents / 100).toFixed(2)}`;
-  };
+  const U = window.ThemeUtils;
+  const { ErrorHandler, formatMoney, getCartBaseURL, trapFocus, releaseFocus, cartAPI, onReady } = U;
 
-  const getCartBaseURL = () => {
-    const base = window.Shopify?.routes?.root || '/';
-    return base.endsWith('/') ? base : `${base}/`;
-  };
-
-  const ErrorHandler = {
-    log(error, context = '') {
-      console.error(`[Cart Error${context ? ` - ${context}` : ''}]:`, error);
-    },
-    handle(error, context = '', userMessage = null) {
-      this.log(error, context);
-      if (userMessage) console.warn('User message:', userMessage);
-    }
-  };
-
-  // Cart State & Logic
   const Cart = {
     state: {
       drawer: null,
@@ -81,50 +58,16 @@
     },
 
     trapFocus() {
-      if (!this.state.drawer) return;
-      const focusableSelectors = 'a[href], button:not([disabled]), textarea, input:not([type="hidden"]):not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
-      const focusableElements = this.state.drawer.querySelectorAll(focusableSelectors);
-      if (!focusableElements.length) return;
-
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
-      firstElement?.focus();
-
-      this.state.keydownHandler = (event) => {
-        if (event.key !== 'Tab') return;
-        if (event.shiftKey && document.activeElement === firstElement) {
-          event.preventDefault();
-          lastElement?.focus();
-        } else if (!event.shiftKey && document.activeElement === lastElement) {
-          event.preventDefault();
-          firstElement?.focus();
-        }
-      };
-
-      this.state.drawer.addEventListener('keydown', this.state.keydownHandler);
+      trapFocus(this.state.drawer, this.state);
     },
 
     releaseFocus() {
-      if (this.state.keydownHandler && this.state.drawer) {
-        this.state.drawer.removeEventListener('keydown', this.state.keydownHandler);
-        this.state.keydownHandler = null;
-      }
-      if (this.state.lastTrigger?.focus) {
-        this.state.lastTrigger.focus();
-      }
-      this.state.lastTrigger = null;
+      releaseFocus(this.state.drawer, this.state);
     },
 
     async updateItem(line, quantity) {
       try {
-        const response = await fetch('/cart/change.js', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ line, quantity })
-        });
-        const data = await response.json();
-        if (!response.ok) throw new Error('Unable to update cart item');
-
+        const data = await cartAPI.change(line, quantity);
         this.updateCountDisplay(data.item_count);
         if (data.item_count === 0) this.close();
         await this.refresh();
@@ -138,25 +81,32 @@
         const { pathname, search } = window.location;
         const requestUrl = `${pathname}${search || ''}`;
 
+        const tasks = [];
+
         if (this.state.content) {
-          const drawerResponse = await fetch(`${requestUrl}${search ? '&' : '?'}sections=cart-drawer`);
-          if (!drawerResponse.ok) throw new Error('Failed to fetch cart drawer');
-          const drawerSections = await drawerResponse.json();
-          this.updateFromHTML(drawerSections['cart-drawer']);
+          tasks.push(
+            fetch(`${requestUrl}${search ? '&' : '?'}sections=cart-drawer`)
+              .then(r => { if (!r.ok) throw new Error('Failed to fetch cart drawer'); return r.json(); })
+              .then(sections => this.updateFromHTML(sections['cart-drawer']))
+          );
         }
 
         const cartSection = document.getElementById('shopify-section-cart');
         if (cartSection) {
-          const cartResponse = await fetch(`${getCartBaseURL()}cart?sections=cart`);
-          if (cartResponse.ok) {
-            const cartHTML = await cartResponse.json();
-            if (cartHTML.cart) {
-              const parser = new DOMParser();
-              const doc = parser.parseFromString(cartHTML.cart, 'text/html');
-              cartSection.replaceChildren(...doc.body.childNodes);
-            }
-          }
+          tasks.push(
+            fetch(`${getCartBaseURL()}cart?sections=cart`)
+              .then(r => r.ok ? r.json() : null)
+              .then(cartHTML => {
+                if (cartHTML?.cart) {
+                  const parser = new DOMParser();
+                  const doc = parser.parseFromString(cartHTML.cart, 'text/html');
+                  cartSection.replaceChildren(...doc.body.childNodes);
+                }
+              })
+          );
         }
+
+        await Promise.all(tasks);
       } catch (error) {
         ErrorHandler.handle(error, 'Refresh Cart');
       }
@@ -177,8 +127,39 @@
       this.state.count.classList.toggle('visually-hidden', parsed === 0);
     },
 
+    async addBundle(button) {
+      const productsString = button.dataset.products;
+      if (!productsString) return;
+
+      const variantIds = productsString.split(',').filter(id => id.trim());
+      if (!variantIds.length) return;
+
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Adding...';
+
+      try {
+        const items = variantIds.map(id => ({ id: parseInt(id, 10), quantity: 1 }));
+        await cartAPI.add({ items });
+        const cart = await cartAPI.get();
+        this.updateCountDisplay(cart.item_count);
+        await this.refresh();
+      } catch (error) {
+        ErrorHandler.handle(error, 'Add Bundle', 'Unable to add bundle to cart.');
+      } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    },
+
     bindEvents() {
-      // Click delegation for cart actions
+      this.bindClickActions();
+      this.bindOverlay();
+      this.bindEscapeKey();
+      this.bindAddToCartForm();
+    },
+
+    bindClickActions() {
       document.addEventListener('click', async (e) => {
         const target = e.target.closest('[data-action]');
         if (!target) return;
@@ -205,20 +186,26 @@
           const removeLine = parseInt(target.dataset.line, 10);
           if (!Number.isFinite(removeLine) || removeLine < 1) return;
           await this.updateItem(removeLine, 0);
+        } else if (action === 'add-bundle') {
+          e.preventDefault();
+          await this.addBundle(target);
         }
       });
+    },
 
-      // Overlay click
+    bindOverlay() {
       this.state.overlay?.addEventListener('click', (e) => {
         if (e.target === this.state.overlay) this.close();
       });
+    },
 
-      // Escape key
+    bindEscapeKey() {
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && this.isOpen) this.close();
       });
+    },
 
-      // Add to cart form
+    bindAddToCartForm() {
       document.addEventListener('submit', async (e) => {
         if (!e.target.matches('form[action*="/cart/add"]')) return;
         e.preventDefault();
@@ -227,7 +214,6 @@
         const submitBtn = form.querySelector('[type="submit"]');
         const originalText = submitBtn?.textContent || '';
 
-        // Add loading class and disable all form inputs
         form.classList.add('form-loading');
         const formFields = form.querySelectorAll('input, select, button, textarea');
         formFields.forEach(field => {
@@ -240,25 +226,14 @@
         }
 
         try {
-          const response = await fetch('/cart/add.js', {
-            method: 'POST',
-            body: new FormData(form)
-          });
-          const data = await response.json();
-
-          if (response.ok) {
-            const cartResponse = await fetch('/cart.js');
-            const cart = await cartResponse.json();
-            this.updateCountDisplay(cart.item_count);
-            await this.refresh();
-            this.open();
-          } else {
-            throw new Error(data.description || 'Failed to add to cart');
-          }
+          await cartAPI.add(new FormData(form));
+          const cart = await cartAPI.get();
+          this.updateCountDisplay(cart.item_count);
+          await this.refresh();
+          this.open();
         } catch (error) {
           ErrorHandler.handle(error, 'Add to Cart', 'Unable to add item.');
         } finally {
-          // Remove loading class and restore form fields
           form.classList.remove('form-loading');
           formFields.forEach(field => {
             field.disabled = field.dataset.wasDisabled === 'true';
@@ -274,11 +249,7 @@
   };
 
   // Auto-initialize
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => Cart.init());
-  } else {
-    Cart.init();
-  }
+  onReady(() => Cart.init());
 
   // Expose for external access
   window.CartDrawer = Cart;

@@ -1,10 +1,14 @@
 /**
  * Collection Filters Module
  * Handles filter toggles and view switching on collection pages
+ *
+ * Depends on utils.js (window.ThemeUtils)
  */
 
 (function CollectionFiltersModule() {
   'use strict';
+
+  const { onReady } = window.ThemeUtils;
 
   const Collection = {
     init() {
@@ -44,21 +48,13 @@
   };
 
   // Auto-initialize on collection/search pages
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      const template = document.body.dataset.template ||
-        document.body.className.match(/template-(\w+)/)?.[1];
-      if (['collection', 'list-collections', 'search'].includes(template)) {
-        Collection.init();
-      }
-    });
-  } else {
+  onReady(() => {
     const template = document.body.dataset.template ||
       document.body.className.match(/template-(\w+)/)?.[1];
     if (['collection', 'list-collections', 'search'].includes(template)) {
       Collection.init();
     }
-  }
+  });
 
   // Expose for external access
   window.CollectionFilters = Collection;

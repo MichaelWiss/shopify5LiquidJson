@@ -120,6 +120,9 @@
 
     {% section 'cart-drawer' %}
 
+    {%- comment -%} Shared utilities — must load before module scripts {%- endcomment -%}
+    <script src="{{ 'utils.js' | asset_url }}" defer></script>
+
     {%- comment -%} Code-split JavaScript - Load only what's needed {%- endcomment -%}
     <script src="{{ 'header.js' | asset_url }}" defer></script>
     <script src="{{ 'cart-drawer.js' | asset_url }}" defer></script>

@@ -23,11 +23,7 @@
       {% assign fallback_alt = grid_alt[forloop.index0] | default: 'Gallery image' %}
       {% assign image_alt = block.settings.alt_text | default: fallback_alt %}
       <figure class="gallery-grid__item figure-frame" {{ block.shopify_attributes }}>
-        {% if block.settings.image != blank %}
-          {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: sizes, alt: image_alt }}
-        {% else %}
-          <img src="{{ fallback_src }}" alt="{{ image_alt }}" loading="lazy">
-        {% endif %}
+        {% render 'responsive-image', image: block.settings.image, width: 1600, sizes: sizes, alt: image_alt, fallback_src: fallback_src, fallback_alt: image_alt %}
         {% render 'gallery-caption',
           fig_label: block.settings.fig_label,
           caption: block.settings.caption,

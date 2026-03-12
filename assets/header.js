@@ -1,10 +1,14 @@
 /**
  * Header Module
  * Handles scroll detection, dynamic color switching, and scroll fade effects
+ *
+ * Depends on utils.js (window.ThemeUtils)
  */
 
 (function HeaderModule() {
   'use strict';
+
+  const { onReady } = window.ThemeUtils;
 
   const Header = {
     init() {
@@ -115,12 +119,8 @@
   };
 
   // Auto-initialize
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => Header.init());
-  } else {
-    Header.init();
-  }
+  onReady(() => Header.init());
 
   // Expose for external access
-  window.Header = Header;
+  window.HeaderModule = Header;
 })();
