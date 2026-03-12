@@ -48,5 +48,21 @@
       "sold_out": "Sold out",
       "unavailable": "Unavailable"
     }
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search products and articles...",
+    "submit": "Search",
+    "results_count_one": "{{ count }} result for \"{{ terms }}\"",
+    "results_count_other": "{{ count }} results for \"{{ terms }}\"",
+    "no_results": "No results found for \"{{ terms }}\"",
+    "no_results_suggestion": "Try a different search term or browse our collections below.",
+    "empty": "Enter a search term to find products and articles.",
+    "type_article": "Article",
+    "type_page": "Page"
+  },
+  "footer": {
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service"
   }
 }

@@ -57,10 +57,10 @@
     {% if section.settings.privacy_link != blank or section.settings.terms_link != blank %}
       <div>
         {% if section.settings.privacy_link != blank %}
-          <a href="{{ section.settings.privacy_link | escape }}">Privacy Policy</a>
+          <a href="{{ section.settings.privacy_link | escape }}">{{ 'footer.privacy_policy' | t }}</a>
         {% endif %}
         {% if section.settings.terms_link != blank %}
-          <a href="{{ section.settings.terms_link | escape }}">Terms of Service</a>
+          <a href="{{ section.settings.terms_link | escape }}">{{ 'footer.terms_of_service' | t }}</a>
         {% endif %}
       </div>
     {% endif %}

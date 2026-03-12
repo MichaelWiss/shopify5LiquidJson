@@ -44,25 +44,7 @@
             </article>
           {% endfor %}
 
-          {% if paginate.pages > 1 %}
-            <div class="blog-pagination">
-              {% if paginate.previous %}
-                <a href="{{ paginate.previous.url }}" class="blog-pagination__link blog-pagination__link--prev">
-                  <span>&larr; Previous</span>
-                </a>
-              {% endif %}
-
-              <span class="blog-pagination__current">
-                Page {{ paginate.current_page }} of {{ paginate.pages }}
-              </span>
-
-              {% if paginate.next %}
-                <a href="{{ paginate.next.url }}" class="blog-pagination__link blog-pagination__link--next">
-                  <span>Next &rarr;</span>
-                </a>
-              {% endif %}
-            </div>
-          {% endif %}
+          {% render 'pagination', paginate: paginate %}
         {% endpaginate %}
       </div>
     {% else %}

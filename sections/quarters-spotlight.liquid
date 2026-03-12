@@ -12,15 +12,13 @@
           {{ section.settings.details }}
         {% endif %}
       </div>
-      {% assign quarters_fallbacks = "https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?w=600&q=90|https://images.unsplash.com/photo-1615875221248-d8f28a5a5d30?w=600&q=90" | split: "|" %}
       {% assign quarters_alt = "Quarters Interior 1|Quarters Interior 2" | split: "|" %}
       <div class="quarters-images">
         {% for block in section.blocks %}
-          {% assign fallback_src = quarters_fallbacks[forloop.index0] %}
           {% assign fallback_alt = quarters_alt[forloop.index0] | default: 'Quarters image' %}
           {% assign image_alt = block.settings.alt_text | default: fallback_alt %}
           <div class="quarters-image" {{ block.shopify_attributes }}>
-            {% render 'responsive-image', image: block.settings.image, width: 1200, sizes: '(min-width: 1024px) 50vw, 100vw', alt: image_alt, fallback_src: fallback_src, fallback_alt: image_alt %}
+            {% render 'responsive-image', image: block.settings.image, width: 1200, sizes: '(min-width: 1024px) 50vw, 100vw', alt: image_alt, placeholder_type: 'lifestyle-1' %}
           </div>
         {% endfor %}
       </div>

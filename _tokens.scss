@@ -81,3 +81,16 @@ $breadcrumb-arrow-stroke: 1.2;
 $arrow-link-size: 11px;
 $arrow-link-gap: 6px;
 $arrow-link-gap-hover: 10px;
+
+// Container widths
+$container-narrow: 1200px;
+$container-standard: 1400px;
+$container-wide: 1600px;
+
+// Transition durations
+$transition-fast: 150ms;
+$transition-normal: 200ms;
+$transition-slow: 300ms;
+
+// Alias
+$text-muted: $ink-2;

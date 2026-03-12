@@ -174,13 +174,7 @@
 }
 
 .showroom-showcase__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: $s7; // 30px
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-  }
+  @include grid-2-col($gap: $s7);
 }
 
 .showroom-showcase__medium {

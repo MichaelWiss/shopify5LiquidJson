@@ -73,225 +73,13 @@
 {%- assign detail_img = section.settings.detail_image | default: product.featured_image -%}
 
 <style>
-  /* 
-     CRITICAL: We target the specific ID to ensure we override any 
-     theme-level defaults that might break sticky scrolling.
-  */
   #shopify-section-{{ section.id }} {
     background-color: {{ section.settings.bg_color | escape }};
     color: {{ section.settings.text_color | escape }};
-    /* 
-       Sticky Logic:
-       The parent of a sticky element cannot have overflow: hidden.
-       We ensure visibility here, and only hide overflow on the specific 
-       image container (.psf-hero-media) below.
-    */
-    overflow: visible !important; 
+    overflow: visible !important;
     position: relative;
     z-index: 1;
   }
-
-  /* Utilities */
-  .psf-container {
-    width: 100%;
-    margin: 0 auto;
-    /* Grid Setup */
-    display: grid;
-    grid-template-columns: 1fr;
-    /* 'stretch' is default, but being explicit helps. 
-       This ensures the Right Column is as tall as the Left Column. */
-    align-items: stretch; 
-  }
-
-  /* 
-     ------------------------------
-     LEFT COLUMN (Hero)
-     ------------------------------
-  */
-  .psf-hero-col {
-    position: relative;
-    width: 100%;
-    /* Mobile height constraint */
-    height: 60vh; 
-    background-color: rgba(0,0,0,0.1);
-    
-    /* 
-       This is where we crop the parallax image. 
-       It is safe to use overflow: hidden here because the sticky element 
-       is in a SIBLING container, not a child of this one.
-    */
-    overflow: hidden; 
-  }
-
-  .psf-hero-img {
-    position: absolute;
-    /* Start higher up to allow parallax movement down */
-    top: -10%; 
-    left: 0;
-    width: 100%;
-    height: 120%; /* 20% taller than container */
-    object-fit: cover;
-    object-position: center;
-    will-change: transform;
-    transition: transform 0.1s linear;
-  }
-
-  /* Floating Label */
-  .psf-label {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    z-index: 2;
-    color: #FFFFFF;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-
-  .psf-label::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background-color: #FFFFFF;
-    border-radius: 50%;
-    display: block;
-  }
-
-  /* 
-     ------------------------------
-     RIGHT COLUMN (Sticky Context)
-     ------------------------------
-  */
-  .psf-content-col {
-    position: relative;
-    padding: 40px 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centers content vertically if image is huge */
-  }
-
-  /* The element that moves and sticks */
-  .psf-sticky-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto; /* Center in column */
-    
-    /* Initial State for Fade-In */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-
-  .psf-sticky-wrapper.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* 
-     ------------------------------
-     DESKTOP LAYOUT (Sticky Active)
-     ------------------------------
-  */
-  @media (min-width: 1024px) {
-    .psf-container {
-      /* 60% Left, 40% Right */
-      grid-template-columns: 1.5fr 1fr;
-      min-height: 100vh;
-    }
-
-    .psf-hero-col {
-      height: auto; /* Fill grid height */
-      min-height: 100vh;
-    }
-
-    .psf-content-col {
-      padding: 80px 60px;
-      /* Allow sticky child to move within this track */
-      display: block; 
-    }
-
-    .psf-sticky-wrapper {
-      /* STICKY MAGIC HAPPENS HERE */
-      position: -webkit-sticky;
-      position: sticky;
-      /* Adjust this value based on your Theme's Header Height */
-      top: 50px; 
-      
-      /* Center vertically relative to viewport height approx */
-      margin-top: 10vh; 
-    }
-  }
-
-  /* Elements */
-  .psf-description {
-    font-size: 15px;
-    line-height: 1.6;
-    opacity: 0.85;
-  }
-
-  .psf-product-card {
-    background-color: rgba(0,0,0,0.05); /* Subtle contrast */
-    aspect-ratio: 1 / 1;
-    width: 100%;
-    max-width: 350px;
-    display: block;
-    text-decoration: none;
-    border-radius: 2px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .psf-product-thumb {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .psf-product-card:hover .psf-product-thumb {
-    transform: scale(1.05);
-  }
-
-  .psf-meta {
-    border-top: 1px solid rgba(0,0,0,0.1);
-    padding-top: 20px;
-  }
-
-  .psf-title {
-    font-family: "Times New Roman", Times, serif; /* Or theme serif */
-    font-size: 22px;
-    font-weight: 400;
-    margin: 0 0 8px 0;
-  }
-
-  .psf-price {
-    font-size: 14px;
-    opacity: 0.7;
-    margin-bottom: 16px;
-  }
-
-  .psf-btn {
-    display: inline-block;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 2px;
-    color: currentColor;
-    transition: opacity 0.2s;
-  }
-  .psf-btn:hover {
-    opacity: 0.6;
-  }
-
 </style>
 
 <div class="psf-container">
@@ -302,12 +90,7 @@
       {{ section.settings.custom_label | default: product.title }}
     </div>
 
-    {%- if hero_img != blank -%}
-      {{ hero_img | image_url: width: 2000 | image_tag: class: 'psf-hero-img', id: 'psfParallaxImg', loading: 'lazy' }}
-    {%- else -%}
-      <!-- Fallback for Demo -->
-      {{ 'lifestyle-1' | placeholder_svg_tag: 'psf-hero-img' }}
-    {%- endif -%}
+    {%- render 'responsive-image', image: hero_img, width: 2000, class: 'psf-hero-img', id: 'psfParallaxImg', placeholder_type: 'lifestyle-1', placeholder_class: 'psf-hero-img' -%}
   </div>
 
   <!-- RIGHT: Sticky Content -->
@@ -319,15 +102,7 @@
       </div>
 
       <a href="{{ product.url | default: '#' }}" class="psf-product-card">
-        {%- if detail_img != blank -%}
-          {{ detail_img | image_url: width: 600 | image_tag: class: 'psf-product-thumb', loading: 'lazy' }}
-        {%- else -%}
-           <!-- Fallback for Demo -->
-           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/640px-A_small_cup_of_coffee.JPG" 
-                class="psf-product-thumb" 
-                alt="Demo Product"
-                style="border-radius:50%;">
-        {%- endif -%}
+        {% render 'responsive-image', image: detail_img, width: 600, class: 'psf-product-thumb', placeholder_type: 'product-1' %}
       </a>
 
       <div class="psf-meta">

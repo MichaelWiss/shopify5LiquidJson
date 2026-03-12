@@ -154,7 +154,7 @@
 }
 
 .collection-page__filter-toggle:hover {
-  color: #666;
+  color: var(--ink-2);
 }
 
 .collection-page__filter-icon {
@@ -184,7 +184,7 @@
   font-family: inherit;
   font-size: 18px;
   font-weight: 400;
-  color: #999;
+  color: var(--ink-2);
   cursor: pointer;
   text-decoration: none;
   transition: color 200ms ease;
@@ -224,7 +224,7 @@
 
 .collection-page__filter-label {
   font-size: $text-xl;
-  color: #999;
+  color: var(--ink-2);
   margin: 0;
 }
 
@@ -252,7 +252,7 @@
 }
 
 .collection-page__filter-link:hover {
-  color: #666;
+  color: var(--ink-2);
 }
 
 .collection-page__filter-link.is-active {

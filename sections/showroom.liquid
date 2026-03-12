@@ -6,11 +6,7 @@
     </p>
     
     <div class="showroom-hero__image">
-      {% if section.settings.hero_image %}
-        {{ section.settings.hero_image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'hero-image' }}
-      {% else %}
-        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&h=600&fit=crop" alt="Showroom Interior">
-      {% endif %}
+      {% render 'responsive-image', image: section.settings.hero_image, width: 1400, class: 'hero-image', placeholder_type: 'lifestyle-1' %}
     </div>
   </div>
 
@@ -74,18 +70,18 @@
     </div>
 
     <div class="showroom-showcase">
-      <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1400&h=650&fit=crop" alt="Main Showroom" class="showroom-showcase__large">
+      {% render 'responsive-image', image: section.settings.showcase_image_1, width: 1400, class: 'showroom-showcase__large', placeholder_type: 'lifestyle-1' %}
       
       <div class="showroom-showcase__grid">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&h=500&fit=crop" alt="Furniture Detail" class="showroom-showcase__medium">
-        <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=700&h=500&fit=crop" alt="Living Space" class="showroom-showcase__medium">
+        {% render 'responsive-image', image: section.settings.showcase_image_2, width: 700, class: 'showroom-showcase__medium', placeholder_type: 'lifestyle-1' %}
+        {% render 'responsive-image', image: section.settings.showcase_image_3, width: 700, class: 'showroom-showcase__medium', placeholder_type: 'lifestyle-1' %}
       </div>
 
-      <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1400&h=650&fit=crop" alt="Showroom View" class="showroom-showcase__large">
+      {% render 'responsive-image', image: section.settings.showcase_image_4, width: 1400, class: 'showroom-showcase__large', placeholder_type: 'lifestyle-1' %}
     </div>
 
     <div class="showroom-feature">
-      <img src="https://images.unsplash.com/photo-1615875474908-c7455fdc7a5f?w=300&h=400&fit=crop" alt="Chair Detail" class="showroom-feature__image">
+      {% render 'responsive-image', image: section.settings.feature_image, width: 300, class: 'showroom-feature__image', placeholder_type: 'lifestyle-1' %}
       
       <div class="showroom-feature__content">
         <h3>Thoughtfully designed spaces showcasing our complete collection</h3>
@@ -99,14 +95,14 @@
       <h2 class="showroom-production__title">Our Production Space</h2>
       <p class="showroom-production__description">We opened our first production space in Brooklyn with the same characteristic finery that we use in all of our furniture—natural wood, thoughtful design, and artisan craft. It's a place where you can watch our craftspeople at work and see the dedication that goes into every piece.</p>
       
-      <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1400&h=550&fit=crop" alt="Production Workshop" class="showroom-production__image">
+      {% render 'responsive-image', image: section.settings.production_image, width: 1400, class: 'showroom-production__image', placeholder_type: 'lifestyle-1' %}
     </div>
   </div>
 
   <div class="showroom-section">
     <div class="showroom-details">
-      <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=300&h=500&fit=crop" alt="Decor Detail" class="showroom-details__small">
-      <img src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1000&h=500&fit=crop" alt="Dining Setup" class="showroom-details__large">
+      {% render 'responsive-image', image: section.settings.details_image_1, width: 300, class: 'showroom-details__small', placeholder_type: 'lifestyle-1' %}
+      {% render 'responsive-image', image: section.settings.details_image_2, width: 1000, class: 'showroom-details__large', placeholder_type: 'lifestyle-1' %}
     </div>
   </div>
 </section>
@@ -130,6 +126,54 @@
       "type": "image_picker",
       "id": "hero_image",
       "label": "Hero Image"
+    },
+    {
+      "type": "header",
+      "content": "Showcase Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "showcase_image_1",
+      "label": "Showcase Large 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "showcase_image_2",
+      "label": "Showcase Medium 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "showcase_image_3",
+      "label": "Showcase Medium 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "showcase_image_4",
+      "label": "Showcase Large 2"
+    },
+    {
+      "type": "header",
+      "content": "Feature & Details"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_image",
+      "label": "Feature Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "production_image",
+      "label": "Production Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "details_image_1",
+      "label": "Details Small Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "details_image_2",
+      "label": "Details Large Image"
     }
   ],
   "presets": [

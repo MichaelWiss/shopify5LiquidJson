@@ -6,11 +6,7 @@
     </p>
     
     <div class="showroom-hero__image">
-      {% if section.settings.hero_image %}
-        {{ section.settings.hero_image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'hero-image' }}
-      {% else %}
-        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&h=600&fit=crop" alt="Showroom Interior">
-      {% endif %}
+      {% render 'responsive-image', image: section.settings.hero_image, width: 1400, class: 'hero-image', placeholder_type: 'lifestyle-1' %}
     </div>
   </div>
 </section>

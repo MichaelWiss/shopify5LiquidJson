@@ -1,41 +1,20 @@
 <div class="showroom-section">
   <div class="showroom-showcase">
-    {% assign fallback_large_1 = "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1400&h=650&fit=crop" %}
-    {% assign fallback_medium_1 = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&h=500&fit=crop" %}
-    {% assign fallback_medium_2 = "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=700&h=500&fit=crop" %}
-    {% assign fallback_large_2 = "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1400&h=650&fit=crop" %}
-
     <div class="showroom-showcase__large">
-      {% if section.settings.image_1 != blank %}
-        {{ section.settings.image_1 | image_url: width: 1400 | image_tag: loading: 'lazy' }}
-      {% else %}
-        <img src="{{ fallback_large_1 }}" alt="Main Showroom">
-      {% endif %}
+      {% render 'responsive-image', image: section.settings.image_1, width: 1400, placeholder_type: 'lifestyle-1' %}
     </div>
     
     <div class="showroom-showcase__grid">
       <div class="showroom-showcase__medium">
-        {% if section.settings.image_2 != blank %}
-          {{ section.settings.image_2 | image_url: width: 700 | image_tag: loading: 'lazy' }}
-        {% else %}
-          <img src="{{ fallback_medium_1 }}" alt="Furniture Detail">
-        {% endif %}
+        {% render 'responsive-image', image: section.settings.image_2, width: 700, placeholder_type: 'lifestyle-1' %}
       </div>
       <div class="showroom-showcase__medium">
-        {% if section.settings.image_3 != blank %}
-          {{ section.settings.image_3 | image_url: width: 700 | image_tag: loading: 'lazy' }}
-        {% else %}
-          <img src="{{ fallback_medium_2 }}" alt="Living Space">
-        {% endif %}
+        {% render 'responsive-image', image: section.settings.image_3, width: 700, placeholder_type: 'lifestyle-1' %}
       </div>
     </div>
 
     <div class="showroom-showcase__large">
-      {% if section.settings.image_4 != blank %}
-        {{ section.settings.image_4 | image_url: width: 1400 | image_tag: loading: 'lazy' }}
-      {% else %}
-        <img src="{{ fallback_large_2 }}" alt="Showroom View">
-      {% endif %}
+      {% render 'responsive-image', image: section.settings.image_4, width: 1400, placeholder_type: 'lifestyle-1' %}
     </div>
   </div>
 </div>

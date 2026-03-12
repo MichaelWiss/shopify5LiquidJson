@@ -209,69 +209,6 @@
 }
 
 // ========================================
-// FOOTER SECTION
-// ========================================
-
-.footer {
-  border-top: 1px solid var(--hair);
-  padding: $s10 $s7;
-}
-
-.footer__inner {
-  @include container(1400px);
-}
-
-.footer__grid {
-  @include grid-3-col(var(--s4));
-  margin-bottom: var(--s5);
-}
-
-.footer__heading {
-  font-family: var(--serif);
-  font-size: $text-lg;
-  font-weight: 400;
-  margin-bottom: var(--s3);
-}
-
-.footer__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s2);
-}
-
-.footer__link {
-  color: var(--ink-2);
-  text-decoration: none;
-  font-size: $text-md;
-  transition: color 160ms ease;
-}
-
-.footer__link:hover {
-  color: var(--ink);
-}
-
-.footer__text {
-  color: var(--ink-2);
-  font-size: $text-md;
-  line-height: 1.6;
-}
-
-.footer__credits {
-  text-align: center;
-  padding-top: var(--s4);
-  border-top: 1px solid var(--hair);
-  font-size: $text-sm;
-  color: var(--ink-2);
-}
-
-.footer__credits a {
-  color: inherit;
-}
-
-// ========================================
 // CART DRAWER SECTION
 // ========================================
 

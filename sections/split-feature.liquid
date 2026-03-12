@@ -1,11 +1,7 @@
 <section class="side-by-side{% if section.settings.layout == 'image-right' %} side-by-side--reverse{% endif %}">
   {% assign fallback_side_image = 'https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?w=800&q=90' %}
   <figure class="side-image figure-frame">
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 50vw, 100vw' }}
-    {% else %}
-      <img src="{{ fallback_side_image }}" alt="{{ section.settings.heading | default: 'Feature image' }}" loading="lazy">
-    {% endif %}
+    {% render 'responsive-image', image: section.settings.image, width: 2000, sizes: '(min-width: 1024px) 50vw, 100vw', alt: section.settings.heading, fallback_src: fallback_side_image, fallback_alt: section.settings.heading %}
     {% render 'gallery-caption',
       fig_label: section.settings.image_caption_label,
       caption: section.settings.image_caption,

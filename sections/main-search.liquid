@@ -6,19 +6,19 @@
 <section class="search-section">
   <div class="search-container">
     <div class="search-header">
-      <h1 class="intro-heading">Search</h1>
+      <h1 class="intro-heading">{{ 'search.title' | t }}</h1>
       
       <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
         <input 
           type="search" 
           name="q" 
           value="{{ search.terms | escape }}"
-          placeholder="Search products and articles..."
+          placeholder="{{ 'search.placeholder' | t }}"
           class="search-input"
-          aria-label="Search"
+          aria-label="{{ 'search.title' | t }}"
         >
         <button type="submit" class="search-submit">
-          Search
+          {{ 'search.submit' | t }}
         </button>
       </form>
     </div>
@@ -47,7 +47,7 @@
                         </div>
                         
                         <div class="search-item__content">
-                          <span class="search-item__type">Article</span>
+                          <span class="search-item__type">{{ 'search.type_article' | t }}</span>
                           <h3 class="search-item__title">{{ item.title }}</h3>
                           {% if item.excerpt != blank %}
                             <p class="search-item__excerpt">{{ item.excerpt | strip_html | truncate: 100 }}</p>
@@ -60,7 +60,7 @@
                     <article class="search-item search-item--page">
                       <a href="{{ item.url }}" class="search-item__link">
                         <div class="search-item__content">
-                          <span class="search-item__type">Page</span>
+                          <span class="search-item__type">{{ 'search.type_page' | t }}</span>
                           <h3 class="search-item__title">{{ item.title }}</h3>
                           {% if item.content != blank %}
                             <p class="search-item__excerpt">{{ item.content | strip_html | truncate: 100 }}</p>
@@ -71,37 +71,19 @@
                 {% endcase %}
               {% endfor %}
 
-              {% if paginate.pages > 1 %}
-                <div class="search-pagination">
-                  {% if paginate.previous %}
-                    <a href="{{ paginate.previous.url }}" class="search-pagination__link">
-                      &larr; Previous
-                    </a>
-                  {% endif %}
-
-                  <span class="search-pagination__current">
-                    Page {{ paginate.current_page }} of {{ paginate.pages }}
-                  </span>
-
-                  {% if paginate.next %}
-                    <a href="{{ paginate.next.url }}" class="search-pagination__link">
-                      Next &rarr;
-                    </a>
-                  {% endif %}
-                </div>
-              {% endif %}
+              {% render 'pagination', paginate: paginate %}
             {% endpaginate %}
           </div>
         </div>
       {% else %}
         <div class="search-empty">
-          <p class="intro-text">No results found for "{{ search.terms }}"</p>
-          <p class="search-empty__suggestion">Try a different search term or browse our collections below.</p>
+          <p class="intro-text">{{ 'search.no_results' | t: terms: search.terms }}</p>
+          <p class="search-empty__suggestion">{{ 'search.no_results_suggestion' | t }}</p>
         </div>
       {% endif %}
     {% else %}
       <div class="search-empty">
-        <p class="intro-text">Enter a search term to find products and articles.</p>
+        <p class="intro-text">{{ 'search.empty' | t }}</p>
       </div>
     {% endif %}
   </div>

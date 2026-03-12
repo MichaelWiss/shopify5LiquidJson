@@ -1,5 +1,4 @@
 <section class="gallery-grid" data-columns="{{ section.settings.columns }}">
-  {% assign grid_fallbacks = "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=90|https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=90|https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=90|https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=90|https://images.unsplash.com/photo-1615873968403-89e068629265?w=800&q=90|https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?w=800&q=90" | split: "|" %}
   {% assign grid_alt = "Interior 1|Interior 2|Interior 3|Interior 4|Interior 5|Interior 6" | split: "|" %}
   
   {% case section.settings.columns %}
@@ -19,11 +18,10 @@
 
   <div class="gallery-grid__inner {{ column_class }}">
     {% for block in section.blocks %}
-      {% assign fallback_src = grid_fallbacks[forloop.index0] %}
       {% assign fallback_alt = grid_alt[forloop.index0] | default: 'Gallery image' %}
       {% assign image_alt = block.settings.alt_text | default: fallback_alt %}
       <figure class="gallery-grid__item figure-frame" {{ block.shopify_attributes }}>
-        {% render 'responsive-image', image: block.settings.image, width: 1600, sizes: sizes, alt: image_alt, fallback_src: fallback_src, fallback_alt: image_alt %}
+        {% render 'responsive-image', image: block.settings.image, width: 1600, sizes: sizes, alt: image_alt, placeholder_type: 'lifestyle-1' %}
         {% render 'gallery-caption',
           fig_label: block.settings.fig_label,
           caption: block.settings.caption,
