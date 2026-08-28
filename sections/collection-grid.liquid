@@ -20,12 +20,7 @@
                   <h3 class="collection-demo-card__title">{{ block.settings.title }}</h3>
                 {% endif %}
                 {% if block.settings.link_label != blank %}
-                  {% render 'arrow-link',
-                    text: block.settings.link_label,
-                    url: block.settings.link | default: '#',
-                    class: 'collection-demo-card__link',
-                    icon_size: '14'
-                  %}
+                  {% render 'arrow-link', text: block.settings.link_label, url: block.settings.link, default: '#', class: 'collection-demo-card__link', icon_size: '14' %}
                 {% endif %}
               </div>
             </article>
@@ -311,3 +306,20 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'arrow-link',
+                        text: block.settings.link_label,
+                        url: block.settings.link | default: '#',
+                        class: 'collection-demo-card__link',
+                        icon_size: '14'
+                      %}
+  to: "{% render 'arrow-link', text: block.settings.link_label, url: block.settings.link,
+    default: '#', class: 'collection-demo-card__link', icon_size: '14' %}"
+  position: 1357..1509
+{% endcomment %}
